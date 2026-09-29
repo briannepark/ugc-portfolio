@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brianne — Selected Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4F1E7;
+    --bg-2: #ECE7D8;
+    --ink: #17140F;
+    --muted: #524C3E;
+    --muted-2: #8C8570;
+    --accent: #A4502B;
+    --line: rgba(23, 20, 15, 0.14);
+    --line-strong: rgba(23, 20, 15, 0.9);
+    --panel: rgba(23, 20, 15, 0.035);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 48px; }
+  html, body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted-2);
+  }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.1; margin: 10px 0 0; color: var(--ink); text-transform: uppercase; letter-spacing: -.01em;
+  }
+
+  /* header */
+  header.wrap { padding-top: 34px; padding-bottom: 34px; display: flex; align-items: center; justify-content: space-between; }
+  .brand {
+    font-family: 'Poppins', sans-serif; font-size: 34px; font-weight: 800;
+    letter-spacing: -.065em; text-transform: lowercase;
+  }
+  .brand sup { font-size: 14px; font-weight: 600; top: -1em; margin-left: 1px; font-family: 'Inter', sans-serif; letter-spacing: 0; }
+  nav { display: flex; align-items: center; gap: 34px; }
+  nav a {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid transparent;
+  }
+  nav a:hover, nav a.current { color: var(--ink); border-color: var(--line-strong); }
+
+  .back-row { padding: 4px 0 0; }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted-2);
+  }
+  .back-link:hover { color: var(--ink); }
+
+  section.board { padding: 12px 0 76px; }
+  .board-cap { max-width: 640px; }
+  .board-cap p.lede { font-size: 15.5px; line-height: 1.7; color: var(--muted); margin: 16px 0 0; max-width: 520px; }
+
+  /* pinboard grid */
+  .pinboard {
+    margin-top: 46px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 34px 26px;
+  }
+  .pin-card {
+    position: relative;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    box-shadow: 0 14px 26px rgba(23,20,15,0.09);
+    cursor: default;
+  }
+  .pin-card.filled { cursor: pointer; }
+  .pin-card .pin-ratio { position: relative; width: 100%; padding-top: 132%; }
+  .pin-card .pin-inner {
+    position: absolute; inset: 0; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    padding: 16px;
+  }
+  .pin-card.filled .pin-inner { background: var(--ink); transition: background-color .3s ease; }
+  .pin-card.filled:hover .pin-inner, .pin-card.filled:focus-visible .pin-inner { background: var(--accent); }
+  .pin-card.blank .pin-inner { background: var(--bg-2); }
+
+  .pin-head {
+    position: absolute; top: -7px; left: 50%; transform: translateX(-50%);
+    width: 13px; height: 13px; border-radius: 50%; z-index: 2;
+    background: radial-gradient(circle at 34% 30%, #fdfaf1, var(--muted-2) 60%, #55503f 100%);
+    box-shadow: 0 3px 5px rgba(23,20,15,0.35);
+  }
+
+  .pin-num {
+    position: absolute; top: 12px; left: 14px; font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; color: rgba(244,241,231,0.55);
+  }
+  .pin-play {
+    position: absolute; top: 12px; right: 12px; color: rgba(244,241,231,0.5);
+  }
+  .pin-title {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; line-height: 1.2;
+    color: var(--bg); text-align: center; text-transform: uppercase;
+  }
+  .pin-sub {
+    font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .08em;
+    text-transform: uppercase; color: rgba(244,241,231,0.55);
+  }
+
+  .board-caption {
+    text-align: center; margin-top: 56px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .1em;
+    text-transform: lowercase; color: var(--muted-2);
+  }
+
+  /* page content wrapper — blurred/dimmed while the lightbox is open */
+  #page { transition: filter .45s ease; }
+  body.lightbox-open #page { filter: blur(14px) brightness(0.6); pointer-events: none; }
+
+  /* lightbox */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(23, 20, 15, 0.72);
+    opacity: 0; visibility: hidden;
+    transition: opacity .45s ease, visibility 0s linear .45s;
+  }
+  .lightbox.active { opacity: 1; visibility: visible; transition: opacity .45s ease; }
+  .lightbox-card {
+    position: relative; width: 320px; max-width: 82vw; height: 500px; max-height: 78vh;
+    background: var(--ink); border: 1px solid rgba(244,241,231,0.18);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    padding: 32px; transform: scale(.9); transition: transform .45s cubic-bezier(.22,1,.36,1);
+  }
+  .lightbox.active .lightbox-card { transform: scale(1); }
+  .lightbox-num { position: absolute; top: 20px; left: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .1em; color: rgba(244,241,231,0.5); }
+  .lightbox-play {
+    width: 60px; height: 60px; border-radius: 50%; border: 1px solid rgba(244,241,231,0.4);
+    display: flex; align-items: center; justify-content: center; color: var(--bg); margin-bottom: 6px;
+  }
+  .lightbox-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 26px; line-height: 1.2; color: var(--bg); text-align: center; text-transform: uppercase; }
+  .lightbox-sub { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-2); }
+  .lightbox-note { font-size: 12.5px; color: rgba(244,241,231,0.45); text-align: center; max-width: 220px; margin-top: 6px; line-height: 1.6; }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 22px; width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center; color: var(--bg);
+    border: 1px solid rgba(244,241,231,0.3); border-radius: 50%; cursor: pointer;
+    font-family: 'Inter', sans-serif; font-size: 15px; background: none;
+  }
+  .lightbox-close:hover { border-color: rgba(244,241,231,0.7); }
+
+  footer.wrap {
+    padding: 30px 48px 44px; display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--muted-2); flex-wrap: wrap; gap: 8px;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: .06em; text-transform: uppercase;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 860px) {
+    .pinboard { grid-template-columns: repeat(3, 1fr); gap: 28px 20px; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 22px; }
+    footer.wrap { padding: 28px 22px 44px; }
+    nav { gap: 18px; }
+    .pinboard { grid-template-columns: repeat(2, 1fr); gap: 26px 16px; }
+  }
+</style>
+</head>
+<body>
+<div id="page">
+
+<header class="wrap">
+  <a class="brand" href="index.html">brianne<sup>☺</sup></a>
+  <nav>
+    <a href="gallery.html" class="current">Gallery</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#rates">Rates</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="wrap back-row">
+  <a class="back-link" href="index.html">&larr; Back to site</a>
+</div>
+
+<div class="wrap">
+  <section class="board">
+    <div class="eyebrow">(02) Selected Work</div>
+    <div class="board-cap">
+      <h2>Every piece,<br>pinned up.</h2>
+      <p class="lede">The full board — shipped work up front, open slots for what's shooting next. Tap any pinned frame for a closer look.</p>
+    </div>
+
+    <div class="pinboard">
+      <div class="pin-card filled" tabindex="0">
+        <div class="pin-head"></div>
+        <div class="pin-ratio">
+          <div class="pin-inner">
+            <div class="pin-num">01</div>
+            <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+            <div class="pin-title">First<br>look</div>
+            <div class="pin-sub">Unboxing</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
+
+      <div class="pin-card filled" tabindex="0">
+        <div class="pin-head"></div>
+        <div class="pin-ratio">
+          <div class="pin-inner">
+            <div class="pin-num">02</div>
+            <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+            <div class="pin-title">The<br>craft</div>
+            <div class="pin-sub">Materials</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
+
+      <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
+
+      <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
+
+      <div class="pin-card filled" tabindex="0">
+        <div class="pin-head"></div>
+        <div class="pin-ratio">
+          <div class="pin-inner">
+            <div class="pin-num">03</div>
+            <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+            <div class="pin-title">How I<br>use it</div>
+            <div class="pin-sub">Workflow</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
+
+      <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
+
+      <div class="pin-card filled" tabindex="0">
+        <div class="pin-head"></div>
+        <div class="pin-ratio">
+          <div class="pin-inner">
+            <div class="pin-num">04</div>
+            <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+            <div class="pin-title">What's<br>inside</div>
+            <div class="pin-sub">Ingredients</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
+
+      <div class="pin-card filled" tabindex="0">
+        <div class="pin-head"></div>
+        <div class="pin-ratio">
+          <div class="pin-inner">
+            <div class="pin-num">05</div>
+            <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+            <div class="pin-title">Before /<br>after</div>
+            <div class="pin-sub">Results</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
+
+      <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
+
+      <div class="pin-card filled" tabindex="0">
+        <div class="pin-head"></div>
+        <div class="pin-ratio">
+          <div class="pin-inner">
+            <div class="pin-num">06</div>
+            <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+            <div class="pin-title">Claude,<br>daily</div>
+            <div class="pin-sub">Concept</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
+    </div>
+
+    <div class="board-caption">brianne.02 — selected work</div>
+  </section>
+</div>
+
+<footer class="wrap">
+  <span>@brianne.studio</span>
+  <span>UGC &amp; Brand Partnerships</span>
+</footer>
+
+</div>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-card">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <div class="lightbox-num" id="lightboxNum"></div>
+    <div class="lightbox-play">
+      <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+    </div>
+    <div class="lightbox-title" id="lightboxTitle"></div>
+    <div class="lightbox-sub" id="lightboxSub"></div>
+    <div class="lightbox-note">Video preview — drop the real clip in here once it's shot.</div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var lightbox = document.getElementById('lightbox');
+    var lightboxNum = document.getElementById('lightboxNum');
+    var lightboxTitle = document.getElementById('lightboxTitle');
+    var lightboxSub = document.getElementById('lightboxSub');
+    var closeBtn = document.getElementById('lightboxClose');
+    var tiles = document.querySelectorAll('.pin-card.filled');
+
+    function openLightbox(tile) {
+      var num = tile.querySelector('.pin-num');
+      var title = tile.querySelector('.pin-title');
+      var sub = tile.querySelector('.pin-sub');
+      lightboxNum.innerHTML = num ? num.innerHTML : '';
+      lightboxTitle.innerHTML = title ? title.innerHTML : '';
+      lightboxSub.innerHTML = sub ? sub.innerHTML : '';
+      document.body.classList.add('lightbox-open');
+      lightbox.classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.body.classList.remove('lightbox-open');
+      lightbox.classList.remove('active');
+    }
+
+    tiles.forEach(function (tile) {
+      tile.addEventListener('click', function () { openLightbox(tile); });
+      tile.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(tile); }
+      });
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+  })();
+</script>
+
+<script>
+(function () {
+  // Bridge for running inside the Windmill Raw App iframe wrapper.
+  // No-op when the page is opened directly (not embedded).
+  if (window.self === window.top) return;
+
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    var m = href.match(/^(index\.html|gallery\.html)?(#.*)?$/);
+    if (!m || (!m[1] && !m[2])) return;
+    // Only intercept internal same-app links (index.html / gallery.html, with optional hash).
+    if (!/^(index\.html|gallery\.html)?(#.*)?$/.test(href)) return;
+    e.preventDefault();
+    var page = m[1] === 'gallery.html' ? 'gallery' : 'home';
+    window.parent.postMessage({ type: 'ugc-nav', page: page, hash: m[2] || '' }, '*');
+  });
+
+  window.addEventListener('message', function (e) {
+    var d = e.data;
+    if (d && d.type === 'ugc-scroll' && d.hash) {
+      var el = document.getElementById(d.hash.replace('#', ''));
+      if (el) el.scrollIntoView();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
