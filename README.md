@@ -35,12 +35,11 @@ Just edit `site/index.html` or `site/gallery.html` directly and push to `main`
 
 ## One-time setup (before the first deploy works)
 
-1. **Create the Windmill app once.** In Windmill, create a new Raw App (full-code
-   app) so the workspace path in `raw_app.yaml` exists. **Check `raw_app.yaml`'s
-   `path:` field matches your real Windmill username/folder** — it's currently
-   set to `u/briannepark/ugc_portfolio` as a placeholder.
+1. **Create the Windmill app once.** ✅ Done — `raw_app.yaml` points at
+   `u/brianne/ugc_portfolio`.
 
-   Also double check the **local file layout Windmill's CLI expects** — `wmill sync pull`
+   One thing still worth double-checking: the **local file layout Windmill's
+   CLI expects**. Run `wmill sync pull`
    from an empty version of that app once, locally, and compare what it writes
    against this repo's `raw_app.yaml` / `.raw_app/` layout. Windmill's docs weren't
    fully consistent on whether these live at the repo root or nested under a path

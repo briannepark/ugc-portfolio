@@ -1,11 +1,9 @@
 # Windmill Raw App config — see https://www.windmill.dev/docs/full_code_apps/deployment
 #
-# `path` is the app's location inside your Windmill workspace. The default below
-# assumes a Windmill username "briannepark" — if your workspace uses a different
-# username/folder, update this before the first deploy (wmill will create the app
-# at this path the first time `wmill sync push` runs).
+# `path` is the app's location inside your Windmill workspace — matches the
+# ugc_portfolio app you created under your u/brianne namespace.
 summary: "Brianne — UGC Portfolio"
-path: "u/briannepark/ugc_portfolio"
+path: "u/brianne/ugc_portfolio"
 
 # Friendly URL segment: https://app.windmill.dev/api/w/<workspace>/apps_u/public/<custom_path>
 custom_path: "ugc-portfolio"
