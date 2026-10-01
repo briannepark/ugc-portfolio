@@ -1,10 +1,11 @@
 # Windmill CLI sync config — https://www.windmill.dev/docs/advanced/cli/sync
 #
-# Scopes `wmill sync push` to just this raw app, so it doesn't try to touch
-# anything else in your Windmill workspace.
+# Scopes `wmill sync push` to just this app, so it never touches anything
+# else in your Windmill workspace.
+defaultTs: bun
+
 includes:
-  - "raw_app.yaml"
-  - ".raw_app/**"
+  - "u/brianne/ugc_portfolio.raw_app/**"
 
 skipVariables: true
 skipResources: true

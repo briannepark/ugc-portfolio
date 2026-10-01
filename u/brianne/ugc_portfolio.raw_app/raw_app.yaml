@@ -1,0 +1,8 @@
+summary: "Brianne — UGC Portfolio"
+
+# Anyone with the link can view it — no Windmill login required. Set to false if
+# you'd rather it only be visible to people in your Windmill workspace.
+public: true
+
+# Friendly URL: <your windmill>/a/<workspace>/ugc-portfolio (exact form shown after deploy)
+custom_path: "ugc-portfolio"

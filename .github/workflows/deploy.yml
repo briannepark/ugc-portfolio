@@ -23,7 +23,13 @@ jobs:
       - name: Install Windmill CLI
         run: npm install -g windmill-cli
 
-      - name: Deploy Raw App to Windmill
+      - name: Check the app builds
+        working-directory: u/brianne/ugc_portfolio.raw_app
+        run: |
+          npm install
+          npx --yes esbuild App.tsx --bundle --loader:.tsx=tsx --outfile=/tmp/app-check.js --external:react --external:react-dom
+
+      - name: Deploy to Windmill
         run: |
           wmill sync push \
             --base-url "${{ secrets.WM_BASE_URL }}" \

@@ -40,7 +40,7 @@ for (const { file, export: exportName } of pages) {
   out += `export const ${exportName} = \`${toTemplateLiteral(html)}\`;\n\n`;
 }
 
-const outDir = join(repoRoot, '.raw_app');
+const outDir = join(repoRoot, 'u/brianne/ugc_portfolio.raw_app');
 mkdirSync(outDir, { recursive: true });
 const outFile = join(outDir, 'pages.generated.ts');
 writeFileSync(outFile, out, 'utf-8');
