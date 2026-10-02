@@ -29,20 +29,6 @@ export async function checkPassword(password: string): Promise<string | null> {
   return null;
 }
 
-// TEMPORARY diagnostic, used only by brands_list's "list" action (the login
-// check) — never logs or returns the actual stored value, only shape info,
-// so it's safe to leave the detail visible on the gate screen while
-// debugging the "incorrect password" issue. Remove once resolved.
-function diagnose(expectedRaw: unknown, attempted: unknown): string {
-  const expected = String(expectedRaw ?? '');
-  const looksLikeJson = /^[\[{]/.test(expected.trim());
-  const bits = [
-    `Stored value is ${expected.length} chars${looksLikeJson ? ' and looks like JSON — this path may be a Resource, not a Variable' : ''}.`,
-    `You typed ${String(attempted ?? '').trim().length} chars.`,
-  ];
-  return bits.join(' ');
-}
-
 export async function readAll(): Promise<Brand[]> {
   const stored = await wmill.getState(BRANDS_STORE);
   const list: any[] = Array.isArray(stored?.brands) ? stored.brands : [];
@@ -61,17 +47,9 @@ export async function readAll(): Promise<Brand[]> {
   }));
 }
 
-export async function main(
-  password: string,
-): Promise<{ ok: true; brands: Brand[] } | { ok: false; error: string; detail?: string }> {
-  const expectedRaw = await wmill.getVariable(PASSWORD_VARIABLE);
-  const expected = String(expectedRaw ?? '').trim();
-  if (!expected) {
-    return { ok: false, error: "The dashboard password hasn't been set up yet — add a Windmill variable at u/brianne/brand_crm_password." };
-  }
-  if (String(password ?? '').trim() !== expected) {
-    return { ok: false, error: 'Incorrect password.', detail: diagnose(expectedRaw, password) };
-  }
+export async function main(password: string): Promise<{ ok: true; brands: Brand[] } | { ok: false; error: string }> {
+  const authError = await checkPassword(password);
+  if (authError) return { ok: false, error: authError };
 
   const brands = await readAll();
   brands.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
