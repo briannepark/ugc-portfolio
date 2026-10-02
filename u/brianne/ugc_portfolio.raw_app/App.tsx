@@ -21,10 +21,20 @@ export default function App() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   // Keep the URL shareable/bookmarkable as the visitor navigates inside the app.
+  // Windmill's public (guest) runtime executes this bundle from a `blob:` document,
+  // where history.replaceState can't rewrite the address to a different origin/URL
+  // shape — that throws a SecurityError there, even though it works fine in the
+  // authenticated editor preview (served normally, not from a blob). Harmless to
+  // skip: page switching itself is handled by React state + postMessage below,
+  // this effect is purely a "nice to have" for bookmarking/sharing a direct link.
   useEffect(() => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('page', page);
-    window.history.replaceState(null, '', url.toString());
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('page', page);
+      window.history.replaceState(null, '', url.toString());
+    } catch {
+      // Not bookmarkable in this runtime context — navigation still works.
+    }
   }, [page]);
 
   // Listen for navigation requests posted by the embedded page (see the bridge
