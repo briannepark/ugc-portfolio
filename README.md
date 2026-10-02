@@ -25,6 +25,7 @@ u/brianne/ugc_portfolio.raw_app/       ← the Windmill app (path u/brianne/ugc_
     brands_save.ts                     ← password-gated: add/update a brand
     brands_delete.ts                   ← password-gated: remove a brand
     brands_send_outreach.ts            ← password-gated: sends an outreach email, logs it
+    brands_enrich.ts                   ← password-gated: "Auto-fill" tags/contact email from a website
 wmill.yaml                             ← limits `wmill sync push` to this app only
 .github/workflows/deploy.yml           ← build check + deploy on push to main
 ```
@@ -42,18 +43,39 @@ plain HTML inside the iframe can't call Windmill's backend directly itself.
 ### Private brand-outreach dashboard
 
 `site/brands.html` is a personal CRM for brand partnerships — not linked from
-the public nav, reached directly at `<your app URL>?page=brands`. It tracks a
+the public nav. A visible `?page=brands` URL doesn't reliably work in
+Windmill's public runtime (it serves the app from a sandboxed document that
+can't see the real address bar), so instead: on the homepage, type `brands`
+anywhere on the page (not inside a text field) and it opens. It tracks a
 list of brands with a status pipeline (Not contacted → Contacted → Responded
 → Negotiating → Deal / Passed), notes & tags, rate/offer info, and a running
 history timeline per brand, and it can send outreach emails directly (via the
 same SMTP setup as the contact form), automatically logging each send to that
-brand's history.
+brand's history. An "Auto-fill from website" button on the add/edit form can
+also suggest tags and find a contact email from a brand's own site — see
+below.
 
 It's gated by a password, checked by every backend call (`brands_list`,
-`brands_save`, `brands_delete`, `brands_send_outreach`) — not just a
-client-side screen — since this app's backend runnables are reachable by
-anyone who inspects the public JS bundle. See step 4 below to set the
-password.
+`brands_save`, `brands_delete`, `brands_send_outreach`, `brands_enrich`) —
+not just a client-side screen — since this app's backend runnables are
+reachable by anyone who inspects the public JS bundle. See step 5 below to
+set the password.
+
+#### Auto-fill (tags + contact email from a website)
+
+When adding or editing a brand, entering a name and website and clicking
+**"✦ Auto-fill from website"** fetches that site (and a likely contact/press/
+partnerships subpage, best effort), and asks an AI model to suggest a few
+tags and pick the best outreach contact email. To keep this trustworthy, the
+email is never invented — the backend first pulls every email address that's
+actually present on the fetched page(s), and the model may only choose from
+that list (or say none was found); this is re-checked server-side regardless
+of what the model returns. Tags are free-form suggestions and always worth a
+skim before saving.
+
+This needs its own Windmill Variable (see step 6) and uses Anthropic's API
+directly, which has a small per-use cost — the "Auto-fill" button only runs
+when clicked, never automatically.
 
 **Important:** the local folder path (`u/brianne/ugc_portfolio.raw_app/`) has to
 mirror the app's actual location in your Windmill workspace (`u/brianne/ugc_portfolio`)
@@ -92,10 +114,18 @@ automatically in CI.
 5. **Brand dashboard password, in the Windmill UI** (can't be set from this
    repo — never share a password in chat/PRs): create a **Variable** at
    exactly `u/brianne/brand_crm_password` with whatever password you want to
-   use to unlock `?page=brands`. The brand list itself is stored automatically
-   (as a Windmill **State** resource at `u/brianne/brand_crm_brands`) the
-   first time you save a brand — nothing to set up for that part.
+   use to unlock the dashboard (type `brands` on the homepage to reach it).
+   The brand list itself is stored automatically (as a Windmill **State**
+   resource at `u/brianne/brand_crm_brands`) the first time you save a brand
+   — nothing to set up for that part.
 
-6. Push to `main` (or run the "Deploy to Windmill" workflow manually from the
+6. **Auto-fill, in the Windmill UI** (optional — only needed for the
+   "✦ Auto-fill from website" button; everything else works without it):
+   create a **Variable** at exactly `u/brianne/anthropic_api_key` with an
+   Anthropic API key (from console.anthropic.com — mark it as a secret
+   variable). Each click of "Auto-fill" makes one small API call at your own
+   account's cost.
+
+7. Push to `main` (or run the "Deploy to Windmill" workflow manually from the
    Actions tab). Open the app in Windmill afterward to confirm a new version
    appears, and to copy its public link (custom path `ugc-portfolio`).

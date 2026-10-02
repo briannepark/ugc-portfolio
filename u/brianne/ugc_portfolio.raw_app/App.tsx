@@ -114,6 +114,13 @@ export default function App() {
                   message: payload.message,
                 });
                 break;
+              case 'enrich':
+                res = await backend.brands_enrich({
+                  password: payload.password,
+                  name: payload.name,
+                  website: payload.website,
+                });
+                break;
               default:
                 res = { ok: false, error: 'Unknown action.' };
             }

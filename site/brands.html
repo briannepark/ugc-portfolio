@@ -256,6 +256,10 @@
           <input type="text" id="bf-tags" maxlength="400" placeholder="skincare, UGC, recurring">
         </label>
       </div>
+      <div class="panel-actions" style="margin-bottom: 14px;">
+        <button class="btn ghost small" id="bf-autofill" type="button">✦ Auto-fill from website</button>
+        <span class="status-msg" id="bf-autofill-status"></span>
+      </div>
       <label class="field">
         <span>Notes</span>
         <textarea id="bf-notes" rows="3" maxlength="5000"></textarea>
@@ -398,6 +402,8 @@
   var bfHistoryNote = document.getElementById('bf-history-note');
   var bfSave = document.getElementById('bf-save');
   var bfCancel = document.getElementById('bf-cancel');
+  var bfAutofill = document.getElementById('bf-autofill');
+  var bfAutofillStatus = document.getElementById('bf-autofill-status');
 
   var activeStatusFilter = '';
 
@@ -423,6 +429,28 @@
 
   addBtn.addEventListener('click', openPanelForAdd);
   bfCancel.addEventListener('click', function () { panelEl.hidden = true; });
+
+  bfAutofill.addEventListener('click', function () {
+    var name = bfName.value.trim();
+    var website = bfWebsite.value.trim();
+    if (!name) return setStatus(bfAutofillStatus, 'error', 'Add a brand name first.');
+    if (!website) return setStatus(bfAutofillStatus, 'error', 'Add a website first.');
+    bfAutofill.disabled = true;
+    setStatus(bfAutofillStatus, '', 'Looking up ' + website + '…');
+    call('enrich', { password: password, name: name, website: website }).then(function (res) {
+      bfAutofill.disabled = false;
+      if (res.ok) {
+        var existingTags = bfTags.value.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+        var merged = existingTags.concat(res.tags || []).filter(function (t, i, arr) { return t && arr.indexOf(t) === i; });
+        bfTags.value = merged.join(', ');
+        if (res.contactEmail && !bfEmail.value.trim()) bfEmail.value = res.contactEmail;
+        var msg = res.contactEmail ? 'Filled in tags and a contact email.' : 'Filled in tags — no contact email found on the site.';
+        setStatus(bfAutofillStatus, 'done', msg, res.note);
+      } else {
+        setStatus(bfAutofillStatus, 'error', res.error || 'Could not auto-fill.', res.detail);
+      }
+    });
+  });
 
   bfSave.addEventListener('click', function () {
     var name = bfName.value.trim();
