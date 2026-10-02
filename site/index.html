@@ -486,6 +486,27 @@
       if (el) el.scrollIntoView();
     }
   });
+
+  // Private entry point to the brand-outreach dashboard. Not linked anywhere —
+  // type "brands" (lowercase, anywhere on this page, not inside a text field)
+  // and it opens. A URL like ?page=brands can't be relied on here: Windmill's
+  // public runtime serves this app from a sandboxed document that doesn't see
+  // the real address bar, so this uses the same in-app messaging that the nav
+  // links above already use instead.
+  (function () {
+    var buffer = '';
+    var target = 'brands';
+    document.addEventListener('keydown', function (e) {
+      var tag = (e.target && e.target.tagName || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea') return;
+      if (e.key.length !== 1) return;
+      buffer = (buffer + e.key.toLowerCase()).slice(-target.length);
+      if (buffer === target) {
+        buffer = '';
+        window.parent.postMessage({ type: 'ugc-nav', page: 'brands', hash: '' }, '*');
+      }
+    });
+  })();
 })();
 </script>
 

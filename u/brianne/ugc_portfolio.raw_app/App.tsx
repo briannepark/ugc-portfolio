@@ -51,7 +51,8 @@ export default function App() {
       const data = e.data;
       if (!data || typeof data !== 'object') return;
       if (data.type === 'ugc-nav') {
-        const nextPage: Page = data.page === 'gallery' ? 'gallery' : data.page === 'contact' ? 'contact' : 'home';
+        const nextPage: Page =
+          data.page === 'gallery' ? 'gallery' : data.page === 'contact' ? 'contact' : data.page === 'brands' ? 'brands' : 'home';
         pendingHash.current = data.hash || '';
         if (nextPage === page) {
           // Same page, just scroll (e.g. in-page nav links).
