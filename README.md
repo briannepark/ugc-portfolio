@@ -65,17 +65,23 @@ set the password.
 
 When adding or editing a brand, entering a name and website and clicking
 **"✦ Auto-fill from website"** fetches that site (and a likely contact/press/
-partnerships subpage, best effort), and asks an AI model to suggest a few
-tags and pick the best outreach contact email. To keep this trustworthy, the
-email is never invented — the backend first pulls every email address that's
-actually present on the fetched page(s), and the model may only choose from
-that list (or say none was found); this is re-checked server-side regardless
-of what the model returns. Tags are free-form suggestions and always worth a
-skim before saving.
+partnerships subpage, best effort), then asks an AI model to suggest a few
+tags and find the best outreach contact email. Many retail sites don't list a
+partnerships email on their own pages, so the model also has a web-search
+tool available and will search things like press kits, an "influencer
+program"/"work with us" page, or a brand's Instagram/TikTok link-in-bio page
+when the fetched pages alone don't have one.
+
+To keep this trustworthy, the email is never invented: every address the
+backend actually saw — on the fetched page(s), or anywhere in the model's
+search results — is collected independently, and the model's final answer is
+only accepted if it's literally one of those; this is re-checked
+server-side regardless of what the model claims. Tags are free-form
+suggestions and always worth a skim before saving.
 
 This needs its own Windmill Variable (see step 6) and uses Anthropic's API
-directly, which has a small per-use cost — the "Auto-fill" button only runs
-when clicked, never automatically.
+directly, which has a small per-use cost (a bit more when it needs to search)
+— the "Auto-fill" button only runs when clicked, never automatically.
 
 **Important:** the local folder path (`u/brianne/ugc_portfolio.raw_app/`) has to
 mirror the app's actual location in your Windmill workspace (`u/brianne/ugc_portfolio`)

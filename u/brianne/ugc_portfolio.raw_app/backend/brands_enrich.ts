@@ -1,15 +1,24 @@
 import * as wmill from 'windmill-client';
 
 // "Auto-fill" for the brand tracker: given just a name + website, fetches the
-// site (and a likely contact/press/partnerships subpage, best effort), pulls
-// out any email addresses actually present on the page, and asks an AI model
-// to suggest a few category tags and pick the single best contact email for
-// UGC/brand-partnership outreach from the addresses that were really found —
-// it is never allowed to invent an email that wasn't on the page.
+// site (and a likely contact/press/partnerships subpage, best effort), then
+// asks an AI model — with Anthropic's native web_search tool enabled — to
+// suggest a few category tags and find the best contact email for UGC/brand
+// partnership outreach. A lot of retail sites don't list a partnerships email
+// on their own pages, so the model can also search the web (press kits,
+// "work with us"/influencer program pages, link-in-bio pages, etc.) when the
+// site itself comes up empty.
+//
+// To keep this trustworthy, the model is never simply taken at its word: every
+// email address is harvested independently — from the fetched page(s) AND
+// from the raw content of the model's own response (which includes its search
+// results) — and the model's final pick is only accepted if it's literally
+// present in that harvested set. It can never invent/guess an address.
 //
 // Requires a Windmill Variable at exactly u/brianne/anthropic_api_key (an
 // Anthropic API key, from console.anthropic.com — set as a secret). This is
-// separate from the dashboard password and incurs a small per-use API cost.
+// separate from the dashboard password and incurs a small per-use API cost
+// (a bit more than before now that web search may run).
 const PASSWORD_VARIABLE = 'u/brianne/brand_crm_password';
 const ANTHROPIC_KEY_VARIABLE = 'u/brianne/anthropic_api_key';
 const ANTHROPIC_MODEL = 'claude-haiku-4-5-20251001';
@@ -61,14 +70,17 @@ function stripHtml(html: string): string {
     .trim();
 }
 
-function findEmails(html: string, text: string): string[] {
+function harvestEmails(...texts: string[]): string[] {
   const found = new Set<string>();
-  const mailtoRe = /mailto:([^"'?\s>]+)/gi;
-  let m: RegExpExecArray | null;
-  while ((m = mailtoRe.exec(html))) found.add(m[1].toLowerCase());
-  const emailRe = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi;
-  while ((m = emailRe.exec(text))) found.add(m[0].toLowerCase());
-  return Array.from(found).filter((e) => !e.endsWith('.png') && !e.endsWith('.jpg') && !e.endsWith('.gif'));
+  for (const t of texts) {
+    if (!t) continue;
+    const mailtoRe = /mailto:([^"'?\s>\\]+)/gi;
+    let m: RegExpExecArray | null;
+    while ((m = mailtoRe.exec(t))) found.add(m[1].toLowerCase());
+    const emailRe = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi;
+    while ((m = emailRe.exec(t))) found.add(m[0].toLowerCase());
+  }
+  return Array.from(found).filter((e) => !/\.(png|jpe?g|gif|svg|webp)$/i.test(e));
 }
 
 function findContactLink(html: string, baseUrl: string): string | null {
@@ -136,7 +148,7 @@ export async function main(password: string, name: string, website: string): Pro
     };
   }
 
-  const candidateEmails = findEmails(combinedHtml, combinedText).slice(0, 15);
+  const pageEmails = harvestEmails(combinedHtml, combinedText).slice(0, 15);
 
   current = 'Ask AI model';
   try {
@@ -145,34 +157,45 @@ export async function main(password: string, name: string, website: string): Pro
 Brand name: ${brandName}
 Website: ${url}
 
-Page content (homepage, and a contact page if one was found):
+Page content already fetched (homepage, and a contact page if one was found):
 """
 ${combinedText.slice(0, 9000)}
 """
 
-Email addresses actually found on the page(s): ${candidateEmails.length ? candidateEmails.join(', ') : '(none found)'}
+Email addresses already found on that page content: ${pageEmails.length ? pageEmails.join(', ') : '(none found)'}
 
-Respond with ONLY a JSON object, no other text, in this exact shape:
-{"tags": ["tag1", "tag2"], "contactEmail": "the best address from the list above, or null", "note": "one short sentence, or null"}
+If a good brand-partnerships/UGC/influencer contact email isn't among those, use the web_search tool to look for one — try the brand's press kit, an "ambassador"/"influencer program"/"work with us" page, or their Instagram/TikTok bio link page (e.g. a linktr.ee or similar), searching things like "${brandName} influencer partnerships contact" or "${brandName} UGC creator program email". Only do this if needed — if a good email is already in the list above, don't bother searching.
+
+Once you're done, respond with ONLY a JSON object as your final answer, no other text, in this exact shape:
+{"tags": ["tag1", "tag2"], "contactEmail": "the best address you found, or null", "note": "one short sentence, or null"}
 
 Rules:
 - tags: 2-5 short lowercase category/niche words for this brand (e.g. "skincare", "fitness", "home decor", "pet", "recurring"). Base them only on what the page actually describes.
-- contactEmail: you MUST pick from the "Email addresses actually found" list above, preferring one that sounds right for brand partnerships/UGC/influencer outreach (e.g. containing partnerships, pr, marketing, collab, influencer, brand, hello, press) over a personal-looking one. If that list is empty, return null. NEVER invent or guess an email address that isn't in that list.
-- note: a short one-sentence explanation of your email pick (e.g. which page it came from), or null if contactEmail is null.`;
+- contactEmail: must be an email address you ACTUALLY SAW written somewhere (on the fetched page, or in a search result) — never invent, guess, or construct one from a pattern (like "info@" + domain) unless you saw that exact address written out. Prefer one that sounds right for brand partnerships/UGC/influencer outreach (containing words like partnerships, pr, marketing, collab, influencer, brand, hello, press) over a personal-looking one. If you found nothing suitable, return null.
+- note: a short one-sentence explanation of where the email came from (e.g. "found on their press kit page"), or null if contactEmail is null.`;
 
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: ANTHROPIC_MODEL,
-        max_tokens: 400,
-        messages: [{ role: 'user', content: prompt }],
-      }),
-    });
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 45000);
+    let res: Response;
+    try {
+      res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        signal: controller.signal,
+        headers: {
+          'content-type': 'application/json',
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+        },
+        body: JSON.stringify({
+          model: ANTHROPIC_MODEL,
+          max_tokens: 1500,
+          messages: [{ role: 'user', content: prompt }],
+          tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 4 }],
+        }),
+      });
+    } finally {
+      clearTimeout(timer);
+    }
 
     if (!res.ok) {
       const bodyText = await res.text().catch(() => '');
@@ -180,16 +203,25 @@ Rules:
     }
 
     const data: any = await res.json();
-    const textOut = (data?.content ?? []).map((b: any) => b?.text ?? '').join('');
-    const parsed = extractJson(textOut);
+    const contentBlocks: any[] = Array.isArray(data?.content) ? data.content : [];
+    // The final JSON answer is in the last text block; everything in the
+    // response (including search results) is fair game for harvesting real
+    // email addresses to validate that answer against.
+    const textBlocks = contentBlocks.filter((b) => b?.type === 'text').map((b) => b.text ?? '');
+    const lastText = textBlocks[textBlocks.length - 1] ?? '';
+    const parsed = extractJson(lastText);
+
+    const searchEmails = harvestEmails(JSON.stringify(contentBlocks));
+    const allowedEmails = new Set([...pageEmails, ...searchEmails]);
 
     const tags = Array.isArray(parsed.tags)
       ? parsed.tags.map((t: unknown) => clean(t, 40)).filter(Boolean).slice(0, 5)
       : [];
-    let contactEmail = clean(parsed.contactEmail, 200);
-    // Defense in depth: only ever accept an email we actually found on the page,
-    // regardless of what the model returned.
-    if (contactEmail && !candidateEmails.includes(contactEmail.toLowerCase())) contactEmail = '';
+    let contactEmail = clean(parsed.contactEmail, 200).toLowerCase();
+    // Defense in depth: only ever accept an email that was actually seen
+    // somewhere (fetched page or search results), regardless of what the
+    // model's final answer claims.
+    if (contactEmail && !allowedEmails.has(contactEmail)) contactEmail = '';
     const note = clean(parsed.note, 300);
 
     return { ok: true, tags, contactEmail, note: note || undefined };
