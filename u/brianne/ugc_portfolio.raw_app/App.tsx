@@ -67,6 +67,7 @@ export default function App() {
               email: data.email,
               message: data.message,
               website: data.website || '',
+              attachments: Array.isArray(data.attachments) ? data.attachments : [],
             });
             iframeRef.current?.contentWindow?.postMessage(
               res?.ok

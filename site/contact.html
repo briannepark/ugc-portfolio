@@ -88,6 +88,26 @@
   .field input::placeholder, .field textarea::placeholder { color: var(--muted-2); }
   .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
 
+  .field-hint { font-size: 12px; color: var(--muted-2); }
+  .attach-input {
+    font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted);
+    background: var(--panel); border: 1px dashed var(--line-strong);
+    padding: 13px 14px; cursor: pointer;
+  }
+  .attach-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .attach-list li {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    font-size: 13px; color: var(--ink); background: var(--panel);
+    border: 1px solid var(--line); padding: 8px 12px;
+  }
+  .attach-list .attach-size { color: var(--muted-2); font-family: 'IBM Plex Mono', monospace; font-size: 11px; flex-shrink: 0; }
+  .attach-remove {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--muted-2); background: none; border: none;
+    cursor: pointer; padding: 0;
+  }
+  .attach-remove:hover { color: var(--accent); }
+
   .submit {
     align-self: flex-start; font-family: 'IBM Plex Mono', monospace; font-size: 12px;
     letter-spacing: .1em; text-transform: uppercase; color: var(--bg);
@@ -154,6 +174,13 @@
         <textarea id="cf-message" name="message" rows="5" maxlength="4000" required placeholder="Brand, product, timeline, what you're hoping for"></textarea>
       </label>
 
+      <div class="field">
+        <span>Attachments (optional)</span>
+        <input class="attach-input" type="file" id="cf-attachments" multiple>
+        <ul class="attach-list" id="cf-attach-list" hidden></ul>
+        <div class="field-hint">Up to 5 files, 8MB each.</div>
+      </div>
+
       <label class="hp" aria-hidden="true">
         Leave this empty
         <input type="text" id="cf-website" tabindex="-1" autocomplete="off">
@@ -176,7 +203,14 @@
     var form = document.getElementById('contactForm');
     var statusEl = document.getElementById('cf-status');
     var submitBtn = document.getElementById('cf-submit');
+    var attachInput = document.getElementById('cf-attachments');
+    var attachListEl = document.getElementById('cf-attach-list');
     var pending = null;
+    var selectedFiles = [];
+
+    var MAX_FILES = 5;
+    var MAX_FILE_BYTES = 8 * 1024 * 1024; // 8MB
+    var MAX_TOTAL_BYTES = 20 * 1024 * 1024; // 20MB
 
     function setStatus(kind, message, detail) {
       statusEl.className = 'form-status' + (kind ? ' is-' + kind : '');
@@ -193,6 +227,77 @@
       }
     }
 
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return Math.round(bytes / 1024) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function renderAttachments() {
+      attachListEl.innerHTML = '';
+      attachListEl.hidden = selectedFiles.length === 0;
+      selectedFiles.forEach(function (file, i) {
+        var li = document.createElement('li');
+        var name = document.createElement('span');
+        name.textContent = file.name;
+        var size = document.createElement('span');
+        size.className = 'attach-size';
+        size.textContent = formatSize(file.size);
+        var remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'attach-remove';
+        remove.textContent = 'Remove';
+        remove.addEventListener('click', function () {
+          selectedFiles.splice(i, 1);
+          renderAttachments();
+        });
+        var right = document.createElement('span');
+        right.style.display = 'flex';
+        right.style.alignItems = 'center';
+        right.style.gap = '12px';
+        right.appendChild(size);
+        right.appendChild(remove);
+        li.appendChild(name);
+        li.appendChild(right);
+        attachListEl.appendChild(li);
+      });
+    }
+
+    attachInput.addEventListener('change', function () {
+      var incoming = Array.prototype.slice.call(attachInput.files || []);
+      attachInput.value = ''; // allow adding more later without replacing the selection
+      for (var i = 0; i < incoming.length; i++) {
+        var file = incoming[i];
+        var dup = selectedFiles.some(function (f) {
+          return f.name === file.name && f.size === file.size && f.lastModified === file.lastModified;
+        });
+        if (dup) continue;
+        if (file.size > MAX_FILE_BYTES) {
+          setStatus('error', '"' + file.name + '" is too large — the limit is 8MB per file.');
+          continue;
+        }
+        if (selectedFiles.length >= MAX_FILES) {
+          setStatus('error', 'You can attach up to ' + MAX_FILES + ' files.');
+          break;
+        }
+        selectedFiles.push(file);
+      }
+      renderAttachments();
+    });
+
+    function fileToAttachment(file) {
+      return new Promise(function (resolve, reject) {
+        var reader = new FileReader();
+        reader.onload = function () {
+          var result = String(reader.result || '');
+          var base64 = result.slice(result.indexOf(',') + 1);
+          resolve({ filename: file.name, contentType: file.type || 'application/octet-stream', content: base64 });
+        };
+        reader.onerror = function () { reject(new Error('Could not read "' + file.name + '"')); };
+        reader.readAsDataURL(file);
+      });
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var website = document.getElementById('cf-website').value.trim();
@@ -204,15 +309,35 @@
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setStatus('error', 'Please add a valid email so I can reply.');
       if (!message) return setStatus('error', 'Please add a short brief.');
 
+      var totalBytes = selectedFiles.reduce(function (sum, f) { return sum + f.size; }, 0);
+      if (totalBytes > MAX_TOTAL_BYTES) {
+        return setStatus('error', 'Attachments are too large altogether — the limit is 20MB total.');
+      }
+
       if (window.self === window.top) {
         // Opened directly (not inside the Windmill app wrapper) — nothing to send to.
         return setStatus('error', 'This form only works when the page is opened through the live site, not as a standalone file.');
       }
 
       submitBtn.disabled = true;
-      setStatus('', 'Sending…');
+      setStatus('', selectedFiles.length ? 'Uploading and sending…' : 'Sending…');
       pending = { name: name, email: email, message: message, website: website };
-      window.parent.postMessage({ type: 'ugc-contact-submit', name: name, email: email, message: message, website: website }, '*');
+
+      Promise.all(selectedFiles.map(fileToAttachment))
+        .then(function (attachments) {
+          window.parent.postMessage({
+            type: 'ugc-contact-submit',
+            name: name,
+            email: email,
+            message: message,
+            website: website,
+            attachments: attachments,
+          }, '*');
+        })
+        .catch(function (err) {
+          submitBtn.disabled = false;
+          setStatus('error', 'Could not read your attachments. Please try again.', err && err.message);
+        });
     });
 
     window.addEventListener('message', function (e) {
@@ -221,6 +346,8 @@
       submitBtn.disabled = false;
       if (d.ok) {
         form.reset();
+        selectedFiles = [];
+        renderAttachments();
         setStatus('done', "Thanks, " + (pending ? pending.name.split(/\s+/)[0] : 'there') + " — got it. I'll get back to you soon.");
       } else {
         setStatus('error', d.error || 'Something went wrong sending that. Please try again.', d.detail);

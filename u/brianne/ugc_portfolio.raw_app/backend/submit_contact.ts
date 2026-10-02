@@ -10,10 +10,42 @@ import nodemailer from 'nodemailer';
 const SMTP_RESOURCE = 'u/brianne/rsvp_smtp';
 const NOTIFY_EMAIL_VARIABLE = 'u/brianne/contact_notify_email';
 
+type Attachment = { filename: string; contentType?: string; content: string };
 type Result = { ok: true } | { ok: false; error: string; detail?: string };
 
 const clean = (s: unknown, max: number) => String(s ?? '').trim().slice(0, max);
 const isEmail = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+
+// Mirrors the limits enforced client-side (site/contact.html) — re-checked here
+// since a request could skip the browser's own validation.
+const MAX_FILES = 5;
+const MAX_FILE_BYTES = 8 * 1024 * 1024; // 8MB
+const MAX_TOTAL_BYTES = 20 * 1024 * 1024; // 20MB
+// Rough base64 size: real bytes ≈ base64 length * 3/4.
+const base64Bytes = (s: string) => Math.floor((s.length * 3) / 4);
+
+function cleanAttachments(raw: unknown): { attachments: Attachment[]; error?: string } {
+  if (!Array.isArray(raw) || raw.length === 0) return { attachments: [] };
+  if (raw.length > MAX_FILES) return { attachments: [], error: `You can attach up to ${MAX_FILES} files.` };
+
+  const attachments: Attachment[] = [];
+  let total = 0;
+  for (const item of raw) {
+    const filename = clean((item as any)?.filename, 200) || 'attachment';
+    const content = String((item as any)?.content ?? '');
+    if (!content) continue;
+    const bytes = base64Bytes(content);
+    if (bytes > MAX_FILE_BYTES) return { attachments: [], error: `"${filename}" is too large — the limit is 8MB per file.` };
+    total += bytes;
+    if (total > MAX_TOTAL_BYTES) return { attachments: [], error: 'Attachments are too large altogether — the limit is 20MB total.' };
+    attachments.push({
+      filename,
+      contentType: clean((item as any)?.contentType, 150) || 'application/octet-stream',
+      content,
+    });
+  }
+  return { attachments };
+}
 
 function describeError(err: unknown) {
   const e = err as any;
@@ -44,9 +76,12 @@ function hint(detail: string) {
 const esc = (s: unknown) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 
-function toHtml(name: string, email: string, message: string) {
+function toHtml(name: string, email: string, message: string, attachments: Attachment[]) {
   const C = { green: '#A4502B', dark: '#17140F', cream: '#F4F1E7', paper: '#ECE7D8', line: 'rgba(23,20,15,0.14)', muted: '#524C3E' };
   const FONT = `font-family:'Helvetica Neue',Arial,sans-serif;`;
+  const attachLine = attachments.length
+    ? `<div style="padding:0 24px 22px;${FONT}font-size:13px;color:${C.muted};">Attached: ${attachments.map((a) => esc(a.filename)).join(', ')}</div>`
+    : '';
   return `<!doctype html><html><body style="margin:0;padding:0;background:${C.paper};">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.paper};"><tr><td align="center" style="padding:24px 12px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid ${C.line};">
@@ -58,13 +93,16 @@ function toHtml(name: string, email: string, message: string) {
     <div style="margin-bottom:10px;"><b>From:</b> ${esc(name)} &lt;${esc(email)}&gt;</div>
     <div style="white-space:pre-wrap;padding:14px 16px;background:${C.paper};border:1px solid ${C.line};border-radius:8px;">${esc(message)}</div>
   </td></tr>
+  ${attachLine}
   <tr><td style="padding:0 24px 22px;${FONT}font-size:12px;color:${C.muted};">Reply directly to this email to get back to them.</td></tr>
 </table>
 </td></tr></table></body></html>`;
 }
 
-function toText(name: string, email: string, message: string) {
-  return [`New contact message from ${name} <${email}>`, '', message].join('\n');
+function toText(name: string, email: string, message: string, attachments: Attachment[]) {
+  const lines = [`New contact message from ${name} <${email}>`, '', message];
+  if (attachments.length) lines.push('', `Attached: ${attachments.map((a) => a.filename).join(', ')}`);
+  return lines.join('\n');
 }
 
 // ── Entry point ──────────────────────────────────────────────────────────
@@ -73,6 +111,7 @@ export async function main(
   email: string,
   message: string,
   website: string = '', // honeypot: people never see this field, bots fill it
+  attachments: unknown = [],
 ): Promise<Result> {
   if (clean(website, 200)) return { ok: true };
 
@@ -82,6 +121,9 @@ export async function main(
   if (!n) return { ok: false, error: 'Please add your name.' };
   if (!isEmail(e)) return { ok: false, error: 'Please add a valid email so I can reply.' };
   if (!m) return { ok: false, error: 'Please add a short brief.' };
+
+  const { attachments: files, error: attachError } = cleanAttachments(attachments);
+  if (attachError) return { ok: false, error: attachError };
 
   let current = 'Load SMTP resource';
   try {
@@ -111,8 +153,9 @@ export async function main(
       to,
       replyTo: `"${n}" <${e}>`,
       subject: `New contact message from ${n}`,
-      text: toText(n, e, m),
-      html: toHtml(n, e, m),
+      text: toText(n, e, m, files),
+      html: toHtml(n, e, m, files),
+      attachments: files.map((f) => ({ filename: f.filename, content: f.content, encoding: 'base64', contentType: f.contentType })),
     });
     const rejected = (info.rejected ?? []).map(String);
     if (rejected.length) throw new Error(`Mail server rejected: ${rejected.join(', ')} (${info.response ?? ''})`);
