@@ -187,7 +187,7 @@
     <a href="gallery.html" class="current">Gallery</a>
     <a href="index.html#about">About</a>
     <a href="index.html#rates">Rates</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="contact.html">Contact</a>
   </nav>
 </header>
 
@@ -370,12 +370,12 @@
     if (!a) return;
     var href = a.getAttribute('href');
     if (!href) return;
-    var m = href.match(/^(index\.html|gallery\.html)?(#.*)?$/);
+    var m = href.match(/^(index\.html|gallery\.html|contact\.html)?(#.*)?$/);
     if (!m || (!m[1] && !m[2])) return;
-    // Only intercept internal same-app links (index.html / gallery.html, with optional hash).
-    if (!/^(index\.html|gallery\.html)?(#.*)?$/.test(href)) return;
+    // Only intercept internal same-app links (index.html / gallery.html / contact.html, with optional hash).
+    if (!/^(index\.html|gallery\.html|contact\.html)?(#.*)?$/.test(href)) return;
     e.preventDefault();
-    var page = m[1] === 'gallery.html' ? 'gallery' : 'home';
+    var page = m[1] === 'gallery.html' ? 'gallery' : m[1] === 'contact.html' ? 'contact' : 'home';
     window.parent.postMessage({ type: 'ugc-nav', page: page, hash: m[2] || '' }, '*');
   });
 

@@ -1,17 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { HOME_HTML, GALLERY_HTML } from './pages.generated';
+import { HOME_HTML, GALLERY_HTML, CONTACT_HTML } from './pages.generated';
+import { backend } from './wmill';
 
-type Page = 'home' | 'gallery';
+type Page = 'home' | 'gallery' | 'contact';
 
 const PAGES: Record<Page, string> = {
   home: HOME_HTML,
   gallery: GALLERY_HTML,
+  contact: CONTACT_HTML,
 };
 
 function getInitialState(): { page: Page; hash: string } {
   if (typeof window === 'undefined') return { page: 'home', hash: '' };
   const params = new URLSearchParams(window.location.search);
-  const page = params.get('page') === 'gallery' ? 'gallery' : 'home';
+  const p = params.get('page');
+  const page: Page = p === 'gallery' ? 'gallery' : p === 'contact' ? 'contact' : 'home';
   return { page, hash: window.location.hash || '' };
 }
 
@@ -38,13 +41,14 @@ export default function App() {
   }, [page]);
 
   // Listen for navigation requests posted by the embedded page (see the bridge
-  // script appended to /site/index.html and /site/gallery.html).
+  // script appended to /site/index.html, /site/gallery.html and /site/contact.html),
+  // and for contact-form submissions from /site/contact.html.
   useEffect(() => {
     function onMessage(e: MessageEvent) {
       const data = e.data;
       if (!data || typeof data !== 'object') return;
       if (data.type === 'ugc-nav') {
-        const nextPage: Page = data.page === 'gallery' ? 'gallery' : 'home';
+        const nextPage: Page = data.page === 'gallery' ? 'gallery' : data.page === 'contact' ? 'contact' : 'home';
         pendingHash.current = data.hash || '';
         if (nextPage === page) {
           // Same page, just scroll (e.g. in-page nav links).
@@ -55,6 +59,28 @@ export default function App() {
         } else {
           setPage(nextPage);
         }
+      } else if (data.type === 'ugc-contact-submit') {
+        (async () => {
+          try {
+            const res: any = await backend.submit_contact({
+              name: data.name,
+              email: data.email,
+              message: data.message,
+              website: data.website || '',
+            });
+            iframeRef.current?.contentWindow?.postMessage(
+              res?.ok
+                ? { type: 'ugc-contact-result', ok: true }
+                : { type: 'ugc-contact-result', ok: false, error: res?.error, detail: res?.detail },
+              '*'
+            );
+          } catch (err: any) {
+            iframeRef.current?.contentWindow?.postMessage(
+              { type: 'ugc-contact-result', ok: false, error: 'Something went wrong sending that. Please try again.', detail: err?.message },
+              '*'
+            );
+          }
+        })();
       }
     }
     window.addEventListener('message', onMessage);

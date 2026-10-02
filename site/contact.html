@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brianne — Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4F1E7;
+    --bg-2: #ECE7D8;
+    --ink: #17140F;
+    --muted: #524C3E;
+    --muted-2: #8C8570;
+    --accent: #A4502B;
+    --line: rgba(23, 20, 15, 0.14);
+    --line-strong: rgba(23, 20, 15, 0.9);
+    --panel: rgba(23, 20, 15, 0.035);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 48px; }
+  html, body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted-2);
+  }
+
+  section { padding: 76px 0; border-top: 1px solid var(--line); }
+  section.hero { border-top: none; padding-top: 40px; }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.1; margin: 10px 0 0; color: var(--ink); text-transform: uppercase; letter-spacing: -.01em;
+  }
+
+  /* header */
+  header.wrap { padding-top: 34px; padding-bottom: 34px; display: flex; align-items: center; justify-content: space-between; }
+  .brand {
+    font-family: 'Poppins', sans-serif; font-size: 34px; font-weight: 800;
+    letter-spacing: -.065em; text-transform: lowercase;
+  }
+  .brand sup { font-size: 14px; font-weight: 600; top: -1em; margin-left: 1px; font-family: 'Inter', sans-serif; letter-spacing: 0; }
+  nav { display: flex; align-items: center; gap: 34px; }
+  nav a {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid transparent;
+  }
+  nav a:hover { color: var(--ink); border-color: var(--line-strong); }
+  nav a.current { color: var(--ink); border-color: var(--line-strong); }
+
+  .back-link {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted-2);
+  }
+  .back-link:hover { color: var(--accent); }
+  .back-row { padding-bottom: 8px; }
+
+  .lede { font-size: 16px; color: var(--muted); max-width: 480px; margin: 18px 0 0; line-height: 1.7; }
+  .handle { font-size: 12px; color: var(--muted-2); font-family: 'IBM Plex Mono', monospace; letter-spacing: .04em; text-transform: uppercase; margin-top: 14px; display: block; }
+
+  /* form */
+  .contact-form { max-width: 520px; margin-top: 38px; display: flex; flex-direction: column; gap: 22px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field span {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted-2);
+  }
+  .field input, .field textarea {
+    font-family: 'Inter', sans-serif; font-size: 15px; color: var(--ink);
+    background: var(--panel); border: 1px solid var(--line-strong);
+    padding: 13px 14px; outline: none; resize: vertical;
+  }
+  .field input:focus, .field textarea:focus { border-color: var(--accent); }
+  .field input::placeholder, .field textarea::placeholder { color: var(--muted-2); }
+  .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+
+  .submit {
+    align-self: flex-start; font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--bg);
+    background: var(--ink); border: 1px solid var(--ink); padding: 15px 30px;
+    cursor: pointer; transition: background-color .25s ease, border-color .25s ease;
+  }
+  .submit:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
+  .submit:disabled { opacity: .55; cursor: default; }
+
+  .form-status { font-size: 13px; line-height: 1.6; }
+  .form-status.is-error { color: var(--accent); }
+  .form-status.is-done { color: var(--muted); }
+  .form-status small { display: block; margin-top: 4px; color: var(--muted-2); }
+
+  footer.wrap {
+    padding: 30px 48px 44px; display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--muted-2); flex-wrap: wrap; gap: 8px;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: .06em; text-transform: uppercase;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 0 22px; }
+    footer.wrap { padding: 28px 22px 44px; }
+    section { padding: 56px 0; }
+    nav { gap: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <a class="brand" href="index.html">brianne<sup>☺</sup></a>
+  <nav>
+    <a href="gallery.html">Gallery</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#rates">Rates</a>
+    <a href="contact.html" class="current">Contact</a>
+  </nav>
+</header>
+
+<div class="wrap back-row">
+  <a class="back-link" href="index.html">&larr; Back to site</a>
+</div>
+
+<div class="wrap">
+  <section class="hero" id="contact-top">
+    <div class="eyebrow">(06) Contact</div>
+    <h2>Let's make something<br>worth keeping.</h2>
+    <p class="lede">Send the brief — I'll tell you honestly whether it's a fit before we shoot anything.</p>
+    <span class="handle">[@yourhandle] — Instagram &amp; TikTok</span>
+
+    <form class="contact-form" id="contactForm" novalidate>
+      <label class="field">
+        <span>Your name</span>
+        <input type="text" id="cf-name" name="name" autocomplete="name" maxlength="100" required data-autofocus>
+      </label>
+      <label class="field">
+        <span>Your email</span>
+        <input type="email" id="cf-email" name="email" autocomplete="email" maxlength="200" required>
+      </label>
+      <label class="field">
+        <span>What's the brief?</span>
+        <textarea id="cf-message" name="message" rows="5" maxlength="4000" required placeholder="Brand, product, timeline, what you're hoping for"></textarea>
+      </label>
+
+      <label class="hp" aria-hidden="true">
+        Leave this empty
+        <input type="text" id="cf-website" tabindex="-1" autocomplete="off">
+      </label>
+
+      <div class="form-status" id="cf-status" role="status" aria-live="polite"></div>
+
+      <button type="submit" class="submit" id="cf-submit">Send message</button>
+    </form>
+  </section>
+</div>
+
+<footer class="wrap">
+  <span>@brianne.studio</span>
+  <span>UGC &amp; Brand Partnerships</span>
+</footer>
+
+<script>
+  (function () {
+    var form = document.getElementById('contactForm');
+    var statusEl = document.getElementById('cf-status');
+    var submitBtn = document.getElementById('cf-submit');
+    var pending = null;
+
+    function setStatus(kind, message, detail) {
+      statusEl.className = 'form-status' + (kind ? ' is-' + kind : '');
+      statusEl.innerHTML = '';
+      if (message) {
+        var p = document.createElement('div');
+        p.textContent = message;
+        statusEl.appendChild(p);
+      }
+      if (detail) {
+        var small = document.createElement('small');
+        small.textContent = detail;
+        statusEl.appendChild(small);
+      }
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var website = document.getElementById('cf-website').value.trim();
+      var name = document.getElementById('cf-name').value.trim();
+      var email = document.getElementById('cf-email').value.trim();
+      var message = document.getElementById('cf-message').value.trim();
+
+      if (!name) return setStatus('error', 'Please add your name.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setStatus('error', 'Please add a valid email so I can reply.');
+      if (!message) return setStatus('error', 'Please add a short brief.');
+
+      if (window.self === window.top) {
+        // Opened directly (not inside the Windmill app wrapper) — nothing to send to.
+        return setStatus('error', 'This form only works when the page is opened through the live site, not as a standalone file.');
+      }
+
+      submitBtn.disabled = true;
+      setStatus('', 'Sending…');
+      pending = { name: name, email: email, message: message, website: website };
+      window.parent.postMessage({ type: 'ugc-contact-submit', name: name, email: email, message: message, website: website }, '*');
+    });
+
+    window.addEventListener('message', function (e) {
+      var d = e.data;
+      if (!d || typeof d !== 'object' || d.type !== 'ugc-contact-result') return;
+      submitBtn.disabled = false;
+      if (d.ok) {
+        form.reset();
+        setStatus('done', "Thanks, " + (pending ? pending.name.split(/\s+/)[0] : 'there') + " — got it. I'll get back to you soon.");
+      } else {
+        setStatus('error', d.error || 'Something went wrong sending that. Please try again.', d.detail);
+      }
+      pending = null;
+    });
+  })();
+</script>
+
+<script>
+(function () {
+  // Bridge for running inside the Windmill Raw App iframe wrapper.
+  // No-op when the page is opened directly (not embedded).
+  if (window.self === window.top) return;
+
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    var m = href.match(/^(index\.html|gallery\.html|contact\.html)?(#.*)?$/);
+    if (!m || (!m[1] && !m[2])) return;
+    e.preventDefault();
+    var page = m[1] === 'gallery.html' ? 'gallery' : m[1] === 'contact.html' ? 'contact' : 'home';
+    window.parent.postMessage({ type: 'ugc-nav', page: page, hash: m[2] || '' }, '*');
+  });
+
+  window.addEventListener('message', function (e) {
+    var d = e.data;
+    if (d && d.type === 'ugc-scroll' && d.hash) {
+      var el = document.getElementById(d.hash.replace('#', ''));
+      if (el) el.scrollIntoView();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

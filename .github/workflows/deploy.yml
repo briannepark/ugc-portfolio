@@ -27,7 +27,7 @@ jobs:
         working-directory: u/brianne/ugc_portfolio.raw_app
         run: |
           npm install
-          npx --yes esbuild App.tsx --bundle --loader:.tsx=tsx --outfile=/tmp/app-check.js --external:react --external:react-dom
+          npx --yes esbuild App.tsx --bundle --loader:.tsx=tsx --outfile=/tmp/app-check.js --external:react --external:react-dom --external:./wmill
 
       - name: Deploy to Windmill
         run: |
