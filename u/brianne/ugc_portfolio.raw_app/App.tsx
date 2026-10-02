@@ -1,20 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { HOME_HTML, GALLERY_HTML, CONTACT_HTML } from './pages.generated';
+import { HOME_HTML, GALLERY_HTML, CONTACT_HTML, BRANDS_HTML } from './pages.generated';
 import { backend } from './wmill';
 
-type Page = 'home' | 'gallery' | 'contact';
+type Page = 'home' | 'gallery' | 'contact' | 'brands';
 
 const PAGES: Record<Page, string> = {
   home: HOME_HTML,
   gallery: GALLERY_HTML,
   contact: CONTACT_HTML,
+  brands: BRANDS_HTML,
 };
 
 function getInitialState(): { page: Page; hash: string } {
   if (typeof window === 'undefined') return { page: 'home', hash: '' };
   const params = new URLSearchParams(window.location.search);
   const p = params.get('page');
-  const page: Page = p === 'gallery' ? 'gallery' : p === 'contact' ? 'contact' : 'home';
+  // "brands" is the private brand-outreach dashboard — reached directly via
+  // ?page=brands, never linked from the public nav.
+  const page: Page = p === 'gallery' ? 'gallery' : p === 'contact' ? 'contact' : p === 'brands' ? 'brands' : 'home';
   return { page, hash: window.location.hash || '' };
 }
 
@@ -78,6 +81,54 @@ export default function App() {
           } catch (err: any) {
             iframeRef.current?.contentWindow?.postMessage(
               { type: 'ugc-contact-result', ok: false, error: 'Something went wrong sending that. Please try again.', detail: err?.message },
+              '*'
+            );
+          }
+        })();
+      } else if (data.type === 'ugc-brands-call') {
+        // Generic action dispatcher for the private /brands dashboard — see
+        // site/brands.html. Each call carries a requestId so the dashboard can
+        // correlate multiple concurrent async actions (unlike the single-in-flight
+        // contact form above).
+        (async () => {
+          const requestId = data.requestId;
+          try {
+            let res: any;
+            const payload = data.payload || {};
+            switch (data.action) {
+              case 'list':
+                res = await backend.brands_list(payload.password);
+                break;
+              case 'save':
+                res = await backend.brands_save(payload.password, payload.brand);
+                break;
+              case 'delete':
+                res = await backend.brands_delete(payload.password, payload.id);
+                break;
+              case 'send_outreach':
+                res = await backend.brands_send_outreach(
+                  payload.password,
+                  payload.id,
+                  payload.subject,
+                  payload.message
+                );
+                break;
+              default:
+                res = { ok: false, error: 'Unknown action.' };
+            }
+            iframeRef.current?.contentWindow?.postMessage(
+              { type: 'ugc-brands-result', requestId, ...res },
+              '*'
+            );
+          } catch (err: any) {
+            iframeRef.current?.contentWindow?.postMessage(
+              {
+                type: 'ugc-brands-result',
+                requestId,
+                ok: false,
+                error: 'Something went wrong. Please try again.',
+                detail: err?.message,
+              },
               '*'
             );
           }

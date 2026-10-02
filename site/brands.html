@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Brianne — Brand tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4F1E7;
+    --bg-2: #ECE7D8;
+    --ink: #17140F;
+    --muted: #524C3E;
+    --muted-2: #8C8570;
+    --accent: #A4502B;
+    --line: rgba(23, 20, 15, 0.14);
+    --line-strong: rgba(23, 20, 15, 0.9);
+    --panel: rgba(23, 20, 15, 0.035);
+    --good: #3E6B4F;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 48px; }
+  html, body {
+    margin: 0; color: var(--ink); background: var(--bg);
+    font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted-2);
+  }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(22px, 2.6vw, 30px);
+    line-height: 1.1; margin: 10px 0 0; color: var(--ink); text-transform: uppercase; letter-spacing: -.01em;
+  }
+
+  header.wrap { padding-top: 34px; padding-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+  .brand {
+    font-family: 'Poppins', sans-serif; font-size: 34px; font-weight: 800;
+    letter-spacing: -.065em; text-transform: lowercase;
+  }
+  .brand sup { font-size: 14px; font-weight: 600; top: -1em; margin-left: 1px; font-family: 'Inter', sans-serif; letter-spacing: 0; }
+  .back-link {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted-2);
+  }
+  .back-link:hover { color: var(--accent); }
+
+  main.wrap { padding-bottom: 80px; }
+
+  /* gate */
+  .gate { max-width: 360px; margin: 70px auto 0; display: flex; flex-direction: column; gap: 16px; }
+  .gate input {
+    font-family: 'Inter', sans-serif; font-size: 15px; color: var(--ink);
+    background: var(--panel); border: 1px solid var(--line-strong); padding: 13px 14px; outline: none;
+  }
+  .gate input:focus { border-color: var(--accent); }
+
+  .btn {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--bg); background: var(--ink); border: 1px solid var(--ink);
+    padding: 12px 22px; cursor: pointer; transition: background-color .2s ease, border-color .2s ease;
+  }
+  .btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
+  .btn:disabled { opacity: .55; cursor: default; }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn.ghost:hover:not(:disabled) { background: var(--panel); border-color: var(--line-strong); color: var(--ink); }
+  .btn.danger { background: transparent; color: var(--accent); border-color: var(--accent); }
+  .btn.danger:hover:not(:disabled) { background: var(--accent); color: var(--bg); }
+  .btn.small { padding: 8px 14px; font-size: 11px; }
+
+  .status-msg { font-size: 13px; line-height: 1.6; }
+  .status-msg.is-error { color: var(--accent); }
+  .status-msg.is-done { color: var(--good); }
+  .status-msg small { display: block; margin-top: 4px; color: var(--muted-2); }
+
+  /* stats */
+  .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .stat {
+    border: 1px solid var(--line); background: var(--panel); padding: 10px 16px; min-width: 96px;
+    cursor: pointer; transition: border-color .15s ease;
+  }
+  .stat.is-active { border-color: var(--line-strong); }
+  .stat b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 22px; }
+  .stat span { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-2); }
+
+  /* toolbar */
+  .toolbar { display: flex; gap: 10px; align-items: center; margin-top: 24px; flex-wrap: wrap; }
+  .toolbar input[type=search] {
+    flex: 1; min-width: 180px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--ink);
+    background: var(--panel); border: 1px solid var(--line-strong); padding: 11px 13px; outline: none;
+  }
+  .toolbar input[type=search]:focus { border-color: var(--accent); }
+  .toolbar select {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink);
+    background: var(--panel); border: 1px solid var(--line-strong); padding: 11px 13px; outline: none;
+  }
+
+  /* brand form panel */
+  .panel {
+    border: 1px solid var(--line-strong); background: var(--bg-2); padding: 24px; margin-top: 20px;
+  }
+  .panel h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 16px; text-transform: uppercase; letter-spacing: -.01em; margin: 0 0 16px;
+  }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .field span {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted-2);
+  }
+  .field input, .field textarea, .field select {
+    font-family: 'Inter', sans-serif; font-size: 14px; color: var(--ink);
+    background: var(--panel); border: 1px solid var(--line-strong); padding: 11px 12px; outline: none; resize: vertical;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--accent); }
+  .panel-actions { display: flex; gap: 10px; align-items: center; margin-top: 6px; }
+
+  /* list */
+  .list { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .empty { color: var(--muted-2); font-size: 14px; padding: 30px 0; text-align: center; }
+  .card { border: 1px solid var(--line); background: var(--panel); }
+  .card-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+  }
+  .card-main { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; min-width: 0; }
+  .card-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; }
+  .card-sub { font-size: 12px; color: var(--muted-2); font-family: 'IBM Plex Mono', monospace; }
+  .badge {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase;
+    padding: 4px 9px; border: 1px solid var(--line-strong); white-space: nowrap;
+  }
+  .badge.not_contacted { color: var(--muted-2); }
+  .badge.contacted { color: var(--accent); border-color: var(--accent); }
+  .badge.responded { color: #8A6D1A; border-color: #8A6D1A; }
+  .badge.negotiating { color: #8A6D1A; border-color: #8A6D1A; }
+  .badge.deal { color: var(--good); border-color: var(--good); }
+  .badge.passed { color: var(--muted-2); text-decoration: line-through; }
+  .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); background: var(--bg-2); padding: 3px 8px; border: 1px solid var(--line); }
+  .card-detail { border-top: 1px solid var(--line); padding: 18px; display: none; }
+  .card.is-open .card-detail { display: block; }
+  .card.is-open .chevron { transform: rotate(180deg); }
+  .chevron { transition: transform .15s ease; color: var(--muted-2); }
+
+  .detail-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 18px; }
+  .detail-col { flex: 1; min-width: 240px; }
+  .detail-label { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 4px; }
+  .detail-val { font-size: 14px; white-space: pre-wrap; }
+  .detail-val a:hover { color: var(--accent); }
+
+  .outreach { border-top: 1px dashed var(--line); margin-top: 18px; padding-top: 18px; }
+  .outreach h4, .history h4 {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted-2); margin: 0 0 12px;
+  }
+  .history { border-top: 1px dashed var(--line); margin-top: 18px; padding-top: 18px; }
+  .history ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .history li { font-size: 13px; display: flex; gap: 10px; }
+  .history .h-at { color: var(--muted-2); font-family: 'IBM Plex Mono', monospace; font-size: 11px; flex-shrink: 0; white-space: nowrap; }
+  .history .h-type { font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; color: var(--muted-2); }
+
+  .card-actions { display: flex; gap: 10px; margin-top: 16px; }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 0 20px; }
+    .grid2 { grid-template-columns: 1fr; }
+    .detail-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <a class="brand" href="index.html">brianne<sup>☺</sup></a>
+  <a class="back-link" href="index.html">&larr; Back to site</a>
+</header>
+
+<main class="wrap">
+  <div class="eyebrow">Private</div>
+  <h2>Brand tracker</h2>
+
+  <!-- password gate -->
+  <section class="gate" id="gate">
+    <label class="field">
+      <span>Dashboard password</span>
+      <input type="password" id="gate-password" autocomplete="current-password" autofocus>
+    </label>
+    <button class="btn" id="gate-submit">Unlock</button>
+    <div class="status-msg" id="gate-status" role="status" aria-live="polite"></div>
+  </section>
+
+  <!-- dashboard (shown once unlocked) -->
+  <div id="dash" hidden>
+    <div class="stats" id="stats"></div>
+
+    <div class="toolbar">
+      <input type="search" id="search" placeholder="Search brands, tags, notes…">
+      <select id="filter-status">
+        <option value="">All statuses</option>
+        <option value="not_contacted">Not contacted</option>
+        <option value="contacted">Contacted</option>
+        <option value="responded">Responded</option>
+        <option value="negotiating">Negotiating</option>
+        <option value="deal">Deal</option>
+        <option value="passed">Passed</option>
+      </select>
+      <button class="btn" id="add-brand-btn">+ Add brand</button>
+    </div>
+
+    <div class="status-msg" id="dash-status" role="status" aria-live="polite"></div>
+
+    <!-- add/edit panel, hidden until opened -->
+    <div class="panel" id="brand-panel" hidden>
+      <h3 id="panel-title">Add brand</h3>
+      <input type="hidden" id="bf-id">
+      <div class="grid2">
+        <label class="field">
+          <span>Brand name</span>
+          <input type="text" id="bf-name" maxlength="150">
+        </label>
+        <label class="field">
+          <span>Status</span>
+          <select id="bf-status">
+            <option value="not_contacted">Not contacted</option>
+            <option value="contacted">Contacted</option>
+            <option value="responded">Responded</option>
+            <option value="negotiating">Negotiating</option>
+            <option value="deal">Deal</option>
+            <option value="passed">Passed</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Website</span>
+          <input type="text" id="bf-website" maxlength="300" placeholder="brand.com">
+        </label>
+        <label class="field">
+          <span>Contact email</span>
+          <input type="email" id="bf-email" maxlength="200">
+        </label>
+        <label class="field">
+          <span>Rate / offer</span>
+          <input type="text" id="bf-rate" maxlength="200" placeholder="$400 flat, or their offer">
+        </label>
+        <label class="field">
+          <span>Tags (comma separated)</span>
+          <input type="text" id="bf-tags" maxlength="400" placeholder="skincare, UGC, recurring">
+        </label>
+      </div>
+      <label class="field">
+        <span>Notes</span>
+        <textarea id="bf-notes" rows="3" maxlength="5000"></textarea>
+      </label>
+      <label class="field">
+        <span>Log a note to history (optional)</span>
+        <input type="text" id="bf-history-note" maxlength="500" placeholder="e.g. Replied — interested, wants a rate quote">
+      </label>
+      <div class="panel-actions">
+        <button class="btn" id="bf-save">Save brand</button>
+        <button class="btn ghost" id="bf-cancel">Cancel</button>
+      </div>
+    </div>
+
+    <div class="list" id="list"></div>
+  </div>
+</main>
+
+<script>
+(function () {
+  if (window.self === window.top) {
+    document.getElementById('gate').innerHTML =
+      '<div class="status-msg is-error">This page only works when opened through the live site, not as a standalone file.</div>';
+    return;
+  }
+
+  var STATUS_LABEL = {
+    not_contacted: 'Not contacted', contacted: 'Contacted', responded: 'Responded',
+    negotiating: 'Negotiating', deal: 'Deal', passed: 'Passed'
+  };
+  var STATUS_ORDER = ['not_contacted', 'contacted', 'responded', 'negotiating', 'deal', 'passed'];
+
+  var password = '';
+  var brands = [];
+  var openCardId = null;
+  var pendingRequests = {};
+  var reqCounter = 0;
+
+  function call(action, payload) {
+    return new Promise(function (resolve) {
+      var requestId = 'r' + (++reqCounter) + '-' + Date.now();
+      pendingRequests[requestId] = resolve;
+      window.parent.postMessage({ type: 'ugc-brands-call', requestId: requestId, action: action, payload: payload || {} }, '*');
+    });
+  }
+
+  window.addEventListener('message', function (e) {
+    var d = e.data;
+    if (!d || typeof d !== 'object' || d.type !== 'ugc-brands-result') return;
+    var resolve = pendingRequests[d.requestId];
+    if (!resolve) return;
+    delete pendingRequests[d.requestId];
+    resolve(d);
+  });
+
+  function setStatus(el, kind, message, detail) {
+    el.className = 'status-msg' + (kind ? ' is-' + kind : '');
+    el.innerHTML = '';
+    if (message) {
+      var p = document.createElement('div');
+      p.textContent = message;
+      el.appendChild(p);
+    }
+    if (detail) {
+      var small = document.createElement('small');
+      small.textContent = detail;
+      el.appendChild(small);
+    }
+  }
+
+  function esc(s) { return String(s == null ? '' : s); }
+
+  function fmtDate(iso) {
+    try {
+      var d = new Date(iso);
+      return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ' ' +
+        d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+    } catch (e) { return iso; }
+  }
+
+  // ---------- gate ----------
+  var gateEl = document.getElementById('gate');
+  var gatePasswordEl = document.getElementById('gate-password');
+  var gateStatusEl = document.getElementById('gate-status');
+  var gateSubmitBtn = document.getElementById('gate-submit');
+  var dashEl = document.getElementById('dash');
+
+  function unlock(pw) {
+    gateSubmitBtn.disabled = true;
+    setStatus(gateStatusEl, '', 'Checking…');
+    call('list', { password: pw }).then(function (res) {
+      gateSubmitBtn.disabled = false;
+      if (res.ok) {
+        password = pw;
+        brands = res.brands || [];
+        gateEl.hidden = true;
+        dashEl.hidden = false;
+        try { sessionStorage.setItem('ugc-brands-pw', pw); } catch (e) {}
+        render();
+      } else {
+        setStatus(gateStatusEl, 'error', res.error || 'Incorrect password.', res.detail);
+      }
+    });
+  }
+
+  gateSubmitBtn.addEventListener('click', function () {
+    var pw = gatePasswordEl.value;
+    if (!pw) return setStatus(gateStatusEl, 'error', 'Enter the dashboard password.');
+    unlock(pw);
+  });
+  gatePasswordEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') gateSubmitBtn.click();
+  });
+
+  // Try a remembered password for this browser tab session, so reopening the
+  // page mid-session doesn't require retyping it.
+  try {
+    var remembered = sessionStorage.getItem('ugc-brands-pw');
+    if (remembered) unlock(remembered);
+  } catch (e) {}
+
+  // ---------- dashboard ----------
+  var statsEl = document.getElementById('stats');
+  var searchEl = document.getElementById('search');
+  var filterStatusEl = document.getElementById('filter-status');
+  var listEl = document.getElementById('list');
+  var dashStatusEl = document.getElementById('dash-status');
+  var addBtn = document.getElementById('add-brand-btn');
+
+  var panelEl = document.getElementById('brand-panel');
+  var panelTitleEl = document.getElementById('panel-title');
+  var bfId = document.getElementById('bf-id');
+  var bfName = document.getElementById('bf-name');
+  var bfStatus = document.getElementById('bf-status');
+  var bfWebsite = document.getElementById('bf-website');
+  var bfEmail = document.getElementById('bf-email');
+  var bfRate = document.getElementById('bf-rate');
+  var bfTags = document.getElementById('bf-tags');
+  var bfNotes = document.getElementById('bf-notes');
+  var bfHistoryNote = document.getElementById('bf-history-note');
+  var bfSave = document.getElementById('bf-save');
+  var bfCancel = document.getElementById('bf-cancel');
+
+  var activeStatusFilter = '';
+
+  function openPanelForAdd() {
+    panelTitleEl.textContent = 'Add brand';
+    bfId.value = ''; bfName.value = ''; bfStatus.value = 'not_contacted';
+    bfWebsite.value = ''; bfEmail.value = ''; bfRate.value = '';
+    bfTags.value = ''; bfNotes.value = ''; bfHistoryNote.value = '';
+    panelEl.hidden = false;
+    bfName.focus();
+    panelEl.scrollIntoView({ block: 'center' });
+  }
+
+  function openPanelForEdit(b) {
+    panelTitleEl.textContent = 'Edit ' + b.name;
+    bfId.value = b.id; bfName.value = b.name; bfStatus.value = b.status;
+    bfWebsite.value = b.website || ''; bfEmail.value = b.contactEmail || ''; bfRate.value = b.rate || '';
+    bfTags.value = (b.tags || []).join(', '); bfNotes.value = b.notes || ''; bfHistoryNote.value = '';
+    panelEl.hidden = false;
+    bfName.focus();
+    panelEl.scrollIntoView({ block: 'center' });
+  }
+
+  addBtn.addEventListener('click', openPanelForAdd);
+  bfCancel.addEventListener('click', function () { panelEl.hidden = true; });
+
+  bfSave.addEventListener('click', function () {
+    var name = bfName.value.trim();
+    if (!name) return setStatus(dashStatusEl, 'error', 'Please add a brand name.');
+    var tags = bfTags.value.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+    bfSave.disabled = true;
+    setStatus(dashStatusEl, '', 'Saving…');
+    call('save', {
+      password: password,
+      brand: {
+        id: bfId.value || undefined,
+        name: name,
+        status: bfStatus.value,
+        website: bfWebsite.value.trim(),
+        contactEmail: bfEmail.value.trim(),
+        rate: bfRate.value.trim(),
+        tags: tags,
+        notes: bfNotes.value.trim(),
+        historyNote: bfHistoryNote.value.trim(),
+      }
+    }).then(function (res) {
+      bfSave.disabled = false;
+      if (res.ok) {
+        brands = res.brands || brands;
+        panelEl.hidden = true;
+        setStatus(dashStatusEl, 'done', 'Saved.');
+        render();
+      } else {
+        setStatus(dashStatusEl, 'error', res.error || 'Could not save that brand.', res.detail);
+      }
+    });
+  });
+
+  function deleteBrand(b) {
+    if (!window.confirm('Delete ' + b.name + '? This can\'t be undone.')) return;
+    setStatus(dashStatusEl, '', 'Deleting…');
+    call('delete', { password: password, id: b.id }).then(function (res) {
+      if (res.ok) {
+        brands = res.brands || brands.filter(function (x) { return x.id !== b.id; });
+        setStatus(dashStatusEl, 'done', 'Deleted.');
+        render();
+      } else {
+        setStatus(dashStatusEl, 'error', res.error || 'Could not delete that brand.', res.detail);
+      }
+    });
+  }
+
+  function sendOutreach(b, subject, message, btn, statusEl) {
+    btn.disabled = true;
+    setStatus(statusEl, '', 'Sending…');
+    call('send_outreach', { password: password, id: b.id, subject: subject, message: message }).then(function (res) {
+      btn.disabled = false;
+      if (res.ok) {
+        var idx = brands.findIndex(function (x) { return x.id === b.id; });
+        if (idx !== -1) brands[idx] = res.brand;
+        setStatus(statusEl, 'done', 'Sent.');
+        render();
+      } else {
+        setStatus(statusEl, 'error', res.error || 'Could not send that email.', res.detail);
+      }
+    });
+  }
+
+  function matchesFilters(b) {
+    if (activeStatusFilter && b.status !== activeStatusFilter) return false;
+    var q = searchEl.value.trim().toLowerCase();
+    if (!q) return true;
+    var hay = [b.name, b.website, b.contactEmail, b.notes, (b.tags || []).join(' ')].join(' ').toLowerCase();
+    return hay.indexOf(q) !== -1;
+  }
+
+  function renderStats() {
+    statsEl.innerHTML = '';
+    var counts = { '': brands.length };
+    STATUS_ORDER.forEach(function (s) { counts[s] = 0; });
+    brands.forEach(function (b) { counts[b.status] = (counts[b.status] || 0) + 1; });
+
+    var allStat = makeStat('All', counts[''], '');
+    statsEl.appendChild(allStat);
+    STATUS_ORDER.forEach(function (s) {
+      statsEl.appendChild(makeStat(STATUS_LABEL[s], counts[s] || 0, s));
+    });
+  }
+
+  function makeStat(label, count, value) {
+    var div = document.createElement('div');
+    div.className = 'stat' + (activeStatusFilter === value ? ' is-active' : '');
+    var b = document.createElement('b'); b.textContent = String(count);
+    var span = document.createElement('span'); span.textContent = label;
+    div.appendChild(b); div.appendChild(span);
+    div.addEventListener('click', function () {
+      activeStatusFilter = (activeStatusFilter === value) ? '' : value;
+      filterStatusEl.value = activeStatusFilter;
+      render();
+    });
+    return div;
+  }
+
+  function cardDetail(b) {
+    var wrap = document.createElement('div');
+    wrap.className = 'card-detail';
+
+    var row = document.createElement('div');
+    row.className = 'detail-row';
+
+    var col1 = document.createElement('div');
+    col1.className = 'detail-col';
+    col1.innerHTML =
+      '<div class="detail-label">Website</div><div class="detail-val">' +
+      (b.website ? '<a href="https://' + esc(b.website).replace(/^https?:\/\//, '') + '" target="_blank" rel="noopener">' + esc(b.website) + '</a>' : '—') +
+      '</div>' +
+      '<div class="detail-label" style="margin-top:14px;">Contact email</div><div class="detail-val">' + (esc(b.contactEmail) || '—') + '</div>' +
+      '<div class="detail-label" style="margin-top:14px;">Rate / offer</div><div class="detail-val">' + (esc(b.rate) || '—') + '</div>';
+
+    var col2 = document.createElement('div');
+    col2.className = 'detail-col';
+    col2.innerHTML = '<div class="detail-label">Notes</div><div class="detail-val">' + (esc(b.notes) || '—') + '</div>';
+
+    row.appendChild(col1); row.appendChild(col2);
+    wrap.appendChild(row);
+
+    var actions = document.createElement('div');
+    actions.className = 'card-actions';
+    var editBtn = document.createElement('button');
+    editBtn.className = 'btn small ghost'; editBtn.textContent = 'Edit';
+    editBtn.addEventListener('click', function (e) { e.stopPropagation(); openPanelForEdit(b); });
+    var delBtn = document.createElement('button');
+    delBtn.className = 'btn small danger'; delBtn.textContent = 'Delete';
+    delBtn.addEventListener('click', function (e) { e.stopPropagation(); deleteBrand(b); });
+    actions.appendChild(editBtn); actions.appendChild(delBtn);
+    wrap.appendChild(actions);
+
+    // outreach compose
+    var outreach = document.createElement('div');
+    outreach.className = 'outreach';
+    outreach.innerHTML = '<h4>Send outreach</h4>';
+    if (!b.contactEmail) {
+      var noEmail = document.createElement('div');
+      noEmail.className = 'status-msg';
+      noEmail.textContent = 'Add a contact email to this brand before sending outreach.';
+      outreach.appendChild(noEmail);
+    } else {
+      var subjInput = document.createElement('input');
+      subjInput.type = 'text'; subjInput.placeholder = 'Subject';
+      subjInput.value = 'Partnership — ' + b.name;
+      subjInput.style.cssText = 'width:100%;margin-bottom:10px;font-family:Inter,sans-serif;font-size:14px;background:var(--panel);border:1px solid var(--line-strong);padding:10px 12px;';
+      var msgArea = document.createElement('textarea');
+      msgArea.rows = 5; msgArea.placeholder = 'Write your outreach message…';
+      msgArea.style.cssText = 'width:100%;margin-bottom:10px;font-family:Inter,sans-serif;font-size:14px;background:var(--panel);border:1px solid var(--line-strong);padding:10px 12px;resize:vertical;';
+      var sendRow = document.createElement('div');
+      sendRow.className = 'card-actions';
+      var sendBtn = document.createElement('button');
+      sendBtn.className = 'btn small'; sendBtn.textContent = 'Send email';
+      var sendStatus = document.createElement('div');
+      sendStatus.className = 'status-msg';
+      sendBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var subj = subjInput.value.trim();
+        var msg = msgArea.value.trim();
+        if (!subj) return setStatus(sendStatus, 'error', 'Add a subject line.');
+        if (!msg) return setStatus(sendStatus, 'error', 'Write a message first.');
+        sendOutreach(b, subj, msg, sendBtn, sendStatus);
+      });
+      sendRow.appendChild(sendBtn);
+      outreach.appendChild(subjInput);
+      outreach.appendChild(msgArea);
+      outreach.appendChild(sendRow);
+      outreach.appendChild(sendStatus);
+    }
+    wrap.appendChild(outreach);
+
+    // history
+    var history = document.createElement('div');
+    history.className = 'history';
+    history.innerHTML = '<h4>History</h4>';
+    var items = Array.isArray(b.history) ? b.history : [];
+    if (!items.length) {
+      var none = document.createElement('div');
+      none.className = 'status-msg'; none.textContent = 'No activity logged yet.';
+      history.appendChild(none);
+    } else {
+      var ul = document.createElement('ul');
+      items.forEach(function (h) {
+        var li = document.createElement('li');
+        var at = document.createElement('span'); at.className = 'h-at'; at.textContent = fmtDate(h.at);
+        var body = document.createElement('span');
+        var typeSpan = document.createElement('span'); typeSpan.className = 'h-type'; typeSpan.textContent = h.type + ' — ';
+        body.appendChild(typeSpan);
+        body.appendChild(document.createTextNode(h.text || ''));
+        li.appendChild(at); li.appendChild(body);
+        ul.appendChild(li);
+      });
+      history.appendChild(ul);
+    }
+    wrap.appendChild(history);
+
+    return wrap;
+  }
+
+  function render() {
+    renderStats();
+    var q = searchEl.value;
+    var filtered = brands.filter(matchesFilters);
+
+    listEl.innerHTML = '';
+    if (!filtered.length) {
+      var empty = document.createElement('div');
+      empty.className = 'empty';
+      empty.textContent = brands.length ? 'No brands match your search/filter.' : 'No brands yet — add your first one above.';
+      listEl.appendChild(empty);
+      return;
+    }
+
+    filtered.forEach(function (b) {
+      var card = document.createElement('div');
+      card.className = 'card' + (openCardId === b.id ? ' is-open' : '');
+
+      var rowEl = document.createElement('div');
+      rowEl.className = 'card-row';
+
+      var main = document.createElement('div');
+      main.className = 'card-main';
+      var name = document.createElement('span'); name.className = 'card-name'; name.textContent = b.name;
+      var badge = document.createElement('span'); badge.className = 'badge ' + b.status; badge.textContent = STATUS_LABEL[b.status] || b.status;
+      main.appendChild(name); main.appendChild(badge);
+      (b.tags || []).slice(0, 4).forEach(function (t) {
+        var tagEl = document.createElement('span'); tagEl.className = 'tag'; tagEl.textContent = t;
+        main.appendChild(tagEl);
+      });
+
+      var right = document.createElement('div');
+      right.style.display = 'flex'; right.style.alignItems = 'center'; right.style.gap = '14px';
+      var sub = document.createElement('span'); sub.className = 'card-sub'; sub.textContent = 'Updated ' + fmtDate(b.updatedAt);
+      var chevron = document.createElement('span'); chevron.className = 'chevron'; chevron.textContent = '▾';
+      right.appendChild(sub); right.appendChild(chevron);
+
+      rowEl.appendChild(main); rowEl.appendChild(right);
+      rowEl.addEventListener('click', function () {
+        openCardId = openCardId === b.id ? null : b.id;
+        render();
+      });
+
+      card.appendChild(rowEl);
+      if (openCardId === b.id) card.appendChild(cardDetail(b));
+      listEl.appendChild(card);
+    });
+  }
+
+  searchEl.addEventListener('input', render);
+  filterStatusEl.addEventListener('change', function () {
+    activeStatusFilter = filterStatusEl.value;
+    render();
+  });
+})();
+</script>
+
+<script>
+(function () {
+  // Bridge for running inside the Windmill Raw App iframe wrapper.
+  // No-op when the page is opened directly (not embedded).
+  if (window.self === window.top) return;
+
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    var m = href.match(/^(index\.html|gallery\.html|contact\.html)?(#.*)?$/);
+    if (!m || (!m[1] && !m[2])) return;
+    e.preventDefault();
+    var page = m[1] === 'gallery.html' ? 'gallery' : m[1] === 'contact.html' ? 'contact' : 'home';
+    window.parent.postMessage({ type: 'ugc-nav', page: page, hash: m[2] || '' }, '*');
+  });
+})();
+</script>
+
+</body>
+</html>
