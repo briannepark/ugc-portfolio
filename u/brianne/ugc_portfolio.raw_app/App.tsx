@@ -98,21 +98,21 @@ export default function App() {
             const payload = data.payload || {};
             switch (data.action) {
               case 'list':
-                res = await backend.brands_list(payload.password);
+                res = await backend.brands_list({ password: payload.password });
                 break;
               case 'save':
-                res = await backend.brands_save(payload.password, payload.brand);
+                res = await backend.brands_save({ password: payload.password, brand: payload.brand });
                 break;
               case 'delete':
-                res = await backend.brands_delete(payload.password, payload.id);
+                res = await backend.brands_delete({ password: payload.password, id: payload.id });
                 break;
               case 'send_outreach':
-                res = await backend.brands_send_outreach(
-                  payload.password,
-                  payload.id,
-                  payload.subject,
-                  payload.message
-                );
+                res = await backend.brands_send_outreach({
+                  password: payload.password,
+                  id: payload.id,
+                  subject: payload.subject,
+                  message: payload.message,
+                });
                 break;
               default:
                 res = { ok: false, error: 'Unknown action.' };

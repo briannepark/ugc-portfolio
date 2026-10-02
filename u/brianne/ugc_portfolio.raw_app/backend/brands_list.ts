@@ -33,12 +33,12 @@ export async function checkPassword(password: string): Promise<string | null> {
 // check) — never logs or returns the actual stored value, only shape info,
 // so it's safe to leave the detail visible on the gate screen while
 // debugging the "incorrect password" issue. Remove once resolved.
-function diagnose(expectedRaw: unknown, attempted: string): string {
+function diagnose(expectedRaw: unknown, attempted: unknown): string {
   const expected = String(expectedRaw ?? '');
   const looksLikeJson = /^[\[{]/.test(expected.trim());
   const bits = [
     `Stored value is ${expected.length} chars${looksLikeJson ? ' and looks like JSON — this path may be a Resource, not a Variable' : ''}.`,
-    `You typed ${attempted.trim().length} chars.`,
+    `You typed ${String(attempted ?? '').trim().length} chars.`,
   ];
   return bits.join(' ');
 }
