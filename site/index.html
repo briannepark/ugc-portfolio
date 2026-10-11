@@ -124,9 +124,9 @@
     background: var(--ink); border-color: var(--ink);
     box-shadow: 0 24px 44px rgba(23,20,15,0.28);
   }
-  .film-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; line-height: 1.2; color: var(--ink); text-align: center; text-transform: uppercase; transition: color .3s ease; }
+  .film-title { position: relative; z-index: 1; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; line-height: 1.2; color: var(--ink); text-align: center; text-transform: uppercase; transition: color .3s ease; }
   .film-tile:hover .film-title, .film-tile:focus-visible .film-title { color: var(--bg); }
-  .film-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); transition: color .3s ease; }
+  .film-sub { position: relative; z-index: 1; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); transition: color .3s ease; }
   .film-play { position: absolute; top: 12px; right: 12px; color: var(--muted-2); transition: color .3s ease; }
   .film-tile:hover .film-play, .film-tile:focus-visible .film-play { color: rgba(244,241,231,0.5); }
   .film-num { position: absolute; top: 12px; left: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted-2); transition: color .3s ease; }
