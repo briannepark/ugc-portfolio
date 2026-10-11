@@ -168,6 +168,22 @@
   }
   .lightbox-close:hover { border-color: rgba(244,241,231,0.7); }
 
+  /* lightbox — real video playback (data-video tiles) */
+  .lightbox-card.has-video { padding: 0; overflow: hidden; }
+  .lightbox-video {
+    display: none; position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; background: var(--ink);
+  }
+  .lightbox-card.has-video .lightbox-video { display: block; }
+  .lightbox-card.has-video .lightbox-num,
+  .lightbox-card.has-video .lightbox-play,
+  .lightbox-card.has-video .lightbox-note { display: none; }
+  .lightbox-card.has-video .lightbox-caption {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+    padding: 36px 22px 18px;
+    background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
+  }
+
   .more-link { display: block; text-align: center; margin-top: 30px; }
   .more-link a {
     font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .1em;
@@ -276,38 +292,47 @@
     </div>
 
     <div class="filmstrip">
-      <div class="film-tile" data-desc="First impressions on camera — unboxing a new arrival<br>before anything's been said about it.">
+      <div class="film-tile"
+        data-desc="Lettuce Grow — a day with the hydroponic tower garden,<br>from setup to harvest."
+        data-video="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/lettucegrow-example.mp4"
+        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/lettucegrow-poster.jpg">
         <div class="film-num">01</div>
+        <div class="film-title">Lettuce<br>Grow</div>
+        <div class="film-sub">Hydroponic tower</div>
+        <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+      </div>
+      <div class="film-tile" data-desc="First impressions on camera — unboxing a new arrival<br>before anything's been said about it.">
+        <div class="film-num">02</div>
         <div class="film-title">First<br>look</div>
         <div class="film-sub">Unboxing</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
       </div>
       <div class="film-tile" data-desc="A close look at construction and materials —<br>what's actually holding this together.">
-        <div class="film-num">02</div>
+        <div class="film-num">03</div>
         <div class="film-title">The<br>craft</div>
         <div class="film-sub">Materials</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
       </div>
       <div class="film-tile" data-desc="Real workflow, not a highlight reel —<br>how it actually fits into a day.">
-        <div class="film-num">03</div>
+        <div class="film-num">04</div>
         <div class="film-title">How I<br>use it</div>
         <div class="film-sub">Workflow</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
       </div>
       <div class="film-tile" data-desc="Ingredient breakdown — what's actually in it,<br>and what that means for you.">
-        <div class="film-num">04</div>
+        <div class="film-num">05</div>
         <div class="film-title">What's<br>inside</div>
         <div class="film-sub">Ingredients</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
       </div>
       <div class="film-tile" data-desc="Before / after skincare series<br>for a body-treatment brand.">
-        <div class="film-num">05</div>
+        <div class="film-num">06</div>
         <div class="film-title">Before /<br>after</div>
         <div class="film-sub">Results</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
       </div>
       <div class="film-tile" data-desc="A concept piece on working with Claude day-to-day —<br>software engineer brain, on camera.">
-        <div class="film-num">06</div>
+        <div class="film-num">07</div>
         <div class="film-title">Claude,<br>daily</div>
         <div class="film-sub">Concept</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
@@ -391,14 +416,17 @@
 </div>
 
 <div class="lightbox" id="lightbox">
-  <div class="lightbox-card">
+  <div class="lightbox-card" id="lightboxCard">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <video class="lightbox-video" id="lightboxVideo" playsinline controls muted loop></video>
     <div class="lightbox-num" id="lightboxNum"></div>
     <div class="lightbox-play">
       <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
     </div>
-    <div class="lightbox-title" id="lightboxTitle"></div>
-    <div class="lightbox-sub" id="lightboxSub"></div>
+    <div class="lightbox-caption">
+      <div class="lightbox-title" id="lightboxTitle"></div>
+      <div class="lightbox-sub" id="lightboxSub"></div>
+    </div>
     <div class="lightbox-note">Video preview — drop the real clip in here once it's shot.</div>
   </div>
 </div>
@@ -406,9 +434,11 @@
 <script>
   (function () {
     var lightbox = document.getElementById('lightbox');
+    var lightboxCard = document.getElementById('lightboxCard');
     var lightboxNum = document.getElementById('lightboxNum');
     var lightboxTitle = document.getElementById('lightboxTitle');
     var lightboxSub = document.getElementById('lightboxSub');
+    var lightboxVideo = document.getElementById('lightboxVideo');
     var closeBtn = document.getElementById('lightboxClose');
     var tiles = document.querySelectorAll('.film-tile');
 
@@ -416,9 +446,25 @@
       var num = tile.querySelector('.film-num');
       var title = tile.querySelector('.film-title');
       var sub = tile.querySelector('.film-sub');
+      var videoSrc = tile.getAttribute('data-video');
       lightboxNum.innerHTML = num ? num.innerHTML : '';
       lightboxTitle.innerHTML = title ? title.innerHTML : '';
       lightboxSub.innerHTML = sub ? sub.innerHTML : '';
+
+      if (videoSrc) {
+        lightboxCard.classList.add('has-video');
+        var poster = tile.getAttribute('data-poster');
+        if (lightboxVideo.getAttribute('src') !== videoSrc) lightboxVideo.setAttribute('src', videoSrc);
+        if (poster) lightboxVideo.setAttribute('poster', poster);
+        lightboxVideo.currentTime = 0;
+        lightboxVideo.play().catch(function () {}); // ignore autoplay rejection — controls let them press play
+      } else {
+        lightboxCard.classList.remove('has-video');
+        lightboxVideo.pause();
+        lightboxVideo.removeAttribute('src');
+        lightboxVideo.load();
+      }
+
       document.body.classList.add('lightbox-open');
       lightbox.classList.add('active');
     }
@@ -426,6 +472,7 @@
     function closeLightbox() {
       document.body.classList.remove('lightbox-open');
       lightbox.classList.remove('active');
+      lightboxVideo.pause();
     }
 
     var projectEl = document.getElementById('galleryProject');
