@@ -133,14 +133,16 @@
   .film-tile:hover .film-num, .film-tile:focus-visible .film-num { color: rgba(244,241,231,0.55); }
 
   /* tiles with a real thumbnail (data-poster) — IG/TikTok-style cover photo,
-     with a dark scrim so the title/sub/num stay legible over any image. */
-  .film-tile.has-poster { background-size: cover; background-position: center; background-color: var(--ink); }
+     softly blurred with a light scrim so the title/sub/num stay legible
+     without hiding the image underneath. */
+  .film-tile.has-poster { background-color: var(--ink); overflow: hidden; }
   .film-tile.has-poster::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(10,9,7,0.82) 0%, rgba(10,9,7,0.12) 50%, rgba(10,9,7,0.4) 100%);
-    transition: opacity .3s ease;
+    content: ''; position: absolute; inset: -14px;
+    background-image: linear-gradient(to top, rgba(10,9,7,0.5) 0%, rgba(10,9,7,0.12) 48%, rgba(10,9,7,0.28) 100%), var(--poster);
+    background-size: cover; background-position: center;
+    filter: blur(8px);
+    transform: scale(1.08);
   }
-  .film-tile.has-poster:hover::before, .film-tile.has-poster:focus-visible::before { opacity: 0.9; }
   .film-tile.has-poster .film-title,
   .film-tile.has-poster .film-sub,
   .film-tile.has-poster .film-num { color: var(--bg); }
@@ -497,7 +499,7 @@
       var thumb = tile.getAttribute('data-poster');
       if (thumb) {
         tile.classList.add('has-poster');
-        tile.style.backgroundImage = 'url(' + thumb + ')';
+        tile.style.setProperty('--poster', 'url(' + thumb + ')');
       }
 
       tile.setAttribute('tabindex', '0');
