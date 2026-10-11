@@ -110,12 +110,25 @@
     position: absolute; top: 12px; right: 12px; color: rgba(244,241,231,0.5);
   }
   .pin-title {
+    position: relative; z-index: 1;
     font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px; line-height: 1.2;
     color: var(--bg); text-align: center; text-transform: uppercase;
   }
   .pin-sub {
+    position: relative; z-index: 1;
     font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .08em;
     text-transform: uppercase; color: rgba(244,241,231,0.55);
+  }
+
+  /* tiles with a real thumbnail (data-poster) — same softly blurred cover
+     photo + light scrim treatment as the homepage filmstrip. */
+  .pin-card.has-poster .pin-inner { background-color: var(--ink); }
+  .pin-card.has-poster .pin-inner::before {
+    content: ''; position: absolute; inset: -14px;
+    background-image: linear-gradient(to top, rgba(10,9,7,0.5) 0%, rgba(10,9,7,0.12) 48%, rgba(10,9,7,0.28) 100%), var(--poster);
+    background-size: cover; background-position: center;
+    filter: blur(8px);
+    transform: scale(1.08);
   }
 
   .board-caption {
@@ -159,6 +172,19 @@
     font-family: 'Inter', sans-serif; font-size: 15px; background: none;
   }
   .lightbox-close:hover { border-color: rgba(244,241,231,0.7); }
+
+  /* lightbox — real video playback (data-video tiles) */
+  .lightbox-card.has-video { padding: 0; overflow: hidden; }
+  .lightbox-video {
+    display: none; position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; background: var(--ink);
+  }
+  .lightbox-card.has-video .lightbox-video { display: block; }
+  .lightbox-card.has-video .lightbox-num,
+  .lightbox-card.has-video .lightbox-play,
+  .lightbox-card.has-video .lightbox-note,
+  .lightbox-card.has-video .lightbox-title,
+  .lightbox-card.has-video .lightbox-sub { display: none; }
 
   footer.wrap {
     padding: 30px 48px 44px; display: flex; justify-content: space-between;
@@ -204,14 +230,16 @@
     </div>
 
     <div class="pinboard">
-      <div class="pin-card filled" tabindex="0">
+      <div class="pin-card filled" tabindex="0"
+        data-video="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/lettucegrow-example.mp4"
+        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/lettucegrow-poster.jpg">
         <div class="pin-head"></div>
         <div class="pin-ratio">
           <div class="pin-inner">
             <div class="pin-num">01</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
-            <div class="pin-title">First<br>look</div>
-            <div class="pin-sub">Unboxing</div>
+            <div class="pin-title">Lettuce<br>Grow</div>
+            <div class="pin-sub">Hydroponic tower</div>
           </div>
         </div>
       </div>
@@ -224,8 +252,8 @@
           <div class="pin-inner">
             <div class="pin-num">02</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
-            <div class="pin-title">The<br>craft</div>
-            <div class="pin-sub">Materials</div>
+            <div class="pin-title">First<br>look</div>
+            <div class="pin-sub">Unboxing</div>
           </div>
         </div>
       </div>
@@ -242,8 +270,8 @@
           <div class="pin-inner">
             <div class="pin-num">03</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
-            <div class="pin-title">How I<br>use it</div>
-            <div class="pin-sub">Workflow</div>
+            <div class="pin-title">The<br>craft</div>
+            <div class="pin-sub">Materials</div>
           </div>
         </div>
       </div>
@@ -258,8 +286,8 @@
           <div class="pin-inner">
             <div class="pin-num">04</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
-            <div class="pin-title">What's<br>inside</div>
-            <div class="pin-sub">Ingredients</div>
+            <div class="pin-title">How I<br>use it</div>
+            <div class="pin-sub">Workflow</div>
           </div>
         </div>
       </div>
@@ -272,8 +300,8 @@
           <div class="pin-inner">
             <div class="pin-num">05</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
-            <div class="pin-title">Before /<br>after</div>
-            <div class="pin-sub">Results</div>
+            <div class="pin-title">What's<br>inside</div>
+            <div class="pin-sub">Ingredients</div>
           </div>
         </div>
       </div>
@@ -287,6 +315,20 @@
         <div class="pin-ratio">
           <div class="pin-inner">
             <div class="pin-num">06</div>
+            <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+            <div class="pin-title">Before /<br>after</div>
+            <div class="pin-sub">Results</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
+
+      <div class="pin-card filled" tabindex="0">
+        <div class="pin-head"></div>
+        <div class="pin-ratio">
+          <div class="pin-inner">
+            <div class="pin-num">07</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
             <div class="pin-title">Claude,<br>daily</div>
             <div class="pin-sub">Concept</div>
@@ -309,8 +351,9 @@
 </div>
 
 <div class="lightbox" id="lightbox">
-  <div class="lightbox-card">
+  <div class="lightbox-card" id="lightboxCard">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <video class="lightbox-video" id="lightboxVideo" playsinline controls muted loop></video>
     <div class="lightbox-num" id="lightboxNum"></div>
     <div class="lightbox-play">
       <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
@@ -324,9 +367,11 @@
 <script>
   (function () {
     var lightbox = document.getElementById('lightbox');
+    var lightboxCard = document.getElementById('lightboxCard');
     var lightboxNum = document.getElementById('lightboxNum');
     var lightboxTitle = document.getElementById('lightboxTitle');
     var lightboxSub = document.getElementById('lightboxSub');
+    var lightboxVideo = document.getElementById('lightboxVideo');
     var closeBtn = document.getElementById('lightboxClose');
     var tiles = document.querySelectorAll('.pin-card.filled');
 
@@ -334,9 +379,25 @@
       var num = tile.querySelector('.pin-num');
       var title = tile.querySelector('.pin-title');
       var sub = tile.querySelector('.pin-sub');
+      var videoSrc = tile.getAttribute('data-video');
       lightboxNum.innerHTML = num ? num.innerHTML : '';
       lightboxTitle.innerHTML = title ? title.innerHTML : '';
       lightboxSub.innerHTML = sub ? sub.innerHTML : '';
+
+      if (videoSrc) {
+        lightboxCard.classList.add('has-video');
+        var poster = tile.getAttribute('data-poster');
+        if (lightboxVideo.getAttribute('src') !== videoSrc) lightboxVideo.setAttribute('src', videoSrc);
+        if (poster) lightboxVideo.setAttribute('poster', poster);
+        lightboxVideo.currentTime = 0;
+        lightboxVideo.play().catch(function () {}); // ignore autoplay rejection — controls let them press play
+      } else {
+        lightboxCard.classList.remove('has-video');
+        lightboxVideo.pause();
+        lightboxVideo.removeAttribute('src');
+        lightboxVideo.load();
+      }
+
       document.body.classList.add('lightbox-open');
       lightbox.classList.add('active');
     }
@@ -344,9 +405,16 @@
     function closeLightbox() {
       document.body.classList.remove('lightbox-open');
       lightbox.classList.remove('active');
+      lightboxVideo.pause();
     }
 
     tiles.forEach(function (tile) {
+      var thumb = tile.getAttribute('data-poster');
+      if (thumb) {
+        tile.classList.add('has-poster');
+        tile.style.setProperty('--poster', 'url(' + thumb + ')');
+      }
+
       tile.addEventListener('click', function () { openLightbox(tile); });
       tile.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(tile); }
