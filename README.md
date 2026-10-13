@@ -89,6 +89,19 @@ mirror the app's actual location in your Windmill workspace (`u/brianne/ugc_port
 ever rename the app or move it to a different folder in Windmill, this local path
 has to be renamed to match, or the sync will silently deploy nothing.
 
+### Work tiles: photos, video and product hotspots
+
+Real work lives in `site/media/` and is loaded over jsDelivr
+(`cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/...`), since the
+app itself has no file hosting (this only works while the repo is public). A tile
+in `site/index.html` (`.film-tile`) or `site/gallery.html` (`.pin-card`) opts in
+with data attributes: `data-poster` (grid thumbnail), `data-video` or
+`data-image` (what opens in the popup), `data-ar` (the media's width/height
+ratio, so nothing is cropped) and `data-hotspots` (a JSON list of
+`{"x": 52, "y": 34, "name": "...", "note": "...", "url": "https://..."}`; x/y are
+percentages across the photo, and `url` is optional and adds a "Shop it" link).
+Hotspots without x/y (used for video) show as one "Products used" button.
+
 ## To edit the site
 
 Just edit `site/index.html`, `site/gallery.html`, `site/contact.html`, or

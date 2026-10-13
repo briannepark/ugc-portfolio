@@ -186,6 +186,64 @@
   .lightbox-card.has-video .lightbox-title,
   .lightbox-card.has-video .lightbox-sub { display: none; }
 
+  /* lightbox — still photos (data-image tiles) */
+  .lightbox-card.has-image { padding: 0; overflow: hidden; }
+  .lightbox-image { display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--ink); }
+  .lightbox-card.has-image .lightbox-image { display: block; }
+  .lightbox-card.has-image .lightbox-num,
+  .lightbox-card.has-image .lightbox-play,
+  .lightbox-card.has-image .lightbox-note,
+  .lightbox-card.has-image .lightbox-title,
+  .lightbox-card.has-image .lightbox-sub { display: none; }
+  /* data-ar tiles: size the card to the media's own aspect ratio so nothing is cropped
+     (and hotspot percentages line up exactly with the picture) */
+  .lightbox-card.fit-ar {
+    width: min(88vw, calc(76vh * var(--arn)), 460px); height: auto; max-height: none; max-width: none;
+    aspect-ratio: var(--arn);
+  }
+
+  /* product hotspots — tap a dot to see what was used */
+  .hotspots { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+  .hotspot { position: absolute; width: 0; height: 0; pointer-events: auto; }
+  .hotspot-dot {
+    position: absolute; left: 0; top: 0; width: 30px; height: 30px; transform: translate(-50%, -50%);
+    border: 0; padding: 0; background: transparent; cursor: pointer;
+  }
+  .hotspot-dot::before {
+    content: ''; position: absolute; inset: 6px; border-radius: 50%;
+    background: radial-gradient(circle, var(--ink) 0 2.5px, rgba(244,241,231,0.96) 3px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+  .hotspot-dot::after {
+    content: ''; position: absolute; inset: 0; border-radius: 50%;
+    border: 1.5px solid rgba(244,241,231,0.9); animation: hotspot-pulse 2.2s ease-out infinite;
+  }
+  @keyframes hotspot-pulse { 0% { transform: scale(.55); opacity: .9; } 100% { transform: scale(1.3); opacity: 0; } }
+  .hotspot-tip, .product-panel {
+    display: none; position: absolute; width: 214px; padding: 12px 14px;
+    background: rgba(23,20,15,0.96); color: var(--bg); border: 1px solid rgba(244,241,231,0.2);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.35); text-align: left;
+  }
+  .hotspot.open .hotspot-tip, .product-chip.open .product-panel { display: block; }
+  .hotspot.open { z-index: 2; }
+  .hotspot-tip.up { bottom: 22px; }
+  .hotspot-tip.down { top: 22px; }
+  .hotspot-tip.left { left: -12px; }
+  .hotspot-tip.right { right: -12px; }
+  .hotspot-tip.center { left: 50%; transform: translateX(-50%); }
+  .tip-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 12.5px; letter-spacing: .02em; text-transform: uppercase; }
+  .tip-note { font-size: 12px; line-height: 1.55; color: rgba(244,241,231,0.72); margin-top: 5px; }
+  .tip-link { display: inline-block; margin-top: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--bg); border-bottom: 1px solid rgba(244,241,231,0.5); }
+  .product-chip { position: absolute; left: 14px; top: 14px; pointer-events: auto; }
+  .product-chip > button {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--bg); background: rgba(23,20,15,0.72); border: 1px solid rgba(244,241,231,0.35);
+    padding: 7px 11px; cursor: pointer; backdrop-filter: blur(6px);
+  }
+  .product-panel { top: 38px; left: 0; }
+  .product-panel .tip-note:first-child { margin-top: 0; }
+  .product-panel .prod + .prod { margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(244,241,231,0.15); }
+
   footer.wrap {
     padding: 30px 48px 44px; display: flex; justify-content: space-between;
     font-size: 11px; color: var(--muted-2); flex-wrap: wrap; gap: 8px;
@@ -242,13 +300,77 @@
         </div>
       </div>
 
+      <div class="pin-card filled" tabindex="0"
+        data-image="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-1.jpg"
+        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-1.jpg"
+        data-ar="0.75"
+        data-hotspots='[{"x":52,"y":34,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]'>
+        <div class="pin-head"></div>
+        <div class="pin-ratio">
+          <div class="pin-inner">
+            <div class="pin-num">02</div>
+            <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+            <div class="pin-title">Kokoist<br>Gel</div>
+            <div class="pin-sub">Jelly set</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-card filled" tabindex="0"
+        data-image="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-2.jpg"
+        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-2.jpg"
+        data-ar="0.75"
+        data-hotspots='[{"x":60,"y":39,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]'>
+        <div class="pin-head"></div>
+        <div class="pin-ratio">
+          <div class="pin-inner">
+            <div class="pin-num">03</div>
+            <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+            <div class="pin-title">Kokoist<br>Gel</div>
+            <div class="pin-sub">Close-up</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-card filled" tabindex="0"
+        data-image="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg"
+        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg"
+        data-ar="0.75"
+        data-hotspots='[{"x":52,"y":39,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]'>
+        <div class="pin-head"></div>
+        <div class="pin-ratio">
+          <div class="pin-inner">
+            <div class="pin-num">04</div>
+            <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+            <div class="pin-title">Kokoist<br>Gel</div>
+            <div class="pin-sub">Detail</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pin-card filled" tabindex="0"
+        data-video="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-video.mp4"
+        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-video-poster.jpg"
+        data-ar="0.5625"
+        data-hotspots='[{"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]'>
+        <div class="pin-head"></div>
+        <div class="pin-ratio">
+          <div class="pin-inner">
+            <div class="pin-num">05</div>
+            <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+            <div class="pin-title">Kokoist<br>Gel</div>
+            <div class="pin-sub">Shell set</div>
+          </div>
+        </div>
+      </div>
+
       <div class="pin-card blank"><div class="pin-head"></div><div class="pin-ratio"><div class="pin-inner"></div></div></div>
 
       <div class="pin-card filled" tabindex="0">
         <div class="pin-head"></div>
         <div class="pin-ratio">
           <div class="pin-inner">
-            <div class="pin-num">02</div>
+            <div class="pin-num">06</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
             <div class="pin-title">First<br>look</div>
             <div class="pin-sub">Unboxing</div>
@@ -266,7 +388,7 @@
         <div class="pin-head"></div>
         <div class="pin-ratio">
           <div class="pin-inner">
-            <div class="pin-num">03</div>
+            <div class="pin-num">07</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
             <div class="pin-title">The<br>craft</div>
             <div class="pin-sub">Materials</div>
@@ -282,7 +404,7 @@
         <div class="pin-head"></div>
         <div class="pin-ratio">
           <div class="pin-inner">
-            <div class="pin-num">04</div>
+            <div class="pin-num">08</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
             <div class="pin-title">How I<br>use it</div>
             <div class="pin-sub">Workflow</div>
@@ -296,7 +418,7 @@
         <div class="pin-head"></div>
         <div class="pin-ratio">
           <div class="pin-inner">
-            <div class="pin-num">05</div>
+            <div class="pin-num">09</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
             <div class="pin-title">What's<br>inside</div>
             <div class="pin-sub">Ingredients</div>
@@ -312,7 +434,7 @@
         <div class="pin-head"></div>
         <div class="pin-ratio">
           <div class="pin-inner">
-            <div class="pin-num">06</div>
+            <div class="pin-num">10</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
             <div class="pin-title">Before /<br>after</div>
             <div class="pin-sub">Results</div>
@@ -326,7 +448,7 @@
         <div class="pin-head"></div>
         <div class="pin-ratio">
           <div class="pin-inner">
-            <div class="pin-num">07</div>
+            <div class="pin-num">11</div>
             <svg class="pin-play" width="11" height="13" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
             <div class="pin-title">Claude,<br>daily</div>
             <div class="pin-sub">Concept</div>
@@ -352,6 +474,8 @@
   <div class="lightbox-card" id="lightboxCard">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
     <video class="lightbox-video" id="lightboxVideo" playsinline controls muted loop></video>
+    <img class="lightbox-image" id="lightboxImage" alt="">
+    <div class="hotspots" id="lightboxHotspots"></div>
     <div class="lightbox-num" id="lightboxNum"></div>
     <div class="lightbox-play">
       <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
@@ -370,8 +494,74 @@
     var lightboxTitle = document.getElementById('lightboxTitle');
     var lightboxSub = document.getElementById('lightboxSub');
     var lightboxVideo = document.getElementById('lightboxVideo');
+    var lightboxImage = document.getElementById('lightboxImage');
+    var hotspotLayer = document.getElementById('lightboxHotspots');
     var closeBtn = document.getElementById('lightboxClose');
     var tiles = document.querySelectorAll('.pin-card.filled');
+
+    // ---- product hotspots (tap a dot / chip to see what was used) ----
+    function clearHotspots() { hotspotLayer.innerHTML = ''; }
+    function closeAllTips() {
+      var open = hotspotLayer.querySelectorAll('.open');
+      for (var i = 0; i < open.length; i++) { open[i].classList.remove('open'); open[i].classList.remove('pinned'); }
+    }
+    function buildTipContent(parent, item) {
+      var name = document.createElement('div'); name.className = 'tip-name'; name.textContent = item.name || '';
+      parent.appendChild(name);
+      if (item.note) { var note = document.createElement('div'); note.className = 'tip-note'; note.textContent = item.note; parent.appendChild(note); }
+      if (item.url && /^https?:\/\//i.test(item.url)) {
+        var a = document.createElement('a'); a.className = 'tip-link'; a.href = item.url; a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = 'Shop it \u2192'; parent.appendChild(a);
+      }
+    }
+    function wireToggle(wrap, trigger) {
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var wasOpen = wrap.classList.contains('pinned');
+        closeAllTips();
+        if (!wasOpen) { wrap.classList.add('open'); wrap.classList.add('pinned'); }
+      });
+      wrap.addEventListener('mouseenter', function () { wrap.classList.add('open'); });
+      wrap.addEventListener('mouseleave', function () { if (!wrap.classList.contains('pinned')) wrap.classList.remove('open'); });
+    }
+    function renderHotspots(raw) {
+      clearHotspots();
+      if (!raw) return;
+      var items;
+      try { items = JSON.parse(raw); } catch (err) { return; }
+      if (!Array.isArray(items)) return;
+      var free = [];
+      items.forEach(function (item) {
+        if (!item || !item.name) return;
+        if (typeof item.x !== 'number' || typeof item.y !== 'number') { free.push(item); return; }
+        var wrap = document.createElement('div');
+        wrap.className = 'hotspot'; wrap.style.left = item.x + '%'; wrap.style.top = item.y + '%';
+        var dot = document.createElement('button');
+        dot.className = 'hotspot-dot'; dot.type = 'button'; dot.setAttribute('aria-label', 'Product used: ' + item.name);
+        var tip = document.createElement('div');
+        tip.className = 'hotspot-tip ' + (item.y > 55 ? 'up ' : 'down ') + (item.x < 40 ? 'left' : item.x > 60 ? 'right' : 'center');
+        buildTipContent(tip, item);
+        wrap.appendChild(dot); wrap.appendChild(tip);
+        wireToggle(wrap, dot);
+        hotspotLayer.appendChild(wrap);
+      });
+      if (free.length) {
+        var chip = document.createElement('div'); chip.className = 'product-chip';
+        var btn = document.createElement('button'); btn.type = 'button';
+        btn.textContent = 'Products used' + (free.length > 1 ? ' (' + free.length + ')' : '');
+        var panel = document.createElement('div'); panel.className = 'product-panel';
+        free.forEach(function (item) {
+          var row = document.createElement('div'); row.className = 'prod';
+          buildTipContent(row, item); panel.appendChild(row);
+        });
+        chip.appendChild(btn); chip.appendChild(panel);
+        wireToggle(chip, btn);
+        hotspotLayer.appendChild(chip);
+      }
+    }
+    lightboxCard.addEventListener('click', function (e) {
+      if (!e.target.closest || !e.target.closest('.hotspot, .product-chip')) closeAllTips();
+    });
 
     function openLightbox(tile) {
       var num = tile.querySelector('.pin-num');
@@ -381,6 +571,22 @@
       lightboxNum.innerHTML = num ? num.innerHTML : '';
       lightboxTitle.innerHTML = title ? title.innerHTML : '';
       lightboxSub.innerHTML = sub ? sub.innerHTML : '';
+
+      var imageSrc = tile.getAttribute('data-image');
+      var arNum = parseFloat(tile.getAttribute('data-ar'));
+      lightboxCard.classList.remove('has-image', 'fit-ar');
+      lightboxCard.style.removeProperty('--arn');
+      if (arNum > 0 && (videoSrc || imageSrc)) {
+        lightboxCard.classList.add('fit-ar');
+        lightboxCard.style.setProperty('--arn', String(arNum));
+      }
+      if (imageSrc && !videoSrc) {
+        lightboxCard.classList.add('has-image');
+        lightboxImage.setAttribute('src', imageSrc);
+        lightboxImage.setAttribute('alt', title ? title.textContent.replace(/\s+/g, ' ').trim() : '');
+      } else {
+        lightboxImage.removeAttribute('src');
+      }
 
       if (videoSrc) {
         lightboxCard.classList.add('has-video');
@@ -396,6 +602,7 @@
         lightboxVideo.load();
       }
 
+      renderHotspots(tile.getAttribute('data-hotspots'));
       document.body.classList.add('lightbox-open');
       lightbox.classList.add('active');
     }
@@ -404,6 +611,7 @@
       document.body.classList.remove('lightbox-open');
       lightbox.classList.remove('active');
       lightboxVideo.pause();
+      closeAllTips();
     }
 
     tiles.forEach(function (tile) {
