@@ -317,6 +317,14 @@
     .film-tile { width: 128px; height: 196px; }
     .film-tile:hover, .film-tile:focus-visible { width: 190px; height: 280px; }
   }
+
+  .lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); z-index:6; width:34px; height:34px; border-radius:50%; border:1px solid rgba(244,241,231,0.45); background:rgba(10,9,7,0.45); color:#f4f1e7; font-size:16px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; }
+  .lightbox-nav:hover { background:rgba(10,9,7,0.7); }
+  .lightbox-nav.prev { left:8px; } .lightbox-nav.next { right:8px; }
+  .lightbox-nav[hidden], .lightbox-dots[hidden] { display:none; }
+  .lightbox-dots { position:absolute; left:0; right:0; bottom:10px; z-index:6; display:flex; justify-content:center; gap:6px; pointer-events:none; }
+  .lightbox-dots i { width:6px; height:6px; border-radius:50%; background:rgba(244,241,231,0.45); box-shadow:0 0 2px rgba(0,0,0,0.5); }
+  .lightbox-dots i.on { background:#f4f1e7; }
 </style>
 </head>
 <body>
@@ -369,81 +377,49 @@
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
       </div>
       <div class="film-tile"
-        data-desc="A jelly-toned press-on set — Kokoist gel polish for the<br>color and finish."
-        data-image="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-1.jpg"
-        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-1.jpg"
-        data-ar="0.75"
-        data-hotspots='[{"x":52,"y":34,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]'>
-        <div class="film-num">02</div>
-        <div class="film-title">Kokoist<br>Gel</div>
-        <div class="film-sub">Jelly set</div>
-        <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
-      </div>
-      <div class="film-tile"
-        data-desc="A close-up of the 3D gel detail —<br>colored with Kokoist gel polish."
-        data-image="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-2.jpg"
-        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-2.jpg"
-        data-ar="0.75"
-        data-hotspots='[{"x":60,"y":39,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]'>
-        <div class="film-num">03</div>
-        <div class="film-title">Kokoist<br>Gel</div>
-        <div class="film-sub">Close-up</div>
-        <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
-      </div>
-      <div class="film-tile"
         data-desc="Pink and orange jelly nails, up close —<br>Kokoist gel polish."
         data-image="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg"
         data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg"
         data-ar="0.75"
-        data-hotspots='[{"x":52,"y":39,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]'>
-        <div class="film-num">04</div>
+        data-hotspots='[{"x":52,"y":39,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]'
+        data-album='[{"image":"https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg","alt":"Detail","hotspots":[{"x":52,"y":39,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]},{"image":"https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-1.jpg","alt":"Jelly set","hotspots":[{"x":52,"y":34,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]},{"image":"https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-2.jpg","alt":"Close-up","hotspots":[{"x":60,"y":39,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]}]'>
+        <div class="film-num">02</div>
         <div class="film-title">Kokoist<br>Gel</div>
         <div class="film-sub">Detail</div>
-        <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
-      </div>
-      <div class="film-tile"
-        data-desc="A shell-pattern press-on set, finished with Kokoist gel polish."
-        data-video="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-video.mp4"
-        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-video-poster.jpg"
-        data-ar="0.5625"
-        data-hotspots='[{"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]'>
-        <div class="film-num">05</div>
-        <div class="film-title">Kokoist<br>Gel</div>
-        <div class="film-sub">Shell set</div>
-        <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
+        <svg class="film-play album-icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4.5" y="1.5" width="10" height="10" rx="1.5"/><path d="M1.5 4.5v8a2 2 0 0 0 2 2h8"/></svg>
       </div>
       <div class="film-tile" data-desc="First impressions on camera — unboxing a new arrival<br>before anything's been said about it.">
-        <div class="film-num">06</div>
+        <div class="film-num">03</div>
         <div class="film-title">First<br>look</div>
         <div class="film-sub">Unboxing</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
       </div>
       <div class="film-tile" data-desc="A close look at construction and materials —<br>what's actually holding this together.">
-        <div class="film-num">07</div>
+        <div class="film-num">04</div>
         <div class="film-title">The<br>craft</div>
         <div class="film-sub">Materials</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
       </div>
       <div class="film-tile" data-desc="Real workflow, not a highlight reel —<br>how it actually fits into a day.">
-        <div class="film-num">08</div>
+        <div class="film-num">05</div>
         <div class="film-title">How I<br>use it</div>
         <div class="film-sub">Workflow</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
       </div>
       <div class="film-tile" data-desc="Ingredient breakdown — what's actually in it,<br>and what that means for you.">
-        <div class="film-num">09</div>
+        <div class="film-num">06</div>
         <div class="film-title">What's<br>inside</div>
         <div class="film-sub">Ingredients</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
       </div>
       <div class="film-tile" data-desc="Before / after skincare series<br>for a body-treatment brand.">
-        <div class="film-num">10</div>
+        <div class="film-num">07</div>
         <div class="film-title">Before /<br>after</div>
         <div class="film-sub">Results</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
       </div>
       <div class="film-tile" data-desc="A concept piece on working with Claude day-to-day —<br>software engineer brain, on camera.">
-        <div class="film-num">11</div>
+        <div class="film-num">08</div>
         <div class="film-title">Claude,<br>daily</div>
         <div class="film-sub">Concept</div>
         <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
@@ -532,6 +508,7 @@
     <video class="lightbox-video" id="lightboxVideo" playsinline controls muted loop></video>
     <img class="lightbox-image" id="lightboxImage" alt="">
     <div class="hotspots" id="lightboxHotspots"></div>
+    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous photo" hidden>‹</button><button class="lightbox-nav next" id="lightboxNext" aria-label="Next photo" hidden>›</button><div class="lightbox-dots" id="lightboxDots" hidden></div>
     <div class="lightbox-num" id="lightboxNum"></div>
     <div class="lightbox-play">
       <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
@@ -621,6 +598,35 @@
       if (!e.target.closest || !e.target.closest('.hotspot, .product-chip')) closeAllTips();
     });
 
+    var lightboxPrev = document.getElementById('lightboxPrev');
+    var lightboxNext = document.getElementById('lightboxNext');
+    var lightboxDots = document.getElementById('lightboxDots');
+    var slides = null, slideIdx = 0;
+    function updateNav() {
+      var on = !!(slides && slides.length > 1);
+      lightboxPrev.hidden = !on; lightboxNext.hidden = !on; lightboxDots.hidden = !on;
+      lightboxDots.innerHTML = on ? slides.map(function (_, i) { return '<i' + (i === slideIdx ? ' class="on"' : '') + '></i>'; }).join('') : '';
+    }
+    function showSlide(i) {
+      if (!slides) return;
+      slideIdx = (i + slides.length) % slides.length;
+      var s = slides[slideIdx];
+      lightboxImage.setAttribute('src', s.image);
+      lightboxImage.setAttribute('alt', s.alt || '');
+      closeAllTips();
+      renderHotspots(JSON.stringify(s.hotspots || []));
+      updateNav();
+    }
+    lightboxPrev.addEventListener('click', function (e) { e.stopPropagation(); showSlide(slideIdx - 1); });
+    lightboxNext.addEventListener('click', function (e) { e.stopPropagation(); showSlide(slideIdx + 1); });
+    var touchX = null;
+    lightboxCard.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    lightboxCard.addEventListener('touchend', function (e) {
+      if (touchX === null || !slides) return;
+      var dx = e.changedTouches[0].clientX - touchX; touchX = null;
+      if (Math.abs(dx) > 50) showSlide(slideIdx + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
     function openLightbox(tile) {
       var num = tile.querySelector('.film-num');
       var title = tile.querySelector('.film-title');
@@ -660,7 +666,17 @@
         lightboxVideo.load();
       }
 
-      renderHotspots(tile.getAttribute('data-hotspots'));
+      var albumRaw = tile.getAttribute('data-album');
+      slides = null; slideIdx = 0;
+      try { if (albumRaw) slides = JSON.parse(albumRaw); } catch (err) { slides = null; }
+      if (slides && slides.length > 1 && !videoSrc) {
+        lightboxCard.classList.add('has-image');
+        showSlide(0);
+      } else {
+        slides = null;
+        updateNav();
+        renderHotspots(tile.getAttribute('data-hotspots'));
+      }
       document.body.classList.add('lightbox-open');
       lightbox.classList.add('active');
     }
@@ -670,6 +686,7 @@
       lightbox.classList.remove('active');
       lightboxVideo.pause();
       closeAllTips();
+      slides = null; updateNav();
     }
 
     var projectEl = document.getElementById('galleryProject');
@@ -705,6 +722,8 @@
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeLightbox();
+      else if (slides && e.key === 'ArrowRight') showSlide(slideIdx + 1);
+      else if (slides && e.key === 'ArrowLeft') showSlide(slideIdx - 1);
     });
   })();
 </script>
