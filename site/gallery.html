@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Brianne — Selected Work</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F4F1E7;
@@ -272,6 +272,13 @@
   .lightbox-dots { position:absolute; left:0; right:0; bottom:10px; z-index:6; display:flex; justify-content:center; gap:6px; pointer-events:none; }
   .lightbox-dots i { width:6px; height:6px; border-radius:50%; background:rgba(244,241,231,0.45); box-shadow:0 0 2px rgba(0,0,0,0.5); }
   .lightbox-dots i.on { background:#f4f1e7; }
+
+  /* story redesign: match homepage */
+  :root { --serif: 'Fraunces', Georgia, serif; }
+  h1, h2 { font-family: var(--serif); font-weight: 400; text-transform: none; letter-spacing: -.02em; }
+  h2 { font-size: clamp(30px, 4.2vw, 50px); line-height: 1.08; }
+  h1 em, h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
+  .eyebrow { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -291,9 +298,9 @@
 
 <div class="wrap">
   <section class="board">
-    <div class="eyebrow">(02) Selected Work</div>
+    <div class="eyebrow">Selected work</div>
     <div class="board-cap">
-      <h2>Every piece,<br>pinned up.</h2>
+      <h2>Every piece,<br><em>pinned up.</em></h2>
       <p class="lede">The full board — shipped work up front, open slots for what's shooting next. Tap any pinned frame for a closer look.</p>
     </div>
 
