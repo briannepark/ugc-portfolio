@@ -148,3 +148,11 @@ automatically in CI.
 7. Push to `main` (or run the "Deploy to Windmill" workflow manually from the
    Actions tab). Open the app in Windmill afterward to confirm a new version
    appears, and to copy its public link (custom path `ugc-portfolio`).
+
+## Pages and photo slots
+
+- `site/work.html` holds Brand partnerships, Creative strategy and Travel content; the homepage links to each section.
+- Homepage "What I'm loving" cards look for a product photo at `site/media/loves/<slug>.jpg`
+  (`osea`, `alastin`, `murad`, `mollysuds`, `attitude`, `kokoist`, `sortjoy`, `aesop`); with no file they show a tinted card with the brand name.
+- "All the sides of me" cards look for `site/media/me-engineer.jpg`, `me-mom.jpg` and `me-kanaka.jpg`.
+- The curated mood board is the `.masonry` block in `site/index.html`: photo items are `<figure class="pin">`, word tiles are `<figure class="pin word">`.

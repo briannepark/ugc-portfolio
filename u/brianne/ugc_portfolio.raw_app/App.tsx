@@ -1,13 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { HOME_HTML, GALLERY_HTML, CONTACT_HTML, BRANDS_HTML } from './pages.generated';
+import { HOME_HTML, GALLERY_HTML, CONTACT_HTML, WORK_HTML, BRANDS_HTML } from './pages.generated';
 import { backend } from './wmill';
 
-type Page = 'home' | 'gallery' | 'contact' | 'brands';
+type Page = 'home' | 'gallery' | 'contact' | 'work' | 'brands';
+
+function toPage(p: unknown): Page {
+  return p === 'gallery' || p === 'contact' || p === 'work' || p === 'brands' ? p : 'home';
+}
 
 const PAGES: Record<Page, string> = {
   home: HOME_HTML,
   gallery: GALLERY_HTML,
   contact: CONTACT_HTML,
+  work: WORK_HTML,
   brands: BRANDS_HTML,
 };
 
@@ -17,7 +22,7 @@ function getInitialState(): { page: Page; hash: string } {
   const p = params.get('page');
   // "brands" is the private brand-outreach dashboard — reached directly via
   // ?page=brands, never linked from the public nav.
-  const page: Page = p === 'gallery' ? 'gallery' : p === 'contact' ? 'contact' : p === 'brands' ? 'brands' : 'home';
+  const page: Page = toPage(p);
   return { page, hash: window.location.hash || '' };
 }
 
@@ -51,8 +56,7 @@ export default function App() {
       const data = e.data;
       if (!data || typeof data !== 'object') return;
       if (data.type === 'ugc-nav') {
-        const nextPage: Page =
-          data.page === 'gallery' ? 'gallery' : data.page === 'contact' ? 'contact' : data.page === 'brands' ? 'brands' : 'home';
+        const nextPage: Page = toPage(data.page);
         pendingHash.current = data.hash || '';
         if (nextPage === page) {
           // Same page, just scroll (e.g. in-page nav links).

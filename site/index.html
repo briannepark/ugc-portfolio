@@ -399,6 +399,34 @@
   @media (max-width: 1000px) { .sides-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 560px) { .sides-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
 
+  /* topics, mood board, loves masonry */
+  .topic-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:30px; }
+  .topic { position:relative; display:block; aspect-ratio:4/5; border-radius:22px; overflow:hidden; background:linear-gradient(160deg,#EFE5D3,#D9BFA0); }
+  .topic img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.22,1,.36,1); }
+  .topic:hover img { transform:scale(1.05); }
+  .topic-shade { position:absolute; inset:0; background:linear-gradient(to top, rgba(10,9,7,.62) 0%, rgba(10,9,7,0) 55%); }
+  .topic.soon .topic-shade { background:linear-gradient(to top, rgba(60,40,20,.45) 0%, rgba(60,40,20,0) 55%); }
+  .topic-body { position:absolute; left:22px; right:22px; bottom:22px; color:#fff; display:flex; flex-direction:column; gap:6px; }
+  .topic-title { font-family:var(--serif); font-size:30px; line-height:1.1; }
+  .topic-line { font-size:14px; opacity:.88; line-height:1.5; }
+  .topic-go { font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; margin-top:8px; opacity:.9; }
+  .masonry { column-count:4; column-gap:14px; margin-top:32px; }
+  .masonry > * { break-inside:avoid; margin:0 0 14px; }
+  .pin { border-radius:20px; overflow:hidden; position:relative; background:var(--blush); transition:transform .4s ease, box-shadow .4s ease; }
+  .pin:hover { transform:translateY(-3px); box-shadow:0 16px 30px rgba(23,20,15,.12); }
+  .pin img { width:100%; height:100%; object-fit:cover; display:block; }
+  .pin.word { display:flex; align-items:flex-end; padding:18px; }
+  .pin.word span { font-family:var(--serif); font-style:italic; font-weight:300; font-size:clamp(22px,2.4vw,32px); line-height:1.05; color:var(--ink); }
+  .love-pin h3 { font-size:24px; margin-top:12px; line-height:1.1; }
+  .love-pin p { font-size:14.5px; line-height:1.7; color:var(--muted); margin:10px 0 6px; }
+  .love-pin .love-prod { margin-top:6px; }
+  .love-img { position:relative; border-radius:22px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .love-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .love-fb { font-family:var(--serif); font-style:italic; font-weight:300; font-size:clamp(26px,3vw,38px); color:rgba(23,20,15,.78); text-align:center; padding:0 12px; }
+  .love-img .love-tag { position:absolute; left:12px; top:12px; z-index:1; }
+  @media (max-width: 960px) { .masonry { column-count:3; } .topic-grid { grid-template-columns:1fr 1fr; } }
+  @media (max-width: 640px) { .masonry { column-count:2; column-gap:10px; } .masonry > * { margin-bottom:10px; } .topic-grid { grid-template-columns:1fr; } .topic { aspect-ratio:5/4; } }
+
   .lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); z-index:6; width:34px; height:34px; border-radius:50%; border:1px solid rgba(244,241,231,0.45); background:rgba(10,9,7,0.45); color:#f4f1e7; font-size:16px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; }
   .lightbox-nav:hover { background:rgba(10,9,7,0.7); }
   .lightbox-nav.prev { left:8px; } .lightbox-nav.next { right:8px; }
@@ -414,6 +442,7 @@
 <header class="wrap">
   <a class="brand" href="index.html">brianne<sup>☺</sup></a>
   <nav>
+    <a href="work.html">Work</a>
     <a href="gallery.html">Gallery</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -440,7 +469,7 @@
             <span class="cta-label">Say hello</span>
             <span class="cta-icon"><svg width="14" height="12" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M17 7L11 1M17 7L11 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
-          <a class="cta-text-link" href="#work">See the work &darr;</a>
+          <a class="cta-text-link" href="work.html">See the work &rarr;</a>
         </div>
       </div>
       <div class="hero-collage" aria-hidden="true">
@@ -493,142 +522,140 @@
 </div>
 
 <div class="wrap">
-  <section id="work">
-    <div class="eyebrow">Brand partnerships</div>
-    <h2>Here are some of the things<br>I've <em>brought to life.</em></h2>
-    <div class="gallery-cap">
-      <div class="project" id="galleryProject">Tap any frame to take a closer look</div>
-    </div>
-    <div class="work-mosaic">
-      <div class="film-tile"
-        data-desc="Lettuce Grow — a day with the hydroponic tower garden,<br>from setup to harvest."
-        data-video="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/lettucegrow-example.mp4"
-        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/lettucegrow-poster.jpg">
-        <div class="film-num">01</div>
-        <div class="film-title">Lettuce<br>Grow</div>
-        <div class="film-sub">Hydroponic tower</div>
-        <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
-      </div>
-      <div class="film-tile"
-        data-desc="Pink and orange jelly nails, up close —<br>Kokoist gel polish."
-        data-image="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg"
-        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg"
-        data-ar="0.75"
-        data-hotspots='[{"x":52,"y":39,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]'
-        data-album='[{"image":"https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg","alt":"Detail","hotspots":[{"x":52,"y":39,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]},{"image":"https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-1.jpg","alt":"Jelly set","hotspots":[{"x":52,"y":34,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]},{"image":"https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-2.jpg","alt":"Close-up","hotspots":[{"x":60,"y":39,"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]}]'>
-        <div class="film-num">02</div>
-        <div class="film-title">Kokoist<br>Gel</div>
-        <div class="film-sub">Detail</div>
-        <svg class="film-play album-icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4.5" y="1.5" width="10" height="10" rx="1.5"/><path d="M1.5 4.5v8a2 2 0 0 0 2 2h8"/></svg>
-      </div>
-      <div class="film-tile"
-        data-desc="Shell-pattern gel nails, start to finish —<br>Kokoist gel polish."
-        data-video="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-video-v2.mp4"
-        data-poster="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-video-cover-v2.jpg"
-        data-ar="0.5625"
-        data-hotspots='[{"name":"Kokoist gel polish","note":"My go-to gel polish for press-on nails. The color and finish on this set."}]'>
-        <div class="film-num">03</div>
-        <div class="film-title">Kokoist<br>Gel</div>
-        <div class="film-sub">Shell set</div>
-        <svg class="film-play" width="12" height="14" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
-      </div>
-    </div>
-    <div class="more-link"><a href="gallery.html">See the full gallery</a></div>
-  </section>
-</div>
-
-<div class="wrap">
-  <section id="strategy">
-    <div class="eyebrow">Creative strategy</div>
-    <h2>Content that starts with a<br><em>real question.</em></h2>
-    <p class="section-lede">Before I film anything I ask what a customer would actually want to know: does it fit my life, and does it hold up? Then I build the story around the answer. A few of the formats I love:</p>
-    <div class="idea-grid">
-      <article class="idea">
-        <div class="idea-num">i.</div>
-        <h3>Harvest to table</h3>
-        <p>A seed-to-supper series. Grow it, harvest it, cook it, all in one kitchen, from the first sprout to the last bite.</p>
-      </article>
-      <article class="idea">
-        <div class="idea-num">ii.</div>
-        <h3>The 30-day experiment</h3>
-        <p>One product, used daily for a month, tracked with real data. I share the honest result, including what didn't change.</p>
-      </article>
-      <article class="idea">
-        <div class="idea-num">iii.</div>
-        <h3>The long-haul journey</h3>
-        <p>Skin changes slowly. I check in at week one, week six and day ninety. Same light, same routine, no filters.</p>
-      </article>
+  <section id="topics">
+    <div class="eyebrow">Take a look around</div>
+    <h2>Three ways I<br><em>show up.</em></h2>
+    <div class="topic-grid">
+      <a class="topic " href="work.html#partnerships">
+        <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <span class="topic-shade"></span>
+        <span class="topic-body"><span class="topic-title">Brand partnerships</span><span class="topic-line">Things I've brought to life</span><span class="topic-go">See more &rarr;</span></span>
+      </a>
+      <a class="topic " href="work.html#strategy">
+        <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/lettucegrow-poster.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <span class="topic-shade"></span>
+        <span class="topic-body"><span class="topic-title">Creative strategy</span><span class="topic-line">Content that starts with a real question</span><span class="topic-go">See more &rarr;</span></span>
+      </a>
+      <a class="topic soon" href="work.html#travel">
+        
+        <span class="topic-shade"></span>
+        <span class="topic-body"><span class="topic-title">Travel content</span><span class="topic-line">Slow stays and far-off places</span><span class="topic-go">See more &rarr;</span></span>
+      </a>
     </div>
   </section>
 </div>
 
 <div class="wrap">
-  <section id="travel">
-    <div class="eyebrow">Travel content</div>
-    <h2>Slow stays and<br><em>far-off places.</em></h2>
-    <p class="section-lede">Next up for me: travel and hospitality content that makes you feel the place. The room, the light, the first coffee of the day. This is the part of the page I'm filling in next.</p>
-    <div class="travel-row">
-      <div class="travel-card"><span class="soon">Coming soon</span><h3>The room</h3><p>Stay tours that show how a place feels to wake up in.</p></div>
-      <div class="travel-card"><span class="soon">Coming soon</span><h3>The ritual</h3><p>A morning routine, wherever in the world I happen to be.</p></div>
-      <div class="travel-card"><span class="soon">Coming soon</span><h3>The packing list</h3><p>What I'd pack again, and what stayed home.</p></div>
+  <section id="moodboard">
+    <div class="eyebrow">Curated</div>
+    <h2>Things that<br>feel like <em>me.</em></h2>
+    <p class="section-lede">A running collection of the colors, textures and small moments I keep coming back to.</p>
+    <div class="masonry">
+      <figure class="pin" style="aspect-ratio:3/4"><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
+      <figure class="pin word" style="aspect-ratio:1/1;background:#E6D6BC"><span>Warm linen</span></figure>
+      <figure class="pin" style="aspect-ratio:9/14"><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/lettucegrow-poster.jpg" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
+      <figure class="pin word" style="aspect-ratio:4/3;background:#F0DFA8"><span>Morning light</span></figure>
+      <figure class="pin" style="aspect-ratio:4/5"><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-1.jpg" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
+      <figure class="pin word" style="aspect-ratio:3/4;background:#C9D2B5"><span>Green things</span></figure>
+      <figure class="pin" style="aspect-ratio:9/14"><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-video-cover-v2.jpg" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
+      <figure class="pin word" style="aspect-ratio:1/1;background:#D9A27F"><span>Handmade</span></figure>
+      <figure class="pin" style="aspect-ratio:1/1"><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-2.jpg" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
+      <figure class="pin word" style="aspect-ratio:4/5;background:#E9E1D6"><span>Soft ceramics</span></figure>
+      <figure class="pin word" style="aspect-ratio:4/3;background:#EFD3C4"><span>Slow Sundays</span></figure>
+      <figure class="pin word" style="aspect-ratio:3/4;background:#BFD0D3"><span>Salt & sea</span></figure>
     </div>
   </section>
 </div>
+
+
+
 
 <div class="wrap">
   <section id="loving">
     <div class="eyebrow">What I'm loving</div>
     <h2>The things that have<br><em>earned a spot</em> right now.</h2>
     <p class="section-lede">Everything here is something I own and use. This list changes whenever something new wins me over.</p>
-    <div class="love-grid">
-        <article class="love-card featured">
-          <div class="love-top"><span class="love-num">01</span><span class="love-tag">Featured</span></div>
-          <h3>OSEA</h3>
-          <div class="love-prod">Salts of the Earth body scrub</div>
-          <p>The best body exfoliant I've ever used, and my skin is very sensitive.</p>
-        </article>
-        <article class="love-card">
-          <div class="love-top"><span class="love-num">02</span><span class="love-tag">Week 11</span></div>
-          <h3>Alastin</h3>
-          <div class="love-prod">Restorative Skin Complex · Ultra Light Moisturizer · Renewal Retinol 0.25</div>
-          <p>Using the trio since August 7 and already seeing a difference. I'll share how it goes.</p>
-        </article>
-        <article class="love-card">
-          <div class="love-top"><span class="love-num">03</span></div>
-          <h3>Murad</h3>
-          <div class="love-prod">Retinal ReSculpt body</div>
-          <p>The thing that finally made my very dry, rough skin feel smooth.</p>
-        </article>
-        <article class="love-card">
-          <div class="love-top"><span class="love-num">04</span></div>
-          <h3>Molly Suds</h3>
-          <div class="love-prod">Laundry detergent & dishwasher pods</div>
-          <p>The only detergent I use and the only pods I'll buy.</p>
-        </article>
-        <article class="love-card">
-          <div class="love-top"><span class="love-num">05</span></div>
-          <h3>Attitude</h3>
-          <div class="love-prod">Dish soap</div>
-          <p>Clean, plant-based, no harsh chemicals, and there's a vegan option.</p>
-        </article>
-        <article class="love-card">
-          <div class="love-top"><span class="love-num">06</span></div>
-          <h3>Kokoist</h3>
-          <div class="love-prod">Gel polish</div>
-          <p>My go-to under press-on nails, in every color I own.</p>
-        </article>
-        <article class="love-card">
-          <div class="love-top"><span class="love-num">07</span></div>
-          <h3>Sortjoy</h3>
-          <div class="love-prod">Organizing bins</div>
-          <p>They keep my dog's things and my kid's toys and clothes under control.</p>
-        </article>
-        <article class="love-card">
-          <div class="love-top"><span class="love-num">08</span></div>
-          <h3>Aesop</h3>
-          <div class="love-prod">Hand wash & soap</div>
-          <p>A small ritual at the sink that makes a regular day feel nicer.</p>
-        </article>
+    <div class="masonry loves">
+      <article class="love-pin">
+        <div class="love-img" style="aspect-ratio:3/4;background:#E6D6BC">
+          <span class="love-fb">OSEA</span>
+          <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/loves/osea.jpg" alt="OSEA" loading="lazy" onerror="this.remove()">
+          <span class="love-tag">Featured</span>
+        </div>
+        <h3>OSEA</h3>
+        <div class="love-prod">Salts of the Earth body scrub</div>
+        <p>The best body exfoliant I've ever used, and my skin is very sensitive.</p>
+      </article>
+      <article class="love-pin">
+        <div class="love-img" style="aspect-ratio:1/1;background:#C9D2B5">
+          <span class="love-fb">Alastin</span>
+          <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/loves/alastin.jpg" alt="Alastin" loading="lazy" onerror="this.remove()">
+          <span class="love-tag">Week 11</span>
+        </div>
+        <h3>Alastin</h3>
+        <div class="love-prod">Restorative Skin Complex · Ultra Light Moisturizer · Renewal Retinol 0.25</div>
+        <p>Using the trio since August 7 and already seeing a difference. I'll share how it goes.</p>
+      </article>
+      <article class="love-pin">
+        <div class="love-img" style="aspect-ratio:4/5;background:#EFD3C4">
+          <span class="love-fb">Murad</span>
+          <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/loves/murad.jpg" alt="Murad" loading="lazy" onerror="this.remove()">
+          
+        </div>
+        <h3>Murad</h3>
+        <div class="love-prod">Retinal ReSculpt body</div>
+        <p>The thing that finally made my very dry, rough skin feel smooth.</p>
+      </article>
+      <article class="love-pin">
+        <div class="love-img" style="aspect-ratio:5/4;background:#BFD0D3">
+          <span class="love-fb">Molly Suds</span>
+          <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/loves/mollysuds.jpg" alt="Molly Suds" loading="lazy" onerror="this.remove()">
+          
+        </div>
+        <h3>Molly Suds</h3>
+        <div class="love-prod">Laundry detergent & dishwasher pods</div>
+        <p>The only detergent I use and the only pods I'll buy.</p>
+      </article>
+      <article class="love-pin">
+        <div class="love-img" style="aspect-ratio:1/1;background:#F0DFA8">
+          <span class="love-fb">Attitude</span>
+          <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/loves/attitude.jpg" alt="Attitude" loading="lazy" onerror="this.remove()">
+          
+        </div>
+        <h3>Attitude</h3>
+        <div class="love-prod">Dish soap</div>
+        <p>Clean, plant-based, no harsh chemicals, and there's a vegan option.</p>
+      </article>
+      <article class="love-pin">
+        <div class="love-img" style="aspect-ratio:3/4;background:#D9A27F">
+          <span class="love-fb">Kokoist</span>
+          <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/loves/kokoist.jpg" alt="Kokoist" loading="lazy" onerror="this.remove()">
+          
+        </div>
+        <h3>Kokoist</h3>
+        <div class="love-prod">Gel polish</div>
+        <p>My go-to under press-on nails, in every color I own.</p>
+      </article>
+      <article class="love-pin">
+        <div class="love-img" style="aspect-ratio:4/5;background:#E9E1D6">
+          <span class="love-fb">Sortjoy</span>
+          <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/loves/sortjoy.jpg" alt="Sortjoy" loading="lazy" onerror="this.remove()">
+          
+        </div>
+        <h3>Sortjoy</h3>
+        <div class="love-prod">Organizing bins</div>
+        <p>They keep my dog's things and my kid's toys and clothes under control.</p>
+      </article>
+      <article class="love-pin">
+        <div class="love-img" style="aspect-ratio:5/4;background:#DCC9B0">
+          <span class="love-fb">Aesop</span>
+          <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/loves/aesop.jpg" alt="Aesop" loading="lazy" onerror="this.remove()">
+          
+        </div>
+        <h3>Aesop</h3>
+        <div class="love-prod">Hand wash & soap</div>
+        <p>A small ritual at the sink that makes a regular day feel nicer.</p>
+      </article>
     </div>
   </section>
 </div>
@@ -655,232 +682,6 @@
 
 </div>
 
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-card" id="lightboxCard">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
-    <video class="lightbox-video" id="lightboxVideo" playsinline controls muted loop></video>
-    <img class="lightbox-image" id="lightboxImage" alt="">
-    <div class="hotspots" id="lightboxHotspots"></div>
-    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous photo" hidden>‹</button><button class="lightbox-nav next" id="lightboxNext" aria-label="Next photo" hidden>›</button><div class="lightbox-dots" id="lightboxDots" hidden></div>
-    <div class="lightbox-num" id="lightboxNum"></div>
-    <div class="lightbox-play">
-      <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="currentColor"/></svg>
-    </div>
-    <div class="lightbox-caption">
-      <div class="lightbox-title" id="lightboxTitle"></div>
-      <div class="lightbox-sub" id="lightboxSub"></div>
-    </div>
-    <div class="lightbox-note">Video preview — drop the real clip in here once it's shot.</div>
-  </div>
-</div>
-
-<script>
-  (function () {
-    var lightbox = document.getElementById('lightbox');
-    var lightboxCard = document.getElementById('lightboxCard');
-    var lightboxNum = document.getElementById('lightboxNum');
-    var lightboxTitle = document.getElementById('lightboxTitle');
-    var lightboxSub = document.getElementById('lightboxSub');
-    var lightboxVideo = document.getElementById('lightboxVideo');
-    var lightboxImage = document.getElementById('lightboxImage');
-    var hotspotLayer = document.getElementById('lightboxHotspots');
-    var closeBtn = document.getElementById('lightboxClose');
-    var tiles = document.querySelectorAll('.film-tile');
-
-    // ---- product hotspots (tap a dot / chip to see what was used) ----
-    function clearHotspots() { hotspotLayer.innerHTML = ''; }
-    function closeAllTips() {
-      var open = hotspotLayer.querySelectorAll('.open');
-      for (var i = 0; i < open.length; i++) { open[i].classList.remove('open'); open[i].classList.remove('pinned'); }
-    }
-    function buildTipContent(parent, item) {
-      var name = document.createElement('div'); name.className = 'tip-name'; name.textContent = item.name || '';
-      parent.appendChild(name);
-      if (item.note) { var note = document.createElement('div'); note.className = 'tip-note'; note.textContent = item.note; parent.appendChild(note); }
-      if (item.url && /^https?:\/\//i.test(item.url)) {
-        var a = document.createElement('a'); a.className = 'tip-link'; a.href = item.url; a.target = '_blank'; a.rel = 'noopener';
-        a.textContent = 'Shop it \u2192'; parent.appendChild(a);
-      }
-    }
-    function wireToggle(wrap, trigger) {
-      trigger.addEventListener('click', function (e) {
-        e.stopPropagation();
-        var wasOpen = wrap.classList.contains('pinned');
-        closeAllTips();
-        if (!wasOpen) { wrap.classList.add('open'); wrap.classList.add('pinned'); }
-      });
-      wrap.addEventListener('mouseenter', function () { wrap.classList.add('open'); });
-      wrap.addEventListener('mouseleave', function () { if (!wrap.classList.contains('pinned')) wrap.classList.remove('open'); });
-    }
-    function renderHotspots(raw) {
-      clearHotspots();
-      if (!raw) return;
-      var items;
-      try { items = JSON.parse(raw); } catch (err) { return; }
-      if (!Array.isArray(items)) return;
-      var free = [];
-      items.forEach(function (item) {
-        if (!item || !item.name) return;
-        if (typeof item.x !== 'number' || typeof item.y !== 'number') { free.push(item); return; }
-        var wrap = document.createElement('div');
-        wrap.className = 'hotspot'; wrap.style.left = item.x + '%'; wrap.style.top = item.y + '%';
-        var dot = document.createElement('button');
-        dot.className = 'hotspot-dot'; dot.type = 'button'; dot.setAttribute('aria-label', 'Product used: ' + item.name);
-        var tip = document.createElement('div');
-        tip.className = 'hotspot-tip ' + (item.y > 55 ? 'up ' : 'down ') + (item.x < 40 ? 'left' : item.x > 60 ? 'right' : 'center');
-        buildTipContent(tip, item);
-        wrap.appendChild(dot); wrap.appendChild(tip);
-        wireToggle(wrap, dot);
-        hotspotLayer.appendChild(wrap);
-      });
-      if (free.length) {
-        var chip = document.createElement('div'); chip.className = 'product-chip';
-        var btn = document.createElement('button'); btn.type = 'button';
-        btn.textContent = 'Products used' + (free.length > 1 ? ' (' + free.length + ')' : '');
-        var panel = document.createElement('div'); panel.className = 'product-panel';
-        free.forEach(function (item) {
-          var row = document.createElement('div'); row.className = 'prod';
-          buildTipContent(row, item); panel.appendChild(row);
-        });
-        chip.appendChild(btn); chip.appendChild(panel);
-        wireToggle(chip, btn);
-        hotspotLayer.appendChild(chip);
-      }
-    }
-    lightboxCard.addEventListener('click', function (e) {
-      if (!e.target.closest || !e.target.closest('.hotspot, .product-chip')) closeAllTips();
-    });
-
-    var lightboxPrev = document.getElementById('lightboxPrev');
-    var lightboxNext = document.getElementById('lightboxNext');
-    var lightboxDots = document.getElementById('lightboxDots');
-    var slides = null, slideIdx = 0;
-    function updateNav() {
-      var on = !!(slides && slides.length > 1);
-      lightboxPrev.hidden = !on; lightboxNext.hidden = !on; lightboxDots.hidden = !on;
-      lightboxDots.innerHTML = on ? slides.map(function (_, i) { return '<i' + (i === slideIdx ? ' class="on"' : '') + '></i>'; }).join('') : '';
-    }
-    function showSlide(i) {
-      if (!slides) return;
-      slideIdx = (i + slides.length) % slides.length;
-      var s = slides[slideIdx];
-      lightboxImage.setAttribute('src', s.image);
-      lightboxImage.setAttribute('alt', s.alt || '');
-      closeAllTips();
-      renderHotspots(JSON.stringify(s.hotspots || []));
-      updateNav();
-    }
-    lightboxPrev.addEventListener('click', function (e) { e.stopPropagation(); showSlide(slideIdx - 1); });
-    lightboxNext.addEventListener('click', function (e) { e.stopPropagation(); showSlide(slideIdx + 1); });
-    var touchX = null;
-    lightboxCard.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
-    lightboxCard.addEventListener('touchend', function (e) {
-      if (touchX === null || !slides) return;
-      var dx = e.changedTouches[0].clientX - touchX; touchX = null;
-      if (Math.abs(dx) > 50) showSlide(slideIdx + (dx < 0 ? 1 : -1));
-    }, { passive: true });
-
-    function openLightbox(tile) {
-      var num = tile.querySelector('.film-num');
-      var title = tile.querySelector('.film-title');
-      var sub = tile.querySelector('.film-sub');
-      var videoSrc = tile.getAttribute('data-video');
-      lightboxNum.innerHTML = num ? num.innerHTML : '';
-      lightboxTitle.innerHTML = title ? title.innerHTML : '';
-      lightboxSub.innerHTML = sub ? sub.innerHTML : '';
-
-      var imageSrc = tile.getAttribute('data-image');
-      var arNum = parseFloat(tile.getAttribute('data-ar'));
-      lightboxCard.classList.remove('has-image', 'fit-ar');
-      lightboxCard.style.removeProperty('--arn');
-      if (arNum > 0 && (videoSrc || imageSrc)) {
-        lightboxCard.classList.add('fit-ar');
-        lightboxCard.style.setProperty('--arn', String(arNum));
-      }
-      if (imageSrc && !videoSrc) {
-        lightboxCard.classList.add('has-image');
-        lightboxImage.setAttribute('src', imageSrc);
-        lightboxImage.setAttribute('alt', title ? title.textContent.replace(/\s+/g, ' ').trim() : '');
-      } else {
-        lightboxImage.removeAttribute('src');
-      }
-
-      if (videoSrc) {
-        lightboxCard.classList.add('has-video');
-        var poster = tile.getAttribute('data-poster');
-        if (lightboxVideo.getAttribute('src') !== videoSrc) lightboxVideo.setAttribute('src', videoSrc);
-        if (poster) lightboxVideo.setAttribute('poster', poster);
-        lightboxVideo.currentTime = 0;
-        lightboxVideo.play().catch(function () {}); // ignore autoplay rejection — controls let them press play
-      } else {
-        lightboxCard.classList.remove('has-video');
-        lightboxVideo.pause();
-        lightboxVideo.removeAttribute('src');
-        lightboxVideo.load();
-      }
-
-      var albumRaw = tile.getAttribute('data-album');
-      slides = null; slideIdx = 0;
-      try { if (albumRaw) slides = JSON.parse(albumRaw); } catch (err) { slides = null; }
-      if (slides && slides.length > 1 && !videoSrc) {
-        lightboxCard.classList.add('has-image');
-        showSlide(0);
-      } else {
-        slides = null;
-        updateNav();
-        renderHotspots(tile.getAttribute('data-hotspots'));
-      }
-      document.body.classList.add('lightbox-open');
-      lightbox.classList.add('active');
-    }
-
-    function closeLightbox() {
-      document.body.classList.remove('lightbox-open');
-      lightbox.classList.remove('active');
-      lightboxVideo.pause();
-      closeAllTips();
-      slides = null; updateNav();
-    }
-
-    var projectEl = document.getElementById('galleryProject');
-    var defaultDesc = projectEl ? projectEl.innerHTML : '';
-
-    tiles.forEach(function (tile) {
-      var thumb = tile.getAttribute('data-poster');
-      if (thumb) {
-        tile.classList.add('has-poster');
-        tile.style.setProperty('--poster', 'url(' + thumb + ')');
-      }
-
-      tile.setAttribute('tabindex', '0');
-      tile.addEventListener('click', function () { openLightbox(tile); });
-      tile.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(tile); }
-      });
-
-      if (projectEl) {
-        var desc = tile.getAttribute('data-desc');
-        if (desc) {
-          tile.addEventListener('mouseenter', function () { projectEl.innerHTML = desc; });
-          tile.addEventListener('focus', function () { projectEl.innerHTML = desc; });
-          tile.addEventListener('mouseleave', function () { projectEl.innerHTML = defaultDesc; });
-          tile.addEventListener('blur', function () { projectEl.innerHTML = defaultDesc; });
-        }
-      }
-    });
-
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', function (e) {
-      if (e.target === lightbox) closeLightbox();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeLightbox();
-      else if (slides && e.key === 'ArrowRight') showSlide(slideIdx + 1);
-      else if (slides && e.key === 'ArrowLeft') showSlide(slideIdx - 1);
-    });
-  })();
-</script>
-
 <script>
 (function () {
   // Bridge for running inside the Windmill Raw App iframe wrapper.
@@ -892,12 +693,12 @@
     if (!a) return;
     var href = a.getAttribute('href');
     if (!href) return;
-    var m = href.match(/^(index\.html|gallery\.html|contact\.html)?(#.*)?$/);
+    var m = href.match(/^(index\.html|gallery\.html|contact\.html|work\.html)?(#.*)?$/);
     if (!m || (!m[1] && !m[2])) return;
     // Only intercept internal same-app links (index.html / gallery.html / contact.html, with optional hash).
-    if (!/^(index\.html|gallery\.html|contact\.html)?(#.*)?$/.test(href)) return;
+    if (!/^(index\.html|gallery\.html|contact\.html|work\.html)?(#.*)?$/.test(href)) return;
     e.preventDefault();
-    var page = m[1] === 'gallery.html' ? 'gallery' : m[1] === 'contact.html' ? 'contact' : 'home';
+    var page = m[1] === 'gallery.html' ? 'gallery' : m[1] === 'contact.html' ? 'contact' : m[1] === 'work.html' ? 'work' : 'home';
     window.parent.postMessage({ type: 'ugc-nav', page: page, hash: m[2] || '' }, '*');
   });
 

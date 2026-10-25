@@ -149,6 +149,7 @@
 <header class="wrap">
   <a class="brand" href="index.html">brianne<sup>☺</sup></a>
   <nav>
+    <a href="work.html">Work</a>
     <a href="gallery.html">Gallery</a>
     <a href="contact.html" class="current">Contact</a>
   </nav>
@@ -373,10 +374,10 @@
     if (!a) return;
     var href = a.getAttribute('href');
     if (!href) return;
-    var m = href.match(/^(index\.html|gallery\.html|contact\.html)?(#.*)?$/);
+    var m = href.match(/^(index\.html|gallery\.html|contact\.html|work\.html)?(#.*)?$/);
     if (!m || (!m[1] && !m[2])) return;
     e.preventDefault();
-    var page = m[1] === 'gallery.html' ? 'gallery' : m[1] === 'contact.html' ? 'contact' : 'home';
+    var page = m[1] === 'gallery.html' ? 'gallery' : m[1] === 'contact.html' ? 'contact' : m[1] === 'work.html' ? 'work' : 'home';
     window.parent.postMessage({ type: 'ugc-nav', page: page, hash: m[2] || '' }, '*');
   });
 
