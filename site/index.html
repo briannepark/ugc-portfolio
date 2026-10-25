@@ -298,6 +298,8 @@
   }
 
   @media (max-width: 640px) {
+    header.wrap { flex-wrap: wrap; gap: 14px; }
+    nav { flex-wrap: wrap; gap: 8px 16px !important; }
     .wrap { padding: 0 22px; }
     footer.wrap { padding: 28px 22px 44px; }
     section { padding: 56px 0; }
@@ -442,7 +444,9 @@
 <header class="wrap">
   <a class="brand" href="index.html">brianne<sup>☺</sup></a>
   <nav>
-    <a href="work.html">Work</a>
+    <a href="partnerships.html">Partnerships</a>
+    <a href="strategy.html">Strategy</a>
+    <a href="travel.html">Travel</a>
     <a href="gallery.html">Gallery</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -469,7 +473,7 @@
             <span class="cta-label">Say hello</span>
             <span class="cta-icon"><svg width="14" height="12" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M17 7L11 1M17 7L11 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
-          <a class="cta-text-link" href="work.html">See the work &rarr;</a>
+          <a class="cta-text-link" href="partnerships.html">See the work &rarr;</a>
         </div>
       </div>
       <div class="hero-collage" aria-hidden="true">
@@ -490,34 +494,6 @@
       <p>At home I'm a mom who is always quietly testing something: a gentler detergent, a dish soap without the harsh stuff, a skincare routine my sensitive skin can actually live with. I keep what works and tell you the truth about what doesn't.</p>
       <p>And somewhere in between I'm a creative, a plant person, and a proud Kanaka. All of it ends up in the work, which is why you'll find real routines and real rooms here, and nothing staged to look like more than it is.</p>
     </div>
-    <div class="sides-head">All the sides of me</div>
-    <div class="sides-grid">
-        <article class="side-card">
-          <div class="side-media"><span class="side-num">i.</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/me-engineer.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
-          <h3>The engineer</h3>
-          <p>Five-plus years of asking why. I read the fine print, the ingredient list and the spec sheet before I say a word.</p>
-        </article>
-        <article class="side-card">
-          <div class="side-media"><span class="side-num">ii.</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/me-mom.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
-          <h3>The mom</h3>
-          <p>Testing everything on the toughest critics I know. If it works in my house, it works.</p>
-        </article>
-        <article class="side-card">
-          <div class="side-media"><span class="side-num">iii.</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
-          <h3>The creative</h3>
-          <p>Color, texture, a good frame. Nails, interiors and anything that begs to be filmed up close.</p>
-        </article>
-        <article class="side-card">
-          <div class="side-media"><span class="side-num">iv.</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/lettucegrow-poster.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
-          <h3>The nature lover</h3>
-          <p>Plants on the counter, dirt under my nails, and a soft spot for anything that grows.</p>
-        </article>
-        <article class="side-card">
-          <div class="side-media"><span class="side-num">v.</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/me-kanaka.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
-          <h3>The proud Kanaka</h3>
-          <p>My roots shape how I show up: with aloha, respect, and care for the people and places around me.</p>
-        </article>
-    </div>
   </section>
 </div>
 
@@ -526,17 +502,17 @@
     <div class="eyebrow">Take a look around</div>
     <h2>Three ways I<br><em>show up.</em></h2>
     <div class="topic-grid">
-      <a class="topic " href="work.html#partnerships">
+      <a class="topic " href="partnerships.html">
         <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg" alt="" loading="lazy" onerror="this.remove()">
         <span class="topic-shade"></span>
         <span class="topic-body"><span class="topic-title">Brand partnerships</span><span class="topic-line">Things I've brought to life</span><span class="topic-go">See more &rarr;</span></span>
       </a>
-      <a class="topic " href="work.html#strategy">
+      <a class="topic " href="strategy.html">
         <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/lettucegrow-poster.jpg" alt="" loading="lazy" onerror="this.remove()">
         <span class="topic-shade"></span>
         <span class="topic-body"><span class="topic-title">Creative strategy</span><span class="topic-line">Content that starts with a real question</span><span class="topic-go">See more &rarr;</span></span>
       </a>
-      <a class="topic soon" href="work.html#travel">
+      <a class="topic soon" href="travel.html">
         
         <span class="topic-shade"></span>
         <span class="topic-body"><span class="topic-title">Travel content</span><span class="topic-line">Slow stays and far-off places</span><span class="topic-go">See more &rarr;</span></span>
@@ -693,12 +669,13 @@
     if (!a) return;
     var href = a.getAttribute('href');
     if (!href) return;
-    var m = href.match(/^(index\.html|gallery\.html|contact\.html|work\.html)?(#.*)?$/);
+    var m = href.match(/^(index\.html|gallery\.html|contact\.html|partnerships\.html|strategy\.html|travel\.html)?(#.*)?$/);
     if (!m || (!m[1] && !m[2])) return;
     // Only intercept internal same-app links (index.html / gallery.html / contact.html, with optional hash).
-    if (!/^(index\.html|gallery\.html|contact\.html|work\.html)?(#.*)?$/.test(href)) return;
+    if (!/^(index\.html|gallery\.html|contact\.html|partnerships\.html|strategy\.html|travel\.html)?(#.*)?$/.test(href)) return;
     e.preventDefault();
-    var page = m[1] === 'gallery.html' ? 'gallery' : m[1] === 'contact.html' ? 'contact' : m[1] === 'work.html' ? 'work' : 'home';
+    if (!m[1]) { var tgt = document.getElementById((m[2] || '').replace('#', '')); if (tgt) tgt.scrollIntoView({ behavior: 'smooth' }); return; }
+    var page = m[1].replace('.html', ''); if (page === 'index') page = 'home';
     window.parent.postMessage({ type: 'ugc-nav', page: page, hash: m[2] || '' }, '*');
   });
 

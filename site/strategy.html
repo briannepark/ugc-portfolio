@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brianne — Creative strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,300;1,9..144,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#F4F1E7; --paper:#FBF7EA; --ink:#17140F; --pen:#27304A; --red:#C2412D; --hl:#F6E27A; --muted:#524C3E; --muted-2:#8C8570; --accent:#A4502B; --line:rgba(23,20,15,.14); --serif:'Fraunces',Georgia,serif; --hand:'Caveat','Bradley Hand',cursive; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; color:var(--ink); background:var(--bg); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 48px; }
+  header.wrap { padding-top:34px; padding-bottom:34px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { font-family:'Poppins',sans-serif; font-size:34px; font-weight:800; letter-spacing:-.065em; text-transform:lowercase; }
+  .brand sup { font-size:14px; font-weight:600; top:-1em; margin-left:1px; font-family:'Inter',sans-serif; letter-spacing:0; }
+  nav { display:flex; align-items:center; gap:30px; }
+  nav a { font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid transparent; }
+  nav a:hover, nav a.current { color:var(--ink); border-color:var(--ink); }
+  .eyebrow { font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  /* sketchbook */
+  .sketch { background-color:var(--paper); background-image:radial-gradient(rgba(39,48,74,.18) 1.2px, transparent 1.3px); background-size:26px 26px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:70px 0 110px; position:relative; }
+  .sketch::before { content:''; position:absolute; left:34px; top:0; bottom:0; width:2px; background:rgba(194,65,45,.28); }
+  .title-hand { font-family:var(--hand); font-weight:700; color:var(--pen); font-size:clamp(46px,7vw,92px); line-height:.95; margin:14px 0 0; transform:rotate(-1.2deg); }
+  .title-hand em { font-style:normal; background:linear-gradient(transparent 58%, var(--hl) 58%, var(--hl) 92%, transparent 92%); padding:0 6px; }
+  .sub-hand { font-family:var(--hand); font-size:26px; color:var(--pen); max-width:560px; margin:18px 0 0; line-height:1.15; }
+  .how { display:flex; gap:18px; flex-wrap:wrap; margin-top:30px; }
+  .how div { font-family:var(--hand); font-size:24px; color:var(--pen); background:#FFF3B0; padding:10px 18px 12px; transform:rotate(var(--r,-1deg)); box-shadow:0 8px 16px rgba(23,20,15,.12); max-width:240px; line-height:1.1; }
+  .how div:nth-child(2) { --r:1.6deg; background:#FFD9CF; }
+  .how div:nth-child(3) { --r:-.6deg; background:#D8EBD3; }
+  .board { display:grid; grid-template-columns:repeat(12,1fr); gap:70px 26px; margin-top:64px; }
+  .idea { position:relative; background:#fff; padding:26px 24px 24px; transform:translateY(var(--y)) rotate(var(--r)); box-shadow:0 14px 28px rgba(23,20,15,.14), 0 2px 0 rgba(23,20,15,.05); border-radius:3px; }
+  .tape { position:absolute; top:-14px; left:50%; width:110px; height:28px; transform:translateX(-50%) rotate(-3deg); background:rgba(246,226,122,.7); box-shadow:0 1px 3px rgba(0,0,0,.12); }
+  .idea:nth-child(even) .tape { background:rgba(255,190,170,.7); transform:translateX(-50%) rotate(3deg); }
+  .idea-n { position:absolute; right:18px; top:12px; font-family:var(--hand); font-size:30px; color:var(--red); }
+  .idea h3 { font-family:var(--hand); font-weight:700; font-size:38px; line-height:1; margin:6px 40px 16px 0; color:var(--pen); }
+  .polaroid { background:#fff; }
+  .ph { position:relative; aspect-ratio:4/3; background:linear-gradient(160deg,#F1E8D3,#E3D2B3); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; overflow:hidden; color:var(--pen); }
+  .ph img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .doodle { width:46%; opacity:.8; }
+  .scribble { position:relative; font-family:var(--hand); font-size:27px; line-height:1.05; color:var(--red); margin:14px 0 0 10px; display:flex; gap:6px; align-items:flex-start; transform:rotate(-2deg); }
+  .scribble svg { width:70px; height:46px; flex:0 0 auto; margin-top:-34px; transform:scaleY(-1) rotate(-14deg); color:var(--red); }
+  .qt { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px; padding-top:16px; border-top:2px dashed rgba(39,48,74,.28); }
+  .qt label { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#fff; background:var(--pen); padding:3px 8px; transform:rotate(-1.5deg); }
+  .qt .t label { background:var(--red); }
+  .qt p { font-family:var(--hand); font-size:23px; line-height:1.08; margin:8px 0 0; color:var(--pen); }
+  .rule { grid-column:1 / -1; justify-self:center; text-align:center; font-family:var(--hand); font-size:clamp(30px,4vw,48px); color:var(--pen); transform:rotate(-1deg); max-width:760px; line-height:1.05; }
+  .rule u { text-decoration:none; background:linear-gradient(transparent 60%, var(--hl) 60%); padding:0 4px; }
+  .after { padding:80px 0 20px; text-align:center; }
+  .after h2 { font-family:var(--serif); font-weight:400; font-size:clamp(30px,4.2vw,50px); line-height:1.08; margin:12px 0 0; letter-spacing:-.02em; }
+  .after h2 em { font-style:italic; font-weight:300; color:var(--accent); }
+  .pill-link { display:inline-block; margin-top:28px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; border:1px solid var(--ink); border-radius:40px; padding:14px 26px; transition:background .25s,color .25s; }
+  .pill-link:hover { background:var(--ink); color:var(--bg); }
+  footer.wrap { padding:30px 48px 44px; display:flex; justify-content:space-between; font-size:11px; color:var(--muted-2); flex-wrap:wrap; gap:8px; font-family:'IBM Plex Mono',monospace; letter-spacing:.06em; text-transform:uppercase; }
+  @media (max-width:900px) { .board { display:flex; flex-direction:column; gap:54px; } .idea { transform:rotate(var(--r)); } .sketch::before { left:14px; } }
+  @media (max-width:640px) { .wrap { padding:0 22px; } footer.wrap { padding:28px 22px 44px; } header.wrap { flex-wrap:wrap; gap:14px; } nav { flex-wrap:wrap; gap:8px 16px; } .qt { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <a class="brand" href="index.html">brianne<sup>☺</sup></a>
+  <nav>
+    <a href="partnerships.html">Partnerships</a>
+    <a href="strategy.html" class="current">Strategy</a>
+    <a href="travel.html">Travel</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="sketch">
+  <div class="wrap">
+    <div class="eyebrow">Creative strategy</div>
+    <h1 class="title-hand">notes to self: <em>what do people actually want to see?</em></h1>
+    <p class="sub-hand">My sketchbook of content ideas. Every one starts with a real question and a specific person.</p>
+    <div class="how">
+      <div>1. find the real question</div>
+      <div>2. name the person asking it</div>
+      <div>3. answer it honestly, on camera</div>
+    </div>
+    <div class="board">
+    <article class="idea" style="--r:-2.2deg;--y:0;grid-column:1 / span 6">
+      <span class="tape"></span>
+      <div class="idea-n">#1</div>
+      <h3>Harvest to table</h3>
+      <div class="polaroid">
+        <div class="ph"><svg class="doodle" viewBox="0 0 132 132" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 100 C20 40 70 14 112 18 C110 62 82 100 20 100Z"/><path d="M20 100 C44 70 70 48 104 28"/><path d="M60 64 l14 2 M44 80 l12 -2"/></svg><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/lettucegrow-poster.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+      </div>
+      <div class="scribble"><span>grow it, cook it,<br>eat it. one kitchen!</span>
+        <svg viewBox="0 0 90 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8 C30 4 60 14 74 42"/><path d="M62 38 L75 46 L78 30"/></svg>
+      </div>
+      <div class="qt">
+        <div class="q"><label>Question</label><p>Can a countertop garden really make dinner?</p></div>
+        <div class="t"><label>Target</label><p>Home cooks and parents who want fresher food without a yard</p></div>
+      </div>
+    </article>
+    <article class="idea" style="--r:1.8deg;--y:46px;grid-column:7 / span 6">
+      <span class="tape"></span>
+      <div class="idea-n">#2</div>
+      <h3>The 30-day experiment</h3>
+      <div class="polaroid">
+        <div class="ph"><svg class="doodle" viewBox="0 0 132 132" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M92 22 C58 26 40 58 52 86 C62 108 92 112 112 98 C84 96 72 62 92 22Z"/><path d="M26 34 l8 0 M30 30 l0 8 M120 54 l6 0 M123 51 l0 6"/><path d="M104 118 h14 l-14 10 h14"/></svg></div>
+      </div>
+      <div class="scribble"><span>track it daily.<br>show the boring days too</span>
+        <svg viewBox="0 0 90 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8 C30 4 60 14 74 42"/><path d="M62 38 L75 46 L78 30"/></svg>
+      </div>
+      <div class="qt">
+        <div class="q"><label>Question</label><p>Does it change anything you can actually measure?</p></div>
+        <div class="t"><label>Target</label><p>Data-curious shoppers weighing a big purchase</p></div>
+      </div>
+    </article>
+    <article class="idea" style="--r:1.4deg;--y:-8px;grid-column:2 / span 5">
+      <span class="tape"></span>
+      <div class="idea-n">#3</div>
+      <h3>The day-90 skin journey</h3>
+      <div class="polaroid">
+        <div class="ph"><svg class="doodle" viewBox="0 0 132 132" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M66 16 C66 16 28 62 28 88 C28 108 44 120 66 120 C88 120 104 108 104 88 C104 62 66 16 66 16Z"/><path d="M48 92 C48 104 58 108 64 108"/></svg><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/kokoist-nails-3.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+      </div>
+      <div class="scribble"><span>same light. same spot.<br>no filter.</span>
+        <svg viewBox="0 0 90 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8 C30 4 60 14 74 42"/><path d="M62 38 L75 46 L78 30"/></svg>
+      </div>
+      <div class="qt">
+        <div class="q"><label>Question</label><p>What does skin look like at day 90, really?</p></div>
+        <div class="t"><label>Target</label><p>Skincare skeptics tired of week-one miracles</p></div>
+      </div>
+    </article>
+    <article class="idea" style="--r:-1.6deg;--y:34px;grid-column:7 / span 6">
+      <span class="tape"></span>
+      <div class="idea-n">#4</div>
+      <h3>The label read-along</h3>
+      <div class="polaroid">
+        <div class="ph"><svg class="doodle" viewBox="0 0 132 132" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="58" cy="58" r="34"/><path d="M84 84 L116 116"/><path d="M40 56 h36 M44 68 h26"/></svg></div>
+      </div>
+      <div class="scribble"><span>highlighter on<br>the ingredient list!</span>
+        <svg viewBox="0 0 90 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8 C30 4 60 14 74 42"/><path d="M62 38 L75 46 L78 30"/></svg>
+      </div>
+      <div class="qt">
+        <div class="q"><label>Question</label><p>What's actually in this, and does it matter?</p></div>
+        <div class="t"><label>Target</label><p>Ingredient-conscious shoppers and sensitive skin</p></div>
+      </div>
+    </article>
+    <article class="idea" style="--r:2.2deg;--y:4px;grid-column:1 / span 6">
+      <span class="tape"></span>
+      <div class="idea-n">#5</div>
+      <h3>A day in the home</h3>
+      <div class="polaroid">
+        <div class="ph"><svg class="doodle" viewBox="0 0 132 132" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 66 L66 24 L114 66"/><path d="M30 60 V112 H102 V60"/><path d="M56 112 V82 H78 V112"/></svg></div>
+      </div>
+      <div class="scribble"><span>the toy-bin test:<br>does it survive?</span>
+        <svg viewBox="0 0 90 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8 C30 4 60 14 74 42"/><path d="M62 38 L75 46 L78 30"/></svg>
+      </div>
+      <div class="qt">
+        <div class="q"><label>Question</label><p>Does it fit a real, messy day?</p></div>
+        <div class="t"><label>Target</label><p>Busy parents who need things to just work</p></div>
+      </div>
+    </article>
+    <article class="idea" style="--r:-1.3deg;--y:38px;grid-column:7 / span 6">
+      <span class="tape"></span>
+      <div class="idea-n">#6</div>
+      <h3>Before you buy</h3>
+      <div class="polaroid">
+        <div class="ph"><svg class="doodle" viewBox="0 0 132 132" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 44 L66 24 L110 44 V92 L66 112 L22 92Z"/><path d="M22 44 L66 64 L110 44 M66 64 V112"/><path d="M44 34 L88 54"/></svg></div>
+      </div>
+      <div class="scribble"><span>one honest caveat<br>= trust</span>
+        <svg viewBox="0 0 90 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8 C30 4 60 14 74 42"/><path d="M62 38 L75 46 L78 30"/></svg>
+      </div>
+      <div class="qt">
+        <div class="q"><label>Question</label><p>What do I wish I'd known first?</p></div>
+        <div class="t"><label>Target</label><p>First-time buyers on the fence</p></div>
+      </div>
+    </article>
+      <div class="rule">if i wouldn't <u>stop scrolling</u> for it, i don't post it.</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap after">
+  <div class="eyebrow">Have a product in mind?</div>
+  <h2>Let's find the question<br><em>your customers are asking.</em></h2>
+  <a class="pill-link" href="contact.html">Start a conversation &rarr;</a>
+</div>
+
+<footer class="wrap">
+  <span>@brianne.studio</span>
+  <span>Made with care, from a real home</span>
+</footer>
+
+<script>
+(function () {
+  // Bridge for running inside the Windmill Raw App iframe wrapper.
+  // No-op when the page is opened directly (not embedded).
+  if (window.self === window.top) return;
+
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    var m = href.match(/^(index\.html|gallery\.html|contact\.html|partnerships\.html|strategy\.html|travel\.html)?(#.*)?$/);
+    if (!m || (!m[1] && !m[2])) return;
+    // Only intercept internal same-app links (index.html / gallery.html / contact.html, with optional hash).
+    if (!/^(index\.html|gallery\.html|contact\.html|partnerships\.html|strategy\.html|travel\.html)?(#.*)?$/.test(href)) return;
+    e.preventDefault();
+    if (!m[1]) { var tgt = document.getElementById((m[2] || '').replace('#', '')); if (tgt) tgt.scrollIntoView({ behavior: 'smooth' }); return; }
+    var page = m[1].replace('.html', ''); if (page === 'index') page = 'home';
+    window.parent.postMessage({ type: 'ugc-nav', page: page, hash: m[2] || '' }, '*');
+  });
+
+  window.addEventListener('message', function (e) {
+    var d = e.data;
+    if (d && d.type === 'ugc-scroll' && d.hash) {
+      var el = document.getElementById(d.hash.replace('#', ''));
+      if (el) el.scrollIntoView();
+    }
+  });
+
+  // Private entry point to the brand-outreach dashboard. Not linked anywhere —
+  // type "brands" (lowercase, anywhere on this page, not inside a text field)
+  // and it opens. A URL like ?page=brands can't be relied on here: Windmill's
+  // public runtime serves this app from a sandboxed document that doesn't see
+  // the real address bar, so this uses the same in-app messaging that the nav
+  // links above already use instead.
+  (function () {
+    var buffer = '';
+    var target = 'brands';
+    document.addEventListener('keydown', function (e) {
+      var tag = (e.target && e.target.tagName || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea') return;
+      if (e.key.length !== 1) return;
+      buffer = (buffer + e.key.toLowerCase()).slice(-target.length);
+      if (buffer === target) {
+        buffer = '';
+        window.parent.postMessage({ type: 'ugc-nav', page: 'brands', hash: '' }, '*');
+      }
+    });
+  })();
+})();
+</script>
+</body>
+</html>

@@ -259,6 +259,8 @@
     .pinboard { grid-template-columns: repeat(3, 1fr); gap: 28px 20px; }
   }
   @media (max-width: 640px) {
+    header.wrap { flex-wrap: wrap; gap: 14px; }
+    nav { flex-wrap: wrap; gap: 8px 16px !important; }
     .wrap { padding: 0 22px; }
     footer.wrap { padding: 28px 22px 44px; }
     nav { gap: 18px; }
@@ -287,7 +289,9 @@
 <header class="wrap">
   <a class="brand" href="index.html">brianne<sup>☺</sup></a>
   <nav>
-    <a href="work.html">Work</a>
+    <a href="partnerships.html">Partnerships</a>
+    <a href="strategy.html">Strategy</a>
+    <a href="travel.html">Travel</a>
     <a href="gallery.html" class="current">Gallery</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -654,12 +658,13 @@
     if (!a) return;
     var href = a.getAttribute('href');
     if (!href) return;
-    var m = href.match(/^(index\.html|gallery\.html|contact\.html|work\.html)?(#.*)?$/);
+    var m = href.match(/^(index\.html|gallery\.html|contact\.html|partnerships\.html|strategy\.html|travel\.html)?(#.*)?$/);
     if (!m || (!m[1] && !m[2])) return;
     // Only intercept internal same-app links (index.html / gallery.html / contact.html, with optional hash).
-    if (!/^(index\.html|gallery\.html|contact\.html|work\.html)?(#.*)?$/.test(href)) return;
+    if (!/^(index\.html|gallery\.html|contact\.html|partnerships\.html|strategy\.html|travel\.html)?(#.*)?$/.test(href)) return;
     e.preventDefault();
-    var page = m[1] === 'gallery.html' ? 'gallery' : m[1] === 'contact.html' ? 'contact' : m[1] === 'work.html' ? 'work' : 'home';
+    if (!m[1]) { var tgt = document.getElementById((m[2] || '').replace('#', '')); if (tgt) tgt.scrollIntoView({ behavior: 'smooth' }); return; }
+    var page = m[1].replace('.html', ''); if (page === 'index') page = 'home';
     window.parent.postMessage({ type: 'ugc-nav', page: page, hash: m[2] || '' }, '*');
   });
 

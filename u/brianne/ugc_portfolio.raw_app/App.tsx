@@ -1,18 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { HOME_HTML, GALLERY_HTML, CONTACT_HTML, WORK_HTML, BRANDS_HTML } from './pages.generated';
+import { HOME_HTML, GALLERY_HTML, CONTACT_HTML, PARTNERSHIPS_HTML, STRATEGY_HTML, TRAVEL_HTML, BRANDS_HTML } from './pages.generated';
 import { backend } from './wmill';
 
-type Page = 'home' | 'gallery' | 'contact' | 'work' | 'brands';
+type Page = 'home' | 'gallery' | 'contact' | 'partnerships' | 'strategy' | 'travel' | 'brands';
 
 function toPage(p: unknown): Page {
-  return p === 'gallery' || p === 'contact' || p === 'work' || p === 'brands' ? p : 'home';
+  return p === 'gallery' || p === 'contact' || p === 'partnerships' || p === 'strategy' || p === 'travel' || p === 'brands' ? p : 'home';
 }
 
 const PAGES: Record<Page, string> = {
   home: HOME_HTML,
   gallery: GALLERY_HTML,
   contact: CONTACT_HTML,
-  work: WORK_HTML,
+  partnerships: PARTNERSHIPS_HTML,
+  strategy: STRATEGY_HTML,
+  travel: TRAVEL_HTML,
   brands: BRANDS_HTML,
 };
 

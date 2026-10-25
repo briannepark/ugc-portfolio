@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brianne — Travel</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@300;400&family=IBM+Plex+Mono:wght@400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root { --night:#110D0B; --cream:#F3E9DC; --gold:#C9A66B; --rose:#D98C7A; --serif:'Cormorant Garamond',Georgia,serif; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; background:var(--night); color:var(--cream); font-family:'Inter',sans-serif; font-weight:300; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 48px; }
+  header.wrap { position:absolute; top:0; left:0; right:0; z-index:5; padding-top:34px; padding-bottom:34px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { font-family:'Poppins',sans-serif; font-size:34px; font-weight:800; letter-spacing:-.065em; text-transform:lowercase; color:var(--cream); }
+  .brand sup { font-size:14px; font-weight:600; top:-1em; margin-left:1px; font-family:'Inter',sans-serif; letter-spacing:0; }
+  nav { display:flex; align-items:center; gap:30px; }
+  nav a { font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(243,233,220,.72); border-bottom:1px solid transparent; }
+  nav a:hover, nav a.current { color:var(--cream); border-color:var(--gold); }
+  /* hero */
+  .hero { position:relative; min-height:100vh; display:flex; align-items:flex-end; overflow:hidden; background:linear-gradient(to bottom,#14122B 0%,#3A2447 28%,#9A4E56 55%,#E59A62 72%,#F4C98B 78%,#1D2B3A 78.2%,#16222F 100%); }
+  .hero .sun { position:absolute; left:64%; top:58%; width:min(26vw,300px); aspect-ratio:1; border-radius:50%; transform:translate(-50%,-50%); background:radial-gradient(circle,#FFF1C9 0%,#FFD38A 38%,rgba(255,170,100,.0) 70%); filter:blur(2px); animation:sun 14s ease-in-out infinite alternate; }
+  .hero .glow { position:absolute; inset:0; background:radial-gradient(60% 40% at 64% 78%, rgba(255,190,120,.55), transparent 70%); }
+  .hero .water { position:absolute; left:0; right:0; top:78%; bottom:0; background:repeating-linear-gradient(to bottom, rgba(255,205,140,.0) 0 7px, rgba(255,205,140,.10) 7px 9px); mask-image:linear-gradient(to bottom, #000, transparent 90%); }
+  .hero .shine { position:absolute; left:64%; top:78%; bottom:0; width:min(10vw,120px); transform:translateX(-50%); background:linear-gradient(to bottom, rgba(255,214,150,.75), rgba(255,214,150,0)); filter:blur(10px); }
+  .hero .photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .hero .shade { position:absolute; inset:0; background:linear-gradient(to top, rgba(17,13,11,.82) 0%, rgba(17,13,11,0) 55%); }
+  .hero-copy { position:relative; z-index:2; padding:0 48px 12vh; max-width:1180px; margin:0 auto; width:100%; }
+  .kick { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+  h1 { font-family:var(--serif); font-weight:300; font-style:italic; font-size:clamp(58px,10.5vw,150px); line-height:.92; letter-spacing:-.02em; margin:16px 0 0; }
+  .hero-sub { font-size:15px; letter-spacing:.06em; max-width:420px; line-height:1.9; margin-top:24px; color:rgba(243,233,220,.82); }
+  .scroll { position:absolute; z-index:2; right:48px; bottom:12vh; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.3em; text-transform:uppercase; color:rgba(243,233,220,.7); writing-mode:vertical-rl; }
+  .scroll::after { content:''; display:block; width:1px; height:60px; background:var(--gold); margin:14px auto 0; animation:drip 2.4s ease-in-out infinite; }
+  @keyframes drip { 0%,100% { transform:scaleY(.3); transform-origin:top; } 50% { transform:scaleY(1); transform-origin:top; } }
+  @keyframes sun { from { transform:translate(-50%,-50%) scale(1); } to { transform:translate(-50%,-46%) scale(1.06); } }
+  .reveal { opacity:0; transform:translateY(26px); transition:opacity 1.6s ease, transform 1.6s cubic-bezier(.22,1,.36,1); }
+  .reveal.in { opacity:1; transform:none; }
+  .hero .reveal { animation:rise 2.2s .3s both cubic-bezier(.22,1,.36,1); opacity:1; transform:none; }
+  @keyframes rise { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:none; } }
+  /* intro */
+  .intro { padding:16vh 0; text-align:center; }
+  .intro p { font-family:var(--serif); font-weight:300; font-size:clamp(28px,4.4vw,54px); line-height:1.2; max-width:880px; margin:0 auto; }
+  .intro em { color:var(--gold); }
+  /* chapters */
+  .frame { position:relative; min-height:92vh; display:flex; align-items:flex-end; overflow:hidden; }
+  .frame .scene, .frame .photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .frame::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(17,13,11,.85), rgba(17,13,11,0) 60%); }
+  .frame.room .scene { background:radial-gradient(70% 60% at 70% 30%, #F0C48A 0%, #C98A5B 35%, #5A3426 70%, #1B1210 100%); }
+  .frame.ritual .scene { background:radial-gradient(80% 70% at 30% 25%, #FBE6C0 0%, #E8B98A 30%, #A9776A 60%, #2B1E24 100%); }
+  .frame.table .scene { background:radial-gradient(50% 50% at 50% 55%, #E7A25A 0%, #9C4A3A 38%, #3A1620 72%, #120A0C 100%); }
+  .frame-copy { position:relative; z-index:2; max-width:1180px; width:100%; margin:0 auto; padding:0 48px 12vh; }
+  .frame h2 { font-family:var(--serif); font-weight:300; font-style:italic; font-size:clamp(46px,7vw,96px); line-height:1; margin:12px 0 0; }
+  .frame p { max-width:520px; font-size:16px; line-height:1.9; margin:22px 0 0; color:rgba(243,233,220,.88); }
+  /* marquee */
+  .marquee { border-top:1px solid rgba(201,166,107,.35); border-bottom:1px solid rgba(201,166,107,.35); overflow:hidden; padding:26px 0; }
+  .marquee div { display:flex; gap:56px; width:max-content; animation:slide 60s linear infinite; font-family:var(--serif); font-style:italic; font-size:clamp(26px,3.4vw,40px); color:var(--gold); white-space:nowrap; }
+  @keyframes slide { to { transform:translateX(-50%); } }
+  /* offer */
+  .offer { padding:16vh 0 10vh; }
+  .offer h2 { font-family:var(--serif); font-weight:300; font-size:clamp(34px,5vw,64px); line-height:1.08; margin:14px 0 0; }
+  .offer h2 em { color:var(--rose); }
+  .offer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:56px; border-top:1px solid rgba(201,166,107,.35); }
+  .offer-grid div { padding:30px 28px 34px 0; border-right:1px solid rgba(201,166,107,.2); padding-left:28px; }
+  .offer-grid div:first-child { padding-left:0; }
+  .offer-grid div:last-child { border-right:none; }
+  .offer-grid h3 { font-family:var(--serif); font-weight:400; font-size:28px; margin:0; }
+  .offer-grid p { font-size:14.5px; line-height:1.8; color:rgba(243,233,220,.72); margin:10px 0 0; }
+  .close { text-align:center; padding:6vh 0 16vh; }
+  .close h2 { font-family:var(--serif); font-weight:300; font-style:italic; font-size:clamp(44px,7vw,96px); margin:0; line-height:1; }
+  .gold-btn { display:inline-block; margin-top:36px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); border:1px solid var(--gold); padding:18px 34px; transition:background .35s,color .35s; }
+  .gold-btn:hover { background:var(--gold); color:var(--night); }
+  footer.wrap { padding:30px 48px 44px; display:flex; justify-content:space-between; font-size:11px; color:rgba(243,233,220,.5); flex-wrap:wrap; gap:8px; font-family:'IBM Plex Mono',monospace; letter-spacing:.14em; text-transform:uppercase; border-top:1px solid rgba(201,166,107,.2); }
+  @media (max-width:860px) { .offer-grid { grid-template-columns:1fr; } .offer-grid div { padding:24px 0; border-right:none; border-bottom:1px solid rgba(201,166,107,.2); } .scroll { display:none; } }
+  @media (max-width:640px) { .wrap, .hero-copy, .frame-copy { padding-left:22px; padding-right:22px; } footer.wrap { padding:28px 22px 44px; } header.wrap { flex-wrap:wrap; gap:14px; } nav { flex-wrap:wrap; gap:8px 16px; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } .marquee div, .hero .sun, .scroll::after { animation:none; } }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <a class="brand" href="index.html">brianne<sup>☺</sup></a>
+  <nav>
+    <a href="partnerships.html">Partnerships</a>
+    <a href="strategy.html">Strategy</a>
+    <a href="travel.html" class="current">Travel</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="sun"></div><div class="glow"></div><div class="water"></div><div class="shine"></div>
+  <img class="photo" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/travel/hero.jpg" alt="" onerror="this.remove()">
+  <div class="shade"></div>
+  <div class="hero-copy">
+    <div class="reveal in">
+      <div class="kick">Travel content</div>
+      <h1>Wish you<br>were here.</h1>
+      <p class="hero-sub">Slow mornings, golden hours and tables set for the evening. Travel content that makes you feel the place before you've booked a thing.</p>
+    </div>
+  </div>
+  <div class="scroll">Scroll slowly</div>
+</section>
+
+<section class="intro">
+  <div class="wrap reveal"><p>I want you to feel the <em>warm stone</em> underfoot, hear the <em>sea</em> through the shutters, and quietly start looking at flights.</p></div>
+</section>
+
+    <section class="frame room">
+      <div class="scene"></div>
+      <img class="photo" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/travel/room.jpg" alt="" loading="lazy" onerror="this.remove()">
+      <div class="frame-copy reveal">
+        <div class="kick">Chapter one</div>
+        <h2>The room</h2>
+        <p>Linen that smells like the sun. Shutters half open, a breeze that knows your name. Nothing on the calendar but the light moving across the floor.</p>
+      </div>
+    </section>
+    <section class="frame ritual">
+      <div class="scene"></div>
+      <img class="photo" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/travel/ritual.jpg" alt="" loading="lazy" onerror="this.remove()">
+      <div class="frame-copy reveal">
+        <div class="kick">Chapter two</div>
+        <h2>The ritual</h2>
+        <p>The first coffee, slowly. Bare feet on warm stone, the sea somewhere beyond the wall. A morning that belongs entirely to you.</p>
+      </div>
+    </section>
+    <section class="frame table">
+      <div class="scene"></div>
+      <img class="photo" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/travel/table.jpg" alt="" loading="lazy" onerror="this.remove()">
+      <div class="frame-copy reveal">
+        <div class="kick">Chapter three</div>
+        <h2>The table</h2>
+        <p>Candlelight, a long table, and a dinner that takes all evening. The kind of night you describe to people for years.</p>
+      </div>
+    </section>
+
+<div class="marquee" aria-hidden="true"><div>
+  <span>salt in your hair</span><span>linen sheets</span><span>a table by the water</span><span>golden hour</span><span>no alarm clock</span><span>warm stone</span><span>one more espresso</span><span>the long way home</span>
+  <span>salt in your hair</span><span>linen sheets</span><span>a table by the water</span><span>golden hour</span><span>no alarm clock</span><span>warm stone</span><span>one more espresso</span><span>the long way home</span>
+</div></div>
+
+<section class="offer">
+  <div class="wrap reveal">
+    <div class="kick">For hotels, stays and travel brands</div>
+    <h2>What I'd make <em>for you.</em></h2>
+    <div class="offer-grid">
+      <div><h3>The stay</h3><p>A slow, honest tour of the room, the light and the small details guests remember.</p></div>
+      <div><h3>The ritual</h3><p>One morning, start to finish, shot the way it actually feels to wake up there.</p></div>
+      <div><h3>The packing list</h3><p>What I'd bring again, and what I'd leave at home, for people deciding if they should go.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap reveal">
+    <h2>Take me with you.</h2>
+    <a class="gold-btn" href="contact.html">Let's plan a stay</a>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>@brianne.studio</span>
+  <span>Wish you were here</span>
+</footer>
+
+<script>
+(function () {
+  // Bridge for running inside the Windmill Raw App iframe wrapper.
+  // No-op when the page is opened directly (not embedded).
+  if (window.self === window.top) return;
+
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    var m = href.match(/^(index\.html|gallery\.html|contact\.html|partnerships\.html|strategy\.html|travel\.html)?(#.*)?$/);
+    if (!m || (!m[1] && !m[2])) return;
+    // Only intercept internal same-app links (index.html / gallery.html / contact.html, with optional hash).
+    if (!/^(index\.html|gallery\.html|contact\.html|partnerships\.html|strategy\.html|travel\.html)?(#.*)?$/.test(href)) return;
+    e.preventDefault();
+    if (!m[1]) { var tgt = document.getElementById((m[2] || '').replace('#', '')); if (tgt) tgt.scrollIntoView({ behavior: 'smooth' }); return; }
+    var page = m[1].replace('.html', ''); if (page === 'index') page = 'home';
+    window.parent.postMessage({ type: 'ugc-nav', page: page, hash: m[2] || '' }, '*');
+  });
+
+  window.addEventListener('message', function (e) {
+    var d = e.data;
+    if (d && d.type === 'ugc-scroll' && d.hash) {
+      var el = document.getElementById(d.hash.replace('#', ''));
+      if (el) el.scrollIntoView();
+    }
+  });
+
+  // Private entry point to the brand-outreach dashboard. Not linked anywhere —
+  // type "brands" (lowercase, anywhere on this page, not inside a text field)
+  // and it opens. A URL like ?page=brands can't be relied on here: Windmill's
+  // public runtime serves this app from a sandboxed document that doesn't see
+  // the real address bar, so this uses the same in-app messaging that the nav
+  // links above already use instead.
+  (function () {
+    var buffer = '';
+    var target = 'brands';
+    document.addEventListener('keydown', function (e) {
+      var tag = (e.target && e.target.tagName || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea') return;
+      if (e.key.length !== 1) return;
+      buffer = (buffer + e.key.toLowerCase()).slice(-target.length);
+      if (buffer === target) {
+        buffer = '';
+        window.parent.postMessage({ type: 'ugc-nav', page: 'brands', hash: '' }, '*');
+      }
+    });
+  })();
+})();
+</script>
+<script>
+(function () {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.18 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
+</body>
+</html>
