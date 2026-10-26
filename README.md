@@ -151,7 +151,7 @@ automatically in CI.
 
 ## Pages and photo slots
 
-- Each topic has its own page with its own look: `site/partnerships.html` (editorial, product shots + lightbox), `site/strategy.html` (sketchbook of ideas with a question and target each) and `site/travel.html` (dark, luxe, longing). Travel photos go in `site/media/travel/` as `hero.jpg`, `room.jpg`, `ritual.jpg`, `table.jpg`; they fade over the gradient scenes.
+- Each topic has its own page with its own look: `site/partnerships.html` (editorial, product shots + lightbox), `site/strategy.html` (sketchbook of ideas with a question and target each) and `site/travel.html` (dark, luxe, longing). Travel photos go in `site/media/travel/` as `hero-v2.jpg`, `room.jpg`, `ritual.jpg`, `table.jpg`; they fade over the gradient scenes.
 - Homepage "What I'm loving" cards look for a product photo at `site/media/loves/<slug>.jpg`
   (`osea`, `alastin`, `murad`, `mollysuds`, `attitude`, `kokoist`, `sortjoy`, `aesop`); with no file they show a tinted card with the brand name.
 - The "All the sides of me" cards were removed from the homepage (kept simple for brands).
