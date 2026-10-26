@@ -410,7 +410,7 @@
   /* topics, mood board, loves masonry */
   .topic-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:30px; }
   .topic { position:relative; display:block; aspect-ratio:4/5; border-radius:22px; overflow:hidden; background:linear-gradient(160deg,#EFE5D3,#D9BFA0); }
-  .topic img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.22,1,.36,1); }
+  .topic img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 70%; transition:transform .8s cubic-bezier(.22,1,.36,1); }
   .topic:hover img { transform:scale(1.05); }
   .topic-shade { position:absolute; inset:0; background:linear-gradient(to top, rgba(10,9,7,.62) 0%, rgba(10,9,7,0) 55%); }
   .topic.soon .topic-shade { background:linear-gradient(to top, rgba(60,40,20,.45) 0%, rgba(60,40,20,0) 55%); }
@@ -516,8 +516,9 @@
         <span class="topic-shade"></span>
         <span class="topic-body"><span class="topic-title">Creative strategy</span><span class="topic-line">Content that starts with a real question</span><span class="topic-go">See more &rarr;</span></span>
       </a>
-      <a class="topic soon" href="travel.html">
+      <a class="topic" href="travel.html">
         
+        <img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/travel-card.jpg" alt="" loading="lazy" onerror="this.remove()">
         <span class="topic-shade"></span>
         <span class="topic-body"><span class="topic-title">Travel content</span><span class="topic-line">Slow stays and far-off places</span><span class="topic-go">See more &rarr;</span></span>
       </a>
