@@ -44,11 +44,31 @@ export default function App() {
     try {
       const url = new URL(window.location.href);
       url.searchParams.set('page', page);
-      window.history.replaceState(null, '', url.toString());
+      // Keep the history entry's state (the current page) when only the URL is rewritten.
+      window.history.replaceState(window.history.state, '', url.toString());
     } catch {
       // Not bookmarkable in this runtime context — navigation still works.
     }
   }, [page]);
+
+  // Browser back/forward: every in-app navigation pushes a history entry that
+  // carries the page name (pushState with no URL argument, which is allowed even
+  // from the blob: document Windmill's public runtime uses), and popstate restores it.
+  useEffect(() => {
+    try {
+      window.history.replaceState({ ugcPage: page }, '');
+    } catch {
+      // History API unavailable here — back/forward just won't be tracked.
+    }
+    function onPop(e: PopStateEvent) {
+      const next = toPage(e.state && (e.state as any).ugcPage);
+      pendingHash.current = '';
+      setPage(next);
+    }
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Listen for navigation requests posted by the embedded page (see the bridge
   // script appended to /site/index.html, /site/gallery.html and /site/contact.html),
@@ -67,6 +87,11 @@ export default function App() {
             '*'
           );
         } else {
+          try {
+            window.history.pushState({ ugcPage: nextPage }, '');
+          } catch {
+            // Back/forward won't track this move; navigation itself still works.
+          }
           setPage(nextPage);
         }
       } else if (data.type === 'ugc-contact-submit') {
