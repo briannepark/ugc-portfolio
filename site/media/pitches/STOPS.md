@@ -12,11 +12,18 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/nubeluz-50th-floor.jpg`: Nubeluz, 50th floor
 - `nomad/madison-square-park-and-flatiron.jpg`: Madison Square Park and Flatiron
 - `nomad/chelsea-galleries-and-the-start-of-the-high-line.jpg`: Chelsea galleries and the start of the High Line
-- `nomad/matcha-in-soho-or-nolita.jpg`: Matcha in SoHo or NoLita
+- `nomad/cj-hendry-flower-market.jpg`: CJ Hendry Flower Market
 - `nomad/gentle-monster-soho.jpg`: Gentle Monster, SoHo
 - `nomad/sample-sale-hunt.jpg`: Sample-sale hunt
 - `nomad/pop-up-of-the-week.jpg`: Pop-up of the week
+- `nomad/12-matcha.jpg`: 12 Matcha
+- `nomad/rhythm-zero.jpg`: Rhythm Zero
+- `nomad/rok-matcha.jpg`: Rok Matcha
 - `nomad/ramen-ippudo-or-ivan-ramen.jpg`: Ramen: Ippudo or Ivan Ramen
+- `nomad/untermyer-gardens.jpg`: Untermyer Gardens
+- `nomad/mercer-labs.jpg`: Mercer Labs
+- `nomad/printemps-one-wall-street.jpg`: Printemps, One Wall Street
+- `nomad/aura-reading-at-magic-jewelry.jpg`: Aura reading at Magic Jewelry
 - `nomad/dumbo-ice-cream-and-bridge-shot.jpg`: Dumbo ice cream and bridge shot
 - `nomad/nobu-downtown-dinner.jpg`: Nobu Downtown dinner
 - `nomad/last-look-and-checkout.jpg`: Last look and checkout
@@ -33,10 +40,17 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `brooklyn/jane-s-carousel.jpg`: Jane's Carousel
 - `brooklyn/time-out-market.jpg`: Time Out Market
 - `brooklyn/dumbo-gallery-stop.jpg`: Dumbo gallery stop
-- `brooklyn/matcha-in-williamsburg.jpg`: Matcha in Williamsburg
+- `brooklyn/cj-hendry-flower-market.jpg`: CJ Hendry Flower Market
 - `brooklyn/gentle-monster-soho.jpg`: Gentle Monster, SoHo
+- `brooklyn/12-matcha.jpg`: 12 Matcha
+- `brooklyn/rok-matcha.jpg`: Rok Matcha
+- `brooklyn/rhythm-zero.jpg`: Rhythm Zero
 - `brooklyn/ramen-in-the-east-village.jpg`: Ramen in the East Village
 - `brooklyn/ice-cream-by-the-water.jpg`: Ice cream by the water
+- `brooklyn/untermyer-gardens.jpg`: Untermyer Gardens
+- `brooklyn/mercer-labs.jpg`: Mercer Labs
+- `brooklyn/printemps-one-wall-street.jpg`: Printemps, One Wall Street
+- `brooklyn/aura-reading-at-magic-jewelry.jpg`: Aura reading at Magic Jewelry
 
 ## Halekulani  (`halekulani`)
 
