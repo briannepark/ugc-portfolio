@@ -28,10 +28,14 @@ def slug(t): return re.sub(r'[^a-z0-9]+', '-', t.lower()).strip('-')
 # (kicker, title, story, [(stop, tag, note, confirm)])
 STORY = {
 'nomad': dict(
+  walk=dict(kick='Day 1 · Arrival', title='Through the doors',
+    story="Walk in with me. Past the sheer curtains, toward the glow of the bar, and then up to a window with the whole city lit below. This is how I'd open the trip: moving through the hotel, one room at a time.",
+    scenes=[
+      ('Lobby','Step through the doors.','Sheer curtains, floor-to-ceiling windows, and a sculptural chandelier over the lounge.'),
+      ('Lounge','Past the lounge, toward the bar.','Green velvet, brass, and a wall of hanging greenery behind the bottles.'),
+      ('Room','Then up, to the view.','Dusk over the downtown skyline, with every light just switching on.')]),
   intro="Picture this. You land in New York, ride into NoMad, and step into a room where the window is so wide the skyline feels hung just for you. This is the long weekend I'd take you on, one stop at a time.",
   chapters=[
-   ('Day 1 · Arrival','The city, framed',"The elevator opens, the bag drops, and there it is. Oversize windows, gold light, the whole skyline. I'd film this before I even unpack.",
-    [('Room view and amenities','here','Oversize windows are the opening shot.',False)]),
    ('Day 1 · Nightfall','Fifty floors up',"Dinner at the hotel turns into a nightcap, and the nightcap turns into the best view of the trip. Blue hour, every light in Midtown below.",
     [('José Andrés dinner at the hotel','here','The luxury restaurant payoff.',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
    ('Day 2 · Morning','Coffee in hand, on foot',"Out the lobby and into the neighborhood. Everything good around here is a walk away: the park, the Flatiron, the galleries of Chelsea.",
@@ -117,7 +121,7 @@ STORY = {
 
 CSS = r"""
   :root { --bg:%%BG%%; --txt:%%TXT%%; --paper:%%PAPER%%; --ink:%%INK%%; --accent:%%ACCENT%%; --accent2:%%ACCENT2%%; --soft:%%SOFT%%;
-          --head:%%HEAD%%; --body:%%BODY%%; --hand:'Caveat',cursive;
+          --head:%%HEAD%%; --body:%%BODY%%; --hand:'Nothing You Could Do',cursive;
           --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
   * { box-sizing:border-box; }
   html { scroll-behavior:smooth; }
@@ -125,7 +129,7 @@ CSS = r"""
   body::before { content:''; position:fixed; inset:0; background-image:var(--grain); opacity:.18; mix-blend-mode:multiply; pointer-events:none; z-index:50; }
   a { color:inherit; text-decoration:none; }
   h1,h2,h3 { font-family:var(--head); font-weight:400; margin:0; line-height:1.04; }
-  .hand { font-family:var(--hand); font-weight:500; }
+  .hand { font-family:var(--hand); font-weight:400; }
   .kick { font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); font-weight:500; }
 
   /* HUD */
@@ -141,7 +145,7 @@ CSS = r"""
   .cover .in { position:relative; z-index:3; max-width:1100px; width:100%; margin:0 auto; padding:0 24px 12vh; }
   .cover h1 { font-size:clamp(46px,9vw,120px); max-width:11ch; margin:10px 0 14px; text-shadow:0 4px 30px rgba(0,0,0,.35); }
   .cover .tag { font-size:clamp(20px,2.4vw,30px); max-width:34ch; opacity:.95; margin:0 0 20px; }
-  .cover .hand { font-size:clamp(26px,3vw,38px); }
+  .cover .hand { font-size:clamp(22px,2.6vw,32px); }
   .cover .kick { color:#fff; opacity:.85; }
   .scroll { margin-top:30px; font-size:12px; letter-spacing:.2em; text-transform:uppercase; opacity:.8; animation:bob 2s ease-in-out infinite; }
   @keyframes bob { 50% { transform:translateY(8px); } }
@@ -164,7 +168,7 @@ CSS = r"""
   .g0 { --g:linear-gradient(150deg,var(--accent2),var(--accent)); } .g1 { --g:linear-gradient(150deg,var(--accent),var(--soft)); }
   .g2 { --g:linear-gradient(150deg,var(--ink),var(--accent2)); } .g3 { --g:linear-gradient(150deg,var(--soft),var(--accent2)); }
   .cap { margin-top:14px; display:flex; flex-direction:column; gap:4px; color:var(--txt); }
-  .cap .nm { font-family:var(--hand); font-size:clamp(24px,2.4vw,30px); line-height:1; }
+  .cap .nm { font-family:var(--hand); font-size:clamp(20px,2vw,25px); line-height:1.15; }
   .cap .row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
   .cap .nt { font-size:13px; opacity:.75; line-height:1.5; }
   .tg { font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding:3px 9px; border-radius:999px; font-weight:500; }
@@ -187,7 +191,7 @@ CSS = r"""
   .num { position:absolute; top:-95px; left:10px; font-family:var(--head); font-size:clamp(120px,20vw,260px); line-height:1; color:transparent; -webkit-text-stroke:1.5px color-mix(in srgb, var(--accent) 55%, transparent); z-index:0; pointer-events:none; }
   .ch-head > * { position:relative; z-index:1; }
   .ch-head h2 { font-size:clamp(34px,5.2vw,68px); margin-top:10px; }
-  .note { background:var(--paper); color:var(--ink); padding:22px 24px 30px; font-family:var(--hand); font-size:clamp(24px,2.5vw,30px); line-height:1.15; position:relative; transform:rotate(1.2deg);
+  .note { background:var(--paper); color:var(--ink); padding:22px 24px 30px; font-family:var(--hand); font-size:clamp(20px,2vw,25px); line-height:1.4; position:relative; transform:rotate(1.2deg);
           box-shadow:0 10px 22px rgba(0,0,0,.22); clip-path:polygon(0 0,100% 0,100% 94%,94% 100%,80% 96%,64% 100%,46% 97%,30% 100%,14% 97%,0 100%); }
   .note .tape { top:-12px; }
   .doodle { position:absolute; width:90px; height:60px; color:var(--accent); fill:none; stroke:currentColor; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
@@ -200,6 +204,30 @@ CSS = r"""
   .n3 .cut:nth-child(1) { width:54%; --ar:4/3; } .n3 .cut:nth-child(2) { width:40%; margin-top:70px; --ar:4/5; } .n3 .cut:nth-child(3) { width:44%; margin-top:-20px; margin-left:8%; --ar:1/1; }
   .n4 .cut { width:47%; } .n4 .cut:nth-child(1) { --ar:4/5; } .n4 .cut:nth-child(2) { margin-top:70px; --ar:1/1; } .n4 .cut:nth-child(3) { --ar:1/1; margin-top:-10px; } .n4 .cut:nth-child(4) { margin-top:50px; --ar:4/5; }
   .cutout { position:absolute; right:2%; bottom:-30px; width:min(24vw,260px); z-index:5; filter:drop-shadow(0 14px 18px rgba(0,0,0,.35)); transform:rotate(4deg); }
+
+
+  /* walk-through */
+  .walk { position:relative; height:440vh; }
+  .walk .stick { position:sticky; top:0; height:100vh; overflow:hidden; background:#06080f; }
+  .walk .scene { position:absolute; inset:0; opacity:0; will-change:transform,opacity; }
+  .walk .s1 img { width:100%; height:100%; object-fit:cover; object-position:50% 40%; transform-origin:50% 38%; }
+  .walk .s2 .blur { position:absolute; inset:-30px; background-size:cover; background-position:center; filter:blur(28px) brightness(.55); }
+  .walk .s2 img { position:absolute; left:50%; top:50%; height:min(100vh,120vw*1.78); max-width:100%; transform:translate(-50%,-50%); object-fit:cover; box-shadow:0 30px 80px rgba(0,0,0,.6); aspect-ratio:9/16; }
+  .walk .s3 { background:radial-gradient(ellipse at 50% 60%,#1b2347,#05070d 70%); display:flex; align-items:center; justify-content:center; }
+  .walk .s3 .frame { margin-top:-12vh; width:min(86vw,1040px); aspect-ratio:3/2; overflow:hidden; border:8px solid rgba(255,255,255,.9); box-shadow:0 30px 90px rgba(0,0,0,.7); border-radius:4px; }
+  .walk .s3 img { width:100%; height:100%; object-fit:cover; transform-origin:50% 55%; }
+  .walk .vig { position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.55)), linear-gradient(0deg,rgba(0,0,0,.6),transparent 40%); }
+  .wcaps { position:absolute; left:0; right:0; bottom:9vh; padding:0 24px; max-width:1100px; margin:0 auto; color:#fff; }
+  .wcap { position:absolute; left:24px; right:24px; bottom:0; opacity:0; transform:translateY(16px); transition:opacity .5s, transform .5s; }
+  .wcap.on { opacity:1; transform:none; }
+  .wcap .hand { font-size:clamp(28px,4.2vw,54px); line-height:1.1; display:block; color:#fff; text-shadow:0 3px 20px rgba(0,0,0,.6); }
+  .wcap p { margin:10px 0 0; max-width:46ch; font-size:clamp(14px,1.5vw,18px); opacity:.9; line-height:1.6; text-shadow:0 2px 12px rgba(0,0,0,.6); }
+  .floors { position:absolute; top:90px; right:24px; display:flex; flex-direction:column; align-items:flex-end; gap:10px; color:#fff; font-size:12px; letter-spacing:.2em; text-transform:uppercase; }
+  .floors .f { opacity:.4; transition:opacity .4s; padding-right:16px; position:relative; } .floors .f::after { content:''; position:absolute; right:0; top:50%; width:6px; height:6px; margin-top:-3px; border-radius:50%; background:#fff; opacity:.6; }
+  .floors .f.on { opacity:1; } .floors .f.on::after { background:var(--accent); opacity:1; box-shadow:0 0 0 4px rgba(255,255,255,.2); }
+  .floors i { display:none; }
+  .walkintro { padding-bottom:20px; }
+  @media (prefers-reduced-motion: reduce) { .walk { height:auto; } .walk .stick { position:relative; height:auto; } .walk .scene { position:relative; opacity:1 !important; height:70vh; } .wcap { position:relative; opacity:1; transform:none; left:0; right:0; margin-bottom:20px; } .wcaps { position:relative; bottom:auto; padding:20px 24px; } .floors { display:none; } }
 
   .reveal { opacity:0; transition:opacity .8s ease; } .reveal.in { opacity:1; }
   .reveal .img { transform:translateY(34px) scale(.96); transition:transform .9s cubic-bezier(.2,.7,.2,1); } .reveal.in .img { transform:none; }
@@ -217,7 +245,7 @@ CSS = r"""
   .lists em, .about em { opacity:.65; }
   .end { text-align:center; padding:120px 24px 130px; background:linear-gradient(180deg,transparent,color-mix(in srgb, var(--accent) 22%, transparent)); }
   .end h2 { font-size:clamp(38px,6.5vw,88px); max-width:14ch; margin:12px auto 10px; }
-  .end .hand { font-size:30px; color:var(--accent); }
+  .end .hand { font-size:26px; color:var(--accent); }
   .btn { display:inline-block; margin-top:26px; padding:16px 32px; border-radius:999px; background:var(--txt); color:var(--bg); font-size:14px; letter-spacing:.08em; }
   .fine { text-align:center; opacity:.55; font-size:12px; padding:0 20px 40px; }
 
@@ -248,9 +276,11 @@ JS = r"""
     els.forEach(function (e) { io.observe(e); });
   }
   var cur = document.querySelector('.hud .cur'), bar = document.querySelector('.hud .bar');
-  var chs = document.querySelectorAll('.chapter');
+  var chs = document.querySelectorAll('.chapter,.walk');
   var cuts = Array.prototype.slice.call(document.querySelectorAll('.cut[data-speed]'));
-  var ticking = false;
+  var walk = document.querySelector('.walk'), ticking = false, s1, s2, s3, wcaps = [], floors = [];
+  if (walk) { s1 = walk.querySelector('.s1'); s2 = walk.querySelector('.s2'); s3 = walk.querySelector('.s3');
+    wcaps = Array.prototype.slice.call(walk.querySelectorAll('.wcap')); floors = Array.prototype.slice.call(walk.querySelectorAll('.floors .f')); }
   function frame() {
     ticking = false;
     var h = document.documentElement, st = window.pageYOffset || h.scrollTop, max = h.scrollHeight - window.innerHeight;
@@ -258,6 +288,18 @@ JS = r"""
     var vh = window.innerHeight, label = 'Intro';
     chs.forEach(function (c) { var r = c.getBoundingClientRect(); if (r.top < vh * .5) label = c.getAttribute('data-label'); });
     if (cur && cur.textContent !== label) cur.textContent = label;
+    if (walk && !reduce) {
+      var wr = walk.getBoundingClientRect(), p = Math.max(0, Math.min(1, -wr.top / (wr.height - vh)));
+      var ramp = function (a, b, x) { return Math.max(0, Math.min(1, (x - a) / (b - a))); };
+      var o1 = 1 - ramp(.28, .40, p), o2 = ramp(.28, .40, p) * (1 - ramp(.62, .74, p)), o3 = ramp(.62, .74, p);
+      s1.style.opacity = o1; s2.style.opacity = o2; s3.style.opacity = o3;
+      s1.firstElementChild.style.transform = 'scale(' + (1 + .55 * ramp(0, .4, p)).toFixed(3) + ')';
+      s2.querySelector('img').style.transform = 'translate(-50%,-50%) scale(' + (1.02 + .14 * ramp(.3, .72, p)).toFixed(3) + ')';
+      s3.querySelector('img').style.transform = 'scale(' + (1 + .12 * ramp(.62, 1, p)).toFixed(3) + ')';
+      var step = p < .34 ? 0 : (p < .68 ? 1 : 2);
+      wcaps.forEach(function (c, i) { c.classList.toggle('on', i === step); });
+      floors.forEach(function (f, i) { f.classList.toggle('on', i === step); });
+    }
     if (!reduce && window.innerWidth > 820) cuts.forEach(function (c) {
       var r = c.getBoundingClientRect();
       if (r.bottom < -200 || r.top > vh + 200) return;
@@ -282,6 +324,36 @@ def render(h):
     chapters = ''
     allstops = []
     k = 0
+    off = 0
+    if 'walk' in S:
+        off = 1
+        W = S['walk']
+        sc = W['scenes']
+        chapters += f'''
+  <section class="chapter walkintro" id="ch1" data-label="{esc(W['kick'])}">
+    <div class="wrap">
+      <div class="num">01</div>
+      <div class="ch-head">
+        <div class="rise"><div class="kick">{esc(W['kick'])}</div><h2>{esc(W['title'])}</h2></div>
+        <div class="note rise"><div class="tape"></div>{esc(W['story'])}<svg class="doodle" viewBox="0 0 120 60"><use href="#arrow"/></svg></div>
+      </div>
+    </div>
+  </section>
+  <section class="walk" data-label="{esc(W['kick'])}">
+    <div class="stick">
+      <div class="scene s1"><img src="{CDN}{slug_h}/walk-lobby.jpg" alt="The lobby lounge"></div>
+      <div class="scene s2"><div class="blur" style="background-image:url({CDN}{slug_h}/walk-bar.jpg)"></div><img src="{CDN}{slug_h}/walk-bar.jpg" alt="The bar"></div>
+      <div class="scene s3"><div class="frame"><img src="{CDN}{slug_h}/walk-room.jpg" alt="The room view at dusk"></div></div>
+      <div class="vig"></div>
+      <div class="wcaps">
+        <div class="wcap w1"><span class="hand">{esc(sc[0][1])}</span><p>{esc(sc[0][2])}</p></div>
+        <div class="wcap w2"><span class="hand">{esc(sc[1][1])}</span><p>{esc(sc[1][2])}</p></div>
+        <div class="wcap w3"><span class="hand">{esc(sc[2][1])}</span><p>{esc(sc[2][2])}</p></div>
+      </div>
+      <div class="floors"><span class="f f1">{esc(sc[0][0])}</span><span class="f f2">{esc(sc[1][0])}</span><span class="f f3">{esc(sc[2][0])}</span><i></i></div>
+    </div>
+  </section>'''
+        allstops += [('Lobby and lounge','here','',False,'walk-lobby'),('The bar','here','',False,'walk-bar'),('Room view at dusk','here','',False,'walk-room')]
     for i, (kick, title, story, stops) in enumerate(S['chapters']):
         n = len(stops)
         frames = ''
@@ -299,16 +371,16 @@ def render(h):
         </figure>'''
         k += 1
         chapters += f'''
-  <section class="chapter" id="ch{i+1}" data-label="{esc(kick)}">
+  <section class="chapter" id="ch{i+1+off}" data-label="{esc(kick)}">
     <div class="wrap">
-      <div class="num">{i+1:02d}</div>
+      <div class="num">{i+1+off:02d}</div>
       <div class="ch-head">
         <div class="rise"><div class="kick">{esc(kick)}</div><h2>{esc(title)}</h2></div>
         <div class="note rise"><div class="tape"></div>{esc(story)}<svg class="doodle" viewBox="0 0 120 60"><use href="#arrow"/></svg></div>
       </div>
       <div class="collage n{min(n,4)} {'rev' if i % 2 else ''}">{frames}
       </div>
-      <img class="cutout" src="{CDN}{slug_h}/ch{i+1}-cutout.png" alt="" onerror="this.remove()">
+      <img class="cutout" src="{CDN}{slug_h}/ch{i+1+off}-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>'''
     walk = [s for s in allstops if s[1] in ('here', 'walk')]

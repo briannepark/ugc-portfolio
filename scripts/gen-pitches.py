@@ -25,7 +25,7 @@ HOTELS = [
   slug='nomad', no='01', city='New York City', name='The Ritz-Carlton New York, NoMad', short='Ritz-Carlton NoMad',
   tagline='A skyline stay, with the whole city a short walk away.',
   hand='golden hour, 50 floors up',
-  fonts='Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&family=Caveat:wght@500',
+  fonts='Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&family=Nothing+You+Could+Do',
   head="'Cormorant Garamond',Georgia,serif", body="'Poppins',sans-serif",
   c=dict(desk='#0d1120', paper='#f7f1e3', ink='#1a2038', accent='#b8934a', accent2='#1f2a52', soft='#efe5cd'),
   vibe=['Deep navy', 'Champagne gold', 'Warm lamplight'],
@@ -57,7 +57,7 @@ HOTELS = [
   slug='brooklyn', no='02', city='New York City', name='1 Hotel Brooklyn Bridge', short='1 Hotel Brooklyn Bridge',
   tagline='Nature-forward luxury on the Dumbo waterfront.',
   hand='skyline, but make it calm',
-  fonts='Fraunces:ital,wght@0,300;0,500;1,300&family=Inter:wght@300;400;500&family=Caveat:wght@500',
+  fonts='Fraunces:ital,wght@0,300;0,500;1,300&family=Inter:wght@300;400;500&family=Nothing+You+Could+Do',
   head="'Fraunces',Georgia,serif", body="'Inter',sans-serif",
   c=dict(desk='#2b3326', paper='#efe6d2', ink='#2a3324', accent='#6f8a52', accent2='#a8743f', soft='#e2d6bb'),
   vibe=['Moss green', 'Kraft paper', 'Warm timber'],
@@ -87,7 +87,7 @@ HOTELS = [
   slug='halekulani', no='03', city="Hawaiʻi (Oʻahu)", name='Halekulani', short='Halekulani',
   tagline='Oceanfront Waikiki, with local Hawaiian makers close by.',
   hand='mahalo, Waikiki',
-  fonts='Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Caveat:wght@500',
+  fonts='Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Nothing+You+Could+Do',
   head="'Cormorant Garamond',Georgia,serif", body="'Inter',sans-serif",
   c=dict(desk='#1d4c52', paper='#f8f1e1', ink='#27393c', accent='#7b5a8c', accent2='#2f8089', soft='#eddfc3'),
   vibe=['Ocean teal', 'Orchid', 'Warm sand'],
@@ -118,7 +118,7 @@ HOTELS = [
   slug='proper', no='04', city='Los Angeles', name='Santa Monica Proper', short='Santa Monica Proper',
   tagline='Sunset over the Pacific, with Venice and the Westside around it.',
   hand='golden hour on Wilshire',
-  fonts='Fraunces:ital,wght@0,300;0,500;1,300&family=Inter:wght@300;400;500&family=Caveat:wght@500',
+  fonts='Fraunces:ital,wght@0,300;0,500;1,300&family=Inter:wght@300;400;500&family=Nothing+You+Could+Do',
   head="'Fraunces',Georgia,serif", body="'Inter',sans-serif",
   c=dict(desk='#5a2f22', paper='#f6ead6', ink='#43281f', accent='#b5573a', accent2='#d9a441', soft='#ecd9b7'),
   vibe=['Terracotta', 'Ochre', 'Warm cream'],
@@ -151,7 +151,7 @@ HOTELS = [
   slug='shutters', no='05', city='Los Angeles', name='Shutters on the Beach', short='Shutters on the Beach',
   tagline='A beachfront stay: ocean views, bike paths, and Venice down the shore.',
   hand='salt air, soft light',
-  fonts='Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Caveat:wght@500',
+  fonts='Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Nothing+You+Could+Do',
   head="'Cormorant Garamond',Georgia,serif", body="'Inter',sans-serif",
   c=dict(desk='#173a55', paper='#f4f1ea', ink='#1c3447', accent='#3a7ca5', accent2='#9fcbc0', soft='#e3ebea'),
   vibe=['Sea-glass', 'Navy', 'White linen'],
@@ -240,7 +240,7 @@ def hotel_page(h):
 <link href="https://fonts.googleapis.com/css2?family={h['fonts']}&display=swap" rel="stylesheet">
 <style>
   :root {{ --desk:{c['desk']}; --paper:{c['paper']}; --ink:{c['ink']}; --accent:{c['accent']}; --accent2:{c['accent2']}; --soft:{c['soft']};
-          --head:{h['head']}; --body:{h['body']}; --hand:'Caveat',cursive; }}
+          --head:{h['head']}; --body:{h['body']}; --hand:'Nothing You Could Do',cursive; }}
   * {{ box-sizing:border-box; }}
   html,body {{ margin:0; background:var(--desk); color:var(--ink); font-family:var(--body); font-weight:300; -webkit-font-smoothing:antialiased; }}
   a {{ color:inherit; text-decoration:none; }}
@@ -386,7 +386,7 @@ def hub():
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title>Pitch center</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
 <style>
   :root {{ --bg:#1b1713; --cream:#f3e9dc; --gold:#c9a66b; }}
   * {{ box-sizing:border-box; }}
@@ -396,7 +396,7 @@ def hub():
   .back {{ font-size:13px; letter-spacing:.06em; opacity:.8; }}
   h1 {{ font-family:'Fraunces',Georgia,serif; font-weight:300; font-size:clamp(36px,6vw,64px); margin:28px 0 8px; }}
   .lede {{ max-width:56ch; line-height:1.7; opacity:.85; }}
-  .hand {{ font-family:'Caveat',cursive; font-size:24px; color:var(--gold); margin:6px 0 30px; }}
+  .hand {{ font-family:'Nothing You Could Do',cursive; font-size:24px; color:var(--gold); margin:6px 0 30px; }}
   .shelf {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:22px; }}
   .cover-card {{ position:relative; display:flex; flex-direction:column; justify-content:flex-end; aspect-ratio:3/4; padding:20px 18px 18px 34px; border-radius:6px 14px 14px 6px;
      background:linear-gradient(160deg,var(--b),var(--a) 70%,var(--d)); color:#fff; box-shadow:0 14px 28px rgba(0,0,0,.4); transition:transform .25s; }}
@@ -405,7 +405,7 @@ def hub():
   .no {{ position:absolute; top:16px; right:16px; font-size:12px; letter-spacing:.2em; opacity:.8; }}
   .city {{ font-size:11px; letter-spacing:.18em; text-transform:uppercase; opacity:.85; }}
   .nm {{ font-family:var(--hf); font-size:28px; line-height:1.05; margin:8px 0; }}
-  .hd {{ font-family:'Caveat',cursive; font-size:22px; opacity:.9; }}
+  .hd {{ font-family:'Nothing You Could Do',cursive; font-size:19px; opacity:.9; }}
   .note {{ margin-top:40px; font-size:13px; opacity:.6; line-height:1.7; }}
 </style>
 </head>
