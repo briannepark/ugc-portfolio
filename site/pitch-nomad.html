@@ -8,12 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#0d1120; --txt:#f3ead6; --paper:#f7f1e3; --ink:#1a2038; --accent:#b8934a; --accent2:#1f2a52; --soft:#1d2547;
-          --head:'Cormorant Garamond',Georgia,serif; --body:'Poppins',sans-serif; --hand:'Nothing You Could Do',cursive;
+          --head:'Cormorant Garamond',Georgia,serif; --body:'Poppins',sans-serif; --hand:'Nothing You Could Do',cursive; --pen:#efe5cc;
           --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
   * { box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  html,body { margin:0; background:var(--bg); color:var(--txt); font-family:var(--body); font-weight:300; -webkit-font-smoothing:antialiased; }
-  body::before { content:''; position:fixed; inset:0; background-image:var(--grain); opacity:.18; mix-blend-mode:multiply; pointer-events:none; z-index:50; }
+  html,body { margin:0; background-color:var(--bg); background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .22 -.04'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9 .05' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .8  0 0 0 0 .8  0 0 0 0 .9  0 0 0 .18 -.08'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"), url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='700'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .02' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55  0 0 0 0 .6  0 0 0 0 .8  0 0 0 .22 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E"); color:var(--txt); font-family:var(--body); font-weight:300; -webkit-font-smoothing:antialiased; }
   a { color:inherit; text-decoration:none; }
   h1,h2,h3 { font-family:var(--head); font-weight:400; margin:0; line-height:1.04; }
   .hand { font-family:var(--hand); font-weight:400; }
@@ -83,13 +82,13 @@
   .note .tape { top:-12px; }
   .doodle { position:absolute; width:90px; height:60px; color:var(--accent); fill:none; stroke:currentColor; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
   .note .doodle { right:-40px; bottom:-38px; transform:rotate(18deg); z-index:3; }
-  .collage { display:flex; flex-wrap:wrap; gap:46px 3%; align-items:flex-start; }
+  .collage { display:flex; flex-wrap:wrap; gap:96px 3%; align-items:flex-start; }
   .chapter:nth-of-type(odd) .collage.rev { flex-direction:row-reverse; }
   .collage .cut { flex:0 0 auto; }
   .n1 .cut { width:56%; margin-left:auto; margin-right:auto; --ar:5/4; }
   .n2 .cut { width:46%; } .n2 .cut:nth-child(2) { margin-top:80px; } .n2 .cut:nth-child(1) { --ar:4/5; } .n2 .cut:nth-child(2) { --ar:1/1; }
-  .n3 .cut:nth-child(1) { width:54%; --ar:4/3; } .n3 .cut:nth-child(2) { width:40%; margin-top:70px; --ar:4/5; } .n3 .cut:nth-child(3) { width:44%; margin-top:-20px; margin-left:8%; --ar:1/1; }
-  .n4 .cut { width:47%; } .n4 .cut:nth-child(1) { --ar:4/5; } .n4 .cut:nth-child(2) { margin-top:70px; --ar:1/1; } .n4 .cut:nth-child(3) { --ar:1/1; margin-top:-10px; } .n4 .cut:nth-child(4) { margin-top:50px; --ar:4/5; }
+  .n3 .cut:nth-child(1) { width:54%; --ar:4/3; } .n3 .cut:nth-child(2) { width:40%; margin-top:70px; --ar:4/5; } .n3 .cut:nth-child(3) { width:44%; margin-left:8%; --ar:1/1; }
+  .n4 .cut { width:47%; } .n4 .cut:nth-child(1) { --ar:4/5; } .n4 .cut:nth-child(2) { margin-top:70px; --ar:1/1; } .n4 .cut:nth-child(3) { --ar:1/1; } .n4 .cut:nth-child(4) { margin-top:50px; --ar:4/5; }
   .cutout { position:absolute; right:2%; bottom:-30px; width:min(24vw,260px); z-index:5; filter:drop-shadow(0 14px 18px rgba(0,0,0,.35)); transform:rotate(4deg); }
 
 
@@ -121,9 +120,8 @@
   .rise { opacity:0; transform:translateY(26px); transition:all .8s ease; } .rise.in { opacity:1; transform:none; }
 
   /* ---- realistic board: prints, index cards, restrained motion ---- */
-  .cut { filter:none; background:#fbf8f1; padding:10px 10px 0; box-shadow:0 1px 2px rgba(0,0,0,.28), 0 14px 30px rgba(0,0,0,.2); color:#1c2233; }
-  .cut .img { clip-path:none; padding:14px; }
-  .cover .cut.float { padding:10px; }
+  .cut { filter:none; background:none; padding:0; box-shadow:none; }
+  .cut .img { clip-path:none; padding:14px; border:10px solid #fbf8f1; box-shadow:0 1px 2px rgba(0,0,0,.28), 0 14px 30px rgba(0,0,0,.2); }
   .cut .img::before { opacity:.22; }
   .cut .ph { font-size:clamp(15px,1.5vw,19px); color:rgba(240,234,214,.7); font-style:italic; }
   .g0 { --g:linear-gradient(150deg,color-mix(in srgb,var(--accent2) 40%,#2b3048),color-mix(in srgb,var(--accent) 35%,#2b3048)); }
@@ -131,15 +129,17 @@
   .g2 { --g:linear-gradient(150deg,color-mix(in srgb,var(--ink) 25%,#2b3048),color-mix(in srgb,var(--accent2) 35%,#2b3048)); }
   .g3 { --g:linear-gradient(150deg,color-mix(in srgb,var(--soft) 70%,#2b3048),color-mix(in srgb,var(--accent2) 30%,#2b3048)); }
   .tape { width:72px; height:20px; margin-left:-36px; top:-11px; background:rgba(236,228,205,.62); box-shadow:0 1px 1px rgba(0,0,0,.18); transform:rotate(-2deg); }
-  .cap { margin:0; padding:12px 4px 16px; gap:5px; color:#1c2233; }
+  .cap { margin:0; padding:16px 2px 0; gap:6px; color:var(--txt); }
   .cap .nm { font-family:var(--head); font-size:clamp(18px,1.7vw,22px); line-height:1.15; }
-  .cap .nt { font-family:var(--hand); font-size:17px; line-height:1.35; opacity:1; color:#24304f; }
-  .stamp { color:#b3362b; }
-  .tg.trip { background:#1c2233; color:#fbf8f1; }
-  .tg.ride { background:#e9e2d0; color:#1c2233; border:1px solid rgba(0,0,0,.14); }
-  .note { background-color:#fbf8ee; background-image:repeating-linear-gradient(transparent 0 27px, rgba(80,120,175,.26) 27px 28px); color:#1d2a4a; padding:20px 22px 14px 56px;
-          font-size:clamp(18px,1.6vw,21px); line-height:28px; transform:rotate(-.5deg); clip-path:none; box-shadow:0 1px 2px rgba(0,0,0,.28), 0 12px 26px rgba(0,0,0,.2); }
-  .note::before { content:''; position:absolute; left:40px; top:0; bottom:0; width:1px; background:rgba(190,70,70,.45); }
+  .cap .nt { font-family:var(--hand); font-size:clamp(18px,1.7vw,21px); line-height:1.4; opacity:1; color:var(--pen); text-shadow:0 0 .5px currentColor; }
+  .stamp { color:#ff8a7a; }
+  .note { background:none; box-shadow:none; clip-path:none; padding:0; color:var(--pen); position:relative; transform:rotate(-.8deg);
+          font-size:clamp(21px,2.1vw,27px); line-height:1.42; text-shadow:0 0 .6px currentColor; }
+  .note .tape { display:none; }
+  .dd { fill:none; stroke:var(--pen); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; overflow:visible; }
+  .dd.under { display:block; width:min(260px,70%); height:14px; stroke:var(--accent); margin-top:10px; }
+  .dd.pt { position:absolute; width:130px; height:64px; right:6px; bottom:-76px; transform:rotate(12deg); }
+  .dd.up { display:inline-block; width:26px; height:20px; vertical-align:-4px; margin-right:6px; }
   .num { position:static; display:block; font-family:var(--body); font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:var(--accent); -webkit-text-stroke:0; line-height:1; margin-bottom:8px; font-weight:500; }
   .ch-head { padding-top:0; }
   .reveal .img { transform:none; transition:none; } .reveal { transition:opacity 1s ease; }
@@ -173,14 +173,16 @@
     .n1 .cut,.n2 .cut,.n3 .cut:nth-child(n),.n4 .cut { width:100% !important; margin-left:0 !important; margin-top:0 !important; }
     .cut:nth-child(even) { width:84% !important; margin-left:auto !important; }
     .float.b,.cover .float.c { display:none; } .cover .float.a { top:10%; right:5%; width:34vw; }
-    .chapter { padding-top:90px; }
+    .chapter { padding-top:90px; } .dd.pt { display:none; }
   }
   @media (prefers-reduced-motion: reduce) { .reveal,.rise { opacity:1; transform:none; transition:none; } .reveal .img { transform:none; } .marq div,.scroll { animation:none; } }
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute"><defs>
-<symbol id="arrow" viewBox="0 0 120 60"><path d="M4 44 C 34 4, 82 4, 110 34 M92 18 L112 36 L86 42"/></symbol>
+<symbol id="d-arrow" viewBox="0 0 140 70"><path d="M6 12 C 34 2, 68 8, 94 30 S 120 54, 130 57"/><path d="M113 44 L131 58 L108 63"/></symbol>
+<symbol id="d-under" viewBox="0 0 300 14"><path d="M3 9 C 60 3, 120 12, 180 6 S 260 4, 297 8"/><path d="M30 12.5 C 100 8, 170 13, 250 10"/></symbol>
+<symbol id="d-up" viewBox="0 0 40 30"><path d="M4 26 C 14 25, 24 15, 31 4"/><path d="M22 6 L32 3 L34 13"/></symbol>
 </defs></svg>
 <div class="hud"><a href="pitches.html">&larr; All pitches</a><span class="cur">Intro</span><span class="bar"></span></div>
 
@@ -205,8 +207,8 @@
     <div class="wrap">
       <div class="num">No. 01</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 1 · Arrival</div><h2>Through the doors</h2></div>
-        <div class="note rise"><div class="tape"></div>Walk in with me. Past the sheer curtains, toward the glow of the bar, and then up to a window with the whole city lit below. This is how I&#x27;d open the trip: moving through the hotel, one room at a time.</div>
+        <div class="rise"><div class="kick">Day 1 · Arrival</div><h2>Through the doors</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>Walk in with me. Past the sheer curtains, toward the glow of the bar, and then up to a window with the whole city lit below. This is how I&#x27;d open the trip: moving through the hotel, one room at a time.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
     </div>
   </section>
@@ -228,19 +230,19 @@
     <div class="wrap">
       <div class="num">No. 02</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 1 · Nightfall</div><h2>Fifty floors up</h2></div>
-        <div class="note rise"><div class="tape"></div>Dinner at the hotel turns into a nightcap, and the nightcap turns into the best view of the trip. Blue hour, every light in Midtown below.</div>
+        <div class="rise"><div class="kick">Day 1 · Nightfall</div><h2>Fifty floors up</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>Dinner at the hotel turns into a nightcap, and the nightcap turns into the best view of the trip. Blue hour, every light in Midtown below.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n2 ">
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">José Andrés dinner at the hotel</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/jos-andr-s-dinner-at-the-hotel.jpg" alt="José Andrés dinner at the hotel" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">José Andrés dinner at the hotel</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt">The luxury restaurant payoff.</span></figcaption>
+          <figcaption class="cap"><span class="nm">José Andrés dinner at the hotel</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>The luxury restaurant payoff.</span></figcaption>
         </figure>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Nubeluz, 50th floor</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/nubeluz-50th-floor.jpg" alt="Nubeluz, 50th floor" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Nubeluz, 50th floor</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt">Skyline at blue hour.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Nubeluz, 50th floor</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Skyline at blue hour.</span></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch2-cutout.png" alt="" onerror="this.remove()">
@@ -250,19 +252,19 @@
     <div class="wrap">
       <div class="num">No. 03</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 2 · Morning</div><h2>Coffee in hand, on foot</h2></div>
-        <div class="note rise"><div class="tape"></div>Out the lobby and into the neighborhood. Everything good around here is a walk away: the park, the Flatiron, the galleries of Chelsea.</div>
+        <div class="rise"><div class="kick">Day 2 · Morning</div><h2>Coffee in hand, on foot</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>Out the lobby and into the neighborhood. Everything good around here is a walk away: the park, the Flatiron, the galleries of Chelsea.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n2 rev">
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Madison Square Park and Flatiron</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/madison-square-park-and-flatiron.jpg" alt="Madison Square Park and Flatiron" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Madison Square Park and Flatiron</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt">Morning walk, coffee in hand.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Madison Square Park and Flatiron</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Morning walk, coffee in hand.</span></figcaption>
         </figure>
         <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
           <div class="tape"></div>
           <div class="img"><span class="ph">Chelsea galleries and the start of the High Line</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea-galleries-and-the-start-of-the-high-line.jpg" alt="Chelsea galleries and the start of the High Line" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Chelsea galleries and the start of the High Line</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt">Local artists, one gallery per hour.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Chelsea galleries and the start of the High Line</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Local artists, one gallery per hour.</span></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch3-cutout.png" alt="" onerror="this.remove()">
@@ -272,29 +274,29 @@
     <div class="wrap">
       <div class="num">No. 04</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 2 · Afternoon</div><h2>Petals and frames</h2></div>
-        <div class="note rise"><div class="tape"></div>SoHo, but make it dreamy. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that&#x27;s gone by Monday, and a pop-up only the locals know about.</div>
+        <div class="rise"><div class="kick">Day 2 · Afternoon</div><h2>Petals and frames</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>SoHo, but make it dreamy. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that&#x27;s gone by Monday, and a pop-up only the locals know about.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n4 ">
         <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
           <div class="tape"></div>
           <div class="img"><span class="ph">CJ Hendry Flower Market</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/cj-hendry-flower-market.jpg" alt="CJ Hendry Flower Market" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">CJ Hendry Flower Market</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt">The plush-flower shop at 172 Prince St. Pick a bloom for $10.</span></figcaption>
+          <figcaption class="cap"><span class="nm">CJ Hendry Flower Market</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>The plush-flower shop at 172 Prince St. Pick a bloom for $10.</span></figcaption>
         </figure>
         <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Gentle Monster, SoHo</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/gentle-monster-soho.jpg" alt="Gentle Monster, SoHo" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Gentle Monster, SoHo</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt">Installation-style retail.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Gentle Monster, SoHo</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Installation-style retail.</span></figcaption>
         </figure>
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Sample-sale hunt</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/sample-sale-hunt.jpg" alt="Sample-sale hunt" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Sample-sale hunt</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt">Check the 260 Sample Sale list the week you go.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Sample-sale hunt</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Check the 260 Sample Sale list the week you go.</span></figcaption>
         </figure>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Pop-up of the week</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/pop-up-of-the-week.jpg" alt="Pop-up of the week" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Pop-up of the week</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt">Pop-ups rotate weekly. Pick one for the feed.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Pop-up of the week</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Pop-ups rotate weekly. Pick one for the feed.</span></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch4-cutout.png" alt="" onerror="this.remove()">
@@ -304,24 +306,24 @@
     <div class="wrap">
       <div class="num">No. 05</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 2 · The matcha crawl</div><h2>Three cups, three moods</h2></div>
-        <div class="note rise"><div class="tape"></div>A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.</div>
+        <div class="rise"><div class="kick">Day 2 · The matcha crawl</div><h2>Three cups, three moods</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n3 rev">
         <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">12 Matcha</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/12-matcha.jpg" alt="12 Matcha" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">12 Matcha</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt">54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.</span></figcaption>
+          <figcaption class="cap"><span class="nm">12 Matcha</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.</span></figcaption>
         </figure>
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Rhythm Zero</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/rhythm-zero.jpg" alt="Rhythm Zero" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Rhythm Zero</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt">An art-gallery café with a West Village location. Seasonal matcha drinks.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Rhythm Zero</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>An art-gallery café with a West Village location. Seasonal matcha drinks.</span></figcaption>
         </figure>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Rok Matcha</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/rok-matcha.jpg" alt="Rok Matcha" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Rok Matcha</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt">Confirm the location before we plan around it.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Rok Matcha</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Confirm the location before we plan around it.</span></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch5-cutout.png" alt="" onerror="this.remove()">
@@ -331,14 +333,14 @@
     <div class="wrap">
       <div class="num">No. 06</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 2 · Evening</div><h2>A bowl worth the ride</h2></div>
-        <div class="note rise"><div class="tape"></div>Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.</div>
+        <div class="rise"><div class="kick">Day 2 · Evening</div><h2>A bowl worth the ride</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n1 ">
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Ramen: Ippudo or Ivan Ramen</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ramen-ippudo-or-ivan-ramen.jpg" alt="Ramen: Ippudo or Ivan Ramen" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Ramen: Ippudo or Ivan Ramen</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt">East Village or Lower East Side.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Ramen: Ippudo or Ivan Ramen</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>East Village or Lower East Side.</span></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch6-cutout.png" alt="" onerror="this.remove()">
@@ -348,14 +350,14 @@
     <div class="wrap">
       <div class="num">No. 07</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 3 · Morning</div><h2>The secret garden</h2></div>
-        <div class="note rise"><div class="tape"></div>A quick train up the Hudson and the city drops away: stone terraces, a long reflecting pool, and the river below. This is the quiet chapter.</div>
+        <div class="rise"><div class="kick">Day 3 · Morning</div><h2>The secret garden</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>A quick train up the Hudson and the city drops away: stone terraces, a long reflecting pool, and the river below. This is the quiet chapter.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n1 rev">
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Untermyer Gardens</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/untermyer-gardens.jpg" alt="Untermyer Gardens" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Untermyer Gardens</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt">Metro-North from Grand Central to Greystone, about 40 minutes, then a short ride or walk. Free; closes at dusk.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Untermyer Gardens</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Metro-North from Grand Central to Greystone, about 40 minutes, then a short ride or walk. Free; closes at dusk.</span></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch7-cutout.png" alt="" onerror="this.remove()">
@@ -365,24 +367,24 @@
     <div class="wrap">
       <div class="num">No. 08</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 3 · Afternoon</div><h2>Downtown, in one sweep</h2></div>
-        <div class="note rise"><div class="tape"></div>Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.</div>
+        <div class="rise"><div class="kick">Day 3 · Afternoon</div><h2>Downtown, in one sweep</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n3 ">
         <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
           <div class="tape"></div>
           <div class="img"><span class="ph">Mercer Labs</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/mercer-labs.jpg" alt="Mercer Labs" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Mercer Labs</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt">21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Mercer Labs</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.</span></figcaption>
         </figure>
         <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Printemps, One Wall Street</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/printemps-one-wall-street.jpg" alt="Printemps, One Wall Street" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Printemps, One Wall Street</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt">Café, cocktail bars, and the landmarked Red Room with its mosaics.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Printemps, One Wall Street</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Café, cocktail bars, and the landmarked Red Room with its mosaics.</span></figcaption>
         </figure>
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Aura reading at Magic Jewelry</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/aura-reading-at-magic-jewelry.jpg" alt="Aura reading at Magic Jewelry" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Aura reading at Magic Jewelry</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt">238 Canal St, Chinatown. Aura photographs.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Aura reading at Magic Jewelry</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>238 Canal St, Chinatown. Aura photographs.</span></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch8-cutout.png" alt="" onerror="this.remove()">
@@ -392,19 +394,19 @@
     <div class="wrap">
       <div class="num">No. 09</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 4 · Across the bridge</div><h2>Brooklyn, then the big dinner</h2></div>
-        <div class="note rise"><div class="tape"></div>A scoop of ice cream, the bridge in the frame, and one last dinner that earns its place in the story.</div>
+        <div class="rise"><div class="kick">Day 4 · Across the bridge</div><h2>Brooklyn, then the big dinner</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>A scoop of ice cream, the bridge in the frame, and one last dinner that earns its place in the story.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n2 rev">
         <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Dumbo ice cream and bridge shot</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/dumbo-ice-cream-and-bridge-shot.jpg" alt="Dumbo ice cream and bridge shot" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Dumbo ice cream and bridge shot</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt">Van Leeuwen or similar, then the bridge frame.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Dumbo ice cream and bridge shot</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Van Leeuwen or similar, then the bridge frame.</span></figcaption>
         </figure>
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Nobu Downtown dinner</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/nobu-downtown-dinner.jpg" alt="Nobu Downtown dinner" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Nobu Downtown dinner</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt">The big dinner moment.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Nobu Downtown dinner</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>The big dinner moment.</span></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch9-cutout.png" alt="" onerror="this.remove()">
@@ -414,14 +416,14 @@
     <div class="wrap">
       <div class="num">No. 10</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 4 · Goodbye</div><h2>One last look</h2></div>
-        <div class="note rise"><div class="tape"></div>Back to the window for a final look, because you&#x27;ll want to come back.</div>
+        <div class="rise"><div class="kick">Day 4 · Goodbye</div><h2>One last look</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>Back to the window for a final look, because you&#x27;ll want to come back.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n1 ">
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Last look and checkout</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/last-look-and-checkout.jpg" alt="Last look and checkout" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Last look and checkout</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt">One last lobby and window moment.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Last look and checkout</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>One last lobby and window moment.</span></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch10-cutout.png" alt="" onerror="this.remove()">

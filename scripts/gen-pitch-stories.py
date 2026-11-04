@@ -121,12 +121,11 @@ STORY = {
 
 CSS = r"""
   :root { --bg:%%BG%%; --txt:%%TXT%%; --paper:%%PAPER%%; --ink:%%INK%%; --accent:%%ACCENT%%; --accent2:%%ACCENT2%%; --soft:%%SOFT%%;
-          --head:%%HEAD%%; --body:%%BODY%%; --hand:'Nothing You Could Do',cursive;
+          --head:%%HEAD%%; --body:%%BODY%%; --hand:'Nothing You Could Do',cursive; --pen:%%PEN%%;
           --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
   * { box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  html,body { margin:0; background:var(--bg); color:var(--txt); font-family:var(--body); font-weight:300; -webkit-font-smoothing:antialiased; }
-  body::before { content:''; position:fixed; inset:0; background-image:var(--grain); opacity:.18; mix-blend-mode:multiply; pointer-events:none; z-index:50; }
+  html,body { margin:0; background-color:var(--bg); background-image:%%PAPER_TEX%%; color:var(--txt); font-family:var(--body); font-weight:300; -webkit-font-smoothing:antialiased; }
   a { color:inherit; text-decoration:none; }
   h1,h2,h3 { font-family:var(--head); font-weight:400; margin:0; line-height:1.04; }
   .hand { font-family:var(--hand); font-weight:400; }
@@ -196,13 +195,13 @@ CSS = r"""
   .note .tape { top:-12px; }
   .doodle { position:absolute; width:90px; height:60px; color:var(--accent); fill:none; stroke:currentColor; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
   .note .doodle { right:-40px; bottom:-38px; transform:rotate(18deg); z-index:3; }
-  .collage { display:flex; flex-wrap:wrap; gap:46px 3%; align-items:flex-start; }
+  .collage { display:flex; flex-wrap:wrap; gap:96px 3%; align-items:flex-start; }
   .chapter:nth-of-type(odd) .collage.rev { flex-direction:row-reverse; }
   .collage .cut { flex:0 0 auto; }
   .n1 .cut { width:56%; margin-left:auto; margin-right:auto; --ar:5/4; }
   .n2 .cut { width:46%; } .n2 .cut:nth-child(2) { margin-top:80px; } .n2 .cut:nth-child(1) { --ar:4/5; } .n2 .cut:nth-child(2) { --ar:1/1; }
-  .n3 .cut:nth-child(1) { width:54%; --ar:4/3; } .n3 .cut:nth-child(2) { width:40%; margin-top:70px; --ar:4/5; } .n3 .cut:nth-child(3) { width:44%; margin-top:-20px; margin-left:8%; --ar:1/1; }
-  .n4 .cut { width:47%; } .n4 .cut:nth-child(1) { --ar:4/5; } .n4 .cut:nth-child(2) { margin-top:70px; --ar:1/1; } .n4 .cut:nth-child(3) { --ar:1/1; margin-top:-10px; } .n4 .cut:nth-child(4) { margin-top:50px; --ar:4/5; }
+  .n3 .cut:nth-child(1) { width:54%; --ar:4/3; } .n3 .cut:nth-child(2) { width:40%; margin-top:70px; --ar:4/5; } .n3 .cut:nth-child(3) { width:44%; margin-left:8%; --ar:1/1; }
+  .n4 .cut { width:47%; } .n4 .cut:nth-child(1) { --ar:4/5; } .n4 .cut:nth-child(2) { margin-top:70px; --ar:1/1; } .n4 .cut:nth-child(3) { --ar:1/1; } .n4 .cut:nth-child(4) { margin-top:50px; --ar:4/5; }
   .cutout { position:absolute; right:2%; bottom:-30px; width:min(24vw,260px); z-index:5; filter:drop-shadow(0 14px 18px rgba(0,0,0,.35)); transform:rotate(4deg); }
 
 
@@ -234,9 +233,8 @@ CSS = r"""
   .rise { opacity:0; transform:translateY(26px); transition:all .8s ease; } .rise.in { opacity:1; transform:none; }
 
   /* ---- realistic board: prints, index cards, restrained motion ---- */
-  .cut { filter:none; background:#fbf8f1; padding:10px 10px 0; box-shadow:0 1px 2px rgba(0,0,0,.28), 0 14px 30px rgba(0,0,0,.2); color:#1c2233; }
-  .cut .img { clip-path:none; padding:14px; }
-  .cover .cut.float { padding:10px; }
+  .cut { filter:none; background:none; padding:0; box-shadow:none; }
+  .cut .img { clip-path:none; padding:14px; border:10px solid #fbf8f1; box-shadow:0 1px 2px rgba(0,0,0,.28), 0 14px 30px rgba(0,0,0,.2); }
   .cut .img::before { opacity:.22; }
   .cut .ph { font-size:clamp(15px,1.5vw,19px); color:%%PHC%%; font-style:italic; }
   .g0 { --g:linear-gradient(150deg,color-mix(in srgb,var(--accent2) 40%,%%MUTE%%),color-mix(in srgb,var(--accent) 35%,%%MUTE%%)); }
@@ -244,15 +242,17 @@ CSS = r"""
   .g2 { --g:linear-gradient(150deg,color-mix(in srgb,var(--ink) 25%,%%MUTE%%),color-mix(in srgb,var(--accent2) 35%,%%MUTE%%)); }
   .g3 { --g:linear-gradient(150deg,color-mix(in srgb,var(--soft) 70%,%%MUTE%%),color-mix(in srgb,var(--accent2) 30%,%%MUTE%%)); }
   .tape { width:72px; height:20px; margin-left:-36px; top:-11px; background:rgba(236,228,205,.62); box-shadow:0 1px 1px rgba(0,0,0,.18); transform:rotate(-2deg); }
-  .cap { margin:0; padding:12px 4px 16px; gap:5px; color:#1c2233; }
+  .cap { margin:0; padding:16px 2px 0; gap:6px; color:var(--txt); }
   .cap .nm { font-family:var(--head); font-size:clamp(18px,1.7vw,22px); line-height:1.15; }
-  .cap .nt { font-family:var(--hand); font-size:17px; line-height:1.35; opacity:1; color:#24304f; }
-  .stamp { color:#b3362b; }
-  .tg.trip { background:#1c2233; color:#fbf8f1; }
-  .tg.ride { background:#e9e2d0; color:#1c2233; border:1px solid rgba(0,0,0,.14); }
-  .note { background-color:#fbf8ee; background-image:repeating-linear-gradient(transparent 0 27px, rgba(80,120,175,.26) 27px 28px); color:#1d2a4a; padding:20px 22px 14px 56px;
-          font-size:clamp(18px,1.6vw,21px); line-height:28px; transform:rotate(-.5deg); clip-path:none; box-shadow:0 1px 2px rgba(0,0,0,.28), 0 12px 26px rgba(0,0,0,.2); }
-  .note::before { content:''; position:absolute; left:40px; top:0; bottom:0; width:1px; background:rgba(190,70,70,.45); }
+  .cap .nt { font-family:var(--hand); font-size:clamp(18px,1.7vw,21px); line-height:1.4; opacity:1; color:var(--pen); text-shadow:0 0 .5px currentColor; }
+  .stamp { color:%%RED%%; }
+  .note { background:none; box-shadow:none; clip-path:none; padding:0; color:var(--pen); position:relative; transform:rotate(-.8deg);
+          font-size:clamp(21px,2.1vw,27px); line-height:1.42; text-shadow:0 0 .6px currentColor; }
+  .note .tape { display:none; }
+  .dd { fill:none; stroke:var(--pen); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; overflow:visible; }
+  .dd.under { display:block; width:min(260px,70%); height:14px; stroke:var(--accent); margin-top:10px; }
+  .dd.pt { position:absolute; width:130px; height:64px; right:6px; bottom:-76px; transform:rotate(12deg); }
+  .dd.up { display:inline-block; width:26px; height:20px; vertical-align:-4px; margin-right:6px; }
   .num { position:static; display:block; font-family:var(--body); font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:var(--accent); -webkit-text-stroke:0; line-height:1; margin-bottom:8px; font-weight:500; }
   .ch-head { padding-top:0; }
   .reveal .img { transform:none; transition:none; } .reveal { transition:opacity 1s ease; }
@@ -286,13 +286,15 @@ CSS = r"""
     .n1 .cut,.n2 .cut,.n3 .cut:nth-child(n),.n4 .cut { width:100% !important; margin-left:0 !important; margin-top:0 !important; }
     .cut:nth-child(even) { width:84% !important; margin-left:auto !important; }
     .float.b,.cover .float.c { display:none; } .cover .float.a { top:10%; right:5%; width:34vw; }
-    .chapter { padding-top:90px; }
+    .chapter { padding-top:90px; } .dd.pt { display:none; }
   }
   @media (prefers-reduced-motion: reduce) { .reveal,.rise { opacity:1; transform:none; transition:none; } .reveal .img { transform:none; } .marq div,.scroll { animation:none; } }
 """
 
 DOODLES = """<svg width="0" height="0" style="position:absolute"><defs>
-<symbol id="arrow" viewBox="0 0 120 60"><path d="M4 44 C 34 4, 82 4, 110 34 M92 18 L112 36 L86 42"/></symbol>
+<symbol id="d-arrow" viewBox="0 0 140 70"><path d="M6 12 C 34 2, 68 8, 94 30 S 120 54, 130 57"/><path d="M113 44 L131 58 L108 63"/></symbol>
+<symbol id="d-under" viewBox="0 0 300 14"><path d="M3 9 C 60 3, 120 12, 180 6 S 260 4, 297 8"/><path d="M30 12.5 C 100 8, 170 13, 250 10"/></symbol>
+<symbol id="d-up" viewBox="0 0 40 30"><path d="M4 26 C 14 25, 24 15, 31 4"/><path d="M22 6 L32 3 L34 13"/></symbol>
 </defs></svg>"""
 
 JS = r"""
@@ -343,13 +345,27 @@ JS = r"""
 </script>
 """
 
+
+def paper_tex(dark):
+    import urllib.parse
+    def uri(svg): return "url(\"data:image/svg+xml;utf8," + urllib.parse.quote(svg, safe="/:=,'()* ") .replace('"', "%22") + "\")"
+    if dark:
+        mottle = "<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700'><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='.012 .02' numOctaves='3' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .6  0 0 0 0 .8  0 0 0 .22 -.05'/></filter><rect width='100%' height='100%' filter='url(#m)'/></svg>"
+        fiber = "<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.9 .05' numOctaves='2' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .8  0 0 0 0 .8  0 0 0 0 .9  0 0 0 .18 -.08'/></filter><rect width='100%' height='100%' filter='url(#f)'/></svg>"
+        grain = "<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .22 -.04'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>"
+    else:
+        mottle = "<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700'><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='.012 .02' numOctaves='3' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .42  0 0 0 0 .25  0 0 0 .32 -.08'/></filter><rect width='100%' height='100%' filter='url(#m)'/></svg>"
+        fiber = "<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.9 .05' numOctaves='2' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .35  0 0 0 0 .2  0 0 0 .22 -.09'/></filter><rect width='100%' height='100%' filter='url(#f)'/></svg>"
+        grain = "<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .15  0 0 0 0 .1  0 0 0 .32 -.06'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>"
+    return ", ".join(uri(x) for x in (grain, fiber, mottle))
+
 def render(h):
     S = STORY[h['slug']]; c = h['c']; slug_h = h['slug']
     dark = slug_h == 'nomad'
     css = (CSS.replace('%%BG%%', c['desk'] if dark else c['paper']).replace('%%TXT%%', '#f3ead6' if dark else c['ink'])
               .replace('%%PAPER%%', c['paper']).replace('%%INK%%', c['ink']).replace('%%ACCENT%%', c['accent'])
               .replace('%%ACCENT2%%', c['accent2']).replace('%%SOFT%%', c['soft'] if not dark else '#1d2547')
-              .replace('%%HEAD%%', h['head']).replace('%%BODY%%', h['body']).replace('%%DESK%%', c['desk']).replace('%%MUTE%%', '#2b3048' if dark else '#d8d0bf').replace('%%PHC%%', 'rgba(240,234,214,.7)' if dark else 'rgba(28,34,51,.55)'))
+              .replace('%%HEAD%%', h['head']).replace('%%BODY%%', h['body']).replace('%%DESK%%', c['desk']).replace('%%PEN%%', '#efe5cc' if dark else '#1d2a4a').replace('%%RED%%', '#ff8a7a' if dark else '#b3362b').replace('%%PAPER_TEX%%', paper_tex(dark)).replace('%%MUTE%%', '#2b3048' if dark else '#d8d0bf').replace('%%PHC%%', 'rgba(240,234,214,.7)' if dark else 'rgba(28,34,51,.55)'))
     clips = ['c1', 'c2', 'c3', 'c4']
     chapters = ''
     allstops = []
@@ -364,8 +380,8 @@ def render(h):
     <div class="wrap">
       <div class="num">No. 01</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">{esc(W['kick'])}</div><h2>{esc(W['title'])}</h2></div>
-        <div class="note rise"><div class="tape"></div>{esc(W['story'])}</div>
+        <div class="rise"><div class="kick">{esc(W['kick'])}</div><h2>{esc(W['title'])}</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>{esc(W['story'])}<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
     </div>
   </section>
@@ -397,7 +413,7 @@ def render(h):
         <figure class="cut reveal {clips[(i + j) % 4]} g{(i + j) % 4}" style="--r:{rot}deg" data-speed="{speed}">
           <div class="tape"></div>
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt">{esc(note)}</span></figcaption>
+          <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>
         </figure>'''
         k += 1
         chapters += f'''
@@ -405,8 +421,8 @@ def render(h):
     <div class="wrap">
       <div class="num">No. {i+1+off:02d}</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">{esc(kick)}</div><h2>{esc(title)}</h2></div>
-        <div class="note rise"><div class="tape"></div>{esc(story)}</div>
+        <div class="rise"><div class="kick">{esc(kick)}</div><h2>{esc(title)}</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>{esc(story)}<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n{min(n,4)} {'rev' if i % 2 else ''}">{frames}
       </div>
