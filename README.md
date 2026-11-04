@@ -156,3 +156,7 @@ automatically in CI.
   (`osea`, `alastin`, `murad`, `mollysuds`, `attitude`, `kokoist`, `sortjoy`, `aesop`); with no file they show a tinted card with the brand name.
 - The "All the sides of me" cards were removed from the homepage (kept simple for brands).
 - The curated mood board is the `.masonry` block in `site/index.html`: photo items are `<figure class="pin">`, word tiles are `<figure class="pin word">`.
+
+## Pitch center (private)
+
+Type `pitch` on the homepage (or Partnerships, Strategy, Travel) to open `site/pitches.html`, which links to one scroll-story page per hotel (`site/pitch-<hotel>.html`). These pages are generated: edit the copy and stops in `scripts/gen-pitch-stories.py` (palettes and facts live in `scripts/gen-pitches.py`), then run `python3 scripts/gen-pitch-stories.py && node scripts/build-app.mjs`. Photo slots are listed in `site/media/pitches/STOPS.md`; each fills a torn-edge cut-out once its file exists. Use a new filename (e.g. `-v2`) when replacing an image, because the CDN caches.
