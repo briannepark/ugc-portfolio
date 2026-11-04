@@ -37,9 +37,7 @@ HOTELS = [
   ],
   why='The most "New York at night" stay on the list. It gives a hotel pitch its strongest opening shot: the window, then the skyline, then a walk that starts right at the lobby.',
   angle=dict(
-   hotel='Open on the window view at dusk. Cut to Nubeluz, then a map of the walk to Madison Square Park, Flatiron, and the Chelsea galleries. Close with a hotel dinner.',
-   luggage='Packed flat-lay at home, the case on the curb outside the lobby, then the SoHo haul unpacked in the room.',
-   airline='Landing into the city lights, then a cab straight to NoMad. Make the skyline the payoff for the flight.'),
+   hotel='Open on the window view at dusk. Cut to Nubeluz, then a map of the walk to Madison Square Park, Flatiron, and the Chelsea galleries. Close with a hotel dinner.'),
   pins=[
    ('stay','Room view and amenities','here','Oversize windows are the opening shot.',False),
    ('eat','José Andrés dinner at the hotel','here','The luxury restaurant payoff.',False),
@@ -53,7 +51,7 @@ HOTELS = [
    ('eat','Ramen: Ippudo or Ivan Ramen','ride','East Village or Lower East Side.',True),
    ('sweet','Dumbo ice cream and bridge shot','trip','Van Leeuwen or similar, then the bridge frame.',True),
    ('eat','Nobu Downtown dinner','trip','The big dinner moment.',True),
-   ('pack','Pack-up flat-lay','here','The luggage "after" shot: bags full of finds.',False),
+   ('pack','Last look and checkout','here','One last lobby and window moment.',False),
   ]),
  dict(
   slug='brooklyn', no='02', city='New York City', name='1 Hotel Brooklyn Bridge', short='1 Hotel Brooklyn Bridge',
@@ -70,9 +68,7 @@ HOTELS = [
   ],
   why='The calmer, greener pick. It suits your own values (sustainable, ingredient-conscious) and lets you tell a skincare-and-spa story, like your Alastin journey, inside a luxury stay.',
   angle=dict(
-   hotel='Lead with the skyline across the water, then the spa and rooftop pool. Show the Dumbo walk: bridge park, carousel, cobblestones.',
-   luggage='A "weekend away" packing story: skincare, linen outfits, and a market haul in the bag. Show the bag on cobblestones.',
-   airline='Short-haul angle: a quick flight into New York, then a slow morning on the waterfront.'),
+   hotel='Lead with the skyline across the water, then the spa and rooftop pool. Show the Dumbo walk: bridge park, carousel, cobblestones.'),
   pins=[
    ('stay','Room and skyline view','here','Morning light across the water.',False),
    ('night','Rooftop pool deck','here','Skyline from the pool.',False),
@@ -102,9 +98,7 @@ HOTELS = [
   ],
   why='Your strongest story. A proud Kanaka showing Hawaiian-owned makers and neighborhoods beats a generic beach feed, and the hotel gives the pitch a refined, grounded base.',
   angle=dict(
-   hotel='Sunrise on the water, the beach walk, and the lobby-to-sea path. Then a "worth the ride" day in Kakaʻako to show the local side.',
-   luggage='Pack for the beach and bring home locally made goods: the bag filled with House of Mana Up and MORI finds.',
-   airline='The descent into Honolulu, then arrival and a lei moment. The destination is the whole payoff.'),
+   hotel='Sunrise on the water, the beach walk, and the lobby-to-sea path. Then a "worth the ride" day in Kakaʻako to show the local side.'),
   pins=[
    ('stay','Oceanfront room and lanai view','here','Confirm room categories.',True),
    ('night','Sunrise on the beach','here','Soft light, no filter.',False),
@@ -135,9 +129,7 @@ HOTELS = [
   ],
   why='The most "cute and trendy" stay on the list. It sits in the middle of your LA wish list: matcha in Venice, markets, boutiques, and a golden-hour finish.',
   angle=dict(
-   hotel='Sunset from the room, a walk to Palisades Park, then a ride to Venice for matcha and boutiques.',
-   luggage='A "cute LA haul" story: home goods and clothes from Abbot Kinney going into the bag, then unpacked at home.',
-   airline='The window view coming in over the coast, then sunset on arrival.'),
+   hotel='Sunset from the room, a walk to Palisades Park, then a ride to Venice for matcha and boutiques.'),
   pins=[
    ('stay','Room and sunset view','here','Pacific light through the window.',False),
    ('night','Rooftop or lounge sunset','here','Confirm what the hotel offers.',True),
@@ -168,11 +160,9 @@ HOTELS = [
    'Beach path access toward Venice (confirm walking time).',
    'Near the Santa Monica Pier.',
   ],
-  why='The easy, breezy beach option. It pairs well with the luggage pitch: sand, sun, and a bag that goes from the airport to the boardwalk.',
+  why='The easy, breezy beach option. It is the slow-morning stay: ocean light, a beach path, and an easy ride to Venice.',
   angle=dict(
-   hotel='Wake up to the ocean, walk the beach path, then take a short ride to Venice. Show the stay as a slow coastal morning.',
-   luggage='Beach-bag-to-boutique story: swimsuit, sunscreen, and a Malibu Country Mart haul all in one suitcase.',
-   airline='The coast from the window, then the first sight of the ocean from the hotel.'),
+   hotel='Wake up to the ocean, walk the beach path, then take a short ride to Venice. Show the stay as a slow coastal morning.'),
   pins=[
    ('stay','Ocean-view room and balcony','here','Morning light on the water.',False),
    ('walk','Beach path walk','here','Straight out the door.',True),
@@ -300,6 +290,7 @@ def hotel_page(h):
   .pin h3 {{ font-size:20px; margin-bottom:6px; }}
   .pin .hand {{ font-size:19px; color:var(--ink); opacity:.75; }}
   .notes {{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }}
+  .notes.one {{ grid-template-columns:minmax(0,640px); }}
   .note {{ background:var(--soft); padding:20px 18px; border-radius:4px; box-shadow:0 6px 14px rgba(0,0,0,.12); }}
   .note:nth-child(1) {{ transform:rotate(-1deg); }} .note:nth-child(2) {{ transform:rotate(.8deg); }} .note:nth-child(3) {{ transform:rotate(-.6deg); }}
   .note h3 {{ font-size:22px; margin-bottom:8px; }} .note p {{ margin:0; font-size:15px; }}
@@ -351,13 +342,9 @@ def hotel_page(h):
   </section>
 
   <section class="sheet">
-    <div class="kick">Three ways to tell it</div>
-    <h2>One trip, three pitches</h2>
-    <div class="notes">
-      <div class="note"><h3>Hotel POV</h3><p>{esc(ang['hotel'])}</p></div>
-      <div class="note"><h3>Luggage POV</h3><p>{esc(ang['luggage'])}</p></div>
-      <div class="note"><h3>Airline POV</h3><p>{esc(ang['airline'])}</p></div>
-    </div>
+    <div class="kick">How I'd tell it</div>
+    <h2>The stay, start to finish</h2>
+    <div class="notes one"><div class="note"><h3>Hotel POV</h3><p>{esc(ang['hotel'])}</p></div></div>
   </section>
 
   <section class="sheet">
@@ -426,7 +413,7 @@ def hub():
 <div class="wrap">
   <a class="back" href="index.html">&larr; Home</a>
   <h1>Pitch center</h1>
-  <p class="lede">A private shelf of travel-guide notebooks, one per stay. Each one is styled to the hotel's own mood and pins the itinerary I'd shoot for a hotel, luggage, or airline pitch.</p>
+  <p class="lede">A private shelf of travel-guide notebooks, one per stay. Each one is styled to the hotel's own mood and pins the itinerary I'd shoot for that stay.</p>
   <p class="hand">pick a notebook</p>
   <div class="shelf">{cards}
   </div>

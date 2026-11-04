@@ -58,6 +58,7 @@
   .pin h3 { font-size:20px; margin-bottom:6px; }
   .pin .hand { font-size:19px; color:var(--ink); opacity:.75; }
   .notes { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .notes.one { grid-template-columns:minmax(0,640px); }
   .note { background:var(--soft); padding:20px 18px; border-radius:4px; box-shadow:0 6px 14px rgba(0,0,0,.12); }
   .note:nth-child(1) { transform:rotate(-1deg); } .note:nth-child(2) { transform:rotate(.8deg); } .note:nth-child(3) { transform:rotate(-.6deg); }
   .note h3 { font-size:22px; margin-bottom:8px; } .note p { margin:0; font-size:15px; }
@@ -229,13 +230,9 @@
   </section>
 
   <section class="sheet">
-    <div class="kick">Three ways to tell it</div>
-    <h2>One trip, three pitches</h2>
-    <div class="notes">
-      <div class="note"><h3>Hotel POV</h3><p>Sunset from the room, a walk to Palisades Park, then a ride to Venice for matcha and boutiques.</p></div>
-      <div class="note"><h3>Luggage POV</h3><p>A &quot;cute LA haul&quot; story: home goods and clothes from Abbot Kinney going into the bag, then unpacked at home.</p></div>
-      <div class="note"><h3>Airline POV</h3><p>The window view coming in over the coast, then sunset on arrival.</p></div>
-    </div>
+    <div class="kick">How I'd tell it</div>
+    <h2>The stay, start to finish</h2>
+    <div class="notes one"><div class="note"><h3>Hotel POV</h3><p>Sunset from the room, a walk to Palisades Park, then a ride to Venice for matcha and boutiques.</p></div></div>
   </section>
 
   <section class="sheet">
