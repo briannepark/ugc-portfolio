@@ -198,15 +198,18 @@
   // links above already use instead.
   (function () {
     var buffer = '';
-    var target = 'brands';
+    var secrets = { brands: 'brands', pitch: 'pitches' };
     document.addEventListener('keydown', function (e) {
       var tag = (e.target && e.target.tagName || '').toLowerCase();
       if (tag === 'input' || tag === 'textarea') return;
       if (e.key.length !== 1) return;
-      buffer = (buffer + e.key.toLowerCase()).slice(-target.length);
-      if (buffer === target) {
-        buffer = '';
-        window.parent.postMessage({ type: 'ugc-nav', page: 'brands', hash: '' }, '*');
+      buffer = (buffer + e.key.toLowerCase()).slice(-6);
+      for (var word in secrets) {
+        if (buffer.slice(-word.length) === word) {
+          buffer = '';
+          window.parent.postMessage({ type: 'ugc-nav', page: secrets[word], hash: '' }, '*');
+          break;
+        }
       }
     });
   })();

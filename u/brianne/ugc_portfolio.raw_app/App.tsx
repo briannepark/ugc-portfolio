@@ -1,14 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { HOME_HTML, GALLERY_HTML, CONTACT_HTML, PARTNERSHIPS_HTML, STRATEGY_HTML, TRAVEL_HTML, BRANDS_HTML } from './pages.generated';
+import { HOME_HTML, GALLERY_HTML, CONTACT_HTML, PARTNERSHIPS_HTML, STRATEGY_HTML, TRAVEL_HTML, BRANDS_HTML, PITCHES_HTML, PITCH_NOMAD_HTML, PITCH_BROOKLYN_HTML, PITCH_HALEKULANI_HTML, PITCH_PROPER_HTML, PITCH_SHUTTERS_HTML } from './pages.generated';
 import { backend } from './wmill';
 
-type Page = 'home' | 'gallery' | 'contact' | 'partnerships' | 'strategy' | 'travel' | 'brands';
-
-function toPage(p: unknown): Page {
-  return p === 'gallery' || p === 'contact' || p === 'partnerships' || p === 'strategy' || p === 'travel' || p === 'brands' ? p : 'home';
-}
-
-const PAGES: Record<Page, string> = {
+const PAGES = {
   home: HOME_HTML,
   gallery: GALLERY_HTML,
   contact: CONTACT_HTML,
@@ -16,7 +10,21 @@ const PAGES: Record<Page, string> = {
   strategy: STRATEGY_HTML,
   travel: TRAVEL_HTML,
   brands: BRANDS_HTML,
-};
+  // Private pitch center — reached only by typing "pitch" (see the easter-egg
+  // script in site/index.html), never linked from the public nav.
+  pitches: PITCHES_HTML,
+  'pitch-nomad': PITCH_NOMAD_HTML,
+  'pitch-brooklyn': PITCH_BROOKLYN_HTML,
+  'pitch-halekulani': PITCH_HALEKULANI_HTML,
+  'pitch-proper': PITCH_PROPER_HTML,
+  'pitch-shutters': PITCH_SHUTTERS_HTML,
+} as const;
+
+type Page = keyof typeof PAGES;
+
+function toPage(p: unknown): Page {
+  return typeof p === 'string' && Object.prototype.hasOwnProperty.call(PAGES, p) ? (p as Page) : 'home';
+}
 
 function getInitialState(): { page: Page; hash: string } {
   if (typeof window === 'undefined') return { page: 'home', hash: '' };

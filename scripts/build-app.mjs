@@ -23,6 +23,12 @@ const pages = [
   { file: 'site/strategy.html', export: 'STRATEGY_HTML' },
   { file: 'site/travel.html', export: 'TRAVEL_HTML' },
   { file: 'site/brands.html', export: 'BRANDS_HTML' },
+  { file: 'site/pitches.html', export: 'PITCHES_HTML' },
+  { file: 'site/pitch-nomad.html', export: 'PITCH_NOMAD_HTML' },
+  { file: 'site/pitch-brooklyn.html', export: 'PITCH_BROOKLYN_HTML' },
+  { file: 'site/pitch-halekulani.html', export: 'PITCH_HALEKULANI_HTML' },
+  { file: 'site/pitch-proper.html', export: 'PITCH_PROPER_HTML' },
+  { file: 'site/pitch-shutters.html', export: 'PITCH_SHUTTERS_HTML' },
 ];
 
 function toTemplateLiteral(html) {

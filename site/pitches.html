@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Pitch center</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#1b1713; --cream:#f3e9dc; --gold:#c9a66b; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; background:var(--bg); color:var(--cream); font-family:'Inter',sans-serif; font-weight:300; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1080px; margin:0 auto; padding:24px 16px 60px; }
+  .back { font-size:13px; letter-spacing:.06em; opacity:.8; }
+  h1 { font-family:'Fraunces',Georgia,serif; font-weight:300; font-size:clamp(36px,6vw,64px); margin:28px 0 8px; }
+  .lede { max-width:56ch; line-height:1.7; opacity:.85; }
+  .hand { font-family:'Caveat',cursive; font-size:24px; color:var(--gold); margin:6px 0 30px; }
+  .shelf { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:22px; }
+  .cover-card { position:relative; display:flex; flex-direction:column; justify-content:flex-end; aspect-ratio:3/4; padding:20px 18px 18px 34px; border-radius:6px 14px 14px 6px;
+     background:linear-gradient(160deg,var(--b),var(--a) 70%,var(--d)); color:#fff; box-shadow:0 14px 28px rgba(0,0,0,.4); transition:transform .25s; }
+  .cover-card:hover { transform:translateY(-6px) rotate(-1deg); }
+  .spine { position:absolute; left:0; top:0; bottom:0; width:18px; background:rgba(0,0,0,.28); border-radius:6px 0 0 6px; }
+  .no { position:absolute; top:16px; right:16px; font-size:12px; letter-spacing:.2em; opacity:.8; }
+  .city { font-size:11px; letter-spacing:.18em; text-transform:uppercase; opacity:.85; }
+  .nm { font-family:var(--hf); font-size:28px; line-height:1.05; margin:8px 0; }
+  .hd { font-family:'Caveat',cursive; font-size:22px; opacity:.9; }
+  .note { margin-top:40px; font-size:13px; opacity:.6; line-height:1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">&larr; Home</a>
+  <h1>Pitch center</h1>
+  <p class="lede">A private shelf of travel-guide notebooks, one per stay. Each one is styled to the hotel's own mood and pins the itinerary I'd shoot for a hotel, luggage, or airline pitch.</p>
+  <p class="hand">pick a notebook</p>
+  <div class="shelf">
+    <a class="cover-card" href="pitch-nomad.html" style="--d:#0d1120;--a:#b8934a;--b:#1f2a52;--p:#f7f1e3;--hf:'Cormorant Garamond',Georgia,serif">
+      <span class="spine"></span>
+      <span class="no">01</span>
+      <span class="city">New York City</span>
+      <span class="nm">Ritz-Carlton NoMad</span>
+      <span class="hd">golden hour, 50 floors up</span>
+    </a>
+    <a class="cover-card" href="pitch-brooklyn.html" style="--d:#2b3326;--a:#6f8a52;--b:#a8743f;--p:#efe6d2;--hf:'Fraunces',Georgia,serif">
+      <span class="spine"></span>
+      <span class="no">02</span>
+      <span class="city">New York City</span>
+      <span class="nm">1 Hotel Brooklyn Bridge</span>
+      <span class="hd">skyline, but make it calm</span>
+    </a>
+    <a class="cover-card" href="pitch-halekulani.html" style="--d:#1d4c52;--a:#7b5a8c;--b:#2f8089;--p:#f8f1e1;--hf:'Cormorant Garamond',Georgia,serif">
+      <span class="spine"></span>
+      <span class="no">03</span>
+      <span class="city">Hawaiʻi (Oʻahu)</span>
+      <span class="nm">Halekulani</span>
+      <span class="hd">mahalo, Waikiki</span>
+    </a>
+    <a class="cover-card" href="pitch-proper.html" style="--d:#5a2f22;--a:#b5573a;--b:#d9a441;--p:#f6ead6;--hf:'Fraunces',Georgia,serif">
+      <span class="spine"></span>
+      <span class="no">04</span>
+      <span class="city">Los Angeles</span>
+      <span class="nm">Santa Monica Proper</span>
+      <span class="hd">golden hour on Wilshire</span>
+    </a>
+    <a class="cover-card" href="pitch-shutters.html" style="--d:#173a55;--a:#3a7ca5;--b:#9fcbc0;--p:#f4f1ea;--hf:'Cormorant Garamond',Georgia,serif">
+      <span class="spine"></span>
+      <span class="no">05</span>
+      <span class="city">Los Angeles</span>
+      <span class="nm">Shutters on the Beach</span>
+      <span class="hd">salt air, soft light</span>
+    </a>
+  </div>
+  <p class="note">Private page, reached only by typing "pitch". Stops marked "confirm" inside each notebook still need checking.</p>
+</div>
+
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href');
+    var m = href && href.match(/^(index|pitches|contact|pitch-[a-z]+)\.html(#.*)?$/);
+    if (!m) return;
+    e.preventDefault();
+    var page = m[1] === 'index' ? 'home' : m[1];
+    window.parent.postMessage({ type: 'ugc-nav', page: page, hash: m[2] || '' }, '*');
+  });
+  window.addEventListener('message', function (e) {
+    var d = e.data;
+    if (d && d.type === 'ugc-scroll' && d.hash) {
+      var el = document.getElementById(d.hash.replace('#', ''));
+      if (el) el.scrollIntoView();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
