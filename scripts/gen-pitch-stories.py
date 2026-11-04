@@ -207,16 +207,16 @@ CSS = r"""
 
 
   /* walk-through */
-  .walk { position:relative; height:440vh; }
-  .walk .stick { position:sticky; top:0; height:100vh; overflow:hidden; background:#06080f; }
-  .walk .scene { position:absolute; inset:0; opacity:0; will-change:transform,opacity; }
-  .walk .s1 img { width:100%; height:100%; object-fit:cover; object-position:50% 40%; transform-origin:50% 38%; }
-  .walk .s2 .blur { position:absolute; inset:-30px; background-size:cover; background-position:center; filter:blur(28px) brightness(.55); }
-  .walk .s2 img { position:absolute; left:50%; top:50%; height:min(100vh,120vw*1.78); max-width:100%; transform:translate(-50%,-50%); object-fit:cover; box-shadow:0 30px 80px rgba(0,0,0,.6); aspect-ratio:9/16; }
-  .walk .s3 { background:radial-gradient(ellipse at 50% 60%,#1b2347,#05070d 70%); display:flex; align-items:center; justify-content:center; }
-  .walk .s3 .frame { margin-top:-12vh; width:min(86vw,1040px); aspect-ratio:3/2; overflow:hidden; border:8px solid rgba(255,255,255,.9); box-shadow:0 30px 90px rgba(0,0,0,.7); border-radius:4px; }
-  .walk .s3 img { width:100%; height:100%; object-fit:cover; transform-origin:50% 55%; }
-  .walk .vig { position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.55)), linear-gradient(0deg,rgba(0,0,0,.6),transparent 40%); }
+  .walkthru { position:relative; height:440vh; }
+  .walkthru .stick { position:sticky; top:0; height:100vh; overflow:hidden; background:#06080f; }
+  .walkthru .scene { position:absolute; inset:0; opacity:0; will-change:transform,opacity; }
+  .walkthru .s1 img { width:100%; height:100%; object-fit:cover; object-position:50% 40%; transform-origin:50% 38%; }
+  .walkthru .s2 .blur { position:absolute; inset:-30px; background-size:cover; background-position:center; filter:blur(28px) brightness(.55); }
+  .walkthru .s2 img { position:absolute; left:50%; top:50%; height:min(100vh,120vw*1.78); max-width:100%; transform:translate(-50%,-50%); object-fit:cover; box-shadow:0 30px 80px rgba(0,0,0,.6); aspect-ratio:9/16; }
+  .walkthru .s3 { background:radial-gradient(ellipse at 50% 60%,#1b2347,#05070d 70%); display:flex; align-items:center; justify-content:center; }
+  .walkthru .s3 .frame { margin-top:-12vh; width:min(86vw,1040px); aspect-ratio:3/2; overflow:hidden; border:8px solid rgba(255,255,255,.9); box-shadow:0 30px 90px rgba(0,0,0,.7); border-radius:4px; }
+  .walkthru .s3 img { width:100%; height:100%; object-fit:cover; transform-origin:50% 55%; }
+  .walkthru .vig { position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.55)), linear-gradient(0deg,rgba(0,0,0,.6),transparent 40%); }
   .wcaps { position:absolute; left:0; right:0; bottom:9vh; padding:0 24px; max-width:1100px; margin:0 auto; color:#fff; }
   .wcap { position:absolute; left:24px; right:24px; bottom:0; opacity:0; transform:translateY(16px); transition:opacity .5s, transform .5s; }
   .wcap.on { opacity:1; transform:none; }
@@ -227,11 +227,41 @@ CSS = r"""
   .floors .f.on { opacity:1; } .floors .f.on::after { background:var(--accent); opacity:1; box-shadow:0 0 0 4px rgba(255,255,255,.2); }
   .floors i { display:none; }
   .walkintro { padding-bottom:20px; }
-  @media (prefers-reduced-motion: reduce) { .walk { height:auto; } .walk .stick { position:relative; height:auto; } .walk .scene { position:relative; opacity:1 !important; height:70vh; } .wcap { position:relative; opacity:1; transform:none; left:0; right:0; margin-bottom:20px; } .wcaps { position:relative; bottom:auto; padding:20px 24px; } .floors { display:none; } }
+  @media (prefers-reduced-motion: reduce) { .walkthru { height:auto; } .walkthru .stick { position:relative; height:auto; } .walkthru .scene { position:relative; opacity:1 !important; height:70vh; } .wcap { position:relative; opacity:1; transform:none; left:0; right:0; margin-bottom:20px; } .wcaps { position:relative; bottom:auto; padding:20px 24px; } .floors { display:none; } }
 
   .reveal { opacity:0; transition:opacity .8s ease; } .reveal.in { opacity:1; }
   .reveal .img { transform:translateY(34px) scale(.96); transition:transform .9s cubic-bezier(.2,.7,.2,1); } .reveal.in .img { transform:none; }
   .rise { opacity:0; transform:translateY(26px); transition:all .8s ease; } .rise.in { opacity:1; transform:none; }
+
+  /* ---- realistic board: prints, index cards, restrained motion ---- */
+  .cut { filter:none; background:#fbf8f1; padding:10px 10px 0; box-shadow:0 1px 2px rgba(0,0,0,.28), 0 14px 30px rgba(0,0,0,.2); color:#1c2233; }
+  .cut .img { clip-path:none; padding:14px; }
+  .cover .cut.float { padding:10px; }
+  .cut .img::before { opacity:.22; }
+  .cut .ph { font-size:clamp(15px,1.5vw,19px); color:%%PHC%%; font-style:italic; }
+  .g0 { --g:linear-gradient(150deg,color-mix(in srgb,var(--accent2) 40%,%%MUTE%%),color-mix(in srgb,var(--accent) 35%,%%MUTE%%)); }
+  .g1 { --g:linear-gradient(150deg,color-mix(in srgb,var(--accent) 30%,%%MUTE%%),color-mix(in srgb,var(--soft) 60%,%%MUTE%%)); }
+  .g2 { --g:linear-gradient(150deg,color-mix(in srgb,var(--ink) 25%,%%MUTE%%),color-mix(in srgb,var(--accent2) 35%,%%MUTE%%)); }
+  .g3 { --g:linear-gradient(150deg,color-mix(in srgb,var(--soft) 70%,%%MUTE%%),color-mix(in srgb,var(--accent2) 30%,%%MUTE%%)); }
+  .tape { width:72px; height:20px; margin-left:-36px; top:-11px; background:rgba(236,228,205,.62); box-shadow:0 1px 1px rgba(0,0,0,.18); transform:rotate(-2deg); }
+  .cap { margin:0; padding:12px 4px 16px; gap:5px; color:#1c2233; }
+  .cap .nm { font-family:var(--head); font-size:clamp(18px,1.7vw,22px); line-height:1.15; }
+  .cap .nt { font-family:var(--hand); font-size:17px; line-height:1.35; opacity:1; color:#24304f; }
+  .stamp { color:#b3362b; }
+  .tg.trip { background:#1c2233; color:#fbf8f1; }
+  .tg.ride { background:#e9e2d0; color:#1c2233; border:1px solid rgba(0,0,0,.14); }
+  .note { background-color:#fbf8ee; background-image:repeating-linear-gradient(transparent 0 27px, rgba(80,120,175,.26) 27px 28px); color:#1d2a4a; padding:20px 22px 14px 56px;
+          font-size:clamp(18px,1.6vw,21px); line-height:28px; transform:rotate(-.5deg); clip-path:none; box-shadow:0 1px 2px rgba(0,0,0,.28), 0 12px 26px rgba(0,0,0,.2); }
+  .note::before { content:''; position:absolute; left:40px; top:0; bottom:0; width:1px; background:rgba(190,70,70,.45); }
+  .num { position:static; display:block; font-family:var(--body); font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:var(--accent); -webkit-text-stroke:0; line-height:1; margin-bottom:8px; font-weight:500; }
+  .ch-head { padding-top:0; }
+  .reveal .img { transform:none; transition:none; } .reveal { transition:opacity 1s ease; }
+  .scroll { animation:none; }
+  .wcap .hand { font-family:var(--head); font-style:italic; font-size:clamp(30px,4.4vw,58px); line-height:1.05; }
+  .cover .hand, .end .hand { font-family:var(--head); font-style:italic; }
+  .index { max-width:860px; margin:0 auto; padding:34px 24px; text-align:center; border-block:1px solid color-mix(in srgb,var(--txt) 22%, transparent); }
+  .index p { font-family:var(--head); font-style:italic; font-size:clamp(16px,1.6vw,19px); line-height:1.9; margin:8px 0 0; color:var(--txt); opacity:.85; }
+  .index p span { white-space:nowrap; } .index p span::after { content:'  ·  '; opacity:.5; white-space:pre; } .index p span:last-child::after { content:''; }
 
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
@@ -252,11 +282,11 @@ CSS = r"""
   @media (max-width:820px) {
     .ch-head,.about,.lists { grid-template-columns:1fr; }
     .collage { gap:70px 4%; }
-    .ch-head { padding-top:50px; margin-bottom:40px; }
+    .ch-head { margin-bottom:40px; }
     .n1 .cut,.n2 .cut,.n3 .cut:nth-child(n),.n4 .cut { width:100% !important; margin-left:0 !important; margin-top:0 !important; }
     .cut:nth-child(even) { width:84% !important; margin-left:auto !important; }
     .float.b,.cover .float.c { display:none; } .cover .float.a { top:10%; right:5%; width:34vw; }
-    .num { top:-60px; font-size:130px; } .chapter { padding-top:90px; } .note .doodle { display:none; }
+    .chapter { padding-top:90px; }
   }
   @media (prefers-reduced-motion: reduce) { .reveal,.rise { opacity:1; transform:none; transition:none; } .reveal .img { transform:none; } .marq div,.scroll { animation:none; } }
 """
@@ -276,9 +306,9 @@ JS = r"""
     els.forEach(function (e) { io.observe(e); });
   }
   var cur = document.querySelector('.hud .cur'), bar = document.querySelector('.hud .bar');
-  var chs = document.querySelectorAll('.chapter,.walk');
+  var chs = document.querySelectorAll('.chapter,.walkthru');
   var cuts = Array.prototype.slice.call(document.querySelectorAll('.cut[data-speed]'));
-  var walk = document.querySelector('.walk'), ticking = false, s1, s2, s3, wcaps = [], floors = [];
+  var walk = document.querySelector('.walkthru'), ticking = false, s1, s2, s3, wcaps = [], floors = [];
   if (walk) { s1 = walk.querySelector('.s1'); s2 = walk.querySelector('.s2'); s3 = walk.querySelector('.s3');
     wcaps = Array.prototype.slice.call(walk.querySelectorAll('.wcap')); floors = Array.prototype.slice.call(walk.querySelectorAll('.floors .f')); }
   function frame() {
@@ -319,7 +349,7 @@ def render(h):
     css = (CSS.replace('%%BG%%', c['desk'] if dark else c['paper']).replace('%%TXT%%', '#f3ead6' if dark else c['ink'])
               .replace('%%PAPER%%', c['paper']).replace('%%INK%%', c['ink']).replace('%%ACCENT%%', c['accent'])
               .replace('%%ACCENT2%%', c['accent2']).replace('%%SOFT%%', c['soft'] if not dark else '#1d2547')
-              .replace('%%HEAD%%', h['head']).replace('%%BODY%%', h['body']).replace('%%DESK%%', c['desk']))
+              .replace('%%HEAD%%', h['head']).replace('%%BODY%%', h['body']).replace('%%DESK%%', c['desk']).replace('%%MUTE%%', '#2b3048' if dark else '#d8d0bf').replace('%%PHC%%', 'rgba(240,234,214,.7)' if dark else 'rgba(28,34,51,.55)'))
     clips = ['c1', 'c2', 'c3', 'c4']
     chapters = ''
     allstops = []
@@ -332,14 +362,14 @@ def render(h):
         chapters += f'''
   <section class="chapter walkintro" id="ch1" data-label="{esc(W['kick'])}">
     <div class="wrap">
-      <div class="num">01</div>
+      <div class="num">No. 01</div>
       <div class="ch-head">
         <div class="rise"><div class="kick">{esc(W['kick'])}</div><h2>{esc(W['title'])}</h2></div>
-        <div class="note rise"><div class="tape"></div>{esc(W['story'])}<svg class="doodle" viewBox="0 0 120 60"><use href="#arrow"/></svg></div>
+        <div class="note rise"><div class="tape"></div>{esc(W['story'])}</div>
       </div>
     </div>
   </section>
-  <section class="walk" data-label="{esc(W['kick'])}">
+  <section class="walkthru" data-label="{esc(W['kick'])}">
     <div class="stick">
       <div class="scene s1"><img src="{CDN}{slug_h}/walk-lobby.jpg" alt="The lobby lounge"></div>
       <div class="scene s2"><div class="blur" style="background-image:url({CDN}{slug_h}/walk-bar.jpg)"></div><img src="{CDN}{slug_h}/walk-bar.jpg" alt="The bar"></div>
@@ -361,8 +391,8 @@ def render(h):
             key = slug(name); allstops.append((name, tag, note, confirm, key))
             label, cls = TAGS[tag]
             stamp = '<span class="stamp">confirm</span>' if confirm else ''
-            rot = [-2.2, 1.8, -1.2, 2.4][(i + j) % 4]
-            speed = [0.05, -0.04, 0.07, -0.06][(i + j) % 4]
+            rot = [-.7, .5, -.3, .8][(i + j) % 4]
+            speed = [0.025, -0.02, 0.03, -0.025][(i + j) % 4]
             frames += f'''
         <figure class="cut reveal {clips[(i + j) % 4]} g{(i + j) % 4}" style="--r:{rot}deg" data-speed="{speed}">
           <div class="tape"></div>
@@ -373,10 +403,10 @@ def render(h):
         chapters += f'''
   <section class="chapter" id="ch{i+1+off}" data-label="{esc(kick)}">
     <div class="wrap">
-      <div class="num">{i+1+off:02d}</div>
+      <div class="num">No. {i+1+off:02d}</div>
       <div class="ch-head">
         <div class="rise"><div class="kick">{esc(kick)}</div><h2>{esc(title)}</h2></div>
-        <div class="note rise"><div class="tape"></div>{esc(story)}<svg class="doodle" viewBox="0 0 120 60"><use href="#arrow"/></svg></div>
+        <div class="note rise"><div class="tape"></div>{esc(story)}</div>
       </div>
       <div class="collage n{min(n,4)} {'rev' if i % 2 else ''}">{frames}
       </div>
@@ -386,7 +416,7 @@ def render(h):
     walk = [s for s in allstops if s[1] in ('here', 'walk')]
     far = [s for s in allstops if s[1] in ('ride', 'trip')]
     li = lambda arr: ''.join(f'<li>{esc(s[0])}{" <em>(confirm)</em>" if s[3] else ""}</li>' for s in arr)
-    ticker = ''.join(f'<span>{esc(s[0])}</span>' for s in allstops)
+    ticker = ' '.join(f'<span>{esc(s[0])}</span>' for s in allstops)
     facts = ''.join(f'<li>{esc(f)}</li>' for f in h['facts'])
     chips = ''.join(f'<span class="chip"><i></i>{esc(v)}</span>' for v in h['vibe'])
     return f'''<!doctype html>
@@ -405,9 +435,9 @@ def render(h):
 
 <header class="cover">
   <img class="bg" src="{CDN}{slug_h}-hero.jpg" alt="" onerror="this.remove()">
-  <figure class="cut float a c1 g0" style="--r:5deg" data-speed="0.08"><div class="img" style="--ar:4/5"><span class="ph"></span><img src="{CDN}{slug_h}/cover-1.jpg" alt="" onerror="this.remove()"></div></figure>
-  <figure class="cut float b c2 g1" style="--r:-6deg" data-speed="-0.06"><div class="img" style="--ar:1/1"><span class="ph"></span><img src="{CDN}{slug_h}/cover-2.jpg" alt="" onerror="this.remove()"></div></figure>
-  <figure class="cut float c c3 g2" style="--r:3deg" data-speed="0.04"><div class="img" style="--ar:3/4"><span class="ph"></span><img src="{CDN}{slug_h}/cover-3.jpg" alt="" onerror="this.remove()"></div></figure>
+  <figure class="cut float a c1 g0" style="--r:2deg" data-speed="0.04"><div class="img" style="--ar:4/5"><span class="ph"></span><img src="{CDN}{slug_h}/cover-1.jpg" alt="" onerror="this.remove()"></div></figure>
+  <figure class="cut float b c2 g1" style="--r:-2deg" data-speed="-0.03"><div class="img" style="--ar:1/1"><span class="ph"></span><img src="{CDN}{slug_h}/cover-2.jpg" alt="" onerror="this.remove()"></div></figure>
+  <figure class="cut float c c3 g2" style="--r:1deg" data-speed="0.02"><div class="img" style="--ar:3/4"><span class="ph"></span><img src="{CDN}{slug_h}/cover-3.jpg" alt="" onerror="this.remove()"></div></figure>
   <div class="in">
     <div class="kick">Pitch {h['no']} &middot; {esc(h['city'])}</div>
     <h1>{esc(h['name'])}</h1>
@@ -418,7 +448,7 @@ def render(h):
 </header>
 
 <section class="intro rise"><div class="kick">The trip</div><p>{esc(S['intro'])}</p></section>
-<div class="marq"><div>{ticker}{ticker}</div></div>
+<div class="index"><div class="kick">In this guide</div><p>{ticker}</p></div>
 {chapters}
 
 <section class="about">
