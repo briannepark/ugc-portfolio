@@ -432,6 +432,37 @@ CSS = r"""
     .fscene .dd { display:none; }
   }
 
+  /* ---- Gentle Monster collage scene ---- */
+  .gscene { position:relative; width:min(1180px,100%); aspect-ratio:16/11; margin:30px auto 20px; }
+  .gscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.35)); will-change:transform; }
+  .gscene img.lyr { height:auto; max-width:none; }
+  .gscene .print { background:#f4efe3; padding:9px 9px 11px; }
+  .gscene .print img { display:block; width:100%; height:auto; }
+  .gscene .print figcaption { position:absolute; left:0; right:0; bottom:5px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .gscene .print:has(figcaption) { padding-bottom:30px; }
+  .gscene .tape { z-index:5; }
+  .gscene .shop { left:2%; top:2%; width:54%; --r:-1.4deg; z-index:1; }
+  .gscene .door { right:5%; top:3%; width:18%; --r:3deg; z-index:2; }
+  .gscene .coral { left:34%; top:44%; width:34%; --r:1.8deg; z-index:3; }
+  .gscene .bison { left:4%; top:56%; width:28%; --r:-3deg; z-index:3; }
+  .gscene .faces { right:3%; top:38%; width:22%; --r:5deg; z-index:6; }
+  .gscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .gscene .msg.g1 { left:58%; top:10%; --r:-3deg; width:16%; }
+  .gscene .msg.g2 { left:72%; top:84%; --r:-2deg; }
+  .gscene .dd.a1 { left:55%; top:26%; width:8%; --r:25deg; z-index:7; filter:none; }
+  @media (max-width:820px) {
+    .gscene { aspect-ratio:3/6.2; }
+    .gscene .shop { left:3%; top:1%; width:92%; }
+    .gscene .door { right:3%; top:22%; width:38%; }
+    .gscene .coral { left:3%; top:30%; width:62%; }
+    .gscene .bison { left:30%; top:56%; width:66%; }
+    .gscene .faces { left:2%; top:64%; width:40%; right:auto; }
+    .gscene .msg { font-size:15px; }
+    .gscene .msg.g1 { display:none; }
+    .gscene .msg.g2 { left:6%; top:92%; width:70%; }
+    .gscene .dd { display:none; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -535,6 +566,25 @@ def snaps(slug_h, key):
     for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
         out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
+
+def gm_scene(slug_h, cap_html):
+    M = CDN + 'shared/gm/'
+    P = lambda cls, src, alt, cap='', sp=0.02: f'<figure class="lyr print {cls}" data-speed="{sp}"><div class="tape"></div><img src="{M}{src}" alt="{alt}" loading="lazy">' + (f'<figcaption class="hand">{cap}</figcaption>' if cap else '') + '</figure>'
+    C = lambda cls, src, sp: f'<img class="lyr {cls}" data-speed="{sp}" src="{M}{src}" alt="" loading="lazy">'
+    return f'''
+        <div class="scene-col">
+          <div class="gscene reveal">
+            {P('shop', 'shop.jpg', 'Mirrored eyewear gallery', '', 0.015)}
+            {P('door', 'door.jpg', 'Looking through the store entrance', '', -0.03)}
+            {P('coral', 'coral.jpg', 'A woven sculpture installation', 'a whole new installation', 0.025)}
+            {P('bison', 'bison.jpg', 'White bison installation', '', -0.02)}
+            {C('faces', 'cut-faces.png', 0.045)}
+            <div class="lyr msg g1 hand" data-speed="0.01">shopping that feels<br>like a gallery</div>
+            <div class="lyr msg g2 hand" data-speed="0.02">art you can<br>walk right past</div>
+            <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
+          </div>
+          {cap_html}
+        </div>'''
 
 def flower_scene(slug_h, cap_html):
     M = CDN + 'shared/cj/'
@@ -659,6 +709,9 @@ def render(h):
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
+            if key == 'gentle-monster-soho':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + gm_scene(slug_h, cap)
             if key == 'cj-hendry-flower-market':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + flower_scene(slug_h, cap)
