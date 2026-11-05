@@ -614,6 +614,36 @@ CSS = r"""
     .iscene .msg.i2 { left:8%; top:92%; width:60%; }
   }
 
+  /* ---- Printemps collage scene ---- */
+  .pscene { position:relative; width:min(1180px,100%); aspect-ratio:16/11.6; margin:30px auto 20px; }
+  .pscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
+  .pscene img.lyr { height:auto; max-width:none; }
+  .pscene .print { background:#f4efe3; padding:9px 9px 11px; }
+  .pscene .print img { display:block; width:100%; height:auto; }
+  .pscene .print figcaption { position:absolute; left:0; right:0; bottom:5px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .pscene .print:has(figcaption) { padding-bottom:30px; }
+  .pscene .tape { z-index:5; }
+  .pscene .hall { left:3%; top:2%; width:42%; --r:-1.8deg; z-index:1; }
+  .pscene .lounge { left:42%; top:8%; width:19%; --r:3deg; z-index:2; }
+  .pscene .beauty { right:3%; top:2%; width:32%; --r:2deg; z-index:2; }
+  .pscene .door { left:8%; top:52%; width:20%; --r:-4deg; z-index:5; }
+  .pscene .lamp { left:31%; top:52%; width:19%; --r:5deg; z-index:5; }
+  .pscene .pedestal { right:16%; top:50%; width:16%; --r:-5deg; z-index:5; }
+  .pscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .pscene .msg.p1 { left:54%; top:68%; --r:-3deg; }
+  .pscene .msg.p2 { left:48%; top:48%; --r:-4deg; display:none; }
+  @media (max-width:820px) {
+    .pscene { aspect-ratio:3/7; }
+    .pscene .hall { left:3%; top:1%; width:92%; }
+    .pscene .lounge { left:3%; top:22%; width:44%; }
+    .pscene .beauty { right:3%; top:25%; width:50%; }
+    .pscene .door { left:4%; top:46%; width:42%; }
+    .pscene .lamp { right:4%; left:auto; top:46%; width:40%; }
+    .pscene .pedestal { left:30%; top:66%; width:40%; right:auto; }
+    .pscene .msg { font-size:15px; }
+    .pscene .msg.p1 { left:8%; top:90%; width:60%; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -717,6 +747,25 @@ def snaps(slug_h, key):
     for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
         out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
+
+def printemps_scene(slug_h, cap_html):
+    M = CDN + 'shared/printemps/'
+    P = lambda cls, src, alt, cap='', sp=0.02: f'<figure class="lyr print {cls}" data-speed="{sp}"><div class="tape"></div><img src="{M}{src}" alt="{alt}" loading="lazy">' + (f'<figcaption class="hand">{cap}</figcaption>' if cap else '') + '</figure>'
+    C = lambda cls, src, sp: f'<img class="lyr {cls}" data-speed="{sp}" src="{M}{src}" alt="" loading="lazy">'
+    return f'''
+        <div class="scene-col">
+          <div class="pscene reveal">
+            {P('hall', 'hall.jpg', 'The gilded main hall', 'the gold room', 0.015)}
+            {P('lounge', 'lounge.jpg', 'The red lounge', 'the Red Room', -0.03)}
+            {P('beauty', 'beauty.jpg', 'The white beauty hall', 'upstairs, all cream', 0.025)}
+            {C('door', 'cut-door.png', 0.04)}
+            {C('lamp', 'cut-lamp.png', -0.04)}
+            {C('pedestal', 'cut-beauty.png', 0.03)}
+            <div class="lyr msg p1 hand" data-speed="0.01">Paris, inside<br>an Art Deco tower</div>
+            <div class="lyr msg p2 hand" data-speed="0.02">look up</div>
+          </div>
+          {cap_html}
+        </div>'''
 
 def ippudo_scene(slug_h, cap_html):
     M = CDN + 'shared/ippudo/'
@@ -959,6 +1008,9 @@ def render(h):
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
+            if key == 'printemps-one-wall-street':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + printemps_scene(slug_h, cap)
             if key == 'ippudo':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + ippudo_scene(slug_h, cap)
