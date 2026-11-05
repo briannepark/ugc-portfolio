@@ -31,7 +31,7 @@ HOTELS = [
   vibe=['Deep navy', 'Champagne gold', 'Warm lamplight'],
   facts=[
    'Oversize windows and gold-link light fixtures in the rooms.',
-   'José Andrés restaurants in the hotel.',
+   'Bazaar Meat by José Andrés, in the hotel.',
    'Nubeluz, a cocktail bar on the 50th floor.',
    'In NoMad, with Madison Square Park, Flatiron, and Chelsea nearby.',
   ],
@@ -40,7 +40,7 @@ HOTELS = [
    hotel='Open on the window view at dusk. Cut to Nubeluz, then a map of the walk to Madison Square Park, Flatiron, and the Chelsea galleries. Close with a hotel dinner.'),
   pins=[
    ('stay','Room view and amenities','here','Oversize windows are the opening shot.',False),
-   ('eat','José Andrés dinner at the hotel','here','The luxury restaurant payoff.',False),
+   ('eat','Bazaar Meat by José Andrés','here','Velvet booths, feather chandeliers, dinner at the hotel.',False),
    ('night','Nubeluz, 50th floor','here','Skyline at blue hour.',False),
    ('walk','Madison Square Park and Flatiron','walk','Morning walk, coffee in hand.',True),
    ('art','Chelsea galleries and the start of the High Line','walk','Local artists, one gallery per hour.',True),

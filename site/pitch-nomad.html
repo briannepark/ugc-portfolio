@@ -231,6 +231,15 @@
     .mscene .dd { display:none; }
   }
 
+  /* ---- extra snapshots on a stop ---- */
+  .cut .snap { position:absolute; width:46%; background:#f4efe3; padding:7px 7px 24px; box-shadow:0 10px 18px rgba(0,0,0,.4); z-index:3; }
+  .cut .snap img { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; }
+  .cut .snap em { position:absolute; left:0; right:0; bottom:3px; text-align:center; font-style:normal; font-size:15px; color:#2a2a2a; }
+  .cut .snap .tape { width:50px; height:15px; margin-left:-25px; top:-8px; }
+  .cut .snap.s1 { right:-13%; top:30%; transform:rotate(5deg); width:40%; }
+  .cut .snap.s2 { left:-32%; top:26%; transform:rotate(-4deg); width:36%; }
+  @media (max-width:820px) { .cut .snap { width:34% !important; } .cut .snap.s1 { right:-3%; top:24%; } .cut .snap.s2 { left:-3%; top:32%; } }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -282,7 +291,7 @@
 </header>
 
 <section class="intro rise"><div class="kick">The trip</div><p>Picture this. You land in New York, ride into NoMad, and step into a room where the window is so wide the skyline feels hung just for you. This is the long weekend I&#x27;d take you on, one stop at a time.</p></section>
-<div class="index"><div class="kick">In this guide</div><p><span>Lobby and lounge</span> <span>The bar</span> <span>Room view at dusk</span> <span>José Andrés dinner at the hotel</span> <span>Nubeluz, 50th floor</span> <span>Madison Square Park and Flatiron</span> <span>Chelsea galleries and the start of the High Line</span> <span>CJ Hendry Flower Market</span> <span>Gentle Monster, SoHo</span> <span>Sample-sale hunt</span> <span>Pop-up of the week</span> <span>12 Matcha</span> <span>Rhythm Zero</span> <span>Rok Matcha</span> <span>Ramen: Ippudo or Ivan Ramen</span> <span>Untermyer Gardens</span> <span>Mercer Labs</span> <span>Printemps, One Wall Street</span> <span>Aura reading at Magic Jewelry</span> <span>Dumbo ice cream and bridge shot</span> <span>Nobu Downtown dinner</span> <span>Last look and checkout</span></p></div>
+<div class="index"><div class="kick">In this guide</div><p><span>Lobby and lounge</span> <span>The bar</span> <span>Room view at dusk</span> <span>Bazaar Meat by José Andrés</span> <span>Nubeluz, 50th floor</span> <span>Madison Square Park and Flatiron</span> <span>Chelsea galleries and the start of the High Line</span> <span>CJ Hendry Flower Market</span> <span>Gentle Monster, SoHo</span> <span>Sample-sale hunt</span> <span>Pop-up of the week</span> <span>12 Matcha</span> <span>Rhythm Zero</span> <span>Rok Matcha</span> <span>Ramen: Ippudo or Ivan Ramen</span> <span>Untermyer Gardens</span> <span>Mercer Labs</span> <span>Printemps, One Wall Street</span> <span>Aura reading at Magic Jewelry</span> <span>Dumbo ice cream and bridge shot</span> <span>Nobu Downtown dinner</span> <span>Last look and checkout</span></p></div>
 
   <section class="chapter walkintro" id="ch1" data-label="Day 1 · Arrival">
     <div class="wrap">
@@ -317,13 +326,13 @@
       <div class="collage n2 ">
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
-          <div class="img"><span class="ph">José Andrés dinner at the hotel</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/jos-andr-s-dinner-at-the-hotel.jpg" alt="José Andrés dinner at the hotel" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">José Andrés dinner at the hotel</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>The luxury restaurant payoff.</span></figcaption>
+          <div class="img"><span class="ph">Bazaar Meat by José Andrés</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/bazaar-meat-by-jos-andr-s.jpg" alt="Bazaar Meat by José Andrés" loading="lazy" onerror="this.remove()"></div>
+          <figcaption class="cap"><span class="nm">Bazaar Meat by José Andrés</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Velvet booths, feather chandeliers, dinner at the hotel.</span></figcaption>
         </figure>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Nubeluz, 50th floor</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/nubeluz-50th-floor.jpg" alt="Nubeluz, 50th floor" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Nubeluz, 50th floor</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Skyline at blue hour.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Nubeluz, 50th floor</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Skyline at blue hour.</span></figcaption><span class="snap s1"><span class="tape"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/nubeluz-50th-floor-day.jpg" alt="by day" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">by day</em></span><span class="snap s2"><span class="tape"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/nubeluz-50th-floor-night.jpg" alt="by night" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">by night</em></span>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch2-cutout.png" alt="" onerror="this.remove()">
@@ -526,10 +535,10 @@
 
 <section class="about">
   <div class="rise"><div class="kick">Why this stay</div><h2>The feeling I'd film</h2><p>The most &quot;New York at night&quot; stay on the list. It gives a hotel pitch its strongest opening shot: the window, then the skyline, then a walk that starts right at the lobby.</p><div class="chips"><span class="chip"><i></i>Deep navy</span><span class="chip"><i></i>Champagne gold</span><span class="chip"><i></i>Warm lamplight</span></div></div>
-  <div class="rise"><div class="kick">What it's known for</div><ul class="clean"><li>Oversize windows and gold-link light fixtures in the rooms.</li><li>José Andrés restaurants in the hotel.</li><li>Nubeluz, a cocktail bar on the 50th floor.</li><li>In NoMad, with Madison Square Park, Flatiron, and Chelsea nearby.</li></ul></div>
+  <div class="rise"><div class="kick">What it's known for</div><ul class="clean"><li>Oversize windows and gold-link light fixtures in the rooms.</li><li>Bazaar Meat by José Andrés, in the hotel.</li><li>Nubeluz, a cocktail bar on the 50th floor.</li><li>In NoMad, with Madison Square Park, Flatiron, and Chelsea nearby.</li></ul></div>
 </section>
 <section class="lists">
-  <div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean"><li>Lobby and lounge</li><li>The bar</li><li>Room view at dusk</li><li>José Andrés dinner at the hotel</li><li>Nubeluz, 50th floor</li><li>Madison Square Park and Flatiron <em>(confirm)</em></li><li>Chelsea galleries and the start of the High Line <em>(confirm)</em></li><li>Last look and checkout</li></ul></div>
+  <div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean"><li>Lobby and lounge</li><li>The bar</li><li>Room view at dusk</li><li>Bazaar Meat by José Andrés</li><li>Nubeluz, 50th floor</li><li>Madison Square Park and Flatiron <em>(confirm)</em></li><li>Chelsea galleries and the start of the High Line <em>(confirm)</em></li><li>Last look and checkout</li></ul></div>
   <div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean"><li>CJ Hendry Flower Market</li><li>Gentle Monster, SoHo <em>(confirm)</em></li><li>Sample-sale hunt <em>(confirm)</em></li><li>Pop-up of the week <em>(confirm)</em></li><li>12 Matcha</li><li>Rhythm Zero</li><li>Rok Matcha <em>(confirm)</em></li><li>Ramen: Ippudo or Ivan Ramen <em>(confirm)</em></li><li>Untermyer Gardens</li><li>Mercer Labs</li><li>Printemps, One Wall Street</li><li>Aura reading at Magic Jewelry</li><li>Dumbo ice cream and bridge shot <em>(confirm)</em></li><li>Nobu Downtown dinner <em>(confirm)</em></li></ul></div>
 </section>
 

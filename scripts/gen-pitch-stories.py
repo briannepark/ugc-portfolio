@@ -49,7 +49,7 @@ STORY = {
   intro="Picture this. You land in New York, ride into NoMad, and step into a room where the window is so wide the skyline feels hung just for you. This is the long weekend I'd take you on, one stop at a time.",
   chapters=[
    ('Day 1 · Nightfall','Fifty floors up',"Dinner at the hotel turns into a nightcap, and the nightcap turns into the best view of the trip. Blue hour, every light in Midtown below.",
-    [('José Andrés dinner at the hotel','here','The luxury restaurant payoff.',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
+    [('Bazaar Meat by José Andrés','here','Velvet booths, feather chandeliers, dinner at the hotel.',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
    ('Day 2 · Morning','Coffee in hand, on foot',"Out the lobby and into the neighborhood. Everything good around here is a walk away: the park, the Flatiron, the galleries of Chelsea.",
     [('Madison Square Park and Flatiron','walk','Morning walk, coffee in hand.',True),('Chelsea galleries and the start of the High Line','walk','Local artists, one gallery per hour.',True)]),
    ('Day 2 · Afternoon','Petals and frames',"SoHo, but make it dreamy. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that's gone by Monday, and a pop-up only the locals know about.",
@@ -356,6 +356,15 @@ CSS = r"""
     .mscene .dd { display:none; }
   }
 
+  /* ---- extra snapshots on a stop ---- */
+  .cut .snap { position:absolute; width:46%; background:#f4efe3; padding:7px 7px 24px; box-shadow:0 10px 18px rgba(0,0,0,.4); z-index:3; }
+  .cut .snap img { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; }
+  .cut .snap em { position:absolute; left:0; right:0; bottom:3px; text-align:center; font-style:normal; font-size:15px; color:#2a2a2a; }
+  .cut .snap .tape { width:50px; height:15px; margin-left:-25px; top:-8px; }
+  .cut .snap.s1 { right:-13%; top:30%; transform:rotate(5deg); width:40%; }
+  .cut .snap.s2 { left:-32%; top:26%; transform:rotate(-4deg); width:36%; }
+  @media (max-width:820px) { .cut .snap { width:34% !important; } .cut .snap.s1 { right:-3%; top:24%; } .cut .snap.s2 { left:-3%; top:32%; } }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -452,6 +461,14 @@ def paper_tex(dark):
         grain = "<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .15  0 0 0 0 .1  0 0 0 .32 -.06'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>"
     return ", ".join(uri(x) for x in (grain, fiber, mottle))
 
+SNAPS = {('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
+
+def snaps(slug_h, key):
+    out = ''
+    for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
+        out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
+    return out
+
 def madison_scene(slug_h, cap_html):
     M = CDN + slug_h + '/madison/'
     L = lambda cls, src, speed, extra='': f'<img class="lyr {cls}" data-speed="{speed}" src="{M}{src}" alt="" loading="lazy" {extra}>'
@@ -532,7 +549,7 @@ def render(h):
         <figure class="cut reveal {clips[(i + j) % 4]} g{(i + j) % 4}" style="--r:{rot}deg" data-speed="{speed}">
           <div class="tape"></div>
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>
+          <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
             if slug_h == 'nomad' and key == 'madison-square-park-and-flatiron':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)

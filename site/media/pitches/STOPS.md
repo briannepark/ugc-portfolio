@@ -7,7 +7,7 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 
 - `nomad-hero.jpg` (full-bleed cover background)
 - `nomad/cover-1.jpg`, `cover-2.jpg`, `cover-3.jpg` (floating cover cut-outs)
-- `nomad/jos-andr-s-dinner-at-the-hotel.jpg`: José Andrés dinner at the hotel
+- `nomad/bazaar-meat-by-jos-andr-s.jpg`: Bazaar Meat by José Andrés
 - `nomad/nubeluz-50th-floor.jpg`: Nubeluz, 50th floor
 - `nomad/madison-square-park-and-flatiron.jpg`: Madison Square Park and Flatiron
 - `nomad/chelsea-galleries-and-the-start-of-the-high-line.jpg`: Chelsea galleries and the start of the High Line
