@@ -496,6 +496,41 @@ CSS = r"""
     .mlscene .dd { display:none; }
   }
 
+  /* ---- 12 Matcha collage scene ---- */
+  .tscene { position:relative; width:min(1180px,100%); aspect-ratio:16/10.2; margin:30px auto 20px; }
+  .tscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.35)); will-change:transform; }
+  .tscene img.lyr { height:auto; max-width:none; }
+  .tscene .print { background:#f4efe3; padding:9px 9px 11px; }
+  .tscene .print img { display:block; width:100%; height:auto; }
+  .tscene .print figcaption { position:absolute; left:0; right:0; bottom:5px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .tscene .print:has(figcaption) { padding-bottom:30px; }
+  .tscene .tape { z-index:5; }
+  .tscene .bar { left:3%; top:2%; width:55%; --r:-1.5deg; z-index:1; }
+  .tscene .room { right:3%; top:6%; width:36%; --r:2.2deg; z-index:2; }
+  .tscene .cup { left:50%; top:36%; width:13%; --r:6deg; z-index:6; }
+  .tscene .cups { left:8%; top:58%; width:20%; --r:-6deg; z-index:5; }
+  .tscene .jars { left:29%; top:62%; width:20%; --r:4deg; z-index:5; }
+  .tscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .tscene .msg.t1 { left:66%; top:44%; --r:-3deg; }
+  .tscene .msg.t2 { left:64%; top:70%; --r:-2deg; }
+  .tscene .dd.a1 { left:64%; top:56%; width:8%; --r:200deg; z-index:7; filter:none; }
+  @media (max-width:820px) {
+    .tscene { aspect-ratio:3/6; }
+    .tscene .bar { left:3%; top:1%; width:92%; }
+    .tscene .room { right:3%; top:20%; width:70%; }
+    .tscene .cup { left:3%; top:34%; width:26%; }
+    .tscene .cups { left:3%; top:58%; width:42%; }
+    .tscene .jars { left:auto; right:3%; top:56%; width:44%; }
+    .tscene .msg { font-size:15px; }
+    .tscene .msg.t1 { display:none; }
+    .tscene .msg.t2 { left:8%; top:90%; width:60%; }
+    .tscene .dd { display:none; }
+  }
+
+  /* collage scenes always span the full chapter width, whatever the layout */
+  .collage .scene-col { column-span:all; -webkit-column-span:all; }
+  @media (min-width:821px) { .L-side .collage:has(.scene-col) { grid-column:1 / -1; grid-row:auto; } .L-side:has(.scene-col) .ch-head { position:static; } }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -599,6 +634,25 @@ def snaps(slug_h, key):
     for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
         out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
+
+def matcha12_scene(slug_h, cap_html):
+    M = CDN + 'shared/matcha12/'
+    P = lambda cls, src, alt, cap='', sp=0.02: f'<figure class="lyr print {cls}" data-speed="{sp}"><div class="tape"></div><img src="{M}{src}" alt="{alt}" loading="lazy">' + (f'<figcaption class="hand">{cap}</figcaption>' if cap else '') + '</figure>'
+    C = lambda cls, src, sp: f'<img class="lyr {cls}" data-speed="{sp}" src="{M}{src}" alt="" loading="lazy">'
+    return f'''
+        <div class="scene-col">
+          <div class="tscene reveal">
+            {P('bar', 'bar.jpg', 'The matcha bar and menu wall', 'the menu wall', 0.015)}
+            {P('room', 'room.jpg', 'A sunny room with tall windows', 'grab a window seat', -0.03)}
+            {C('cup', 'cut-cup.png', 0.04)}
+            {C('cups', 'cut-cups.png', -0.035)}
+            {C('jars', 'cut-jars.png', 0.03)}
+            <div class="lyr msg t1 hand" data-speed="0.01">green on green</div>
+            <div class="lyr msg t2 hand" data-speed="0.02">order the one<br>with the 12 on it</div>
+            <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
+          </div>
+          {cap_html}
+        </div>'''
 
 def mercer_scene(slug_h, cap_html):
     M = CDN + 'shared/mercer/'
@@ -762,6 +816,9 @@ def render(h):
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
+            if key == '12-matcha':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + matcha12_scene(slug_h, cap)
             if key == 'mercer-labs':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + mercer_scene(slug_h, cap)
