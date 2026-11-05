@@ -53,7 +53,7 @@ STORY = {
    ('Day 2 · Morning','Coffee in hand, on foot',"Out the lobby and into the neighborhood. Everything good around here is a walk away: the park, the Flatiron, the galleries of Chelsea.",
     [('Madison Square Park and Flatiron','walk','Morning walk, coffee in hand.',True),('Chelsea galleries and the start of the High Line','walk','Local artists, one gallery per hour.',True)]),
    ('Day 2 · Afternoon','Petals and frames',"SoHo, but make it dreamy. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that's gone by Monday, and a pop-up only the locals know about.",
-    [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Installation-style retail.',True),('Sample-sale hunt','ride','Check the 260 Sample Sale list the week you go.',True),('Pop-up of the week','ride','Pop-ups rotate weekly. Pick one for the feed.',True)]),
+    [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Installation-style retail.',True),('Kith, SoHo','ride','The all-white sneaker wall and a tiled flagship. Confirm which store and hours.',True),('Sample-sale hunt','ride','Check the 260 Sample Sale list the week you go.',True),('Pop-up of the week','ride','Pop-ups rotate weekly. Pick one for the feed.',True)]),
    ('Day 2 · The matcha crawl','Three cups, three moods',"A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.",
     [('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.',False),('Rhythm Zero','ride','An art-gallery café with a West Village location. Seasonal matcha drinks.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True)]),
    ('Day 2 · Evening','A bowl worth the ride',"Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.",
@@ -79,7 +79,7 @@ STORY = {
    ('Day 2 · Local','Eat, browse, repeat',"Lunch from a dozen local vendors and a gallery stop for local artists. All within a short walk of the hotel.",
     [('Time Out Market','walk','Lunch with local vendors.',True),('Dumbo gallery stop','walk','Local artists nearby.',True)]),
    ('Day 2 · Across the bridge','Petals, frames, and matcha',"Cross the bridge to SoHo for the plush-flower shop and the Gentle Monster store, then a matcha crawl through NoHo and the villages.",
-    [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Cross the bridge for a design stop.',True),('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line.',False)]),
+    [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Cross the bridge for a design stop.',True),('Kith, SoHo','ride','The all-white sneaker wall and a tiled flagship. Confirm which store and hours.',True),('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line.',False)]),
    ('Day 2 · Evening','Art-gallery coffee and ramen',"A café that doubles as an art space in Williamsburg, then ramen and a scoop by the water on the way home.",
     [('Rhythm Zero','ride','An art-gallery café with locations in Williamsburg and Greenpoint.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True),('Ippudo','ride','Hakata-style ramen under a canopy of bamboo. Confirm which location and wait times.',True),('Ice cream by the water','ride','A scoop at golden hour.',True)]),
    ('Day 3 · Morning','The secret garden',"A quick train up the Hudson and the city drops away: stone terraces, a long reflecting pool, and the river below.",
@@ -644,6 +644,33 @@ CSS = r"""
     .pscene .msg.p1 { left:8%; top:90%; width:60%; }
   }
 
+  /* ---- Kith collage scene ---- */
+  .kscene { position:relative; width:min(1180px,100%); aspect-ratio:16/9.4; margin:30px auto 20px; }
+  .kscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
+  .kscene img.lyr { height:auto; max-width:none; }
+  .kscene .print { background:#f4efe3; padding:9px 9px 11px; }
+  .kscene .print img { display:block; width:100%; height:auto; }
+  .kscene .print figcaption { position:absolute; left:0; right:0; bottom:5px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .kscene .print:has(figcaption) { padding-bottom:30px; }
+  .kscene .tape { z-index:5; }
+  .kscene .wall { left:3%; top:3%; width:52%; --r:-1.6deg; z-index:1; }
+  .kscene .shop { right:5%; top:8%; width:30%; --r:2.4deg; z-index:2; }
+  .kscene .shelf { left:50%; top:46%; width:19%; --r:-6deg; z-index:6; }
+  .kscene .ped { right:9%; top:50%; width:15%; --r:5deg; z-index:6; }
+  .kscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .kscene .msg.k1 { left:14%; top:84%; --r:-3deg; }
+  .kscene .msg.k2 { left:58%; top:78%; --r:-2deg; }
+  @media (max-width:820px) {
+    .kscene { aspect-ratio:3/5; }
+    .kscene .wall { left:3%; top:1%; width:92%; }
+    .kscene .shop { right:3%; top:26%; width:66%; }
+    .kscene .shelf { left:3%; top:44%; width:40%; }
+    .kscene .ped { right:6%; top:56%; width:34%; }
+    .kscene .msg { font-size:15px; }
+    .kscene .msg.k1 { display:none; }
+    .kscene .msg.k2 { left:8%; top:90%; width:60%; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -747,6 +774,21 @@ def snaps(slug_h, key):
     for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
         out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
+
+def kith_scene(slug_h, cap_html):
+    M = CDN + 'shared/kith/'
+    return f'''
+        <div class="scene-col">
+          <div class="kscene reveal">
+            <figure class="lyr print wall" data-speed="0.015"><div class="tape"></div><img src="{M}wall.jpg" alt="A glass wall of sneakers" loading="lazy"><figcaption class="hand">a wall of sneakers</figcaption></figure>
+            <figure class="lyr print shop" data-speed="-0.03"><div class="tape"></div><img src="{M}shop.jpg" alt="The Kith shop floor" loading="lazy"></figure>
+            <img class="lyr shelf" data-speed="0.04" src="{M}cut-shelf.png" alt="" loading="lazy">
+            <img class="lyr ped" data-speed="-0.04" src="{M}cut-pedestal.png" alt="" loading="lazy">
+            <div class="lyr msg k1 hand" data-speed="0.01">all white,<br>all sneakers</div>
+            <div class="lyr msg k2 hand" data-speed="0.02">a store that<br>looks like a gallery</div>
+          </div>
+          {cap_html}
+        </div>'''
 
 def printemps_scene(slug_h, cap_html):
     M = CDN + 'shared/printemps/'
@@ -1008,6 +1050,9 @@ def render(h):
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
+            if key == 'kith-soho':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + kith_scene(slug_h, cap)
             if key == 'printemps-one-wall-street':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + printemps_scene(slug_h, cap)
