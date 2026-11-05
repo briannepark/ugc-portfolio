@@ -401,6 +401,37 @@ CSS = r"""
     .cscene .msg.c3 { left:30%; right:auto; bottom:1%; width:60%; }
   }
 
+  /* ---- CJ Hendry Flower Market collage scene ---- */
+  .fscene { position:relative; width:min(1180px,100%); aspect-ratio:16/10.4; margin:30px auto 20px; }
+  .fscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.35)); will-change:transform; }
+  .fscene img.lyr { height:auto; max-width:none; }
+  .fscene .print { background:#f4efe3; padding:9px 9px 11px; }
+  .fscene .print img { display:block; width:100%; height:auto; }
+  .fscene .print figcaption { position:absolute; left:0; right:0; bottom:5px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .fscene .print:has(figcaption) { padding-bottom:30px; }
+  .fscene .tape { z-index:5; }
+  .fscene .tent { left:2%; top:2%; width:57%; --r:-1.4deg; z-index:1; }
+  .fscene .tiers { right:3%; top:4%; width:35%; --r:2.4deg; z-index:2; }
+  .fscene .close { left:36%; top:50%; width:26%; --r:-3deg; z-index:3; }
+  .fscene .bq1 { left:7%; top:44%; width:25%; --r:-9deg; z-index:6; }
+  .fscene .bq2 { right:4%; top:44%; width:20%; --r:8deg; z-index:6; }
+  .fscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .fscene .msg.f1 { left:64%; top:56%; --r:-3deg; width:12%; }
+  .fscene .msg.f2 { left:22%; top:90%; --r:-2deg; }
+  .fscene .dd.a1 { left:35%; top:90%; width:9%; --r:-8deg; z-index:7; filter:none; }
+  @media (max-width:820px) {
+    .fscene { aspect-ratio:3/6; }
+    .fscene .tent { left:3%; top:1%; width:92%; }
+    .fscene .tiers { right:2%; top:22%; width:62%; }
+    .fscene .close { left:3%; top:50%; width:46%; }
+    .fscene .bq1 { left:4%; top:30%; width:34%; }
+    .fscene .bq2 { right:4%; top:56%; width:30%; }
+    .fscene .msg { font-size:15px; }
+    .fscene .msg.f1 { display:none; }
+    .fscene .msg.f2 { left:8%; top:90%; width:50%; }
+    .fscene .dd { display:none; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -504,6 +535,25 @@ def snaps(slug_h, key):
     for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
         out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
+
+def flower_scene(slug_h, cap_html):
+    M = CDN + 'shared/cj/'
+    P = lambda cls, src, alt, cap='', sp=0.02: f'<figure class="lyr print {cls}" data-speed="{sp}"><div class="tape"></div><img src="{M}{src}" alt="{alt}" loading="lazy">' + (f'<figcaption class="hand">{cap}</figcaption>' if cap else '') + '</figure>'
+    C = lambda cls, src, sp: f'<img class="lyr {cls}" data-speed="{sp}" src="{M}{src}" alt="" loading="lazy">'
+    return f'''
+        <div class="scene-col">
+          <div class="fscene reveal">
+            {P('tent', 'tent.jpg', 'Rows of flowers under a white tent', '', 0.015)}
+            {P('tiers', 'tiers.jpg', 'Flowers stacked in tiers', 'every color, stacked', -0.03)}
+            {P('close', 'close.jpg', 'A close-up of velvet flowers', '', 0.03)}
+            {C('bq1', 'cut-bouquet-plush.png', 0.045)}
+            {C('bq2', 'cut-bouquet-hand.png', -0.04)}
+            <div class="lyr msg f1 hand" data-speed="0.01">rows and rows<br>of blooms</div>
+            <div class="lyr msg f2 hand" data-speed="0.02">pick your own<br>bouquet</div>
+            <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
+          </div>
+          {cap_html}
+        </div>'''
 
 def chelsea_scene(slug_h, cap_html):
     M = CDN + slug_h + '/chelsea/'
@@ -609,6 +659,9 @@ def render(h):
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
+            if key == 'cj-hendry-flower-market':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + flower_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'chelsea-galleries-and-the-start-of-the-high-line':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + chelsea_scene(slug_h, cap)
