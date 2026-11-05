@@ -365,6 +365,42 @@ CSS = r"""
   .cut .snap.s2 { left:-32%; top:26%; transform:rotate(-4deg); width:36%; }
   @media (max-width:820px) { .cut .snap { width:34% !important; } .cut .snap.s1 { right:-3%; top:24%; } .cut .snap.s2 { left:-3%; top:32%; } }
 
+  /* ---- Chelsea galleries collage scene ---- */
+  .cscene { position:relative; width:min(1180px,100%); aspect-ratio:16/12.6; margin:30px auto 20px; }
+  .cscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
+  .cscene img.lyr { height:auto; max-width:none; }
+  .cscene .print { background:#f4efe3; padding:9px 9px 11px; }
+  .cscene .print img { display:block; width:100%; height:auto; }
+  .cscene .print figcaption { position:absolute; left:0; right:0; bottom:5px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .cscene .print:has(figcaption) { padding-bottom:30px; }
+  .cscene .tape { z-index:5; }
+  .cscene .ext { left:2%; top:2%; width:47%; --r:-1.6deg; z-index:1; }
+  .cscene .night { right:3%; top:0%; width:32%; --r:2.4deg; z-index:2; }
+  .cscene .eve { right:19%; top:30%; width:22%; --r:-3deg; z-index:4; }
+  .cscene .branches { left:30%; top:43%; width:35%; --r:1.4deg; z-index:2; }
+  .cscene .paint { right:3%; top:49%; width:25%; --r:-2.2deg; z-index:3; }
+  .cscene .kawsroom { left:1%; top:58%; width:27%; --r:-3deg; z-index:3; }
+  .cscene .koons { left:44%; top:13%; width:10%; --r:-6deg; z-index:6; }
+  .cscene .kaws { left:62%; top:50%; width:10%; --r:5deg; z-index:6; }
+  .cscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .cscene .msg.c1 { left:54%; top:3%; width:9%; --r:-3deg; z-index:7; }
+  .cscene .msg.c2 { left:33%; top:88%; --r:-3deg; }
+  .cscene .msg.c3 { right:3%; top:88%; --r:-2deg; }
+  @media (max-width:820px) {
+    .cscene { aspect-ratio:3/6.4; }
+    .cscene .ext { left:3%; top:1%; width:92%; }
+    .cscene .night { right:2%; top:22%; width:56%; }
+    .cscene .eve { left:2%; top:30%; width:40%; }
+    .cscene .branches { left:3%; top:44%; width:70%; }
+    .cscene .paint { right:2%; top:57%; width:56%; }
+    .cscene .kawsroom { left:3%; top:70%; width:52%; }
+    .cscene .koons { left:72%; top:41.5%; width:18%; }
+    .cscene .kaws { left:60%; top:74%; width:19%; }
+    .cscene .msg { font-size:15px; }
+    .cscene .msg.c1, .cscene .msg.c2 { display:none; }
+    .cscene .msg.c3 { left:30%; right:auto; bottom:1%; width:60%; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -469,6 +505,28 @@ def snaps(slug_h, key):
         out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
 
+def chelsea_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/chelsea/'
+    P = lambda cls, src, alt, cap='', sp=0.02: f'<figure class="lyr print {cls}" data-speed="{sp}"><div class="tape"></div><img src="{M}{src}" alt="{alt}" loading="lazy">' + (f'<figcaption class="hand">{cap}</figcaption>' if cap else '') + '</figure>'
+    C = lambda cls, src, sp: f'<img class="lyr {cls}" data-speed="{sp}" src="{M}{src}" alt="" loading="lazy">'
+    return f'''
+        <div class="scene-col">
+          <div class="cscene reveal">
+            {P('ext', 'ext.jpg', 'A gallery entrance under the High Line', 'under the High Line', 0.015)}
+            {P('night', 'night.jpg', 'The High Line at blue hour', 'High Line, blue hour', -0.03)}
+            {P('eve', 'eve.jpg', 'Dinner under the High Line stairs', 'dinner nearby', 0.03)}
+            {P('branches', 'branches.jpg', 'A gallery of hanging sculptures', '', 0.02)}
+            {P('paint', 'paint.jpg', 'Paintings in a gallery', '', -0.02)}
+            {P('kawsroom', 'kaws.jpg', 'A big gallery with a yellow figure', '', 0.025)}
+            {C('koons', 'cut-koons.png', 0.045)}
+            {C('kaws', 'cut-kaws.png', -0.04)}
+            <div class="lyr msg c1 hand" data-speed="0.01">one gallery<br>per hour</div>
+            <div class="lyr msg c2 hand" data-speed="0.02">art you can<br>walk right into</div>
+            <div class="lyr msg c3 hand" data-speed="0.02">then the High Line<br>at golden hour &rarr;</div>
+          </div>
+          {cap_html}
+        </div>'''
+
 def madison_scene(slug_h, cap_html):
     M = CDN + slug_h + '/madison/'
     L = lambda cls, src, speed, extra='': f'<img class="lyr {cls}" data-speed="{speed}" src="{M}{src}" alt="" loading="lazy" {extra}>'
@@ -551,6 +609,9 @@ def render(h):
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
+            if slug_h == 'nomad' and key == 'chelsea-galleries-and-the-start-of-the-high-line':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + chelsea_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'madison-square-park-and-flatiron':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + madison_scene(slug_h, cap)
