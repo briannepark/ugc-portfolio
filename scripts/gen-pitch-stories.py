@@ -25,6 +25,18 @@ TAGS = gp.TAGS
 
 def slug(t): return re.sub(r'[^a-z0-9]+', '-', t.lower()).strip('-')
 
+TIMES = {
+ 'nomad': ['4:00 pm','8:30 pm','9:30 am','12:00 pm','2:30 pm','7:00 pm','10:00 am','1:30 pm','1:00 pm','6:30 pm'],
+ 'brooklyn': ['8:00 am','10:30 am','2:00 pm','12:30 pm','1:00 pm','6:00 pm','10:00 am','1:30 pm'],
+ 'halekulani': ['4:00 pm','6:30 pm','10:00 am','2:30 pm','9:30 am'],
+ 'proper': ['5:00 pm','7:00 pm','10:30 am','2:00 pm','11:00 am'],
+ 'shutters': ['8:00 am','1:00 pm','10:30 am','11:00 am','4:30 pm'],
+}
+
+def tm(slug_h, n):
+    t = TIMES[slug_h][n]
+    return t.replace(' ', '<small>', 1) + '</small>' if False else t
+
 # (kicker, title, story, [(stop, tag, note, confirm)])
 STORY = {
 'nomad': dict(
@@ -187,7 +199,7 @@ CSS = r"""
   .chapter:nth-of-type(even) { background:color-mix(in srgb, var(--soft) 35%, transparent); }
   .wrap { max-width:1100px; margin:0 auto; padding:0 24px; position:relative; }
   .ch-head { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:end; margin-bottom:60px; padding-top:70px; }
-  .num { position:absolute; top:-95px; left:10px; font-family:var(--head); font-size:clamp(120px,20vw,260px); line-height:1; color:transparent; -webkit-text-stroke:1.5px color-mix(in srgb, var(--accent) 55%, transparent); z-index:0; pointer-events:none; }
+  .num { position:absolute; top:-70px; left:10px; font-family:var(--head); font-size:clamp(72px,11vw,150px); white-space:nowrap; line-height:1; color:transparent; -webkit-text-stroke:1.5px color-mix(in srgb, var(--accent) 55%, transparent); z-index:0; pointer-events:none; }
   .ch-head > * { position:relative; z-index:1; }
   .ch-head h2 { font-size:clamp(34px,5.2vw,68px); margin-top:10px; }
   .note { background:var(--paper); color:var(--ink); padding:22px 24px 30px; font-family:var(--hand); font-size:clamp(20px,2vw,25px); line-height:1.4; position:relative; transform:rotate(1.2deg);
@@ -262,6 +274,48 @@ CSS = r"""
   .index { max-width:860px; margin:0 auto; padding:34px 24px; text-align:center; border-block:1px solid color-mix(in srgb,var(--txt) 22%, transparent); }
   .index p { font-family:var(--head); font-style:italic; font-size:clamp(16px,1.6vw,19px); line-height:1.9; margin:8px 0 0; color:var(--txt); opacity:.85; }
   .index p span { white-space:nowrap; } .index p span::after { content:'  ·  '; opacity:.5; white-space:pre; } .index p span:last-child::after { content:''; }
+
+  /* ---- smooth flow + layout variety ---- */
+  .chapter:nth-of-type(even) { background:none; }
+  .chapter { padding:100px 0 10px; }
+  .chapter::after { content:''; display:block; height:150px; margin:36px auto 0; width:min(420px,60%); background:var(--accent); opacity:.5;
+    -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'><path d='M100 0 C 40 30, 160 60, 100 90 S 60 130, 100 150' fill='none' stroke='black' stroke-width='3' stroke-dasharray='2 9' stroke-linecap='round'/></svg>") center/contain no-repeat;
+            mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'><path d='M100 0 C 40 30, 160 60, 100 90 S 60 130, 100 150' fill='none' stroke='black' stroke-width='3' stroke-dasharray='2 9' stroke-linecap='round'/></svg>") center/contain no-repeat; }
+  .chapter:nth-of-type(even)::after { transform:scaleX(-1); }
+  .index { border:0; }
+  .cover { -webkit-mask-image:linear-gradient(#000 80%, transparent); mask-image:linear-gradient(#000 80%, transparent); }
+  .walkthru { -webkit-mask-image:linear-gradient(transparent, #000 10vh, #000 calc(100% - 10vh), transparent); mask-image:linear-gradient(transparent, #000 10vh, #000 calc(100% - 10vh), transparent); }
+  .num { position:absolute; top:-70px; left:10px; display:block; font-family:var(--head); font-size:clamp(72px,11vw,150px); white-space:nowrap; line-height:1; color:transparent; -webkit-text-stroke:1.5px color-mix(in srgb, var(--accent) 55%, transparent); letter-spacing:0; text-transform:none; margin:0; font-weight:400; z-index:0; pointer-events:none; }
+  .ch-head { padding-top:70px; }
+  .ch-head .kick { font-size:clamp(15px,1.5vw,19px); letter-spacing:.2em; font-weight:600; }
+  .ch-head h2 { font-size:clamp(40px,6vw,88px); }
+  @media (max-width:820px) { .num { top:-42px; font-size:76px; } .ch-head { padding-top:50px; } .chapter::after { height:100px; } }
+  @media (min-width:821px) {
+    .L-side .wrap { display:grid; grid-template-columns:.85fr 1.15fr; gap:0 64px; align-items:start; }
+    .L-side .ch-head { grid-column:1; grid-template-columns:1fr; gap:26px; position:sticky; top:90px; margin-bottom:0; align-self:start; }
+    .L-side .collage { grid-column:2; grid-row:1 / span 3; display:block; }
+    .L-side .collage .cut { width:86% !important; margin:0 0 90px 0 !important; --ar:4/5; }
+    .L-side .collage .cut:nth-child(even) { margin-left:14% !important; --ar:1/1; }
+    .L-side .note .dd.pt { display:none; }
+    .L-center .ch-head { grid-template-columns:1fr; justify-items:center; text-align:center; gap:26px; }
+    .L-center .ch-head .dd.under { margin-left:auto; margin-right:auto; }
+    .L-center .note { max-width:640px; }
+    .L-center .note .dd.pt { right:-60px; bottom:-70px; }
+    .L-center .collage { display:block; }
+    .L-center .collage .cut { width:46% !important; margin:0 0 80px 4% !important; }
+    .L-center .collage .cut:nth-child(even) { margin-left:auto !important; margin-right:4% !important; margin-top:-30px !important; }
+    .L-hero .collage { display:flex; flex-wrap:wrap; gap:80px 4%; }
+    .L-hero .collage .cut:nth-child(1) { width:100% !important; --ar:16/8 !important; margin:0 !important; }
+    .L-hero .collage .cut:nth-child(n+2) { width:30% !important; margin:0 !important; --ar:4/5; }
+    .L-hero .collage .cut:nth-child(3n) { margin-top:50px !important; }
+    .L-hero .collage.n2 .cut:nth-child(2) { width:46% !important; margin-left:auto !important; }
+    .L-mason .ch-head { grid-template-columns:1fr; gap:26px; }
+    .L-mason .note { max-width:700px; }
+    .L-mason .collage { display:block; column-count:2; column-gap:6%; }
+    .L-mason .collage .cut { width:100% !important; margin:0 0 80px !important; break-inside:avoid; }
+    .L-mason .collage .cut:nth-child(odd) { --ar:4/5; } .L-mason .collage .cut:nth-child(even) { --ar:1/1; }
+    .L-mason .collage.n1 { column-count:1; }
+  }
 
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
@@ -359,6 +413,8 @@ def paper_tex(dark):
         grain = "<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .15  0 0 0 0 .1  0 0 0 .32 -.06'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>"
     return ", ".join(uri(x) for x in (grain, fiber, mottle))
 
+LAYOUTS = ['', 'L-side', 'L-center', 'L-hero', 'L-mason']
+
 def render(h):
     S = STORY[h['slug']]; c = h['c']; slug_h = h['slug']
     dark = slug_h == 'nomad'
@@ -378,7 +434,7 @@ def render(h):
         chapters += f'''
   <section class="chapter walkintro" id="ch1" data-label="{esc(W['kick'])}">
     <div class="wrap">
-      <div class="num">No. 01</div>
+      <div class="num">{tm(slug_h,0)}</div>
       <div class="ch-head">
         <div class="rise"><div class="kick">{esc(W['kick'])}</div><h2>{esc(W['title'])}</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
         <div class="note rise"><div class="tape"></div>{esc(W['story'])}<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
@@ -417,9 +473,9 @@ def render(h):
         </figure>'''
         k += 1
         chapters += f'''
-  <section class="chapter" id="ch{i+1+off}" data-label="{esc(kick)}">
+  <section class="chapter {LAYOUTS[(i + off) % 5]}" id="ch{i+1+off}" data-label="{esc(kick)}">
     <div class="wrap">
-      <div class="num">No. {i+1+off:02d}</div>
+      <div class="num">{tm(slug_h,i+off)}</div>
       <div class="ch-head">
         <div class="rise"><div class="kick">{esc(kick)}</div><h2>{esc(title)}</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
         <div class="note rise"><div class="tape"></div>{esc(story)}<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
