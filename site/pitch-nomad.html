@@ -406,6 +406,32 @@
   .collage .scene-col { column-span:all; -webkit-column-span:all; }
   @media (min-width:821px) { .L-side .collage:has(.scene-col) { grid-column:1 / -1; grid-row:auto; } .L-side:has(.scene-col) .ch-head { position:static; } }
 
+  /* ---- Rok Matcha collage scene ---- */
+  .rscene { position:relative; width:min(1180px,100%); aspect-ratio:16/9; margin:30px auto 20px; }
+  .rscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.35)); will-change:transform; }
+  .rscene img.lyr { height:auto; max-width:none; }
+  .rscene .print { background:#f4efe3; padding:9px 9px 34px; }
+  .rscene .print img { display:block; width:100%; height:auto; }
+  .rscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .rscene .tape { z-index:5; }
+  .rscene .store { left:4%; top:4%; width:58%; --r:-1.6deg; z-index:1; }
+  .rscene .cup { right:12%; top:2%; width:17%; --r:4deg; z-index:6; }
+  .rscene .door { left:44%; top:52%; width:19%; --r:-5deg; z-index:5; }
+  .rscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .rscene .msg.r1 { left:75%; top:50%; --r:-3deg; width:16%; }
+  .rscene .msg.r2 { left:66%; top:73%; --r:-2deg; }
+  .rscene .dd.a1 { left:73%; top:42%; width:6%; --r:-30deg; z-index:7; filter:none; display:none; }
+  @media (max-width:820px) {
+    .rscene { aspect-ratio:3/4.4; }
+    .rscene .store { left:3%; top:1%; width:92%; }
+    .rscene .cup { right:6%; top:26%; width:42%; }
+    .rscene .door { left:3%; top:34%; width:46%; }
+    .rscene .msg { font-size:15px; }
+    .rscene .msg.r1 { display:none; }
+    .rscene .msg.r2 { left:8%; top:90%; width:60%; }
+    .rscene .dd { display:none; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -457,7 +483,7 @@
 </header>
 
 <section class="intro rise"><div class="kick">The trip</div><p>Picture this. You land in New York, ride into NoMad, and step into a room where the window is so wide the skyline feels hung just for you. This is the long weekend I&#x27;d take you on, one stop at a time.</p></section>
-<div class="index"><div class="kick">In this guide</div><p><span>Lobby and lounge</span> <span>The bar</span> <span>Room view at dusk</span> <span>Bazaar Meat by José Andrés</span> <span>Nubeluz, 50th floor</span> <span>Madison Square Park and Flatiron</span> <span>Chelsea galleries and the start of the High Line</span> <span>CJ Hendry Flower Market</span> <span>Gentle Monster, SoHo</span> <span>Sample-sale hunt</span> <span>Pop-up of the week</span> <span>12 Matcha</span> <span>Rhythm Zero</span> <span>Rok Matcha</span> <span>Ramen: Ippudo or Ivan Ramen</span> <span>Untermyer Gardens</span> <span>Mercer Labs</span> <span>Printemps, One Wall Street</span> <span>Aura reading at Magic Jewelry</span> <span>Dumbo ice cream and bridge shot</span> <span>Nobu Downtown dinner</span> <span>Last look and checkout</span></p></div>
+<div class="index"><div class="kick">In this guide</div><p><span>Lobby and lounge</span> <span>The bar</span> <span>Room view at dusk</span> <span>Bazaar Meat by José Andrés</span> <span>Nubeluz, 50th floor</span> <span>Madison Square Park and Flatiron</span> <span>Chelsea galleries and the start of the High Line</span> <span>CJ Hendry Flower Market</span> <span>Gentle Monster, SoHo</span> <span>Sample-sale hunt</span> <span>Pop-up of the week</span> <span>12 Matcha</span> <span>Rhythm Zero</span> <span>Ramen: Ippudo or Ivan Ramen</span> <span>Untermyer Gardens</span> <span>Mercer Labs</span> <span>Printemps, One Wall Street</span> <span>Aura reading at Magic Jewelry</span> <span>Dumbo ice cream and bridge shot</span> <span>Nobu Downtown dinner</span> <span>Last look and checkout</span></p></div>
 
   <section class="chapter walkintro" id="ch1" data-label="Day 1 · Arrival">
     <div class="wrap">
@@ -602,10 +628,10 @@
     <div class="wrap">
       <div class="num">2:30 pm</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 2 · The matcha crawl</div><h2>Three cups, three moods</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
-        <div class="note rise"><div class="tape"></div>A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
+        <div class="rise"><div class="kick">Day 2 · The matcha crawl</div><h2>Two cups, two moods</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>A line down the block for the matcha everyone talks about, and a café that doubles as an art gallery. This is the matcha chapter.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
-      <div class="collage n3 rev">
+      <div class="collage n2 rev">
         <div class="scene-col">
           <div class="tscene reveal">
             <figure class="lyr print bar" data-speed="0.015"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shared/matcha12/bar.jpg" alt="The matcha bar and menu wall" loading="lazy"><figcaption class="hand">the menu wall</figcaption></figure>
@@ -623,11 +649,6 @@
           <div class="tape"></div>
           <div class="img"><span class="ph">Rhythm Zero</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/rhythm-zero.jpg" alt="Rhythm Zero" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">Rhythm Zero</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>An art-gallery café with a West Village location. Seasonal matcha drinks.</span></figcaption>
-        </figure>
-        <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
-          <div class="tape"></div>
-          <div class="img"><span class="ph">Rok Matcha</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/rok-matcha.jpg" alt="Rok Matcha" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Rok Matcha</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Confirm the location before we plan around it.</span></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch5-cutout.png" alt="" onerror="this.remove()">
@@ -749,7 +770,7 @@
 </section>
 <section class="lists">
   <div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean"><li>Lobby and lounge</li><li>The bar</li><li>Room view at dusk</li><li>Bazaar Meat by José Andrés</li><li>Nubeluz, 50th floor</li><li>Madison Square Park and Flatiron <em>(confirm)</em></li><li>Chelsea galleries and the start of the High Line <em>(confirm)</em></li><li>Last look and checkout</li></ul></div>
-  <div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean"><li>CJ Hendry Flower Market</li><li>Gentle Monster, SoHo <em>(confirm)</em></li><li>Sample-sale hunt <em>(confirm)</em></li><li>Pop-up of the week <em>(confirm)</em></li><li>12 Matcha</li><li>Rhythm Zero</li><li>Rok Matcha <em>(confirm)</em></li><li>Ramen: Ippudo or Ivan Ramen <em>(confirm)</em></li><li>Untermyer Gardens</li><li>Mercer Labs</li><li>Printemps, One Wall Street</li><li>Aura reading at Magic Jewelry</li><li>Dumbo ice cream and bridge shot <em>(confirm)</em></li><li>Nobu Downtown dinner <em>(confirm)</em></li></ul></div>
+  <div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean"><li>CJ Hendry Flower Market</li><li>Gentle Monster, SoHo <em>(confirm)</em></li><li>Sample-sale hunt <em>(confirm)</em></li><li>Pop-up of the week <em>(confirm)</em></li><li>12 Matcha</li><li>Rhythm Zero</li><li>Ramen: Ippudo or Ivan Ramen <em>(confirm)</em></li><li>Untermyer Gardens</li><li>Mercer Labs</li><li>Printemps, One Wall Street</li><li>Aura reading at Magic Jewelry</li><li>Dumbo ice cream and bridge shot <em>(confirm)</em></li><li>Nobu Downtown dinner <em>(confirm)</em></li></ul></div>
 </section>
 
 <section class="end">

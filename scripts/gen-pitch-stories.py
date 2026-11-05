@@ -54,8 +54,8 @@ STORY = {
     [('Madison Square Park and Flatiron','walk','Morning walk, coffee in hand.',True),('Chelsea galleries and the start of the High Line','walk','Local artists, one gallery per hour.',True)]),
    ('Day 2 · Afternoon','Petals and frames',"SoHo, but make it dreamy. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that's gone by Monday, and a pop-up only the locals know about.",
     [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Installation-style retail.',True),('Sample-sale hunt','ride','Check the 260 Sample Sale list the week you go.',True),('Pop-up of the week','ride','Pop-ups rotate weekly. Pick one for the feed.',True)]),
-   ('Day 2 · The matcha crawl','Three cups, three moods',"A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.",
-    [('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.',False),('Rhythm Zero','ride','An art-gallery café with a West Village location. Seasonal matcha drinks.',False),('Rok Matcha','ride','Confirm the location before we plan around it.',True)]),
+   ('Day 2 · The matcha crawl','Two cups, two moods',"A line down the block for the matcha everyone talks about, and a café that doubles as an art gallery. This is the matcha chapter.",
+    [('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.',False),('Rhythm Zero','ride','An art-gallery café with a West Village location. Seasonal matcha drinks.',False)]),
    ('Day 2 · Evening','A bowl worth the ride',"Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.",
     [('Ramen: Ippudo or Ivan Ramen','ride','East Village or Lower East Side.',True)]),
    ('Day 3 · Morning','The secret garden',"A quick train up the Hudson and the city drops away: stone terraces, a long reflecting pool, and the river below. This is the quiet chapter.",
@@ -79,7 +79,7 @@ STORY = {
    ('Day 2 · Local','Eat, browse, repeat',"Lunch from a dozen local vendors and a gallery stop for local artists. All within a short walk of the hotel.",
     [('Time Out Market','walk','Lunch with local vendors.',True),('Dumbo gallery stop','walk','Local artists nearby.',True)]),
    ('Day 2 · Across the bridge','Petals, frames, and matcha',"Cross the bridge to SoHo for the plush-flower shop and the Gentle Monster store, then a matcha crawl through NoHo and the villages.",
-    [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Cross the bridge for a design stop.',True),('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line.',False),('Rok Matcha','ride','Confirm the location before we plan around it.',True)]),
+    [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Cross the bridge for a design stop.',True),('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line.',False)]),
    ('Day 2 · Evening','Art-gallery coffee and ramen',"A café that doubles as an art space in Williamsburg, then ramen and a scoop by the water on the way home.",
     [('Rhythm Zero','ride','An art-gallery café with locations in Williamsburg and Greenpoint.',False),('Ramen in the East Village','ride','Local favorite pick.',True),('Ice cream by the water','ride','A scoop at golden hour.',True)]),
    ('Day 3 · Morning','The secret garden',"A quick train up the Hudson and the city drops away: stone terraces, a long reflecting pool, and the river below.",
@@ -113,7 +113,7 @@ STORY = {
    ('Day 2 · Afternoon','Window shopping, Santa Monica style',"Boutiques on Main Street and Montana Avenue, then dumplings for dinner.",
     [('Main Street shops','ride','A boutique stroll.',False),('Montana Avenue boutiques','ride','Pretty window shopping.',False),('Din Tai Fung','ride','Confirm the nearest location.',True)]),
    ('Day 3 · Worth the drive','Home goods, frames, and art',"The things worth leaving the coast for: a home-goods hunt, the Gentle Monster flagship, a museum day, and a sample sale if the timing works.",
-    [('Goodies LA','trip','Home-goods hunt. Confirm location and hours.',True),('Gentle Monster flagship, Broadway','trip','The kinetic-sculpture store downtown.',False),('The Getty or the Hammer Museum','trip','Art day.',False),('Sample sale check','trip','Dates change. Confirm the week you go.',True)]),
+    [('Goodies LA','trip','Home-goods hunt. Confirm location and hours.',True),('Rok Matcha, Koreatown','trip','Rōk Coffee & Tea, 3060 W Olympic Blvd. Confirm hours.',False),('Gentle Monster flagship, Broadway','trip','The kinetic-sculpture store downtown.',False),('The Getty or the Hammer Museum','trip','Art day.',False),('Sample sale check','trip','Dates change. Confirm the week you go.',True)]),
   ]),
 'shutters': dict(
   intro="Picture a hotel that opens right onto the beach: ocean from the balcony, a path along the sand, Venice down the shore. This is Los Angeles at its easiest.",
@@ -126,8 +126,8 @@ STORY = {
     [('Shuhari Matcha Café, Venice','ride','Matcha with a beach walk.',False),('Abbot Kinney Boulevard','ride','Shops and cafes.',False),('Erewhon smoothie','ride','Venice or Santa Monica location.',False),('Tartine Bakery','ride','Pastry stop in Santa Monica.',False)]),
    ('Day 3 · Malibu','A day up the coast',"Drive north for dinner on the pier and a day at the country mart. The ocean is the whole backdrop.",
     [('Malibu Farm on the pier','trip','Ocean dinner on the Malibu Pier.',False),('Malibu Country Mart','trip','Outdoor shopping and cafes.',False),('Nobu Malibu','trip','Confirm availability.',True)]),
-   ('Day 3 · Downtown','Frames and home goods',"One city stop before heading home: the flagship store everyone's seen, and a home-goods hunt for the suitcase.",
-    [('Gentle Monster flagship, Broadway','trip','Downtown design stop.',False),('Goodies LA','trip','Home goods. Confirm location.',True)]),
+   ('Day 3 · Downtown','Matcha, frames, and home goods',"One city stop before heading home: the flagship store everyone's seen, and a home-goods hunt for the suitcase.",
+    [('Rok Matcha, Koreatown','trip','Rōk Coffee & Tea, 3060 W Olympic Blvd. Confirm hours.',False),('Gentle Monster flagship, Broadway','trip','Downtown design stop.',False),('Goodies LA','trip','Home goods. Confirm location.',True)]),
   ]),
 }
 
@@ -531,6 +531,32 @@ CSS = r"""
   .collage .scene-col { column-span:all; -webkit-column-span:all; }
   @media (min-width:821px) { .L-side .collage:has(.scene-col) { grid-column:1 / -1; grid-row:auto; } .L-side:has(.scene-col) .ch-head { position:static; } }
 
+  /* ---- Rok Matcha collage scene ---- */
+  .rscene { position:relative; width:min(1180px,100%); aspect-ratio:16/9; margin:30px auto 20px; }
+  .rscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.35)); will-change:transform; }
+  .rscene img.lyr { height:auto; max-width:none; }
+  .rscene .print { background:#f4efe3; padding:9px 9px 34px; }
+  .rscene .print img { display:block; width:100%; height:auto; }
+  .rscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .rscene .tape { z-index:5; }
+  .rscene .store { left:4%; top:4%; width:58%; --r:-1.6deg; z-index:1; }
+  .rscene .cup { right:12%; top:2%; width:17%; --r:4deg; z-index:6; }
+  .rscene .door { left:44%; top:52%; width:19%; --r:-5deg; z-index:5; }
+  .rscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .rscene .msg.r1 { left:75%; top:50%; --r:-3deg; width:16%; }
+  .rscene .msg.r2 { left:66%; top:73%; --r:-2deg; }
+  .rscene .dd.a1 { left:73%; top:42%; width:6%; --r:-30deg; z-index:7; filter:none; display:none; }
+  @media (max-width:820px) {
+    .rscene { aspect-ratio:3/4.4; }
+    .rscene .store { left:3%; top:1%; width:92%; }
+    .rscene .cup { right:6%; top:26%; width:42%; }
+    .rscene .door { left:3%; top:34%; width:46%; }
+    .rscene .msg { font-size:15px; }
+    .rscene .msg.r1 { display:none; }
+    .rscene .msg.r2 { left:8%; top:90%; width:60%; }
+    .rscene .dd { display:none; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -634,6 +660,23 @@ def snaps(slug_h, key):
     for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
         out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
+
+def rok_scene(slug_h, cap_html):
+    M = CDN + 'shared/rok/'
+    P = lambda cls, src, alt, cap='', sp=0.02: f'<figure class="lyr print {cls}" data-speed="{sp}"><div class="tape"></div><img src="{M}{src}" alt="{alt}" loading="lazy">' + (f'<figcaption class="hand">{cap}</figcaption>' if cap else '') + '</figure>'
+    C = lambda cls, src, sp: f'<img class="lyr {cls}" data-speed="{sp}" src="{M}{src}" alt="" loading="lazy">'
+    return f'''
+        <div class="scene-col">
+          <div class="rscene reveal">
+            {P('store', 'store.jpg', 'Rok Coffee and Tea storefront', 'Koreatown, 3060 W Olympic', 0.015)}
+            {C('cup', 'cut-cup.png', 0.04)}
+            {C('door', 'cut-door.png', -0.035)}
+            <div class="lyr msg r1 hand" data-speed="0.01">watch the whisk<br>drip</div>
+            <div class="lyr msg r2 hand" data-speed="0.02">a matcha detour<br>in Koreatown</div>
+            <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
+          </div>
+          {cap_html}
+        </div>'''
 
 def matcha12_scene(slug_h, cap_html):
     M = CDN + 'shared/matcha12/'
@@ -816,6 +859,9 @@ def render(h):
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
+            if key == 'rok-matcha-koreatown':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + rok_scene(slug_h, cap)
             if key == '12-matcha':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + matcha12_scene(slug_h, cap)

@@ -17,7 +17,6 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/pop-up-of-the-week.jpg`: Pop-up of the week
 - `nomad/12-matcha.jpg`: 12 Matcha
 - `nomad/rhythm-zero.jpg`: Rhythm Zero
-- `nomad/rok-matcha.jpg`: Rok Matcha
 - `nomad/ramen-ippudo-or-ivan-ramen.jpg`: Ramen: Ippudo or Ivan Ramen
 - `nomad/untermyer-gardens.jpg`: Untermyer Gardens
 - `nomad/mercer-labs.jpg`: Mercer Labs
@@ -42,7 +41,6 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `brooklyn/cj-hendry-flower-market.jpg`: CJ Hendry Flower Market
 - `brooklyn/gentle-monster-soho.jpg`: Gentle Monster, SoHo
 - `brooklyn/12-matcha.jpg`: 12 Matcha
-- `brooklyn/rok-matcha.jpg`: Rok Matcha
 - `brooklyn/rhythm-zero.jpg`: Rhythm Zero
 - `brooklyn/ramen-in-the-east-village.jpg`: Ramen in the East Village
 - `brooklyn/ice-cream-by-the-water.jpg`: Ice cream by the water
@@ -85,6 +83,7 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `proper/montana-avenue-boutiques.jpg`: Montana Avenue boutiques
 - `proper/din-tai-fung.jpg`: Din Tai Fung
 - `proper/goodies-la.jpg`: Goodies LA
+- `proper/rok-matcha-koreatown.jpg`: Rok Matcha, Koreatown
 - `proper/gentle-monster-flagship-broadway.jpg`: Gentle Monster flagship, Broadway
 - `proper/the-getty-or-the-hammer-museum.jpg`: The Getty or the Hammer Museum
 - `proper/sample-sale-check.jpg`: Sample sale check
@@ -104,5 +103,6 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `shutters/malibu-farm-on-the-pier.jpg`: Malibu Farm on the pier
 - `shutters/malibu-country-mart.jpg`: Malibu Country Mart
 - `shutters/nobu-malibu.jpg`: Nobu Malibu
+- `shutters/rok-matcha-koreatown.jpg`: Rok Matcha, Koreatown
 - `shutters/gentle-monster-flagship-broadway.jpg`: Gentle Monster flagship, Broadway
 - `shutters/goodies-la.jpg`: Goodies LA
