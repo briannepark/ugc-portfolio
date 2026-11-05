@@ -57,7 +57,7 @@ STORY = {
    ('Day 2 · The matcha crawl','Three cups, three moods',"A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.",
     [('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.',False),('Rhythm Zero','ride','An art-gallery café with a West Village location. Seasonal matcha drinks.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True)]),
    ('Day 2 · Evening','A bowl worth the ride',"Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.",
-    [('Ramen: Ippudo or Ivan Ramen','ride','East Village or Lower East Side.',True)]),
+    [('Ippudo','ride','Hakata-style ramen under a canopy of bamboo. Confirm which location (the storefront photo is #24) and wait times.',True)]),
    ('Day 3 · Morning','The secret garden',"A quick train up the Hudson and the city drops away: stone terraces, a long reflecting pool, and the river below. This is the quiet chapter.",
     [('Untermyer Gardens','trip','Metro-North from Grand Central to Greystone, about 40 minutes, then a short ride or walk. Free; closes at dusk.',False)]),
    ('Day 3 · Afternoon','Downtown, in one sweep',"Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.",
@@ -81,7 +81,7 @@ STORY = {
    ('Day 2 · Across the bridge','Petals, frames, and matcha',"Cross the bridge to SoHo for the plush-flower shop and the Gentle Monster store, then a matcha crawl through NoHo and the villages.",
     [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Cross the bridge for a design stop.',True),('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line.',False)]),
    ('Day 2 · Evening','Art-gallery coffee and ramen',"A café that doubles as an art space in Williamsburg, then ramen and a scoop by the water on the way home.",
-    [('Rhythm Zero','ride','An art-gallery café with locations in Williamsburg and Greenpoint.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True),('Ramen in the East Village','ride','Local favorite pick.',True),('Ice cream by the water','ride','A scoop at golden hour.',True)]),
+    [('Rhythm Zero','ride','An art-gallery café with locations in Williamsburg and Greenpoint.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True),('Ippudo','ride','Hakata-style ramen under a canopy of bamboo. Confirm which location and wait times.',True),('Ice cream by the water','ride','A scoop at golden hour.',True)]),
    ('Day 3 · Morning','The secret garden',"A quick train up the Hudson and the city drops away: stone terraces, a long reflecting pool, and the river below.",
     [('Untermyer Gardens','trip','Metro-North from Grand Central to Greystone, about 40 minutes, then a short ride or walk. Free; closes at dusk.',False)]),
    ('Day 3 · Afternoon','Lower Manhattan, in one sweep',"An immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed. All a short ride across the bridge.",
@@ -585,6 +585,35 @@ CSS = r"""
   .rscene.nyc .msg.r2 { left:34%; top:78%; }
   @media (max-width:820px) { .rscene.nyc { aspect-ratio:3/3; } .rscene.nyc .cup { left:8%; right:auto; top:4%; width:40%; } .rscene.nyc .msg.r1 { display:block; left:52%; top:30%; width:44%; } .rscene.nyc .msg.r2 { left:8%; top:86%; } }
 
+  /* ---- Ippudo collage scene ---- */
+  .iscene { position:relative; width:min(1180px,100%); aspect-ratio:16/10.6; margin:30px auto 20px; }
+  .iscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
+  .iscene img.lyr { height:auto; max-width:none; }
+  .iscene .print { background:#f4efe3; padding:9px 9px 11px; }
+  .iscene .print img { display:block; width:100%; height:auto; }
+  .iscene .print figcaption { position:absolute; left:0; right:0; bottom:5px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .iscene .print:has(figcaption) { padding-bottom:30px; }
+  .iscene .tape { z-index:5; }
+  .iscene .room1 { left:3%; top:3%; width:47%; --r:-1.6deg; z-index:1; }
+  .iscene .store { right:4%; top:2%; width:33%; --r:2.4deg; z-index:2; }
+  .iscene .room2 { left:6%; top:52%; width:34%; --r:2deg; z-index:2; }
+  .iscene .bowl1 { left:38%; top:40%; width:25%; --r:-6deg; z-index:6; }
+  .iscene .bowl2 { left:58%; top:56%; width:21%; --r:7deg; z-index:6; }
+  .iscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .iscene .msg.i1 { left:78%; top:48%; --r:-3deg; width:16%; }
+  .iscene .msg.i2 { left:80%; top:78%; --r:-2deg; }
+  @media (max-width:820px) {
+    .iscene { aspect-ratio:3/6.2; }
+    .iscene .room1 { left:3%; top:1%; width:92%; }
+    .iscene .store { right:3%; top:20%; width:62%; }
+    .iscene .room2 { left:3%; top:44%; width:62%; }
+    .iscene .bowl1 { right:2%; top:42%; width:52%; left:auto; }
+    .iscene .bowl2 { left:6%; top:68%; width:50%; }
+    .iscene .msg { font-size:15px; }
+    .iscene .msg.i1 { display:none; }
+    .iscene .msg.i2 { left:8%; top:92%; width:60%; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -688,6 +717,24 @@ def snaps(slug_h, key):
     for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
         out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
+
+def ippudo_scene(slug_h, cap_html):
+    M = CDN + 'shared/ippudo/'
+    P = lambda cls, src, alt, cap='', sp=0.02: f'<figure class="lyr print {cls}" data-speed="{sp}"><div class="tape"></div><img src="{M}{src}" alt="{alt}" loading="lazy">' + (f'<figcaption class="hand">{cap}</figcaption>' if cap else '') + '</figure>'
+    C = lambda cls, src, sp: f'<img class="lyr {cls}" data-speed="{sp}" src="{M}{src}" alt="" loading="lazy">'
+    return f'''
+        <div class="scene-col">
+          <div class="iscene reveal">
+            {P('room1', 'room1.jpg', 'The bamboo-canopy dining room', 'under the bamboo', 0.015)}
+            {P('store', 'store.jpg', 'Ippudo storefront', 'the front door', -0.03)}
+            {P('room2', 'room2.jpg', 'The long communal tables', '', 0.025)}
+            {C('bowl1', 'cut-bowl-black.png', 0.045)}
+            {C('bowl2', 'cut-bowl-red.png', -0.04)}
+            <div class="lyr msg i1 hand" data-speed="0.01">steam, noodles,<br>a counter seat</div>
+            <div class="lyr msg i2 hand" data-speed="0.02">the cozy beat<br>of the day</div>
+          </div>
+          {cap_html}
+        </div>'''
 
 def rz_scene(slug_h, cap_html):
     M = CDN + 'shared/rz/'
@@ -912,6 +959,9 @@ def render(h):
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
+            if key == 'ippudo':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + ippudo_scene(slug_h, cap)
             if key == 'rhythm-zero':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + rz_scene(slug_h, cap)

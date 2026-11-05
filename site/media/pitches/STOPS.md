@@ -18,7 +18,7 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/12-matcha.jpg`: 12 Matcha
 - `nomad/rhythm-zero.jpg`: Rhythm Zero
 - `nomad/rok-matcha.jpg`: Rok Matcha
-- `nomad/ramen-ippudo-or-ivan-ramen.jpg`: Ramen: Ippudo or Ivan Ramen
+- `nomad/ippudo.jpg`: Ippudo
 - `nomad/untermyer-gardens.jpg`: Untermyer Gardens
 - `nomad/mercer-labs.jpg`: Mercer Labs
 - `nomad/printemps-one-wall-street.jpg`: Printemps, One Wall Street
@@ -44,7 +44,7 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `brooklyn/12-matcha.jpg`: 12 Matcha
 - `brooklyn/rhythm-zero.jpg`: Rhythm Zero
 - `brooklyn/rok-matcha.jpg`: Rok Matcha
-- `brooklyn/ramen-in-the-east-village.jpg`: Ramen in the East Village
+- `brooklyn/ippudo.jpg`: Ippudo
 - `brooklyn/ice-cream-by-the-water.jpg`: Ice cream by the water
 - `brooklyn/untermyer-gardens.jpg`: Untermyer Gardens
 - `brooklyn/mercer-labs.jpg`: Mercer Labs
