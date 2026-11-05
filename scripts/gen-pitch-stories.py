@@ -463,6 +463,39 @@ CSS = r"""
     .gscene .dd { display:none; }
   }
 
+  /* ---- Mercer Labs collage scene ---- */
+  .mlscene { position:relative; width:min(1180px,100%); aspect-ratio:16/11.2; margin:30px auto 20px; }
+  .mlscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
+  .mlscene img.lyr { height:auto; max-width:none; }
+  .mlscene .print { background:#f4efe3; padding:9px 9px 11px; }
+  .mlscene .print img { display:block; width:100%; height:auto; }
+  .mlscene .print figcaption { position:absolute; left:0; right:0; bottom:5px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .mlscene .print:has(figcaption) { padding-bottom:30px; }
+  .mlscene .tape { z-index:5; }
+  .mlscene .room { left:3%; top:2%; width:30%; --r:-2deg; z-index:1; }
+  .mlscene .cave { left:31%; top:8%; width:24%; --r:2.5deg; z-index:2; }
+  .mlscene .robot { right:4%; top:2%; width:26%; --r:-2.4deg; z-index:2; }
+  .mlscene .ext { left:56%; top:40%; width:21%; --r:4deg; z-index:5; }
+  .mlscene .neon { left:6%; top:62%; width:24%; --r:-6deg; z-index:5; }
+  .mlscene .tun { left:33%; top:61%; width:22%; --r:5deg; z-index:5; }
+  .mlscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .mlscene .msg.l1 { left:57%; top:12%; --r:-3deg; width:13%; }
+  .mlscene .msg.l2 { left:68%; top:78%; --r:-2deg; }
+  .mlscene .dd.a1 { left:30%; top:48%; width:8%; --r:60deg; z-index:7; filter:none; display:none; }
+  @media (max-width:820px) {
+    .mlscene { aspect-ratio:3/7; }
+    .mlscene .room { left:3%; top:1%; width:62%; }
+    .mlscene .cave { right:3%; top:12%; width:50%; left:auto; }
+    .mlscene .robot { left:3%; top:34%; width:52%; right:auto; }
+    .mlscene .ext { left:auto; right:3%; top:38%; width:40%; }
+    .mlscene .neon { left:3%; top:64%; width:44%; }
+    .mlscene .tun { left:auto; right:4%; top:62%; width:40%; }
+    .mlscene .msg { font-size:15px; }
+    .mlscene .msg.l1 { display:none; }
+    .mlscene .msg.l2 { left:8%; top:92%; width:60%; }
+    .mlscene .dd { display:none; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -566,6 +599,26 @@ def snaps(slug_h, key):
     for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
         out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
+
+def mercer_scene(slug_h, cap_html):
+    M = CDN + 'shared/mercer/'
+    P = lambda cls, src, alt, cap='', sp=0.02: f'<figure class="lyr print {cls}" data-speed="{sp}"><div class="tape"></div><img src="{M}{src}" alt="{alt}" loading="lazy">' + (f'<figcaption class="hand">{cap}</figcaption>' if cap else '') + '</figure>'
+    C = lambda cls, src, sp: f'<img class="lyr {cls}" data-speed="{sp}" src="{M}{src}" alt="" loading="lazy">'
+    return f'''
+        <div class="scene-col">
+          <div class="mlscene reveal">
+            {P('room', 'room.jpg', 'A room of projected flowers', 'step inside the garden', 0.015)}
+            {P('cave', 'cave.jpg', 'A tunnel of flowers', '', -0.03)}
+            {P('robot', 'robot.jpg', 'A robotic instrument in a glowing room', '', 0.025)}
+            {C('ext', 'cut-exterior.png', 0.04)}
+            {C('neon', 'cut-neon.png', -0.04)}
+            {C('tun', 'cut-tunnel.png', 0.03)}
+            <div class="lyr msg l1 hand" data-speed="0.01">a museum you<br>can step inside</div>
+            <div class="lyr msg l2 hand" data-speed="0.02">bring a friend,<br>stay a while</div>
+            <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
+          </div>
+          {cap_html}
+        </div>'''
 
 def gm_scene(slug_h, cap_html):
     M = CDN + 'shared/gm/'
@@ -709,6 +762,9 @@ def render(h):
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
+            if key == 'mercer-labs':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + mercer_scene(slug_h, cap)
             if key == 'gentle-monster-soho':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + gm_scene(slug_h, cap)
