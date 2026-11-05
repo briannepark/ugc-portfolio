@@ -557,6 +557,28 @@ CSS = r"""
     .rscene .dd { display:none; }
   }
 
+  /* ---- Rhythm Zero collage scene ---- */
+  .zscene { position:relative; width:min(1180px,100%); aspect-ratio:16/8; margin:30px auto 20px; }
+  .zscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.35)); will-change:transform; }
+  .zscene img.lyr { height:auto; max-width:none; }
+  .zscene .print { background:#f4efe3; padding:9px 9px 34px; }
+  .zscene .print img { display:block; width:100%; height:auto; }
+  .zscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .zscene .tape { z-index:5; }
+  .zscene .store { left:8%; top:8%; width:40%; --r:-2deg; z-index:1; }
+  .zscene .cup { left:44%; top:2%; width:15%; --r:5deg; z-index:6; }
+  .zscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .zscene .msg.z1 { left:62%; top:22%; --r:-3deg; }
+  .zscene .msg.z2 { left:20%; top:80%; --r:-2deg; }
+  @media (max-width:820px) {
+    .zscene { aspect-ratio:3/3.8; }
+    .zscene .store { left:3%; top:2%; width:80%; }
+    .zscene .cup { right:4%; left:auto; top:36%; width:42%; }
+    .zscene .msg { font-size:15px; }
+    .zscene .msg.z1 { left:6%; top:62%; width:46%; }
+    .zscene .msg.z2 { left:6%; top:86%; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -660,6 +682,19 @@ def snaps(slug_h, key):
     for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
         out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
+
+def rz_scene(slug_h, cap_html):
+    M = CDN + 'shared/rz/'
+    return f'''
+        <div class="scene-col">
+          <div class="zscene reveal">
+            <figure class="lyr print store" data-speed="0.015"><div class="tape"></div><img src="{M}store.jpg" alt="Rhythm Zero storefront" loading="lazy"><figcaption class="hand">art-gallery café</figcaption></figure>
+            <img class="lyr cup" data-speed="0.04" src="{M}cut-cup.png" alt="" loading="lazy">
+            <div class="lyr msg z1 hand" data-speed="0.01">blueberry matcha,<br>pink on the bottom</div>
+            <div class="lyr msg z2 hand" data-speed="0.02">sit, sip, people-watch</div>
+          </div>
+          {cap_html}
+        </div>'''
 
 def rok_scene(slug_h, cap_html):
     M = CDN + 'shared/rok/'
@@ -859,6 +894,9 @@ def render(h):
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
+            if key == 'rhythm-zero':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + rz_scene(slug_h, cap)
             if key == 'rok-matcha-koreatown':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + rok_scene(slug_h, cap)
