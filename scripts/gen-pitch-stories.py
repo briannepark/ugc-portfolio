@@ -54,8 +54,8 @@ STORY = {
     [('Madison Square Park and Flatiron','walk','Morning walk, coffee in hand.',True),('Chelsea galleries and the start of the High Line','walk','Local artists, one gallery per hour.',True)]),
    ('Day 2 · Afternoon','Petals and frames',"SoHo, but make it dreamy. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that's gone by Monday, and a pop-up only the locals know about.",
     [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Installation-style retail.',True),('Sample-sale hunt','ride','Check the 260 Sample Sale list the week you go.',True),('Pop-up of the week','ride','Pop-ups rotate weekly. Pick one for the feed.',True)]),
-   ('Day 2 · The matcha crawl','Two cups, two moods',"A line down the block for the matcha everyone talks about, and a café that doubles as an art gallery. This is the matcha chapter.",
-    [('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.',False),('Rhythm Zero','ride','An art-gallery café with a West Village location. Seasonal matcha drinks.',False)]),
+   ('Day 2 · The matcha crawl','Three cups, three moods',"A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.",
+    [('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.',False),('Rhythm Zero','ride','An art-gallery café with a West Village location. Seasonal matcha drinks.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True)]),
    ('Day 2 · Evening','A bowl worth the ride',"Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.",
     [('Ramen: Ippudo or Ivan Ramen','ride','East Village or Lower East Side.',True)]),
    ('Day 3 · Morning','The secret garden',"A quick train up the Hudson and the city drops away: stone terraces, a long reflecting pool, and the river below. This is the quiet chapter.",
@@ -81,7 +81,7 @@ STORY = {
    ('Day 2 · Across the bridge','Petals, frames, and matcha',"Cross the bridge to SoHo for the plush-flower shop and the Gentle Monster store, then a matcha crawl through NoHo and the villages.",
     [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Cross the bridge for a design stop.',True),('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line.',False)]),
    ('Day 2 · Evening','Art-gallery coffee and ramen',"A café that doubles as an art space in Williamsburg, then ramen and a scoop by the water on the way home.",
-    [('Rhythm Zero','ride','An art-gallery café with locations in Williamsburg and Greenpoint.',False),('Ramen in the East Village','ride','Local favorite pick.',True),('Ice cream by the water','ride','A scoop at golden hour.',True)]),
+    [('Rhythm Zero','ride','An art-gallery café with locations in Williamsburg and Greenpoint.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True),('Ramen in the East Village','ride','Local favorite pick.',True),('Ice cream by the water','ride','A scoop at golden hour.',True)]),
    ('Day 3 · Morning','The secret garden',"A quick train up the Hudson and the city drops away: stone terraces, a long reflecting pool, and the river below.",
     [('Untermyer Gardens','trip','Metro-North from Grand Central to Greystone, about 40 minutes, then a short ride or walk. Free; closes at dusk.',False)]),
    ('Day 3 · Afternoon','Lower Manhattan, in one sweep',"An immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed. All a short ride across the bridge.",
@@ -579,6 +579,12 @@ CSS = r"""
     .zscene .msg.z2 { left:6%; top:86%; }
   }
 
+  .rscene.nyc { aspect-ratio:16/6; }
+  .rscene.nyc .cup { left:30%; top:4%; width:15%; }
+  .rscene.nyc .msg.r1 { left:48%; top:30%; }
+  .rscene.nyc .msg.r2 { left:34%; top:78%; }
+  @media (max-width:820px) { .rscene.nyc { aspect-ratio:3/3; } .rscene.nyc .cup { left:8%; right:auto; top:4%; width:40%; } .rscene.nyc .msg.r1 { display:block; left:52%; top:30%; width:44%; } .rscene.nyc .msg.r2 { left:8%; top:86%; } }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -692,6 +698,18 @@ def rz_scene(slug_h, cap_html):
             <img class="lyr cup" data-speed="0.04" src="{M}cut-cup.png" alt="" loading="lazy">
             <div class="lyr msg z1 hand" data-speed="0.01">blueberry matcha,<br>pink on the bottom</div>
             <div class="lyr msg z2 hand" data-speed="0.02">sit, sip, people-watch</div>
+          </div>
+          {cap_html}
+        </div>'''
+
+def rok_nyc_scene(slug_h, cap_html):
+    M = CDN + 'shared/rok/'
+    return f'''
+        <div class="scene-col">
+          <div class="rscene nyc reveal">
+            <img class="lyr cup" data-speed="0.04" src="{M}cut-cup.png" alt="" loading="lazy">
+            <div class="lyr msg r1 hand" data-speed="0.01">watch the whisk<br>drip</div>
+            <div class="lyr msg r2 hand" data-speed="0.02">matcha crawl, cup three</div>
           </div>
           {cap_html}
         </div>'''
@@ -897,6 +915,9 @@ def render(h):
             if key == 'rhythm-zero':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + rz_scene(slug_h, cap)
+            if key == 'rok-matcha':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + rok_nyc_scene(slug_h, cap)
             if key == 'rok-matcha-koreatown':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + rok_scene(slug_h, cap)

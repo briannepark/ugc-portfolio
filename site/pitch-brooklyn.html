@@ -454,6 +454,12 @@
     .zscene .msg.z2 { left:6%; top:86%; }
   }
 
+  .rscene.nyc { aspect-ratio:16/6; }
+  .rscene.nyc .cup { left:30%; top:4%; width:15%; }
+  .rscene.nyc .msg.r1 { left:48%; top:30%; }
+  .rscene.nyc .msg.r2 { left:34%; top:78%; }
+  @media (max-width:820px) { .rscene.nyc { aspect-ratio:3/3; } .rscene.nyc .cup { left:8%; right:auto; top:4%; width:40%; } .rscene.nyc .msg.r1 { display:block; left:52%; top:30%; width:44%; } .rscene.nyc .msg.r2 { left:8%; top:86%; } }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -505,7 +511,7 @@
 </header>
 
 <section class="intro rise"><div class="kick">The trip</div><p>Picture a slower New York. The skyline is right across the water, the bridge is outside your window, and there&#x27;s a rooftop pool above it all. This is the stay for people who want the city without the rush.</p></section>
-<div class="index"><div class="kick">In this guide</div><p><span>Room and skyline view</span> <span>Rooftop pool deck</span> <span>Bamford Wellness Spa</span> <span>Brooklyn Bridge Park walk</span> <span>Washington Street bridge shot</span> <span>Jane&#x27;s Carousel</span> <span>Time Out Market</span> <span>Dumbo gallery stop</span> <span>CJ Hendry Flower Market</span> <span>Gentle Monster, SoHo</span> <span>12 Matcha</span> <span>Rhythm Zero</span> <span>Ramen in the East Village</span> <span>Ice cream by the water</span> <span>Untermyer Gardens</span> <span>Mercer Labs</span> <span>Printemps, One Wall Street</span> <span>Aura reading at Magic Jewelry</span></p></div>
+<div class="index"><div class="kick">In this guide</div><p><span>Room and skyline view</span> <span>Rooftop pool deck</span> <span>Bamford Wellness Spa</span> <span>Brooklyn Bridge Park walk</span> <span>Washington Street bridge shot</span> <span>Jane&#x27;s Carousel</span> <span>Time Out Market</span> <span>Dumbo gallery stop</span> <span>CJ Hendry Flower Market</span> <span>Gentle Monster, SoHo</span> <span>12 Matcha</span> <span>Rhythm Zero</span> <span>Rok Matcha</span> <span>Ramen in the East Village</span> <span>Ice cream by the water</span> <span>Untermyer Gardens</span> <span>Mercer Labs</span> <span>Printemps, One Wall Street</span> <span>Aura reading at Magic Jewelry</span></p></div>
 
   <section class="chapter " id="ch1" data-label="Day 1 · Morning">
     <div class="wrap">
@@ -653,7 +659,7 @@
         <div class="rise"><div class="kick">Day 2 · Evening</div><h2>Art-gallery coffee and ramen</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
         <div class="note rise"><div class="tape"></div>A café that doubles as an art space in Williamsburg, then ramen and a scoop by the water on the way home.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
-      <div class="collage n3 rev">
+      <div class="collage n4 rev">
         <div class="scene-col">
           <div class="zscene reveal">
             <figure class="lyr print store" data-speed="0.015"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shared/rz/store.jpg" alt="Rhythm Zero storefront" loading="lazy"><figcaption class="hand">art-gallery café</figcaption></figure>
@@ -663,12 +669,20 @@
           </div>
           <figcaption class="cap"><span class="nm">Rhythm Zero</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>An art-gallery café with locations in Williamsburg and Greenpoint.</span></figcaption>
         </div>
-        <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
+        <div class="scene-col">
+          <div class="rscene nyc reveal">
+            <img class="lyr cup" data-speed="0.04" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shared/rok/cut-cup.png" alt="" loading="lazy">
+            <div class="lyr msg r1 hand" data-speed="0.01">watch the whisk<br>drip</div>
+            <div class="lyr msg r2 hand" data-speed="0.02">matcha crawl, cup three</div>
+          </div>
+          <figcaption class="cap"><span class="nm">Rok Matcha</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.</span></figcaption>
+        </div>
+        <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Ramen in the East Village</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/brooklyn/ramen-in-the-east-village.jpg" alt="Ramen in the East Village" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">Ramen in the East Village</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Local favorite pick.</span></figcaption>
         </figure>
-        <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
+        <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Ice cream by the water</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/brooklyn/ice-cream-by-the-water.jpg" alt="Ice cream by the water" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">Ice cream by the water</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>A scoop at golden hour.</span></figcaption>
@@ -737,7 +751,7 @@
 </section>
 <section class="lists">
   <div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean"><li>Room and skyline view</li><li>Rooftop pool deck</li><li>Bamford Wellness Spa</li><li>Brooklyn Bridge Park walk <em>(confirm)</em></li><li>Washington Street bridge shot <em>(confirm)</em></li><li>Jane&#x27;s Carousel <em>(confirm)</em></li><li>Time Out Market <em>(confirm)</em></li><li>Dumbo gallery stop <em>(confirm)</em></li></ul></div>
-  <div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean"><li>CJ Hendry Flower Market</li><li>Gentle Monster, SoHo <em>(confirm)</em></li><li>12 Matcha</li><li>Rhythm Zero</li><li>Ramen in the East Village <em>(confirm)</em></li><li>Ice cream by the water <em>(confirm)</em></li><li>Untermyer Gardens</li><li>Mercer Labs</li><li>Printemps, One Wall Street</li><li>Aura reading at Magic Jewelry</li></ul></div>
+  <div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean"><li>CJ Hendry Flower Market</li><li>Gentle Monster, SoHo <em>(confirm)</em></li><li>12 Matcha</li><li>Rhythm Zero</li><li>Rok Matcha <em>(confirm)</em></li><li>Ramen in the East Village <em>(confirm)</em></li><li>Ice cream by the water <em>(confirm)</em></li><li>Untermyer Gardens</li><li>Mercer Labs</li><li>Printemps, One Wall Street</li><li>Aura reading at Magic Jewelry</li></ul></div>
 </section>
 
 <section class="end">
