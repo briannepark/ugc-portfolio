@@ -317,6 +317,45 @@ CSS = r"""
     .L-mason .collage.n1 { column-count:1; }
   }
 
+  /* ---- Madison Square Park collage scene ---- */
+  .scene-col { flex:0 0 100%; width:100%; }
+  .mscene { position:relative; width:min(1180px,100%); aspect-ratio:16/11.2; margin:30px auto 20px; }
+  .mscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
+  .mscene img.lyr { height:auto; max-width:none; }
+  .mscene .print { background:#f4efe3; padding:10px 10px 12px; box-shadow:0 1px 0 rgba(255,255,255,.4) inset; filter:drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
+  .mscene .print img { display:block; width:100%; height:auto; }
+  .mscene .print.wide { left:7%; top:3%; width:63%; --r:-1.6deg; z-index:1; }
+  .mscene .print.tall { right:3%; top:0%; width:25%; --r:2.6deg; z-index:2; padding-bottom:34px; }
+  .mscene .print.tall figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(14px,1.7vw,22px); color:#2a2a2a; }
+  .mscene .tape { z-index:5; }
+  .mscene .tree.tl { left:-6%; top:12%; width:31%; --r:-2deg; z-index:4; }
+  .mscene .tree.tr { right:-5%; bottom:4%; width:30%; --r:3deg; z-index:4; }
+  .mscene .tower { left:57%; top:25%; width:14.5%; --r:2deg; z-index:3; }
+  .mscene .fount { left:21%; bottom:-1%; width:47%; --r:-2.5deg; z-index:5; }
+  .mscene .circ { left:3%; bottom:3%; width:16%; --r:-5deg; z-index:6; }
+  .mscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .mscene .msg.m1 { left:6%; top:62%; --r:-4deg; }
+  .mscene .msg.m2 { left:56.5%; top:59%; --r:2deg; width:16%; z-index:7; }
+  .mscene .msg.m3 { right:9%; bottom:-3%; --r:-3deg; width:22%; }
+  .mscene .dd.a1 { left:21%; top:73%; width:11%; --r:-20deg; z-index:7; filter:none; }
+  .mscene .dd.a2 { display:none; }
+  .mscene .dd.u1 { display:none; }
+  @media (max-width:820px) {
+    .mscene { aspect-ratio:3/5.7; }
+    .mscene .print.wide { left:3%; top:1%; width:90%; }
+    .mscene .print.tall { right:2%; top:25%; width:52%; }
+    .mscene .tree.tl { left:-9%; top:29%; width:38%; }
+    .mscene .tower { display:none; }
+    .mscene .fount { left:3%; top:73%; bottom:auto; width:80%; }
+    .mscene .circ { left:auto; right:3%; top:57%; width:30%; }
+    .mscene .tree.tr { right:-9%; top:83%; bottom:auto; width:40%; }
+    .mscene .msg { font-size:15px; }
+    .mscene .msg.m1 { left:4%; top:63%; width:50%; }
+    .mscene .msg.m2 { left:4%; top:53%; width:36%; }
+    .mscene .msg.m3 { left:4%; right:auto; top:auto; bottom:1%; width:46%; }
+    .mscene .dd { display:none; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -363,7 +402,7 @@ JS = r"""
   }
   var cur = document.querySelector('.hud .cur'), bar = document.querySelector('.hud .bar');
   var chs = document.querySelectorAll('.chapter,.walkthru');
-  var cuts = Array.prototype.slice.call(document.querySelectorAll('.cut[data-speed]'));
+  var cuts = Array.prototype.slice.call(document.querySelectorAll('.cut[data-speed],.lyr[data-speed]'));
   var walk = document.querySelector('.walkthru'), ticking = false, s1, s2, s3, wcaps = [], floors = [];
   if (walk) { s1 = walk.querySelector('.s1'); s2 = walk.querySelector('.s2'); s3 = walk.querySelector('.s3');
     wcaps = Array.prototype.slice.call(walk.querySelectorAll('.wcap')); floors = Array.prototype.slice.call(walk.querySelectorAll('.floors .f')); }
@@ -412,6 +451,29 @@ def paper_tex(dark):
         fiber = "<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.9 .05' numOctaves='2' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .35  0 0 0 0 .2  0 0 0 .22 -.09'/></filter><rect width='100%' height='100%' filter='url(#f)'/></svg>"
         grain = "<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .15  0 0 0 0 .1  0 0 0 .32 -.06'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>"
     return ", ".join(uri(x) for x in (grain, fiber, mottle))
+
+def madison_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/madison/'
+    L = lambda cls, src, speed, extra='': f'<img class="lyr {cls}" data-speed="{speed}" src="{M}{src}" alt="" loading="lazy" {extra}>'
+    return f'''
+        <div class="scene-col">
+          <div class="mscene reveal">
+            <figure class="lyr print wide" data-speed="0.015"><div class="tape"></div><img src="{M}wide.jpg" alt="Madison Square Park from above" loading="lazy"></figure>
+            {L('tree tl', 'cut-tree-left.png', -0.02)}
+            {L('tower', 'cut-tower.png', 0.035)}
+            <figure class="lyr print tall" data-speed="-0.025"><div class="tape"></div><img src="{M}tall.jpg" alt="The fountain, sun through the trees" loading="lazy"><figcaption class="hand">sun through the trees</figcaption></figure>
+            {L('fount', 'cut-fountain.png', 0.045)}
+            {L('tree tr', 'cut-tree-right.png', -0.03)}
+            {L('circ', 'cut-circle.png', 0.02)}
+            <div class="lyr msg m1 hand" data-speed="0.01">coffee on a green bench,<br>fountain in the corner of my eye</div>
+            <div class="lyr msg m2 hand" data-speed="0.02">&uarr; the Flatiron,<br>a few blocks away</div>
+            <div class="lyr msg m3 hand" data-speed="0.02">golden hour = best light</div>
+            <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
+            <svg class="lyr dd a2" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
+            <svg class="lyr dd u1" viewBox="0 0 300 14" data-speed="0"><use href="#d-under"/></svg>
+          </div>
+          {cap_html}
+        </div>'''
 
 LAYOUTS = ['', 'L-side', 'L-center', 'L-hero', 'L-mason']
 
@@ -465,12 +527,16 @@ def render(h):
             stamp = '<span class="stamp">confirm</span>' if confirm else ''
             rot = [-.7, .5, -.3, .8][(i + j) % 4]
             speed = [0.025, -0.02, 0.03, -0.025][(i + j) % 4]
+            _before = len(frames)
             frames += f'''
         <figure class="cut reveal {clips[(i + j) % 4]} g{(i + j) % 4}" style="--r:{rot}deg" data-speed="{speed}">
           <div class="tape"></div>
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>
         </figure>'''
+            if slug_h == 'nomad' and key == 'madison-square-park-and-flatiron':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + madison_scene(slug_h, cap)
         k += 1
         chapters += f'''
   <section class="chapter {LAYOUTS[(i + off) % 5]}" id="ch{i+1+off}" data-label="{esc(kick)}">
