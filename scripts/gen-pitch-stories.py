@@ -1345,6 +1345,7 @@ def render(h):
     def _cat(name, tag):
         lo = name.lower()
         has = lambda *ks: any(k in lo for k in ks)
+        if has('bazaar', 'nubeluz', 'lobby lounge'): return 'Hotel'
         if has('matcha', 'rhythm zero'): return 'Matcha'
         if has('sample'): return 'Sample sale'
         if has('pop-up', 'cj hendry'): return 'Pop-ups'
@@ -1354,7 +1355,9 @@ def render(h):
         return 'Activities'
     _order = ['Hotel', 'Matcha', 'Food', 'Shops', 'Activities', 'Sample sale', 'Pop-ups']
     _g = {k: [] for k in _order}
+    _skip = {'lobby and lounge','room view at dusk','the bed and the quiet','bath time, mom and baby','family perks','dogs welcome','fitness center','nap and soak','spa and steam room','last look and checkout'}
     for _s in allstops:
+        if _s[0].lower() in _skip: continue
         _g[_cat(_s[0], _s[1])].append(_s[0])
     ticker = '<div class="gcats">' + ''.join(f'<div class="gcat"><h3>{k}<small>{len(v)}</small></h3><ul>' + ''.join(f'<li>{esc(x)}</li>' for x in v) + '</ul></div>' for k, v in _g.items() if v) + '</div>'
     _fl = [('a','c1','g0',2,'4/5',.04),('b','c2','g1',-2,'1/1',-.03),('c','c3','g2',1,'3/4',.02)]
