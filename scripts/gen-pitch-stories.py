@@ -284,6 +284,12 @@ CSS = r"""
   .scroll { animation:none; }
   .wcap .hand { font-family:var(--head); font-style:italic; font-size:clamp(30px,4.4vw,58px); line-height:1.05; }
   .cover .hand, .end .hand { font-family:var(--head); font-style:italic; }
+  .index .gcats { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:34px 40px; text-align:left; margin-top:30px; }
+  .index .gcat h3 { display:flex; justify-content:space-between; align-items:baseline; margin:0 0 10px; padding-bottom:9px; border-bottom:1px solid color-mix(in srgb,var(--txt) 24%, transparent); font:500 12px/1 var(--body); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); }
+  .index .gcat h3 small { font-size:11px; letter-spacing:.1em; opacity:.6; }
+  .index .gcat ul { list-style:none; margin:0; padding:0; }
+  .index .gcat li { font-family:var(--head); font-style:italic; font-size:clamp(17px,1.5vw,19px); line-height:1.35; padding:5px 0; opacity:.9; }
+  .index { max-width:1040px; }
   .index { max-width:860px; margin:0 auto; padding:34px 24px; text-align:center; border-block:1px solid color-mix(in srgb,var(--txt) 22%, transparent); }
   .index p { font-family:var(--head); font-style:italic; font-size:clamp(16px,1.6vw,19px); line-height:1.9; margin:8px 0 0; color:var(--txt); opacity:.85; }
   .index p span { white-space:nowrap; } .index p span::after { content:'  ·  '; opacity:.5; white-space:pre; } .index p span:last-child::after { content:''; }
@@ -1336,7 +1342,21 @@ def render(h):
     walk = [s for s in allstops if s[1] in ('here', 'walk')]
     far = [s for s in allstops if s[1] in ('ride', 'trip')]
     li = lambda arr: ''.join(f'<li>{esc(s[0])}{" <em>(confirm)</em>" if s[3] else ""}</li>' for s in arr)
-    ticker = ' '.join(f'<span>{esc(s[0])}</span>' for s in allstops)
+    def _cat(name, tag):
+        lo = name.lower()
+        has = lambda *ks: any(k in lo for k in ks)
+        if has('matcha', 'rhythm zero'): return 'Matcha'
+        if has('sample'): return 'Sample sale'
+        if has('pop-up', 'cj hendry'): return 'Pop-ups'
+        if has('bazaar', 'nubeluz', 'lobby lounge', 'the bar', 'ippudo', 'nobu', 'ice cream', 'printemps', 'poi by', 'fish co', 'mixed plate', 'star noodle', 'poke', 'breakfast', 'ferraro', 'duo', 'dinner', 'coffee'): return 'Food'
+        if has('gentle monster', 'kith', 'intelligence', 'marketplace', 'holoholo', 'kūlua', 'makawao town', 'shops at', 'paʻia town'): return 'Shops'
+        if tag == 'here': return 'Hotel'
+        return 'Activities'
+    _order = ['Hotel', 'Matcha', 'Food', 'Shops', 'Activities', 'Sample sale', 'Pop-ups']
+    _g = {k: [] for k in _order}
+    for _s in allstops:
+        _g[_cat(_s[0], _s[1])].append(_s[0])
+    ticker = '<div class="gcats">' + ''.join(f'<div class="gcat"><h3>{k}<small>{len(v)}</small></h3><ul>' + ''.join(f'<li>{esc(x)}</li>' for x in v) + '</ul></div>' for k, v in _g.items() if v) + '</div>'
     _fl = [('a','c1','g0',2,'4/5',.04),('b','c2','g1',-2,'1/1',-.03),('c','c3','g2',1,'3/4',.02)]
     floats = ''.join(f'<figure class="cut float {a} {c} {gg}" style="--r:{r}deg" data-speed="{sp}"><div class="img" style="--ar:{ar}"><span class="ph"></span><img src="{CDN}{slug_h}/cover-{n+1}.jpg" alt="" onerror="this.remove()"></div></figure>' for n, (a, c, gg, r, ar, sp) in enumerate(_fl) if os.path.exists(os.path.join(ROOT, 'media', 'pitches', slug_h, f'cover-{n+1}.jpg')))
     hotel_line = ''
@@ -1418,7 +1438,7 @@ def render(h):
 {opener}
 {lobby}
 {intro_h}
-<div class="index"><div class="kick">In this guide</div><p>{ticker}</p></div>
+<div class="index"><div class="kick">In this guide</div>{ticker}</div>
 {chapters}
 {hlsec}
 
