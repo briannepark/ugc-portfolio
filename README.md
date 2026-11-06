@@ -160,3 +160,6 @@ automatically in CI.
 ## Pitch center (private)
 
 Type `pitch` on the homepage (or Partnerships, Strategy, Travel) to open `site/pitches.html`, which links to one scroll-story page per hotel (`site/pitch-<hotel>.html`). These pages are generated: edit the copy and stops in `scripts/gen-pitch-stories.py` (palettes and facts live in `scripts/gen-pitches.py`), then run `python3 scripts/gen-pitch-stories.py && node scripts/build-app.mjs`. Photo slots are listed in `site/media/pitches/STOPS.md`; each fills a torn-edge cut-out once its file exists. Use a new filename (e.g. `-v2`) when replacing an image, because the CDN caches.
+
+### Season toggle (pitch pages)
+Every pitch page opens in **Winter** with a Winter / Spring & Summer switch in the top bar. The source copy in `scripts/gen-pitch-stories.py` is the spring/summer version; `WINTER_STOP` and `WINTER_TEXT` hold the winter overrides, rendered as `data-s="w"` / `data-s="m"` span pairs. Add a line to either dict to make more copy seasonal.

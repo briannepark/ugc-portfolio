@@ -58,8 +58,8 @@ STORY = {
     [('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.',False),('Rhythm Zero','ride','An art-gallery café with a West Village location. Seasonal matcha drinks.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True)]),
    ('Day 2 · Evening','A bowl worth the ride',"Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.",
     [('Ippudo','ride','Hakata-style ramen under a canopy of bamboo. Confirm which location (the storefront photo is #24) and wait times.',True)]),
-   ('Day 3 · Morning','The quiet garden',"The city drops away: a Japanese hill-and-pond garden, a rose garden, and a glass conservatory of greenhouse blooms. This is the quiet chapter.",
-    [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. The glass conservatory stays green and warm in winter, and the Japanese garden is quiet under frost. Confirm winter hours and tickets.',True)]),
+   ('Day 3 · Morning','The secret garden',"The city drops away: cherry blossoms in spring, a Japanese hill-and-pond garden, and roses in early summer. This is the quiet chapter.",
+    [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. Cherry blossoms in spring, roses in early summer, the Japanese garden and the conservatory year-round. Confirm hours and tickets.',True)]),
    ('Day 3 · Afternoon','Downtown, in one sweep',"Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.",
     [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False)]),
    ('Day 4 · Across the bridge','Brooklyn, then the big dinner',"A scoop of ice cream, the bridge in the frame, and one last dinner that earns its place in the story.",
@@ -82,8 +82,8 @@ STORY = {
     [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Cross the bridge for a design stop.',True),('Kith, SoHo','ride','The all-white sneaker wall and a tiled flagship. Confirm which store and hours.',True),('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line.',False)]),
    ('Day 2 · Evening','Art-gallery coffee and ramen',"A café that doubles as an art space in Williamsburg, then ramen and a scoop by the water on the way home.",
     [('Rhythm Zero','ride','An art-gallery café with locations in Williamsburg and Greenpoint.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True),('Ippudo','ride','Hakata-style ramen under a canopy of bamboo. Confirm which location and wait times.',True),('Ice cream by the water','ride','A scoop at golden hour.',True)]),
-   ('Day 3 · Morning','The quiet garden',"The city drops away: a Japanese hill-and-pond garden, a rose garden, and a glass conservatory of greenhouse blooms.",
-    [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. The glass conservatory stays green and warm in winter, and the Japanese garden is quiet under frost. Confirm winter hours and tickets.',True)]),
+   ('Day 3 · Morning','The secret garden',"The city drops away: cherry blossoms in spring, a Japanese hill-and-pond garden, and roses in early summer.",
+    [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. Cherry blossoms in spring, roses in early summer, the Japanese garden and the conservatory year-round. Confirm hours and tickets.',True)]),
    ('Day 3 · Afternoon','Lower Manhattan, in one sweep',"An immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed. All a short ride across the bridge.",
     [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False)]),
   ]),
@@ -695,6 +695,13 @@ CSS = r"""
     .ascene .msg.a2 { display:none; }
   }
 
+  /* ---- season toggle ---- */
+  html[data-season="winter"] [data-s="m"], html[data-season="warm"] [data-s="w"] { display:none; }
+  .hud .season { display:flex; gap:0; border:1px solid currentColor; border-radius:99px; overflow:hidden; }
+  .hud .season button { font:inherit; letter-spacing:inherit; text-transform:inherit; color:inherit; background:transparent; border:0; padding:6px 12px; cursor:pointer; }
+  .hud .season button[aria-pressed="true"] { background:#fff; color:#000; }
+  @media (max-width:820px) { .hud .cur { display:none; } .hud { font-size:10.5px; padding:10px 12px; } .hud .season button { padding:6px 9px; } }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -739,6 +746,16 @@ JS = r"""
     var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: .12 });
     els.forEach(function (e) { io.observe(e); });
   }
+  var seasonKey = 'pitch-season';
+  function setSeason(v, save) {
+    document.documentElement.setAttribute('data-season', v);
+    Array.prototype.forEach.call(document.querySelectorAll('.hud .season button'), function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-v') === v ? 'true' : 'false'); });
+    if (save) { try { localStorage.setItem(seasonKey, v); } catch (e) {} try { window.name = 'season:' + v; } catch (e) {} }
+  }
+  var saved = null; try { saved = localStorage.getItem(seasonKey); } catch (e) {}
+  if (!saved) { try { if (/^season:/.test(window.name)) saved = window.name.slice(7); } catch (e) {} }
+  if (saved === 'warm' || saved === 'winter') setSeason(saved, false);
+  Array.prototype.forEach.call(document.querySelectorAll('.hud .season button'), function (b) { b.addEventListener('click', function () { setSeason(b.getAttribute('data-v'), true); }); });
   var cur = document.querySelector('.hud .cur'), bar = document.querySelector('.hud .bar');
   var chs = document.querySelectorAll('.chapter,.walkthru');
   var cuts = Array.prototype.slice.call(document.querySelectorAll('.cut[data-speed],.lyr[data-speed]'));
@@ -1031,6 +1048,29 @@ def madison_scene(slug_h, cap_html):
 
 LAYOUTS = ['', 'L-side', 'L-center', 'L-hero', 'L-mason']
 
+# ---- seasons: the source copy above is the spring/summer version; winter is the default view ----
+WINTER_STOP = {   # warm name -> (winter name, winter note); a None keeps the warm one
+  'Brooklyn Botanical Garden': (None, '990 Washington Ave, Prospect Heights. The glass conservatory stays green and warm in winter, and the Japanese garden is quiet under frost. Confirm winter hours and tickets.'),
+  'Dumbo ice cream and bridge shot': ('Dumbo hot chocolate and bridge shot', 'Something warm in hand, then the bridge frame at dusk.'),
+  'Ice cream by the water': ('Hot chocolate by the water', 'Something warm at dusk.'),
+  'Malibu Country Mart': (None, 'Cozy outdoor shopping and cafes. Bring a layer for the ocean breeze.'),
+}
+WINTER_TEXT = {   # warm sentence -> winter sentence (titles, stories, intros)
+  'The secret garden': 'The quiet garden',
+  'The city drops away: cherry blossoms in spring, a Japanese hill-and-pond garden, and roses in early summer. This is the quiet chapter.': 'The city drops away: a Japanese hill-and-pond garden, and a glass conservatory of greenhouse blooms. This is the quiet chapter.',
+  'The city drops away: cherry blossoms in spring, a Japanese hill-and-pond garden, and roses in early summer.': 'The city drops away: a Japanese hill-and-pond garden, and a glass conservatory of greenhouse blooms.',
+  'A scoop of ice cream, the bridge in the frame, and one last dinner that earns its place in the story.': 'A hot chocolate, the bridge in the frame, and one last dinner that earns its place in the story.',
+  'Soft light over the skyline, a coffee on the rooftop deck, and nowhere to be. The calm opening shot of the trip.': 'Soft winter light over the skyline, a hot coffee by the window, and nowhere to be. The calm opening shot of the trip.',
+  'A café that doubles as an art space in Williamsburg, then ramen and a scoop by the water on the way home.': 'A café that doubles as an art space in Williamsburg, then ramen and a hot chocolate by the water on the way home.',
+  "Picture a slower New York. The skyline is right across the water, the bridge is outside your window, and there's a rooftop pool above it all. This is the stay for people who want the city without the rush.": "Picture a slower New York. The skyline is right across the water, the bridge is outside your window, and the city glitters in the cold. This is the stay for people who want the city without the rush.",
+}
+
+def sv(warm, winter=None):
+    """Escaped text with a winter/warm pair of spans when a winter variant exists."""
+    w = winter if winter is not None else WINTER_TEXT.get(warm)
+    if not w or w == warm: return esc(warm)
+    return f'<span data-s="w">{esc(w)}</span><span data-s="m">{esc(warm)}</span>'
+
 def render(h):
     S = STORY[h['slug']]; c = h['c']; slug_h = h['slug']
     dark = slug_h == 'nomad'
@@ -1086,7 +1126,7 @@ def render(h):
         <figure class="cut reveal {clips[(i + j) % 4]} g{(i + j) % 4}" style="--r:{rot}deg" data-speed="{speed}">
           <div class="tape"></div>
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
+          <figcaption class="cap"><span class="nm">{sv(name, WINTER_STOP.get(name, (None, None))[0])}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{sv(note, WINTER_STOP.get(name, (None, None))[1])}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
             if key == 'aura-reading-at-magic-jewelry':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
@@ -1133,8 +1173,8 @@ def render(h):
     <div class="wrap">
       <div class="num">{tm(slug_h,i+off)}</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">{esc(kick)}</div><h2>{esc(title)}</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
-        <div class="note rise"><div class="tape"></div>{esc(story)}<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
+        <div class="rise"><div class="kick">{esc(kick)}</div><h2>{sv(title)}</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>{sv(story)}<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n{min(n,4)} {'rev' if i % 2 else ''}">{frames}
       </div>
@@ -1148,7 +1188,7 @@ def render(h):
     facts = ''.join(f'<li>{esc(f)}</li>' for f in h['facts'])
     chips = ''.join(f'<span class="chip"><i></i>{esc(v)}</span>' for v in h['vibe'])
     return f'''<!doctype html>
-<html lang="en">
+<html lang="en" data-season="winter">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -1159,7 +1199,7 @@ def render(h):
 </head>
 <body>
 {DOODLES}
-<div class="hud"><a href="pitches.html">&larr; All pitches</a><span class="cur">Intro</span><span class="bar"></span></div>
+<div class="hud"><a href="pitches.html">&larr; All pitches</a><span class="cur">Intro</span><div class="season" role="group" aria-label="Season"><button type="button" data-v="winter" aria-pressed="true">Winter</button><button type="button" data-v="warm" aria-pressed="false">Spring &amp; Summer</button></div><span class="bar"></span></div>
 
 <header class="cover">
   <img class="bg" src="{CDN}{slug_h}-hero.jpg" alt="" onerror="this.remove()">
@@ -1175,7 +1215,7 @@ def render(h):
   </div>
 </header>
 
-<section class="intro rise"><div class="kick">The trip</div><p>{esc(S['intro'])}</p></section>
+<section class="intro rise"><div class="kick">The trip</div><p>{sv(S['intro'])}</p></section>
 <div class="index"><div class="kick">In this guide</div><p>{ticker}</p></div>
 {chapters}
 

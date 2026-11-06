@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-season="winter">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -570,6 +570,13 @@
     .ascene .msg.a2 { display:none; }
   }
 
+  /* ---- season toggle ---- */
+  html[data-season="winter"] [data-s="m"], html[data-season="warm"] [data-s="w"] { display:none; }
+  .hud .season { display:flex; gap:0; border:1px solid currentColor; border-radius:99px; overflow:hidden; }
+  .hud .season button { font:inherit; letter-spacing:inherit; text-transform:inherit; color:inherit; background:transparent; border:0; padding:6px 12px; cursor:pointer; }
+  .hud .season button[aria-pressed="true"] { background:#fff; color:#000; }
+  @media (max-width:820px) { .hud .cur { display:none; } .hud { font-size:10.5px; padding:10px 12px; } .hud .season button { padding:6px 9px; } }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -604,7 +611,7 @@
 <symbol id="d-under" viewBox="0 0 300 14"><path d="M3 9 C 60 3, 120 12, 180 6 S 260 4, 297 8"/><path d="M30 12.5 C 100 8, 170 13, 250 10"/></symbol>
 <symbol id="d-up" viewBox="0 0 40 30"><path d="M4 26 C 14 25, 24 15, 31 4"/><path d="M22 6 L32 3 L34 13"/></symbol>
 </defs></svg>
-<div class="hud"><a href="pitches.html">&larr; All pitches</a><span class="cur">Intro</span><span class="bar"></span></div>
+<div class="hud"><a href="pitches.html">&larr; All pitches</a><span class="cur">Intro</span><div class="season" role="group" aria-label="Season"><button type="button" data-v="winter" aria-pressed="true">Winter</button><button type="button" data-v="warm" aria-pressed="false">Spring &amp; Summer</button></div><span class="bar"></span></div>
 
 <header class="cover">
   <img class="bg" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters-hero.jpg" alt="" onerror="this.remove()">
@@ -715,7 +722,7 @@
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Malibu Country Mart</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/malibu-country-mart.jpg" alt="Malibu Country Mart" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Malibu Country Mart</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Outdoor shopping and cafes.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Malibu Country Mart</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg><span data-s="w">Cozy outdoor shopping and cafes. Bring a layer for the ocean breeze.</span><span data-s="m">Outdoor shopping and cafes.</span></span></figcaption>
         </figure>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
@@ -809,6 +816,16 @@
     var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: .12 });
     els.forEach(function (e) { io.observe(e); });
   }
+  var seasonKey = 'pitch-season';
+  function setSeason(v, save) {
+    document.documentElement.setAttribute('data-season', v);
+    Array.prototype.forEach.call(document.querySelectorAll('.hud .season button'), function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-v') === v ? 'true' : 'false'); });
+    if (save) { try { localStorage.setItem(seasonKey, v); } catch (e) {} try { window.name = 'season:' + v; } catch (e) {} }
+  }
+  var saved = null; try { saved = localStorage.getItem(seasonKey); } catch (e) {}
+  if (!saved) { try { if (/^season:/.test(window.name)) saved = window.name.slice(7); } catch (e) {} }
+  if (saved === 'warm' || saved === 'winter') setSeason(saved, false);
+  Array.prototype.forEach.call(document.querySelectorAll('.hud .season button'), function (b) { b.addEventListener('click', function () { setSeason(b.getAttribute('data-v'), true); }); });
   var cur = document.querySelector('.hud .cur'), bar = document.querySelector('.hud .bar');
   var chs = document.querySelectorAll('.chapter,.walkthru');
   var cuts = Array.prototype.slice.call(document.querySelectorAll('.cut[data-speed],.lyr[data-speed]'));
