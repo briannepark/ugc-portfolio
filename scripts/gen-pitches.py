@@ -632,7 +632,7 @@ HUB_JS = r"""
 
 BINDERS = [
  dict(id='travel', no='01', title='Travel', sub='hotel & destination pitches', lea='#9a6b47', lea2='#6d4529', deb='rgba(38,20,8,.62)', debs='0 1px 0 rgba(255,228,196,.3), 0 -1px 1px rgba(0,0,0,.32)',
-      pitches=[('nomad', 'NoMad'), ('brooklyn', '1 Hotel'), ('maui', 'Maui'), ('proper', 'Proper'), ('shutters', 'Shutters')]),
+      pitches=[('nomad', 'NoMad'), ('maui', 'Maui'), ('proper', 'Proper'), ('shutters', 'Shutters')]),
  dict(id='skincare', no='02', title='Skincare', sub='routines & rituals', lea='#d3b2a4', lea2='#b9917f', deb='rgba(88,52,40,.6)', debs='0 1px 0 rgba(255,255,255,.38), 0 -1px 1px rgba(60,30,20,.25)', pitches=[]),
  dict(id='homegoods', no='03', title='Homegoods', sub='rooms & rituals at home', lea='#8b9479', lea2='#667057', deb='rgba(25,32,18,.6)', debs='0 1px 0 rgba(255,255,255,.22), 0 -1px 1px rgba(10,16,6,.35)', pitches=[]),
  dict(id='fashion', no='04', title='Fashion', sub='wardrobe & style pitches', lea='#3d3a38', lea2='#252322', deb='rgba(0,0,0,.7)', debs='0 1px 0 rgba(255,255,255,.14), 0 -1px 1px rgba(0,0,0,.6)', pitches=[]),
@@ -660,11 +660,11 @@ def hub():
         if n:
             rows = ''
             tabs = ''
-            for sl, tab in b['pitches']:
+            for k2, (sl, tab) in enumerate(b['pitches'], 1):
                 h = by[sl]
                 rows += f'''
           <li class="row" data-page="{PUBLIC.get(sl, 'pitch-' + sl)}">
-            <a class="go" href="pitch-{sl}.html"><b>{h['no']}</b><span class="n">{esc(h['short'])}</span><span class="c">{esc(h['city'])}</span></a>
+            <a class="go" href="pitch-{sl}.html"><b>{k2:02d}</b><span class="n">{esc(h['short'])}</span><span class="c">{esc(h['city'])}</span></a>
             <button class="cp" type="button">copy link</button>
             <input class="lk" readonly aria-label="Direct link">
           </li>'''
