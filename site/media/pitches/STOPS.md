@@ -7,8 +7,15 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 
 - `nomad-hero.jpg` (full-bleed cover background)
 - `nomad/cover-1.jpg`, `cover-2.jpg`, `cover-3.jpg` (floating cover cut-outs)
+- `nomad/the-bed-and-the-quiet.jpg`: The bed and the quiet
+- `nomad/bath-time-mom-and-baby.jpg`: Bath time, mom and baby
+- `nomad/family-perks.jpg`: Family perks
+- `nomad/dogs-welcome.jpg`: Dogs welcome
 - `nomad/bazaar-meat-by-jos-andr-s.jpg`: Bazaar Meat by José Andrés
 - `nomad/nubeluz-50th-floor.jpg`: Nubeluz, 50th floor
+- `nomad/fitness-center.jpg`: Fitness center
+- `nomad/morning-walk-with-the-dog.jpg`: Morning walk with the dog
+- `nomad/lobby-lounge-coffee.jpg`: Lobby Lounge coffee
 - `nomad/madison-square-park-and-flatiron.jpg`: Madison Square Park and Flatiron
 - `nomad/chelsea-galleries-and-the-start-of-the-high-line.jpg`: Chelsea galleries and the start of the High Line
 - `nomad/cj-hendry-flower-market.jpg`: CJ Hendry Flower Market
@@ -19,6 +26,8 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/12-matcha.jpg`: 12 Matcha
 - `nomad/rhythm-zero.jpg`: Rhythm Zero
 - `nomad/rok-matcha.jpg`: Rok Matcha
+- `nomad/nap-and-soak.jpg`: Nap and soak
+- `nomad/spa-and-steam-room.jpg`: Spa and steam room
 - `nomad/ippudo.jpg`: Ippudo
 - `nomad/brooklyn-botanical-garden.jpg`: Brooklyn Botanical Garden
 - `nomad/mercer-labs.jpg`: Mercer Labs

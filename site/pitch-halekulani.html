@@ -656,6 +656,11 @@
   .lobby .pen::after { content:''; position:absolute; left:-30%; right:-30%; top:19%; height:2.5%; border-radius:3px; background:linear-gradient(#f2dc9a,#a98240); }
   .lobby .cap2 { margin-top:34px; font-family:var(--hand); font-size:clamp(22px,2.4vw,28px); color:var(--pen); text-align:center; }
 
+  .pin { display:inline-flex; align-items:center; gap:6px; width:fit-content; margin-top:6px; font-family:var(--body); font-size:12px; letter-spacing:.05em; color:var(--accent); border-bottom:1px solid currentColor; padding-bottom:1px; pointer-events:auto; position:relative; z-index:6; }
+  .pin svg { width:10px; height:13px; fill:currentColor; } .pin:hover { opacity:.7; }
+  .stayline { margin-top:16px; font-size:13px; letter-spacing:.04em; display:flex; gap:14px; flex-wrap:wrap; align-items:center; } .stayline a { border-bottom:1px solid rgba(255,255,255,.6); padding-bottom:1px; }
+  .bk-addr { margin-top:14px; font-size:12px; letter-spacing:.05em; color:#5a4d3e; display:flex; gap:12px; flex-wrap:wrap; } .bk-addr a { border-bottom:1px solid currentColor; }
+
   .bd-book { position:relative; width:var(--bw,min(760px,94vw)); height:var(--bh,min(84vh,860px)); border-radius:18px; color:#2a2420;
      background-color:var(--lea,#4a2621); background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='l' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='3' seed='7' stitchTiles='stitch' result='n'/%3E%3CfeDiffuseLighting in='n' surfaceScale='1.8' diffuseConstant='1' lighting-color='%23ffffff'%3E%3CfeDistantLight azimuth='50' elevation='62'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23l)'/%3E%3C/svg%3E"), radial-gradient(ellipse at 28% 18%, rgba(255,255,255,.2), transparent 55%), linear-gradient(150deg,var(--lea,#4a2621),var(--lea2,#2a110d));
      background-blend-mode:multiply, soft-light, normal; box-shadow:0 40px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,235,200,.08); }
@@ -697,6 +702,7 @@
         <h1 class="bk-name">Halekulani</h1>
         <div class="bk-tag">Oceanfront Waikiki, with local Hawaiian makers close by.</div>
         <div class="bk-hand">&mdash; mahalo, Waikiki</div>
+        <div class="bk-addr"></div>
         <figure class="bk-pol"><svg class="bd-clip" viewBox="0 0 26 76" aria-hidden="true"><path d="M5 52V15a8 8 0 0 1 16 0v47a11 11 0 0 1-22 0V22" transform="translate(2 0)" fill="none" stroke="#a8acb2" stroke-width="2.4" stroke-linecap="round"/></svg><span class="ph"><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/walk-room.jpg" alt="" onerror="this.remove()"></span><figcaption>a pitch by Brianne</figcaption></figure>
         <div class="bk-cue">scroll to open the itinerary &darr;</div>
       </div>
@@ -705,14 +711,13 @@
     </div></div></section>
 <header class="cover">
   <img class="bg" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani-hero.jpg" alt="" onerror="this.remove()">
-  <figure class="cut float a c1 g0" style="--r:2deg" data-speed="0.04"><div class="img" style="--ar:4/5"><span class="ph"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/cover-1.jpg" alt="" onerror="this.remove()"></div></figure>
-  <figure class="cut float b c2 g1" style="--r:-2deg" data-speed="-0.03"><div class="img" style="--ar:1/1"><span class="ph"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/cover-2.jpg" alt="" onerror="this.remove()"></div></figure>
-  <figure class="cut float c c3 g2" style="--r:1deg" data-speed="0.02"><div class="img" style="--ar:3/4"><span class="ph"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/cover-3.jpg" alt="" onerror="this.remove()"></div></figure>
+
   <div class="in">
     <div class="kick">Pitch 03 &middot; Hawaiʻi (Oʻahu)</div>
     <h1>Halekulani</h1>
     <p class="tag">Oceanfront Waikiki, with local Hawaiian makers close by.</p>
     <div class="hand">&mdash; mahalo, Waikiki</div>
+    <div class="stayline"></div>
     <div class="scroll">Scroll the story &darr;</div>
   </div>
 </header>
@@ -732,12 +737,12 @@
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Oceanfront room and lanai view</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/oceanfront-room-and-lanai-view.jpg" alt="Oceanfront room and lanai view" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Oceanfront room and lanai view</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Confirm room categories.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Oceanfront room and lanai view</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Confirm room categories.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Oceanfront%20room%20and%20lanai%20view%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Sunrise on the beach</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/sunrise-on-the-beach.jpg" alt="Sunrise on the beach" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Sunrise on the beach</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Soft light, no filter.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Sunrise on the beach</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Soft light, no filter.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Sunrise%20on%20the%20beach%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/ch1-cutout.png" alt="" onerror="this.remove()">
@@ -754,12 +759,12 @@
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Waikiki shops</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/waikiki-shops.jpg" alt="Waikiki shops" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Waikiki shops</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>A quick browse before the beach.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Waikiki shops</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>A quick browse before the beach.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Waikiki%20shops%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
           <div class="tape"></div>
           <div class="img"><span class="ph">Sunset dinner at the hotel</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/sunset-dinner-at-the-hotel.jpg" alt="Sunset dinner at the hotel" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Sunset dinner at the hotel</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Confirm the restaurant and hours.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Sunset dinner at the hotel</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Confirm the restaurant and hours.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Sunset%20dinner%20at%20the%20hotel%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/ch2-cutout.png" alt="" onerror="this.remove()">
@@ -776,22 +781,22 @@
         <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
           <div class="tape"></div>
           <div class="img"><span class="ph">Kakaʻako murals walk</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/kaka-ako-murals-walk.jpg" alt="Kakaʻako murals walk" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Kakaʻako murals walk</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Colorful neighborhood, easy to wander.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Kakaʻako murals walk</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Colorful neighborhood, easy to wander.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Kaka%CA%BBako%20murals%20walk%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">House of Mana Up</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/house-of-mana-up.jpg" alt="House of Mana Up" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">House of Mana Up</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Hawaiian entrepreneurs, beauty and local foods.</span></figcaption>
+          <figcaption class="cap"><span class="nm">House of Mana Up</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Hawaiian entrepreneurs, beauty and local foods.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=House%20of%20Mana%20Up%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">MORI by Art+Flea</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/mori-by-art-flea.jpg" alt="MORI by Art+Flea" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">MORI by Art+Flea</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Goods by Hawaiian artists.</span></figcaption>
+          <figcaption class="cap"><span class="nm">MORI by Art+Flea</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Goods by Hawaiian artists.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=MORI%20by%20Art%2BFlea%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">always a.line and Salvage Public</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/always-a-line-and-salvage-public.jpg" alt="always a.line and Salvage Public" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">always a.line and Salvage Public</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Hawaiian-inspired prints and surf graphic tees.</span></figcaption>
+          <figcaption class="cap"><span class="nm">always a.line and Salvage Public</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Hawaiian-inspired prints and surf graphic tees.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=always%20a.line%20and%20Salvage%20Public%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/ch3-cutout.png" alt="" onerror="this.remove()">
@@ -808,22 +813,22 @@
         <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Black Sheep Cream Company</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/black-sheep-cream-company.jpg" alt="Black Sheep Cream Company" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Black Sheep Cream Company</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Rotating ice cream flavors.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Black Sheep Cream Company</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Rotating ice cream flavors.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Black%20Sheep%20Cream%20Company%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Lin&#x27;s Hawaiian Snacks</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/lin-s-hawaiian-snacks.jpg" alt="Lin&#x27;s Hawaiian Snacks" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Lin&#x27;s Hawaiian Snacks</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Shave ice, open since the 1980s.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Lin&#x27;s Hawaiian Snacks</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Shave ice, open since the 1980s.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Lin%27s%20Hawaiian%20Snacks%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Local matcha stop</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/local-matcha-stop.jpg" alt="Local matcha stop" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Local matcha stop</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Pick one the week you go.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Local matcha stop</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Pick one the week you go.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Local%20matcha%20stop%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
           <div class="tape"></div>
           <div class="img"><span class="ph">Merriman&#x27;s Honolulu</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/merriman-s-honolulu.jpg" alt="Merriman&#x27;s Honolulu" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Merriman&#x27;s Honolulu</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Farm-to-table dinner.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Merriman&#x27;s Honolulu</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Farm-to-table dinner.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Merriman%27s%20Honolulu%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/ch4-cutout.png" alt="" onerror="this.remove()">
@@ -840,7 +845,7 @@
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Honolulu Museum of Art</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/honolulu-museum-of-art.jpg" alt="Honolulu Museum of Art" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Honolulu Museum of Art</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Local artists and a quiet gallery moment.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Honolulu Museum of Art</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Local artists and a quiet gallery moment.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Honolulu%20Museum%20of%20Art%2C%20Hawai%CA%BBi%20%28O%CA%BBahu%29" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani/ch5-cutout.png" alt="" onerror="this.remove()">

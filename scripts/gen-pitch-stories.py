@@ -26,7 +26,7 @@ TAGS = gp.TAGS
 def slug(t): return re.sub(r'[^a-z0-9]+', '-', t.lower()).strip('-')
 
 TIMES = {
- 'nomad': ['4:00 pm','8:30 pm','9:30 am','12:00 pm','2:30 pm','7:00 pm','10:00 am','1:30 pm','1:00 pm','6:30 pm'],
+ 'nomad': ['4:00 pm','5:30 pm','8:30 pm','7:00 am','9:30 am','12:00 pm','2:30 pm','4:30 pm','7:00 pm','10:00 am','1:30 pm','1:00 pm','6:30 pm'],
  'brooklyn': ['8:00 am','10:30 am','2:00 pm','12:30 pm','1:00 pm','6:00 pm','10:00 am','1:30 pm'],
  'halekulani': ['4:00 pm','6:30 pm','10:00 am','2:30 pm','9:30 am'],
  'proper': ['5:00 pm','7:00 pm','10:30 am','2:00 pm','11:00 am'],
@@ -48,14 +48,20 @@ STORY = {
       ('Room','Then up, to the view.','Dusk over the downtown skyline, with every light just switching on.')]),
   intro="Picture this. You land in New York, ride into NoMad, and step into a room where the window is so wide the skyline feels hung just for you. This is the long weekend I'd take you on, one stop at a time.",
   chapters=[
+   ('Day 1 · Settle in','Sleep like you mean it',"I travel with my baby and my dog, so the hotel has to work for all three of us. This is the part of the trip I'd film first: a quiet room, a long nap while the city hums far below, and a soak at the end of the day.",
+    [('The bed and the quiet','here','Oversize windows, high above the street. Nap time and bedtime, on the clock. Ask about the bedding and a crib.',True),('Bath time, mom and baby','here','Diptyque bath products and a separate rain shower, with a deep soaking tub in select rooms. Request a tub room: a warm bath for baby, then a long one for me.',True),('Family perks','here','Ritz Kids activities are listed on the hotel site, and adjoining rooms may be possible. Ask what is offered for babies and toddlers.',True),('Dogs welcome','here','Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.',True)]),
    ('Day 1 · Nightfall','Fifty floors up',"Dinner at the hotel turns into a nightcap, and the nightcap turns into the best view of the trip. Blue hour, every light in Midtown below.",
     [('Bazaar Meat by José Andrés','here','Velvet booths, feather chandeliers, dinner at the hotel.',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
+   ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, I slip down to the fitness center. It is open around the clock, with Peloton bikes, right next to the spa. Then a quick leashed loop with the dog, and coffee from the Lobby Lounge.",
+    [('Fitness center','here','Open 24 hours, with Peloton bikes. Confirm hours and any age rules.',True),('Morning walk with the dog','walk','A leashed loop out the lobby before breakfast. Confirm park rules.',True),('Lobby Lounge coffee','here','Pastries, coffee and tea in the morning.',False)]),
    ('Day 2 · Morning','Coffee in hand, on foot',"Out the lobby and into the neighborhood. Everything good around here is a walk away: the park, the Flatiron, the galleries of Chelsea.",
     [('Madison Square Park and Flatiron','walk','Morning walk, coffee in hand.',True),('Chelsea galleries and the start of the High Line','walk','Local artists, one gallery per hour.',True)]),
    ('Day 2 · Afternoon','Petals and frames',"SoHo, but make it dreamy. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that's gone by Monday, and a pop-up only the locals know about.",
     [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Installation-style retail.',True),('Kith, SoHo','ride','The all-white sneaker wall and a tiled flagship. Confirm which store and hours.',True),('Sample-sale hunt','ride','Check the 260 Sample Sale list the week you go.',True),('Pop-up of the week','ride','Pop-ups rotate weekly. Pick one for the feed.',True)]),
    ('Day 2 · The matcha crawl','Three cups, three moods',"A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.",
     [('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.',False),('Rhythm Zero','ride','An art-gallery café with a West Village location. Seasonal matcha drinks.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True)]),
+   ('Day 2 · Rest hour','Back by four, for a reset',"After a big day out, we're back at the hotel. Baby naps, I take a long bath, and the dog gets a quiet corner. Rest is part of the itinerary, and it makes the evening better.",
+    [('Nap and soak','here','The room at its calmest, afternoon light across the skyline.',False),('Spa and steam room','here','A 6,800 sq ft spa with a sauna and steam room. Confirm treatments and age rules.',True)]),
    ('Day 2 · Evening','A bowl worth the ride',"Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.",
     [('Ippudo','ride','Hakata-style ramen under a canopy of bamboo. Confirm which location (the storefront photo is #24) and wait times.',True)]),
    ('Day 3 · Morning','The secret garden',"The city drops away: cherry blossoms in spring, a Japanese hill-and-pond garden, and roses in early summer. This is the quiet chapter.",
@@ -780,6 +786,11 @@ CSS = r"""
   .lobby .pen::before { content:''; position:absolute; left:-30%; right:-30%; top:10%; height:5%; border-radius:3px; background:linear-gradient(#f2dc9a,#a98240); }
   .lobby .pen::after { content:''; position:absolute; left:-30%; right:-30%; top:19%; height:2.5%; border-radius:3px; background:linear-gradient(#f2dc9a,#a98240); }
   .lobby .cap2 { margin-top:34px; font-family:var(--hand); font-size:clamp(22px,2.4vw,28px); color:var(--pen); text-align:center; }
+
+  .pin { display:inline-flex; align-items:center; gap:6px; width:fit-content; margin-top:6px; font-family:var(--body); font-size:12px; letter-spacing:.05em; color:var(--accent); border-bottom:1px solid currentColor; padding-bottom:1px; pointer-events:auto; position:relative; z-index:6; }
+  .pin svg { width:10px; height:13px; fill:currentColor; } .pin:hover { opacity:.7; }
+  .stayline { margin-top:16px; font-size:13px; letter-spacing:.04em; display:flex; gap:14px; flex-wrap:wrap; align-items:center; } .stayline a { border-bottom:1px solid rgba(255,255,255,.6); padding-bottom:1px; }
+  .bk-addr { margin-top:14px; font-size:12px; letter-spacing:.05em; color:#5a4d3e; display:flex; gap:12px; flex-wrap:wrap; } .bk-addr a { border-bottom:1px solid currentColor; }
 """
 
 DOODLES = """<svg width="0" height="0" style="position:absolute"><defs>
@@ -867,6 +878,20 @@ def paper_tex(dark):
         fiber = "<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.9 .05' numOctaves='2' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .35  0 0 0 0 .2  0 0 0 .22 -.09'/></filter><rect width='100%' height='100%' filter='url(#f)'/></svg>"
         grain = "<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .15  0 0 0 0 .1  0 0 0 .32 -.06'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>"
     return ", ".join(uri(x) for x in (grain, fiber, mottle))
+
+ADDR = {'cj-hendry-flower-market': '172 Prince St', '12-matcha': '54 Bond St', 'mercer-labs': '21 Dey St', 'aura-reading-at-magic-jewelry': '238 Canal St', 'brooklyn-botanical-garden': '990 Washington Ave'}
+NOPIN = {'sample-sale-hunt', 'pop-up-of-the-week', 'room-and-amenities', 'room-view-and-amenities', 'last-look-and-checkout'}
+import urllib.parse as _up
+
+def pin(h, name, key, tag):
+    if key in NOPIN: return ''
+    if tag == 'here' and h.get('addr'):
+        q = h['name'] + ', ' + h['addr']; label = h['addr'].split(',')[0]
+    else:
+        q = name + ', ' + h['city']; label = ADDR.get(key, 'Map &amp; address')
+    href = 'https://www.google.com/maps/search/?api=1&query=' + _up.quote(q)
+    return f'<a class="pin" href="{href}" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>{label}</a>'
+
 
 SNAPS = {('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
 
@@ -1186,7 +1211,7 @@ def render(h):
         <figure class="cut reveal {clips[(i + j) % 4]} g{(i + j) % 4}" style="--r:{rot}deg" data-speed="{speed}">
           <div class="tape"></div>
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">{sv(name, WINTER_STOP.get(name, (None, None))[0])}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{sv(note, WINTER_STOP.get(name, (None, None))[1])}</span></figcaption>{snaps(slug_h, key)}
+          <figcaption class="cap"><span class="nm">{sv(name, WINTER_STOP.get(name, (None, None))[0])}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{sv(note, WINTER_STOP.get(name, (None, None))[1])}</span>{pin(h, name, key, tag)}</figcaption>{snaps(slug_h, key)}
         </figure>'''
             if key == 'aura-reading-at-magic-jewelry':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
@@ -1245,8 +1270,14 @@ def render(h):
     far = [s for s in allstops if s[1] in ('ride', 'trip')]
     li = lambda arr: ''.join(f'<li>{esc(s[0])}{" <em>(confirm)</em>" if s[3] else ""}</li>' for s in arr)
     ticker = ' '.join(f'<span>{esc(s[0])}</span>' for s in allstops)
+    _fl = [('a','c1','g0',2,'4/5',.04),('b','c2','g1',-2,'1/1',-.03),('c','c3','g2',1,'3/4',.02)]
+    floats = ''.join(f'<figure class="cut float {a} {c} {gg}" style="--r:{r}deg" data-speed="{sp}"><div class="img" style="--ar:{ar}"><span class="ph"></span><img src="{CDN}{slug_h}/cover-{n+1}.jpg" alt="" onerror="this.remove()"></div></figure>' for n, (a, c, gg, r, ar, sp) in enumerate(_fl) if os.path.exists(os.path.join(ROOT, 'media', 'pitches', slug_h, f'cover-{n+1}.jpg')))
+    hotel_line = ''
+    if h.get('addr'):
+        _mp = 'https://www.google.com/maps/search/?api=1&query=' + _up.quote(h['name'] + ', ' + h['addr'])
+        hotel_line = f'<a href="{_mp}" target="_blank" rel="noopener">{esc(h["addr"])}</a><a href="{h["site"]}" target="_blank" rel="noopener">ritzcarlton.com</a>'
     facts = ''.join(f'<li>{esc(f)}</li>' for f in h['facts'])
-    lobby = ('''<section class="lobby rise"><div class="pad"><div class="sheet"><div class="lh">The Ritz-Carlton<small>New York &middot; NoMad</small></div><div class="msg">meet you in the lobby at 4PM?</div></div><span class="pen"></span></div><div class="cap2">day 1 starts here &darr;</div></section>''' if slug_h == 'nomad' else '')
+    lobby = ('''<section class="lobby rise"><div class="pad"><div class="sheet"><div class="lh">The Ritz-Carlton<small>NoMad</small></div><div class="msg">meet you in the lobby at 4PM?</div></div><span class="pen"></span></div><div class="cap2">day 1 starts here &darr;</div></section>''' if slug_h == 'nomad' else '')
     tabs_raw = ([('ch1', S['walk']['kick'])] if 'walk' in S else []) + [(f'ch{i+1+off}', c[0]) for i, c in enumerate(S['chapters'])]
     tabs_l = []
     for tid, kk in tabs_raw:
@@ -1260,6 +1291,7 @@ def render(h):
         <h1 class="bk-name">{esc(h['name'])}</h1>
         <div class="bk-tag">{esc(h['tagline'])}</div>
         <div class="bk-hand">&mdash; {esc(h['hand'])}</div>
+        <div class="bk-addr">{hotel_line}</div>
         <figure class="bk-pol">{gp.CLIP}<span class="ph"><img src="{CDN}{slug_h}/walk-room.jpg" alt="" onerror="this.remove()"></span><figcaption>a pitch by Brianne</figcaption></figure>
         <div class="bk-cue">scroll to open the itinerary &darr;</div>
       </div>
@@ -1284,14 +1316,13 @@ def render(h):
 {opener}
 <header class="cover">
   <img class="bg" src="{CDN}{slug_h}-hero.jpg" alt="" onerror="this.remove()">
-  <figure class="cut float a c1 g0" style="--r:2deg" data-speed="0.04"><div class="img" style="--ar:4/5"><span class="ph"></span><img src="{CDN}{slug_h}/cover-1.jpg" alt="" onerror="this.remove()"></div></figure>
-  <figure class="cut float b c2 g1" style="--r:-2deg" data-speed="-0.03"><div class="img" style="--ar:1/1"><span class="ph"></span><img src="{CDN}{slug_h}/cover-2.jpg" alt="" onerror="this.remove()"></div></figure>
-  <figure class="cut float c c3 g2" style="--r:1deg" data-speed="0.02"><div class="img" style="--ar:3/4"><span class="ph"></span><img src="{CDN}{slug_h}/cover-3.jpg" alt="" onerror="this.remove()"></div></figure>
+{floats}
   <div class="in">
     <div class="kick">Pitch {h['no']} &middot; {esc(h['city'])}</div>
     <h1>{esc(h['name'])}</h1>
     <p class="tag">{esc(h['tagline'])}</p>
     <div class="hand">&mdash; {esc(h['hand'])}</div>
+    <div class="stayline">{hotel_line}</div>
     <div class="scroll">Scroll the story &darr;</div>
   </div>
 </header>

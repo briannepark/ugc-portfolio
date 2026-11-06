@@ -656,6 +656,11 @@
   .lobby .pen::after { content:''; position:absolute; left:-30%; right:-30%; top:19%; height:2.5%; border-radius:3px; background:linear-gradient(#f2dc9a,#a98240); }
   .lobby .cap2 { margin-top:34px; font-family:var(--hand); font-size:clamp(22px,2.4vw,28px); color:var(--pen); text-align:center; }
 
+  .pin { display:inline-flex; align-items:center; gap:6px; width:fit-content; margin-top:6px; font-family:var(--body); font-size:12px; letter-spacing:.05em; color:var(--accent); border-bottom:1px solid currentColor; padding-bottom:1px; pointer-events:auto; position:relative; z-index:6; }
+  .pin svg { width:10px; height:13px; fill:currentColor; } .pin:hover { opacity:.7; }
+  .stayline { margin-top:16px; font-size:13px; letter-spacing:.04em; display:flex; gap:14px; flex-wrap:wrap; align-items:center; } .stayline a { border-bottom:1px solid rgba(255,255,255,.6); padding-bottom:1px; }
+  .bk-addr { margin-top:14px; font-size:12px; letter-spacing:.05em; color:#5a4d3e; display:flex; gap:12px; flex-wrap:wrap; } .bk-addr a { border-bottom:1px solid currentColor; }
+
   .bd-book { position:relative; width:var(--bw,min(760px,94vw)); height:var(--bh,min(84vh,860px)); border-radius:18px; color:#2a2420;
      background-color:var(--lea,#4a2621); background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='l' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='3' seed='7' stitchTiles='stitch' result='n'/%3E%3CfeDiffuseLighting in='n' surfaceScale='1.8' diffuseConstant='1' lighting-color='%23ffffff'%3E%3CfeDistantLight azimuth='50' elevation='62'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23l)'/%3E%3C/svg%3E"), radial-gradient(ellipse at 28% 18%, rgba(255,255,255,.2), transparent 55%), linear-gradient(150deg,var(--lea,#4a2621),var(--lea2,#2a110d));
      background-blend-mode:multiply, soft-light, normal; box-shadow:0 40px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,235,200,.08); }
@@ -697,6 +702,7 @@
         <h1 class="bk-name">Shutters on the Beach</h1>
         <div class="bk-tag">A beachfront stay: ocean views, bike paths, and Venice down the shore.</div>
         <div class="bk-hand">&mdash; salt air, soft light</div>
+        <div class="bk-addr"></div>
         <figure class="bk-pol"><svg class="bd-clip" viewBox="0 0 26 76" aria-hidden="true"><path d="M5 52V15a8 8 0 0 1 16 0v47a11 11 0 0 1-22 0V22" transform="translate(2 0)" fill="none" stroke="#a8acb2" stroke-width="2.4" stroke-linecap="round"/></svg><span class="ph"><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/walk-room.jpg" alt="" onerror="this.remove()"></span><figcaption>a pitch by Brianne</figcaption></figure>
         <div class="bk-cue">scroll to open the itinerary &darr;</div>
       </div>
@@ -705,14 +711,13 @@
     </div></div></section>
 <header class="cover">
   <img class="bg" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters-hero.jpg" alt="" onerror="this.remove()">
-  <figure class="cut float a c1 g0" style="--r:2deg" data-speed="0.04"><div class="img" style="--ar:4/5"><span class="ph"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/cover-1.jpg" alt="" onerror="this.remove()"></div></figure>
-  <figure class="cut float b c2 g1" style="--r:-2deg" data-speed="-0.03"><div class="img" style="--ar:1/1"><span class="ph"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/cover-2.jpg" alt="" onerror="this.remove()"></div></figure>
-  <figure class="cut float c c3 g2" style="--r:1deg" data-speed="0.02"><div class="img" style="--ar:3/4"><span class="ph"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/cover-3.jpg" alt="" onerror="this.remove()"></div></figure>
+
   <div class="in">
     <div class="kick">Pitch 05 &middot; Los Angeles</div>
     <h1>Shutters on the Beach</h1>
     <p class="tag">A beachfront stay: ocean views, bike paths, and Venice down the shore.</p>
     <div class="hand">&mdash; salt air, soft light</div>
+    <div class="stayline"></div>
     <div class="scroll">Scroll the story &darr;</div>
   </div>
 </header>
@@ -732,12 +737,12 @@
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Ocean-view room and balcony</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/ocean-view-room-and-balcony.jpg" alt="Ocean-view room and balcony" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Ocean-view room and balcony</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Morning light on the water.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Ocean-view room and balcony</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Morning light on the water.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Ocean-view%20room%20and%20balcony%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Beach path walk</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/beach-path-walk.jpg" alt="Beach path walk" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Beach path walk</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Straight out the door.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Beach path walk</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Straight out the door.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Beach%20path%20walk%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/ch1-cutout.png" alt="" onerror="this.remove()">
@@ -754,12 +759,12 @@
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Santa Monica Pier</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/santa-monica-pier.jpg" alt="Santa Monica Pier" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Santa Monica Pier</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Confirm distance and crowds.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Santa Monica Pier</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Confirm distance and crowds.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Santa%20Monica%20Pier%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
           <div class="tape"></div>
           <div class="img"><span class="ph">Venice Canals</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/venice-canals.jpg" alt="Venice Canals" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Venice Canals</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Pretty, calm, easy to film.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Venice Canals</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Pretty, calm, easy to film.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Venice%20Canals%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/ch2-cutout.png" alt="" onerror="this.remove()">
@@ -776,22 +781,22 @@
         <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
           <div class="tape"></div>
           <div class="img"><span class="ph">Shuhari Matcha Café, Venice</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/shuhari-matcha-caf-venice.jpg" alt="Shuhari Matcha Café, Venice" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Shuhari Matcha Café, Venice</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Matcha with a beach walk.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Shuhari Matcha Café, Venice</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Matcha with a beach walk.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Shuhari%20Matcha%20Caf%C3%A9%2C%20Venice%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Abbot Kinney Boulevard</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/abbot-kinney-boulevard.jpg" alt="Abbot Kinney Boulevard" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Abbot Kinney Boulevard</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Shops and cafes.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Abbot Kinney Boulevard</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Shops and cafes.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Abbot%20Kinney%20Boulevard%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Erewhon smoothie</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/erewhon-smoothie.jpg" alt="Erewhon smoothie" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Erewhon smoothie</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Venice or Santa Monica location.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Erewhon smoothie</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Venice or Santa Monica location.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Erewhon%20smoothie%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Tartine Bakery</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/tartine-bakery.jpg" alt="Tartine Bakery" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Tartine Bakery</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Pastry stop in Santa Monica.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Tartine Bakery</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Pastry stop in Santa Monica.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Tartine%20Bakery%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/ch3-cutout.png" alt="" onerror="this.remove()">
@@ -808,17 +813,17 @@
         <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Malibu Farm on the pier</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/malibu-farm-on-the-pier.jpg" alt="Malibu Farm on the pier" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Malibu Farm on the pier</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Ocean dinner on the Malibu Pier.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Malibu Farm on the pier</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Ocean dinner on the Malibu Pier.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Malibu%20Farm%20on%20the%20pier%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Malibu Country Mart</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/malibu-country-mart.jpg" alt="Malibu Country Mart" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Malibu Country Mart</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg><span data-s="w">Cozy outdoor shopping and cafes. Bring a layer for the ocean breeze.</span><span data-s="m">Outdoor shopping and cafes.</span></span></figcaption>
+          <figcaption class="cap"><span class="nm">Malibu Country Mart</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg><span data-s="w">Cozy outdoor shopping and cafes. Bring a layer for the ocean breeze.</span><span data-s="m">Outdoor shopping and cafes.</span></span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Malibu%20Country%20Mart%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Nobu Malibu</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/nobu-malibu.jpg" alt="Nobu Malibu" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Nobu Malibu</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Confirm availability.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Nobu Malibu</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Confirm availability.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Nobu%20Malibu%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/ch4-cutout.png" alt="" onerror="this.remove()">
@@ -841,17 +846,17 @@
             <div class="lyr msg r2 hand" data-speed="0.02">a matcha detour<br>in Koreatown</div>
             <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
           </div>
-          <figcaption class="cap"><span class="nm">Rok Matcha, Koreatown</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Rōk Coffee &amp; Tea, 3060 W Olympic Blvd. Confirm hours.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Rok Matcha, Koreatown</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Rōk Coffee &amp; Tea, 3060 W Olympic Blvd. Confirm hours.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Rok%20Matcha%2C%20Koreatown%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </div>
         <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Gentle Monster flagship, Broadway</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/gentle-monster-flagship-broadway.jpg" alt="Gentle Monster flagship, Broadway" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Gentle Monster flagship, Broadway</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Downtown design stop.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Gentle Monster flagship, Broadway</span><span class="row"><span class="tg trip">Worth the trip</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Downtown design stop.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Gentle%20Monster%20flagship%2C%20Broadway%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
         <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
           <div class="tape"></div>
           <div class="img"><span class="ph">Goodies LA</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/goodies-la.jpg" alt="Goodies LA" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Goodies LA</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Home goods. Confirm location.</span></figcaption>
+          <figcaption class="cap"><span class="nm">Goodies LA</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Home goods. Confirm location.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Goodies%20LA%2C%20Los%20Angeles" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters/ch5-cutout.png" alt="" onerror="this.remove()">

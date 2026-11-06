@@ -22,7 +22,7 @@ TAGS = {
 
 HOTELS = [
  dict(
-  slug='nomad', no='01', city='New York City', name='The Ritz-Carlton New York, NoMad', short='Ritz-Carlton NoMad',
+  slug='nomad', no='01', city='New York City', name='The Ritz-Carlton, NoMad', short='Ritz-Carlton NoMad', addr='25 W 28th St, New York, NY 10001', site='https://www.ritzcarlton.com/en/hotels/new-york/nomad',
   tagline='A skyline stay, with the whole city a short walk away.',
   hand='golden hour, 50 floors up',
   fonts='Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&family=Nothing+You+Could+Do',
@@ -34,8 +34,11 @@ HOTELS = [
    'Bazaar Meat by José Andrés, in the hotel.',
    'Nubeluz, a cocktail bar on the 50th floor.',
    'In NoMad, with Madison Square Park, Flatiron, and Chelsea nearby.',
+   'Diptyque bath products and separate rain showers, with deep soaking tubs in some rooms.',
+   'A fitness center open 24 hours, with Peloton bikes, next to a 6,800 sq ft spa.',
+   'Ritz Kids activities, and pets welcome: up to two, 60 lbs combined, with a per-stay fee.',
   ],
-  why='The most "New York at night" stay on the list. It gives a hotel pitch its strongest opening shot: the window, then the skyline, then a walk that starts right at the lobby.',
+  why='The most "New York at night" stay on the list. It gives a hotel pitch its strongest opening shot: the window, then the skyline, then a walk that starts right at the lobby. It also works for a family: quiet rooms for naps, soaking tubs for bath time, a gym downstairs, and a dog-friendly policy.',
   angle=dict(
    hotel='Open on the window view at dusk. Cut to Nubeluz, then a map of the walk to Madison Square Park, Flatiron, and the Chelsea galleries. Close with a hotel dinner.'),
   pins=[
