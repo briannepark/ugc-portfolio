@@ -28,7 +28,7 @@ def slug(t): return re.sub(r'[^a-z0-9]+', '-', t.lower()).strip('-')
 TIMES = {
  'nomad': ['4:00 pm','5:30 pm','8:30 pm','7:00 am','9:30 am','12:00 pm','2:30 pm','4:30 pm','7:00 pm','10:00 am','1:30 pm','1:00 pm','6:30 pm'],
  'brooklyn': ['8:00 am','10:30 am','2:00 pm','12:30 pm','1:00 pm','6:00 pm','10:00 am','1:30 pm'],
- 'maui': ['4:00 pm','6:00 pm','7:00 am','9:30 am','1:30 pm','10:00 am','9:00 am'],
+ 'maui': ['12:30 pm','6:00 pm','9:30 am','1:30 pm','3:00 pm','9:30 am','11:30 am'],
  'proper': ['5:00 pm','7:00 pm','10:30 am','2:00 pm','11:00 am'],
  'shutters': ['8:00 am','1:00 pm','10:30 am','11:00 am','4:30 pm'],
 }
@@ -94,22 +94,22 @@ STORY = {
     [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False)]),
   ]),
 'maui': dict(
-  intro="I travel with my baby and my dog, and I want other moms to see that a beautiful resort can work for all of us. This is a beach stay with a shallow shoreline for baby, pampering for mom, and a day upcountry with the island's makers.",
+  intro="This is a quick staycation, kept small and kept local. Two nights, a quiet hotel by the water, sunset on Haleakalā, a day in Lahaina as it rebuilds, and good food from the people who live here. Many in Hawaiʻi are weary of tourism that takes more than it gives, so the plan is to take little and spend close to home.",
   chapters=[
-   ('Day 1 · Arrival','Ocean first',"Open the door, hear the water, and walk straight onto Wailea Beach, shallow and sandy and gentle for a baby. The first hour is about settling all of us in.",
-    [('Room and lanai view','here','Ocean-view and garden categories are offered. Ask which has the best morning light.',True),('Wailea Beach','walk','A shallow, sandy beach right at the resort, with complimentary beach chairs.',False),('Keiki Pool','here','A waterfall, a slide and pool toys, built for little ones.',False),('Baby amenities','here','Rocking chair, pop-up tent, baby bath, organic bath products, highchair, bottle warmer and diapers are listed as complimentary. Ask about a crib.',True)]),
-   ('Day 1 · Sunset','Hula, Italian and the last light',"Dinner without leaving the property. Kids 4 and under eat free with a paying adult at several of the restaurants, so the whole family can sit down together.",
-    [('Lobby Lounge sunset hula','here','Tropical cocktails, sushi and small plates, with a nightly sunset hula show.',True),("Ferraro's beachside Italian",'here','Lunch and dinner by the water, with live music nightly.',True)]),
-   ('Day 2 · Early morning','Gym, then the beach path',"Before baby wakes, the gym. After breakfast, a stroller walk along the water while the light is still soft.",
-    [('Fitness center','here','Open 24 hours, with an outdoor ocean-facing cardio room.',True),('Wailea Beach Path','walk','About 1.6 miles one way along the coast, with little shade. Go early and bring sunscreen.',True),('Shops at Wailea','walk','Listed at under a mile from the resort.',True)]),
-   ('Day 2 · Upcountry','Meet the makers',"A short drive up the slope of Haleakalā is cooler air, working farms and small galleries. I'd spend the morning here, meeting the people behind the things I'd bring home.",
-    [('Hui Noʻeau Visual Arts Center','ride','An art center and gallery on a historic estate in Makawao.',True),('Makawao town','ride','Small galleries and boutiques on the main street.',True),('Surfing Goat Dairy','ride','A goat farm and tasting room in Kula.',True),('Aliʻi Kula Lavender','ride','Lavender gardens with a long view down to the coast.',True)]),
-   ('Day 2 · Rest hour','Nap, swim, repeat',"Back at the resort for the part of the day that makes the rest work: baby naps, and I get an hour that is only mine.",
-    [('The quiet room','here','Ask for a room away from the pool for naps.',True),('Fountain Pool','here','Heated, with whirlpools, cabanas and poolside service.',True),('Serenity Pool, adults only','here','A 21+ infinity pool with a swim-up bar. Ask about babysitting.',True)]),
-   ('Day 3 · Paʻia','The north shore day',"Across the island to a surf town with shops, cafés and a lookout over the water.",
-    [('Paʻia town','trip','Shops, cafés and surf culture.',True),('Hoʻokipa Beach lookout','trip','Windsurfers on the water, and sea turtles on the sand.',True),("Mama's Fish House",'trip','A famous waterfront lunch. Reserve ahead.',True)]),
-   ('Day 4 · Goodbye','One last slow morning',"A long breakfast, one more walk on the sand, and a last look at the water before the flight home.",
-    [('DUO breakfast buffet','here','Breakfast buffet with a kids menu.',True),('Last walk on Wailea Beach','walk','One more look at the water.',False)]),
+   ('Day 1 · Arrival','A short hop, a local plate',"From the airport, the first stops are in Kahului and Wailuku, before the resort. A plate of Hawaiian food, and a gift from a shop that sells ʻōiwi-made goods.",
+    [('Poi By The Pound, Kahului','ride','Hawaiian food with locally sourced ingredients. Listed by OHA as Native Hawaiian-owned in 2020; confirm.',True),('Native Intelligence, Wailuku','ride','Fresh lei, ʻōiwi products and gifts. Also on the OHA list; confirm.',True),('Wailea Beach','walk','Shallow and sandy right at the resort, with complimentary beach chairs.',False),('Keiki Pool','here','A waterfall, a slide and pool toys, built for little ones.',False)]),
+   ('Day 1 · Evening','Fish from the island',"Dinner is fish that came out of Hawaiian waters, then a slow walk back to the water.",
+    [('South Maui Fish Co, Kihei','ride','Fresh fish, poke and fish tacos, described as family-owned and using Hawaiʻi-caught fish. Confirm hours.',True),('Lobby Lounge sunset hula','here','Cocktails and small plates, with a nightly sunset hula show.',True)]),
+   ('Day 2 · Morning','Makawao and the makers',"A short drive up the slope of Haleakalā is cooler air and small shops. The point is to meet the people behind the things I would bring home.",
+    [("Hui Noʻeau Visual Arts Center",'ride','An art center and gallery on a historic estate in Makawao.',True),('Holoholo Surf and Kūlua, Makawao','ride','Both listed by OHA as Native Hawaiian-owned in 2020; confirm they are still open and who owns them.',True),('Makawao town','ride','Small galleries and boutiques on the main street.',True)]),
+   ('Day 2 · Rest hour','Nap before the mountain',"Back at the resort for the part of the day that makes the evening work. Baby naps, I rest, and the car is packed for the cold.",
+    [('The quiet room','here','Ask for a room away from the pool for naps.',True),('Pack for the summit','here','Warm layers for everyone, a blanket, and all food, water and gas. Nothing is sold in the park.',False)]),
+   ('Day 2 · Sunset','Sunset on Haleakalā',"This is why I want to come to Maui. Above the clouds, the whole sky turns, and the island goes quiet. It is a sacred place, so I would arrive early, stay on the paths, and leave no trace.",
+    [('Haleakalā sunset','trip','No reservation is needed for sunset, but cars can be turned around when the park is full. Arrive 2 to 3 hours early (3 in winter). Sunset runs from about 5:47 pm in early December to 7:16 pm in early July.',True),('Haleakalā Visitor Center','trip','One place to watch from, and parking fills up. Have a backup viewing spot.',True)]),
+   ('Day 3 · Lahaina','Lahaina, rebuilding',"Lahaina is still healing. Front Street reopened to vehicles on August 1, 2026, and the town is asking visitors to come gently: stay out of fenced areas and active rebuild sites, do not photograph residents' homes, and spend at the places that have reopened.",
+    [('Front Street, Lahaina','trip','Reopened to vehicles between Pāpalaua and Shaw streets on August 1, 2026. Some nearby streets are still closed.',True),('ʻUlu o Lele Marketplace','trip','A new marketplace that was getting ready to open with Front Street. Confirm what is open.',True),('Aloha Mixed Plate, Lahaina','trip','A local plate lunch, listed as open on a recent Lahaina guide.',True),('Star Noodle, Lahaina','trip','Another reopened restaurant on the same list.',True)]),
+   ('Day 3 · Boat to bowl','From the water to the plate',"A morning on the water with a local captain, then the freshest poke on the island.",
+    [('Fishing with a local captain','trip','Ask who owns the boat, whether a baby is welcome aboard, and book early.',True),('Only Fresh Poke, Olowalu','trip','A food trailer partnered with local fishermen, with no middlemen. Open Wednesday to Sunday, 11 to 5, and closes when the fish runs out.',True)]),
   ]),
 'proper': dict(
   intro="Picture golden hour over the Pacific, a matcha in Venice, a cart of finds from the best boutiques in town. This is Los Angeles, the cute and trendy way.",
@@ -830,6 +830,7 @@ CSS = r"""
 
   .hl .given { margin-top:56px; padding-top:30px; border-top:1px solid color-mix(in srgb, currentColor 22%, transparent); }
   .hl .given .two { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 64px; margin-top:14px; } .hl .given p { margin:0; line-height:1.7; opacity:.88; }
+  .hl .given.care { margin:34px 0 40px; padding-top:0; border-top:0; }
   @media (max-width:760px) { .hl .given .two { grid-template-columns:1fr; } }
 """
 
@@ -1345,7 +1346,8 @@ def render(h):
                 href_ = 'https://www.google.com/maps/search/?api=1&query=' + _up.quote(q_)
                 out += f'<li class="w"><span class="m">{m_}<small>min</small></span><span><a class="pin" href="{href_}" target="_blank" rel="noopener" style="margin:0">{esc(nm_)}</a>{"<span class=cf>est.</span>" if est_ else ""}</span></li>'
             return out
-        hlsec = f'<section class="hl rise"><div class="kick">Highlights</div><h2>{esc(H["title"])}</h2><p class="lede">{esc(H["lede"])}</p><div class="grid"><div><h3>Short walks</h3><ul>{_w(H["walks"])}</ul><p class="wn">{esc(H["walknote"])}</p></div><div><h3>For baby</h3><ul>{_li(H["baby"])}</ul></div><div><h3>For the dog</h3><ul>{_li(H["dog"])}</ul></div><div><h3>For mom</h3><ul>{_li(H["mom"])}</ul></div></div><div class="given"><div class="kick">And, of course</div><div class="two">{"".join(f'<div><h3>{esc(a)}</h3><p>{esc(b)}</p></div>' for a, b, _c in H["given"])}</div></div></section>'
+        care_h = ('<div class="given care"><div class="kick">' + esc(H['care_title']) + '</div><div class="two">' + ''.join(f'<div><h3>{esc(a.rstrip(":"))}</h3><p>{esc(b[:1].upper() + b[1:])}{_cf if c else ""}</p></div>' for a, b, c in H['care']) + '</div></div>') if H.get('care') else ''
+        hlsec = f'<section class="hl rise"><div class="kick">Highlights</div><h2>{esc(H["title"])}</h2><p class="lede">{esc(H["lede"])}</p>{care_h}<div class="grid"><div><h3>Short walks</h3><ul>{_w(H["walks"])}</ul><p class="wn">{esc(H["walknote"])}</p></div><div><h3>For baby</h3><ul>{_li(H["baby"])}</ul></div><div><h3>For the dog</h3><ul>{_li(H["dog"])}</ul></div><div><h3>For mom</h3><ul>{_li(H["mom"])}</ul></div></div><div class="given"><div class="kick">And, of course</div><div class="two">{"".join(f'<div><h3>{esc(a)}</h3><p>{esc(b)}</p></div>' for a, b, _c in H["given"])}</div></div></section>'
     lobby = ('''<section class="lobby rise"><div class="pad"><div class="sheet"><div class="lh">The Ritz-Carlton<small>NoMad</small></div><div class="msg">meet you in the lobby at 4PM?</div></div><span class="pen"></span></div><div class="cap2">day 1 starts here &darr;</div></section>''' if slug_h == 'nomad' else '')
     tabs_raw = ([('ch1', S['walk']['kick'])] if 'walk' in S else []) + [(f'ch{i+1+off}', c[0]) for i, c in enumerate(S['chapters'])]
     tabs_l = []

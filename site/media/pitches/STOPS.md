@@ -66,27 +66,25 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 
 - `maui-hero.jpg` (full-bleed cover background)
 - `maui/cover-1.jpg`, `cover-2.jpg`, `cover-3.jpg` (floating cover cut-outs)
-- `maui/room-and-lanai-view.jpg`: Room and lanai view
+- `maui/poi-by-the-pound-kahului.jpg`: Poi By The Pound, Kahului
+- `maui/native-intelligence-wailuku.jpg`: Native Intelligence, Wailuku
 - `maui/wailea-beach.jpg`: Wailea Beach
 - `maui/keiki-pool.jpg`: Keiki Pool
-- `maui/baby-amenities.jpg`: Baby amenities
+- `maui/south-maui-fish-co-kihei.jpg`: South Maui Fish Co, Kihei
 - `maui/lobby-lounge-sunset-hula.jpg`: Lobby Lounge sunset hula
-- `maui/ferraro-s-beachside-italian.jpg`: Ferraro's beachside Italian
-- `maui/fitness-center.jpg`: Fitness center
-- `maui/wailea-beach-path.jpg`: Wailea Beach Path
-- `maui/shops-at-wailea.jpg`: Shops at Wailea
 - `maui/hui-no-eau-visual-arts-center.jpg`: Hui Noʻeau Visual Arts Center
+- `maui/holoholo-surf-and-k-lua-makawao.jpg`: Holoholo Surf and Kūlua, Makawao
 - `maui/makawao-town.jpg`: Makawao town
-- `maui/surfing-goat-dairy.jpg`: Surfing Goat Dairy
-- `maui/ali-i-kula-lavender.jpg`: Aliʻi Kula Lavender
 - `maui/the-quiet-room.jpg`: The quiet room
-- `maui/fountain-pool.jpg`: Fountain Pool
-- `maui/serenity-pool-adults-only.jpg`: Serenity Pool, adults only
-- `maui/pa-ia-town.jpg`: Paʻia town
-- `maui/ho-okipa-beach-lookout.jpg`: Hoʻokipa Beach lookout
-- `maui/mama-s-fish-house.jpg`: Mama's Fish House
-- `maui/duo-breakfast-buffet.jpg`: DUO breakfast buffet
-- `maui/last-walk-on-wailea-beach.jpg`: Last walk on Wailea Beach
+- `maui/pack-for-the-summit.jpg`: Pack for the summit
+- `maui/haleakal-sunset.jpg`: Haleakalā sunset
+- `maui/haleakal-visitor-center.jpg`: Haleakalā Visitor Center
+- `maui/front-street-lahaina.jpg`: Front Street, Lahaina
+- `maui/ulu-o-lele-marketplace.jpg`: ʻUlu o Lele Marketplace
+- `maui/aloha-mixed-plate-lahaina.jpg`: Aloha Mixed Plate, Lahaina
+- `maui/star-noodle-lahaina.jpg`: Star Noodle, Lahaina
+- `maui/fishing-with-a-local-captain.jpg`: Fishing with a local captain
+- `maui/only-fresh-poke-olowalu.jpg`: Only Fresh Poke, Olowalu
 
 ## Santa Monica Proper  (`proper`)
 
