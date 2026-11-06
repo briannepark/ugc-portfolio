@@ -748,7 +748,7 @@ CSS = r"""
   /* ---- open binder opener ---- */
   .bopen { position:relative; height:200vh; margin-bottom:-100vh; z-index:30; pointer-events:none; }
   .bstage { position:sticky; top:0; height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden;
-            background:#1b1410 radial-gradient(ellipse at 50% 30%, rgba(120,80,50,.3), transparent 65%); will-change:opacity; }
+            background:radial-gradient(ellipse at 50% 20%, #f1ebdf, #d8cfbf 80%); will-change:opacity; }
   .bstage .bd-book { --bw:min(780px,94vw); --bh:min(86vh,900px); will-change:transform; }
   .bstage.live .bd-book a { pointer-events:auto; }
   .bk-kick { margin-bottom:18px; }
@@ -1317,7 +1317,7 @@ def render(h):
         m_ = re.match(r'(Day \d+)', kk); lab = m_.group(1) if m_ else kk
         if not tabs_l or tabs_l[-1][1] != lab: tabs_l.append((tid, lab))
     tabs_h = ''.join(f'<a class="bd-tab" href="#{i}">{esc(t)}</a>' for i, t in tabs_l)
-    opener = f'''<section class="bopen" aria-label="Pitch binder"><div class="bstage live"><div class="bd-book" style="--lea:#4a2621;--lea2:#2a110d">
+    opener = f'''<section class="bopen" aria-label="Pitch binder"><div class="bstage live"><div class="bd-book" style="--lea:#9a6b47;--lea2:#6d4529;--deb:rgba(255,246,232,.8);--debs:0 -1px 0 rgba(60,32,14,.55)">
       <div class="bd-page">
         <div class="bd-kick bk-kick">Travel &middot; Pitch {h['no']} &middot; {esc(h['city'])}</div>
         <img class="bk-logo" src="{CDN}{slug_h}/logo.png" alt="{esc(h['short'])} logo" onerror="this.remove()">
