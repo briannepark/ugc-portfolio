@@ -22,7 +22,12 @@ const PAGES = {
 
 type Page = keyof typeof PAGES;
 
+// Friendly public addresses → internal page keys (and back, for the address bar).
+const ALIASES: Record<string, Page> = { 'pitch-ritz-carlton-nomad-nyc': 'pitch-nomad' };
+const PUBLIC_NAME: Partial<Record<Page, string>> = { 'pitch-nomad': 'pitch-ritz-carlton-nomad-nyc' };
+
 function toPage(p: unknown): Page {
+  if (typeof p === 'string' && Object.prototype.hasOwnProperty.call(ALIASES, p)) return ALIASES[p];
   return typeof p === 'string' && Object.prototype.hasOwnProperty.call(PAGES, p) ? (p as Page) : 'home';
 }
 
@@ -35,7 +40,7 @@ function getInitialState(): { page: Page; hash: string } {
   // Direct links for sending a pitch to a brand:
   //   ?page=pitch-nomad  or  ?pitch=nomad   → opens that pitch straight to its binder
   //   ?binder=travel                          → opens the filing cabinet with that binder open
-  const pitch = params.get('pitch');
+  const pitch = (params.get('pitch') || '').replace(/^ritz-carlton-nomad-nyc$/, 'nomad');
   const binder = params.get('binder');
   if (pitch && Object.prototype.hasOwnProperty.call(PAGES, 'pitch-' + pitch)) {
     return { page: ('pitch-' + pitch) as Page, hash: '' };
@@ -60,7 +65,7 @@ export default function App() {
   useEffect(() => {
     try {
       const url = new URL(window.location.href);
-      url.searchParams.set('page', page);
+      url.searchParams.set('page', PUBLIC_NAME[page] ?? page);
       // Keep the history entry's state (the current page) when only the URL is rewritten.
       window.history.replaceState(window.history.state, '', url.toString());
     } catch {

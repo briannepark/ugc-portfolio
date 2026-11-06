@@ -535,6 +535,9 @@ BINDERS = [
 ]
 
 
+PUBLIC = {'nomad': 'pitch-ritz-carlton-nomad-nyc'}  # public address names (internal page key stays pitch-nomad)
+
+
 def hub():
     by = {h['slug']: h for h in HOTELS}
     spines = ''
@@ -555,7 +558,7 @@ def hub():
             for sl, tab in b['pitches']:
                 h = by[sl]
                 rows += f'''
-          <li class="row" data-page="pitch-{sl}">
+          <li class="row" data-page="{PUBLIC.get(sl, 'pitch-' + sl)}">
             <a class="go" href="pitch-{sl}.html"><b>{h['no']}</b><span class="n">{esc(h['short'])}</span><span class="c">{esc(h['city'])}</span></a>
             <button class="cp" type="button">copy link</button>
             <input class="lk" readonly aria-label="Direct link">

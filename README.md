@@ -155,7 +155,7 @@ Typing "pitch" opens a filing cabinet (`site/pitches.html`, built by `scripts/ge
 
 Direct links to send to a brand (append to the app's address):
 
-- `?page=pitch-nomad`, `?page=pitch-brooklyn`, `?page=pitch-halekulani`, `?page=pitch-proper`, `?page=pitch-shutters` (or `?pitch=nomad` etc.)
+- `?page=pitch-ritz-carlton-nomad-nyc` (old `?page=pitch-nomad` still works), `?page=pitch-brooklyn`, `?page=pitch-halekulani`, `?page=pitch-proper`, `?page=pitch-shutters` (or `?pitch=nomad` etc.)
 - `?binder=travel` opens the cabinet with that binder open.
 
 Each row in an open binder has a "copy link" button. To add a brand logo to a pitch's first page, drop a PNG at `site/media/pitches/<slug>/logo.png`; until then the brand name is shown as text. The tape on the collage prints is translucent washi (CSS only, at the end of the story CSS in `scripts/gen-pitch-stories.py`).

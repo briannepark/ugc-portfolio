@@ -764,6 +764,22 @@ CSS = r"""
     .bstage .bd-page > :not(.bk-pol):not(.bk-cue) { max-width:100%; } .bk-name { font-size:32px; } .bk-tag { max-width:24ch; } .bk-cue { left:22px; bottom:20px; font-size:20px; } .bstage .bd-tab { font-size:14px; }
   }
   @media (prefers-reduced-motion: reduce) { .bopen { height:auto; margin:0; } .bstage { position:relative; height:100vh; } .bk-cue { animation:none; } }
+
+  /* ---- lobby note on a leather notepad ---- */
+  .lobby { display:flex; flex-direction:column; align-items:center; padding:30px 24px 90px; }
+  .lobby .pad { position:relative; width:min(430px,86vw); aspect-ratio:.74; transform:rotate(-3deg); border-radius:14px; padding:7%;
+     background-color:#9a5a2b; background-image:%%LEATHER%%, linear-gradient(150deg,#b87340,#7a4220); background-blend-mode:multiply, normal; box-shadow:0 26px 40px rgba(0,0,0,.4), inset 0 0 0 1px rgba(0,0,0,.25); }
+  .lobby .pad::before { content:''; position:absolute; inset:9px; border:1.5px dashed rgba(240,215,170,.5); border-radius:9px; pointer-events:none; }
+  .lobby .sheet { position:relative; height:100%; background:#fbf8f1; box-shadow:0 2px 6px rgba(0,0,0,.35); padding:9% 9% 7%; display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .lobby .lh { font-family:var(--head); font-size:clamp(13px,1.5vw,16px); letter-spacing:.2em; text-transform:uppercase; color:#3b3a44; line-height:1.5; }
+  .lobby .lh small { display:block; font-size:.62em; letter-spacing:.34em; opacity:.7; margin-top:2px; }
+  .lobby .lh::before { content:''; display:block; width:26px; height:26px; margin:0 auto 8px; border:1.5px solid #3b3a44; border-radius:50% 50% 45% 45%; opacity:.7; }
+  .lobby .msg { font-family:var(--hand); font-size:clamp(30px,4.4vw,46px); line-height:1.18; color:#26263a; margin-top:auto; margin-bottom:auto; transform:rotate(-2deg); text-shadow:0 0 .6px currentColor; }
+  .lobby .pen { position:absolute; right:-6%; top:6%; width:3.4%; min-width:15px; height:86%; border-radius:99px; transform:rotate(7deg); z-index:3;
+     background:linear-gradient(90deg,#0c1230,#25306a 45%,#0a0f26); box-shadow:3px 6px 10px rgba(0,0,0,.45); }
+  .lobby .pen::before { content:''; position:absolute; left:-30%; right:-30%; top:10%; height:5%; border-radius:3px; background:linear-gradient(#f2dc9a,#a98240); }
+  .lobby .pen::after { content:''; position:absolute; left:-30%; right:-30%; top:19%; height:2.5%; border-radius:3px; background:linear-gradient(#f2dc9a,#a98240); }
+  .lobby .cap2 { margin-top:34px; font-family:var(--hand); font-size:clamp(22px,2.4vw,28px); color:var(--pen); text-align:center; }
 """
 
 DOODLES = """<svg width="0" height="0" style="position:absolute"><defs>
@@ -1121,7 +1137,7 @@ def render(h):
     css = (CSS.replace('%%BG%%', c['desk'] if dark else c['paper']).replace('%%TXT%%', '#f3ead6' if dark else c['ink'])
               .replace('%%PAPER%%', c['paper']).replace('%%INK%%', c['ink']).replace('%%ACCENT%%', c['accent'])
               .replace('%%ACCENT2%%', c['accent2']).replace('%%SOFT%%', c['soft'] if not dark else '#1d2547')
-              .replace('%%HEAD%%', h['head']).replace('%%BODY%%', h['body']).replace('%%DESK%%', c['desk']).replace('%%PEN%%', '#efe5cc' if dark else '#1d2a4a').replace('%%RED%%', '#ff8a7a' if dark else '#b3362b').replace('%%PAPER_TEX%%', paper_tex(dark)).replace('%%MUTE%%', '#2b3048' if dark else '#d8d0bf').replace('%%PHC%%', 'rgba(240,234,214,.7)' if dark else 'rgba(28,34,51,.55)')) + gp.BINDER_CSS
+              .replace('%%HEAD%%', h['head']).replace('%%BODY%%', h['body']).replace('%%DESK%%', c['desk']).replace('%%PEN%%', '#efe5cc' if dark else '#1d2a4a').replace('%%RED%%', '#ff8a7a' if dark else '#b3362b').replace('%%PAPER_TEX%%', paper_tex(dark)).replace('%%MUTE%%', '#2b3048' if dark else '#d8d0bf').replace('%%PHC%%', 'rgba(240,234,214,.7)' if dark else 'rgba(28,34,51,.55)')).replace('%%LEATHER%%', gp.LEATHER) + gp.BINDER_CSS
     clips = ['c1', 'c2', 'c3', 'c4']
     chapters = ''
     allstops = []
@@ -1230,6 +1246,7 @@ def render(h):
     li = lambda arr: ''.join(f'<li>{esc(s[0])}{" <em>(confirm)</em>" if s[3] else ""}</li>' for s in arr)
     ticker = ' '.join(f'<span>{esc(s[0])}</span>' for s in allstops)
     facts = ''.join(f'<li>{esc(f)}</li>' for f in h['facts'])
+    lobby = ('''<section class="lobby rise"><div class="pad"><div class="sheet"><div class="lh">The Ritz-Carlton<small>New York &middot; NoMad</small></div><div class="msg">meet you in the lobby at 4PM?</div></div><span class="pen"></span></div><div class="cap2">day 1 starts here &darr;</div></section>''' if slug_h == 'nomad' else '')
     tabs_raw = ([('ch1', S['walk']['kick'])] if 'walk' in S else []) + [(f'ch{i+1+off}', c[0]) for i, c in enumerate(S['chapters'])]
     tabs_l = []
     for tid, kk in tabs_raw:
@@ -1280,6 +1297,7 @@ def render(h):
 </header>
 
 <section class="intro rise"><div class="kick">The trip</div><p>{sv(S['intro'])}</p></section>
+{lobby}
 <div class="index"><div class="kick">In this guide</div><p>{ticker}</p></div>
 {chapters}
 
