@@ -729,19 +729,6 @@
       <nav class="bd-tabs"><a class="bd-tab" href="#ch1">Day 1</a><a class="bd-tab" href="#ch4">Day 2</a><a class="bd-tab" href="#ch7">Day 3</a></nav>
       <div class="bd-rings"><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span></div>
     </div></div></section>
-<header class="cover">
-  <img class="bg" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/brooklyn-hero.jpg" alt="" onerror="this.remove()">
-
-  <div class="in">
-    <div class="kick">Pitch 02 &middot; New York City</div>
-    <h1>1 Hotel Brooklyn Bridge</h1>
-    <p class="tag">Nature-forward luxury on the Dumbo waterfront.</p>
-    <div class="hand">&mdash; skyline, but make it calm</div>
-    <div class="stayline"></div>
-    <div class="scroll">Scroll the story &darr;</div>
-  </div>
-</header>
-
 <section class="intro rise"><div class="kick">The trip</div><p><span data-s="w">Picture a slower New York. The skyline is right across the water, the bridge is outside your window, and the city glitters in the cold. This is the stay for people who want the city without the rush.</span><span data-s="m">Picture a slower New York. The skyline is right across the water, the bridge is outside your window, and there&#x27;s a rooftop pool above it all. This is the stay for people who want the city without the rush.</span></p></section>
 
 
@@ -1104,7 +1091,7 @@
   var bo = document.querySelector('.bopen'), bst = bo && bo.querySelector('.bstage'), bbk = bst && bst.querySelector('.bd-book');
   function opener() {
     if (!bo || reduce) return;
-    var p = Math.max(0, Math.min(1, (window.pageYOffset || document.documentElement.scrollTop) / (window.innerHeight * .8)));
+    var p = Math.max(0, Math.min(1, (window.pageYOffset || document.documentElement.scrollTop) / (window.innerHeight * .5)));
     bst.style.opacity = Math.max(0, Math.min(1, 1.5 - p * 1.5)).toFixed(3);
     bbk.style.transform = 'scale(' + (1 + p * .85).toFixed(3) + ')';
     bst.classList.toggle('live', p < .5); bst.style.visibility = p >= 1 ? 'hidden' : 'visible';

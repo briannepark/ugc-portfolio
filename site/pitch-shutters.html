@@ -729,19 +729,6 @@
       <nav class="bd-tabs"><a class="bd-tab" href="#ch1">Day 1</a><a class="bd-tab" href="#ch3">Day 2</a><a class="bd-tab" href="#ch4">Day 3</a></nav>
       <div class="bd-rings"><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span></div>
     </div></div></section>
-<header class="cover">
-  <img class="bg" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shutters-hero.jpg" alt="" onerror="this.remove()">
-
-  <div class="in">
-    <div class="kick">Pitch 05 &middot; Los Angeles</div>
-    <h1>Shutters on the Beach</h1>
-    <p class="tag">A beachfront stay: ocean views, bike paths, and Venice down the shore.</p>
-    <div class="hand">&mdash; salt air, soft light</div>
-    <div class="stayline"></div>
-    <div class="scroll">Scroll the story &darr;</div>
-  </div>
-</header>
-
 <section class="intro rise"><div class="kick">The trip</div><p>Picture a hotel that opens right onto the beach: ocean from the balcony, a path along the sand, Venice down the shore. This is Los Angeles at its easiest.</p></section>
 
 
@@ -978,7 +965,7 @@
   var bo = document.querySelector('.bopen'), bst = bo && bo.querySelector('.bstage'), bbk = bst && bst.querySelector('.bd-book');
   function opener() {
     if (!bo || reduce) return;
-    var p = Math.max(0, Math.min(1, (window.pageYOffset || document.documentElement.scrollTop) / (window.innerHeight * .8)));
+    var p = Math.max(0, Math.min(1, (window.pageYOffset || document.documentElement.scrollTop) / (window.innerHeight * .5)));
     bst.style.opacity = Math.max(0, Math.min(1, 1.5 - p * 1.5)).toFixed(3);
     bbk.style.transform = 'scale(' + (1 + p * .85).toFixed(3) + ')';
     bst.classList.toggle('live', p < .5); bst.style.visibility = p >= 1 ? 'hidden' : 'visible';

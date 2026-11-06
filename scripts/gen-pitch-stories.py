@@ -874,7 +874,7 @@ JS = r"""
   var bo = document.querySelector('.bopen'), bst = bo && bo.querySelector('.bstage'), bbk = bst && bst.querySelector('.bd-book');
   function opener() {
     if (!bo || reduce) return;
-    var p = Math.max(0, Math.min(1, (window.pageYOffset || document.documentElement.scrollTop) / (window.innerHeight * .8)));
+    var p = Math.max(0, Math.min(1, (window.pageYOffset || document.documentElement.scrollTop) / (window.innerHeight * .5)));
     bst.style.opacity = Math.max(0, Math.min(1, 1.5 - p * 1.5)).toFixed(3);
     bbk.style.transform = 'scale(' + (1 + p * .85).toFixed(3) + ')';
     bst.classList.toggle('live', p < .5); bst.style.visibility = p >= 1 ? 'hidden' : 'visible';
@@ -1347,19 +1347,6 @@ def render(h):
 <div class="hud"><a href="pitches.html#travel">&larr; All pitches</a><span class="cur">Intro</span><div class="season" role="group" aria-label="Season"><button type="button" data-v="winter" aria-pressed="true">Winter</button><button type="button" data-v="warm" aria-pressed="false">Spring &amp; Summer</button></div><span class="bar"></span></div>
 
 {opener}
-<header class="cover">
-  <img class="bg" src="{CDN}{slug_h}-hero.jpg" alt="" onerror="this.remove()">
-{floats}
-  <div class="in">
-    <div class="kick">Pitch {h['no']} &middot; {esc(h['city'])}</div>
-    <h1>{esc(h['name'])}</h1>
-    <p class="tag">{esc(h['tagline'])}</p>
-    <div class="hand">&mdash; {esc(h['hand'])}</div>
-    <div class="stayline">{hotel_line}</div>
-    <div class="scroll">Scroll the story &darr;</div>
-  </div>
-</header>
-
 <section class="intro rise"><div class="kick">The trip</div><p>{sv(S['intro'])}</p></section>
 {hlsec}
 {lobby}

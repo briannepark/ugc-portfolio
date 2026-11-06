@@ -729,19 +729,6 @@
       <nav class="bd-tabs"><a class="bd-tab" href="#ch1">Day 1</a><a class="bd-tab" href="#ch3">Day 2</a><a class="bd-tab" href="#ch5">Day 3</a></nav>
       <div class="bd-rings"><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span></div>
     </div></div></section>
-<header class="cover">
-  <img class="bg" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/proper-hero.jpg" alt="" onerror="this.remove()">
-
-  <div class="in">
-    <div class="kick">Pitch 04 &middot; Los Angeles</div>
-    <h1>Santa Monica Proper</h1>
-    <p class="tag">Sunset over the Pacific, with Venice and the Westside around it.</p>
-    <div class="hand">&mdash; golden hour on Wilshire</div>
-    <div class="stayline"></div>
-    <div class="scroll">Scroll the story &darr;</div>
-  </div>
-</header>
-
 <section class="intro rise"><div class="kick">The trip</div><p>Picture golden hour over the Pacific, a matcha in Venice, a cart of finds from the best boutiques in town. This is Los Angeles, the cute and trendy way.</p></section>
 
 
@@ -988,7 +975,7 @@
   var bo = document.querySelector('.bopen'), bst = bo && bo.querySelector('.bstage'), bbk = bst && bst.querySelector('.bd-book');
   function opener() {
     if (!bo || reduce) return;
-    var p = Math.max(0, Math.min(1, (window.pageYOffset || document.documentElement.scrollTop) / (window.innerHeight * .8)));
+    var p = Math.max(0, Math.min(1, (window.pageYOffset || document.documentElement.scrollTop) / (window.innerHeight * .5)));
     bst.style.opacity = Math.max(0, Math.min(1, 1.5 - p * 1.5)).toFixed(3);
     bbk.style.transform = 'scale(' + (1 + p * .85).toFixed(3) + ')';
     bst.classList.toggle('live', p < .5); bst.style.visibility = p >= 1 ? 'hidden' : 'visible';

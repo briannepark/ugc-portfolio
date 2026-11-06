@@ -729,19 +729,6 @@
       <nav class="bd-tabs"><a class="bd-tab" href="#ch1">Day 1</a><a class="bd-tab" href="#ch3">Day 2</a><a class="bd-tab" href="#ch5">Day 3</a></nav>
       <div class="bd-rings"><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span></div>
     </div></div></section>
-<header class="cover">
-  <img class="bg" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/halekulani-hero.jpg" alt="" onerror="this.remove()">
-
-  <div class="in">
-    <div class="kick">Pitch 03 &middot; Hawaiʻi (Oʻahu)</div>
-    <h1>Halekulani</h1>
-    <p class="tag">Oceanfront Waikiki, with local Hawaiian makers close by.</p>
-    <div class="hand">&mdash; mahalo, Waikiki</div>
-    <div class="stayline"></div>
-    <div class="scroll">Scroll the story &darr;</div>
-  </div>
-</header>
-
 <section class="intro rise"><div class="kick">The trip</div><p>Picture waking up to the Pacific in Waikiki, then spending a day with the people who make Hawaiʻi&#x27;s best things. This is a stay with ocean in front of it and a story behind it.</p></section>
 
 
@@ -967,7 +954,7 @@
   var bo = document.querySelector('.bopen'), bst = bo && bo.querySelector('.bstage'), bbk = bst && bst.querySelector('.bd-book');
   function opener() {
     if (!bo || reduce) return;
-    var p = Math.max(0, Math.min(1, (window.pageYOffset || document.documentElement.scrollTop) / (window.innerHeight * .8)));
+    var p = Math.max(0, Math.min(1, (window.pageYOffset || document.documentElement.scrollTop) / (window.innerHeight * .5)));
     bst.style.opacity = Math.max(0, Math.min(1, 1.5 - p * 1.5)).toFixed(3);
     bbk.style.transform = 'scale(' + (1 + p * .85).toFixed(3) + ')';
     bst.classList.toggle('live', p < .5); bst.style.visibility = p >= 1 ? 'hidden' : 'visible';
