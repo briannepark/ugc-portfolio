@@ -150,7 +150,13 @@
   .wcap .hand { font-family:var(--head); font-style:italic; font-size:clamp(30px,4.4vw,58px); line-height:1.05; }
   .cover .hand, .end .hand { font-family:var(--head); font-style:italic; }
   .index .gcats { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:34px 40px; text-align:left; margin-top:30px; }
-  .index .gcat h3 { display:flex; justify-content:space-between; align-items:baseline; margin:0 0 10px; padding-bottom:9px; border-bottom:1px solid color-mix(in srgb,var(--txt) 24%, transparent); font:500 12px/1 var(--body); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); }
+  .index .gcat { align-self:start; }
+  .index .gcat summary { list-style:none; cursor:pointer; }
+  .index .gcat summary::-webkit-details-marker { display:none; }
+  .index .gcat h3::after { content:'+'; margin-left:12px; font-size:16px; letter-spacing:0; }
+  .index .gcat[open] h3::after { content:'\2212'; }
+  .index .gcat h3 small { margin-left:auto; }
+  .index .gcat h3 { display:flex; align-items:baseline; margin:0 0 10px; padding-bottom:9px; border-bottom:1px solid color-mix(in srgb,var(--txt) 24%, transparent); font:500 12px/1 var(--body); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); }
   .index .gcat h3 small { font-size:11px; letter-spacing:.1em; opacity:.6; }
   .index .gcat ul { list-style:none; margin:0; padding:0; }
   .index .gcat li { font-family:var(--head); font-style:italic; font-size:clamp(17px,1.5vw,19px); line-height:1.35; padding:5px 0; opacity:.9; }
@@ -765,7 +771,7 @@
     </div></div></section>
 
 <section class="intro rise"><div class="kick">The trip</div><p>Picture a hotel that opens right onto the beach: ocean from the balcony, a path along the sand, Venice down the shore. This is Los Angeles at its easiest.</p></section>
-<div class="index"><div class="kick">In this guide</div><div class="gcats"><div class="gcat"><h3>Hotel<small>2</small></h3><ul><li>Ocean-view room and balcony</li><li>Beach path walk</li></ul></div><div class="gcat"><h3>Matcha<small>2</small></h3><ul><li>Shuhari Matcha Café, Venice</li><li>Rok Matcha, Koreatown</li></ul></div><div class="gcat"><h3>Food<small>1</small></h3><ul><li>Nobu Malibu</li></ul></div><div class="gcat"><h3>Shops<small>1</small></h3><ul><li>Gentle Monster flagship, Broadway</li></ul></div><div class="gcat"><h3>Activities<small>8</small></h3><ul><li>Santa Monica Pier</li><li>Venice Canals</li><li>Abbot Kinney Boulevard</li><li>Erewhon smoothie</li><li>Tartine Bakery</li><li>Malibu Farm on the pier</li><li>Malibu Country Mart</li><li>Goodies LA</li></ul></div></div></div>
+<div class="index"><div class="kick">In this guide</div><div class="gcats"><details class="gcat"><summary><h3>Hotel<small>2</small></h3></summary><ul><li>Ocean-view room and balcony</li><li>Beach path walk</li></ul></details><details class="gcat"><summary><h3>Matcha<small>2</small></h3></summary><ul><li>Shuhari Matcha Café, Venice</li><li>Rok Matcha, Koreatown</li></ul></details><details class="gcat"><summary><h3>Food<small>1</small></h3></summary><ul><li>Nobu Malibu</li></ul></details><details class="gcat"><summary><h3>Shops<small>1</small></h3></summary><ul><li>Gentle Monster flagship, Broadway</li></ul></details><details class="gcat"><summary><h3>Activities<small>8</small></h3></summary><ul><li>Santa Monica Pier</li><li>Venice Canals</li><li>Abbot Kinney Boulevard</li><li>Erewhon smoothie</li><li>Tartine Bakery</li><li>Malibu Farm on the pier</li><li>Malibu Country Mart</li><li>Goodies LA</li></ul></details></div></div>
 
   <section class="chapter " id="ch1" data-label="Day 1 · Morning">
     <div class="wrap">

@@ -150,7 +150,13 @@
   .wcap .hand { font-family:var(--head); font-style:italic; font-size:clamp(30px,4.4vw,58px); line-height:1.05; }
   .cover .hand, .end .hand { font-family:var(--head); font-style:italic; }
   .index .gcats { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:34px 40px; text-align:left; margin-top:30px; }
-  .index .gcat h3 { display:flex; justify-content:space-between; align-items:baseline; margin:0 0 10px; padding-bottom:9px; border-bottom:1px solid color-mix(in srgb,var(--txt) 24%, transparent); font:500 12px/1 var(--body); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); }
+  .index .gcat { align-self:start; }
+  .index .gcat summary { list-style:none; cursor:pointer; }
+  .index .gcat summary::-webkit-details-marker { display:none; }
+  .index .gcat h3::after { content:'+'; margin-left:12px; font-size:16px; letter-spacing:0; }
+  .index .gcat[open] h3::after { content:'\2212'; }
+  .index .gcat h3 small { margin-left:auto; }
+  .index .gcat h3 { display:flex; align-items:baseline; margin:0 0 10px; padding-bottom:9px; border-bottom:1px solid color-mix(in srgb,var(--txt) 24%, transparent); font:500 12px/1 var(--body); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); }
   .index .gcat h3 small { font-size:11px; letter-spacing:.1em; opacity:.6; }
   .index .gcat ul { list-style:none; margin:0; padding:0; }
   .index .gcat li { font-family:var(--head); font-style:italic; font-size:clamp(17px,1.5vw,19px); line-height:1.35; padding:5px 0; opacity:.9; }
@@ -765,7 +771,7 @@
     </div></div></section>
 
 <section class="intro rise"><div class="kick">The trip</div><p>This is a quick staycation, kept small and kept local. Two nights, a quiet hotel by the water, sunset on Haleakalā, a day in Lahaina as it rebuilds, and good food from the people who live here. Many in Hawaiʻi are weary of tourism that takes more than it gives, so the plan is to take little and spend close to home.</p></section>
-<div class="index"><div class="kick">In this guide</div><div class="gcats"><div class="gcat"><h3>Hotel<small>4</small></h3><ul><li>Keiki Pool</li><li>Lobby Lounge sunset hula</li><li>The quiet room</li><li>Pack for the summit</li></ul></div><div class="gcat"><h3>Food<small>5</small></h3><ul><li>Poi By The Pound, Kahului</li><li>South Maui Fish Co, Kihei</li><li>Aloha Mixed Plate, Lahaina</li><li>Star Noodle, Lahaina</li><li>Only Fresh Poke, Olowalu</li></ul></div><div class="gcat"><h3>Shops<small>4</small></h3><ul><li>Native Intelligence, Wailuku</li><li>Holoholo Surf and Kūlua, Makawao</li><li>Makawao town</li><li>ʻUlu o Lele Marketplace</li></ul></div><div class="gcat"><h3>Activities<small>6</small></h3><ul><li>Wailea Beach</li><li>Hui Noʻeau Visual Arts Center</li><li>Haleakalā sunset</li><li>Haleakalā Visitor Center</li><li>Front Street, Lahaina</li><li>Fishing with a local captain</li></ul></div></div></div>
+<div class="index"><div class="kick">In this guide</div><div class="gcats"><details class="gcat"><summary><h3>Hotel<small>4</small></h3></summary><ul><li>Keiki Pool</li><li>Lobby Lounge sunset hula</li><li>The quiet room</li><li>Pack for the summit</li></ul></details><details class="gcat"><summary><h3>Food<small>5</small></h3></summary><ul><li>Poi By The Pound, Kahului</li><li>South Maui Fish Co, Kihei</li><li>Aloha Mixed Plate, Lahaina</li><li>Star Noodle, Lahaina</li><li>Only Fresh Poke, Olowalu</li></ul></details><details class="gcat"><summary><h3>Shops<small>4</small></h3></summary><ul><li>Native Intelligence, Wailuku</li><li>Holoholo Surf and Kūlua, Makawao</li><li>Makawao town</li><li>ʻUlu o Lele Marketplace</li></ul></details><details class="gcat"><summary><h3>Activities<small>6</small></h3></summary><ul><li>Wailea Beach</li><li>Hui Noʻeau Visual Arts Center</li><li>Haleakalā sunset</li><li>Haleakalā Visitor Center</li><li>Front Street, Lahaina</li><li>Fishing with a local captain</li></ul></details></div></div>
 
   <section class="chapter " id="ch1" data-label="Day 1 · Arrival">
     <div class="wrap">

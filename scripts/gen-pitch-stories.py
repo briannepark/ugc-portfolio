@@ -285,7 +285,13 @@ CSS = r"""
   .wcap .hand { font-family:var(--head); font-style:italic; font-size:clamp(30px,4.4vw,58px); line-height:1.05; }
   .cover .hand, .end .hand { font-family:var(--head); font-style:italic; }
   .index .gcats { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:34px 40px; text-align:left; margin-top:30px; }
-  .index .gcat h3 { display:flex; justify-content:space-between; align-items:baseline; margin:0 0 10px; padding-bottom:9px; border-bottom:1px solid color-mix(in srgb,var(--txt) 24%, transparent); font:500 12px/1 var(--body); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); }
+  .index .gcat { align-self:start; }
+  .index .gcat summary { list-style:none; cursor:pointer; }
+  .index .gcat summary::-webkit-details-marker { display:none; }
+  .index .gcat h3::after { content:'+'; margin-left:12px; font-size:16px; letter-spacing:0; }
+  .index .gcat[open] h3::after { content:'\2212'; }
+  .index .gcat h3 small { margin-left:auto; }
+  .index .gcat h3 { display:flex; align-items:baseline; margin:0 0 10px; padding-bottom:9px; border-bottom:1px solid color-mix(in srgb,var(--txt) 24%, transparent); font:500 12px/1 var(--body); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); }
   .index .gcat h3 small { font-size:11px; letter-spacing:.1em; opacity:.6; }
   .index .gcat ul { list-style:none; margin:0; padding:0; }
   .index .gcat li { font-family:var(--head); font-style:italic; font-size:clamp(17px,1.5vw,19px); line-height:1.35; padding:5px 0; opacity:.9; }
@@ -1359,7 +1365,7 @@ def render(h):
     for _s in allstops:
         if _s[0].lower() in _skip: continue
         _g[_cat(_s[0], _s[1])].append(_s[0])
-    ticker = '<div class="gcats">' + ''.join(f'<div class="gcat"><h3>{k}<small>{len(v)}</small></h3><ul>' + ''.join(f'<li>{esc(x)}</li>' for x in v) + '</ul></div>' for k, v in _g.items() if v) + '</div>'
+    ticker = '<div class="gcats">' + ''.join(f'<details class="gcat"><summary><h3>{k}<small>{len(v)}</small></h3></summary><ul>' + ''.join(f'<li>{esc(x)}</li>' for x in v) + '</ul></details>' for k, v in _g.items() if v) + '</div>'
     _fl = [('a','c1','g0',2,'4/5',.04),('b','c2','g1',-2,'1/1',-.03),('c','c3','g2',1,'3/4',.02)]
     floats = ''.join(f'<figure class="cut float {a} {c} {gg}" style="--r:{r}deg" data-speed="{sp}"><div class="img" style="--ar:{ar}"><span class="ph"></span><img src="{CDN}{slug_h}/cover-{n+1}.jpg" alt="" onerror="this.remove()"></div></figure>' for n, (a, c, gg, r, ar, sp) in enumerate(_fl) if os.path.exists(os.path.join(ROOT, 'media', 'pitches', slug_h, f'cover-{n+1}.jpg')))
     hotel_line = ''
