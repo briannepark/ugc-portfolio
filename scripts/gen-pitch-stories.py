@@ -28,7 +28,7 @@ def slug(t): return re.sub(r'[^a-z0-9]+', '-', t.lower()).strip('-')
 TIMES = {
  'nomad': ['4:00 pm','5:30 pm','8:30 pm','7:00 am','9:30 am','12:00 pm','2:30 pm','4:30 pm','7:00 pm','10:00 am','1:30 pm','1:00 pm','6:30 pm'],
  'brooklyn': ['8:00 am','10:30 am','2:00 pm','12:30 pm','1:00 pm','6:00 pm','10:00 am','1:30 pm'],
- 'halekulani': ['4:00 pm','6:30 pm','10:00 am','2:30 pm','9:30 am'],
+ 'maui': ['4:00 pm','6:00 pm','7:00 am','9:30 am','1:30 pm','10:00 am','9:00 am'],
  'proper': ['5:00 pm','7:00 pm','10:30 am','2:00 pm','11:00 am'],
  'shutters': ['8:00 am','1:00 pm','10:30 am','11:00 am','4:30 pm'],
 }
@@ -93,19 +93,23 @@ STORY = {
    ('Day 3 · Afternoon','Lower Manhattan, in one sweep',"An immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed. All a short ride across the bridge.",
     [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False)]),
   ]),
-'halekulani': dict(
-  intro="Picture waking up to the Pacific in Waikiki, then spending a day with the people who make Hawaiʻi's best things. This is a stay with ocean in front of it and a story behind it.",
+'maui': dict(
+  intro="I travel with my baby and my dog, and I want other moms to see that a beautiful resort can work for all of us. This is a beach stay with a shallow shoreline for baby, pampering for mom, and a day upcountry with the island's makers.",
   chapters=[
-   ('Day 1 · Arrival','Ocean first',"Open the door, hear the water, and watch the light change over the beach. I'd start every morning here.",
-    [('Oceanfront room and lanai view','here','Confirm room categories.',True),('Sunrise on the beach','here','Soft light, no filter.',False)]),
-   ('Day 1 · Golden hour','Dinner as the sun goes down',"A slow walk through Waikiki, then dinner as the sky turns gold.",
-    [('Waikiki shops','walk','A quick browse before the beach.',True),('Sunset dinner at the hotel','here','Confirm the restaurant and hours.',True)]),
-   ('Day 2 · Kakaʻako','Meet the makers',"A short ride from the hotel is a neighborhood full of murals and Hawaiian-owned shops. I'd spend a whole day here, meeting the people behind the things I'd bring home.",
-    [('Kakaʻako murals walk','ride','Colorful neighborhood, easy to wander.',False),('House of Mana Up','ride','Hawaiian entrepreneurs, beauty and local foods.',False),('MORI by Art+Flea','ride','Goods by Hawaiian artists.',False),('always a.line and Salvage Public','ride','Hawaiian-inspired prints and surf graphic tees.',False)]),
-   ('Day 2 · Sweet','Ice cream, shave ice, and a good dinner',"Between the shops, something cold. After, a farm-to-table dinner to close the day.",
-    [('Black Sheep Cream Company','ride','Rotating ice cream flavors.',False),("Lin's Hawaiian Snacks",'ride','Shave ice, open since the 1980s.',False),('Local matcha stop','ride','Pick one the week you go.',True),("Merriman's Honolulu",'ride','Farm-to-table dinner.',False)]),
-   ('Day 3 · Culture','A quiet gallery morning',"One last slow morning with Hawaiian art before the flight home.",
-    [('Honolulu Museum of Art','trip','Local artists and a quiet gallery moment.',True)]),
+   ('Day 1 · Arrival','Ocean first',"Open the door, hear the water, and walk straight onto Wailea Beach, shallow and sandy and gentle for a baby. The first hour is about settling all of us in.",
+    [('Room and lanai view','here','Ocean-view and garden categories are offered. Ask which has the best morning light.',True),('Wailea Beach','walk','A shallow, sandy beach right at the resort, with complimentary beach chairs.',False),('Keiki Pool','here','A waterfall, a slide and pool toys, built for little ones.',False),('Baby amenities','here','Rocking chair, pop-up tent, baby bath, organic bath products, highchair, bottle warmer and diapers are listed as complimentary. Ask about a crib.',True)]),
+   ('Day 1 · Sunset','Hula, Italian and the last light',"Dinner without leaving the property. Kids 4 and under eat free with a paying adult at several of the restaurants, so the whole family can sit down together.",
+    [('Lobby Lounge sunset hula','here','Tropical cocktails, sushi and small plates, with a nightly sunset hula show.',True),("Ferraro's beachside Italian",'here','Lunch and dinner by the water, with live music nightly.',True)]),
+   ('Day 2 · Early morning','Gym, then the beach path',"Before baby wakes, the gym. After breakfast, a stroller walk along the water while the light is still soft.",
+    [('Fitness center','here','Open 24 hours, with an outdoor ocean-facing cardio room.',True),('Wailea Beach Path','walk','About 1.6 miles one way along the coast, with little shade. Go early and bring sunscreen.',True),('Shops at Wailea','walk','Listed at under a mile from the resort.',True)]),
+   ('Day 2 · Upcountry','Meet the makers',"A short drive up the slope of Haleakalā is cooler air, working farms and small galleries. I'd spend the morning here, meeting the people behind the things I'd bring home.",
+    [('Hui Noʻeau Visual Arts Center','ride','An art center and gallery on a historic estate in Makawao.',True),('Makawao town','ride','Small galleries and boutiques on the main street.',True),('Surfing Goat Dairy','ride','A goat farm and tasting room in Kula.',True),('Aliʻi Kula Lavender','ride','Lavender gardens with a long view down to the coast.',True)]),
+   ('Day 2 · Rest hour','Nap, swim, repeat',"Back at the resort for the part of the day that makes the rest work: baby naps, and I get an hour that is only mine.",
+    [('The quiet room','here','Ask for a room away from the pool for naps.',True),('Fountain Pool','here','Heated, with whirlpools, cabanas and poolside service.',True),('Serenity Pool, adults only','here','A 21+ infinity pool with a swim-up bar. Ask about babysitting.',True)]),
+   ('Day 3 · Paʻia','The north shore day',"Across the island to a surf town with shops, cafés and a lookout over the water.",
+    [('Paʻia town','trip','Shops, cafés and surf culture.',True),('Hoʻokipa Beach lookout','trip','Windsurfers on the water, and sea turtles on the sand.',True),("Mama's Fish House",'trip','A famous waterfront lunch. Reserve ahead.',True)]),
+   ('Day 4 · Goodbye','One last slow morning',"A long breakfast, one more walk on the sand, and a last look at the water before the flight home.",
+    [('DUO breakfast buffet','here','Breakfast buffet with a kids menu.',True),('Last walk on Wailea Beach','walk','One more look at the water.',False)]),
   ]),
 'proper': dict(
   intro="Picture golden hour over the Pacific, a matcha in Venice, a cart of finds from the best boutiques in town. This is Los Angeles, the cute and trendy way.",
@@ -1327,7 +1331,7 @@ def render(h):
     hotel_line = ''
     if h.get('addr'):
         _mp = 'https://www.google.com/maps/search/?api=1&query=' + _up.quote(h['name'] + ', ' + h['addr'])
-        hotel_line = f'<a href="{_mp}" target="_blank" rel="noopener">{esc(h["addr"])}</a><a href="{h["site"]}" target="_blank" rel="noopener">ritzcarlton.com</a>'
+        hotel_line = f'<a href="{_mp}" target="_blank" rel="noopener">{esc(h["addr"])}</a><a href="{h["site"]}" target="_blank" rel="noopener">{esc(_up.urlparse(h["site"]).netloc.replace("www.",""))}</a>'
     facts = ''.join(f'<li>{esc(f)}</li>' for f in h['facts'])
     hlsec = ''
     if h.get('hl'):

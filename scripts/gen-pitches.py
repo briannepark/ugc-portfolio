@@ -123,35 +123,71 @@ HOTELS = [
    ('sweet','Ice cream by the water','ride','A scoop at golden hour.',True),
   ]),
  dict(
-  slug='halekulani', no='03', city="Hawaiʻi (Oʻahu)", name='Halekulani', short='Halekulani',
-  tagline='Oceanfront Waikiki, with local Hawaiian makers close by.',
-  hand='mahalo, Waikiki',
+  slug='maui', no='03', city='Maui, Hawaiʻi', name='Four Seasons Resort Maui at Wailea', short='Four Seasons Maui', addr='3900 Wailea Alanui Dr, Wailea, HI 96753', site='https://www.fourseasons.com/maui/',
+  tagline='A beach stay with a baby, with the whole island an easy drive away.',
+  hand='mahalo, Wailea',
   fonts='Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&family=Nothing+You+Could+Do',
   head="'Cormorant Garamond',Georgia,serif", body="'Inter',sans-serif",
-  c=dict(desk='#1d4c52', paper='#f8f1e1', ink='#27393c', accent='#7b5a8c', accent2='#2f8089', soft='#eddfc3'),
-  vibe=['Ocean teal', 'Orchid', 'Warm sand'],
+  c=dict(desk='#123d45', paper='#f8f0df', ink='#24383a', accent='#c46f4a', accent2='#2a7f86', soft='#f0e0c4'),
+  vibe=['Deep ocean teal', 'Sunset coral', 'Warm sand'],
   facts=[
-   'Oceanfront in Waikiki (confirm room views and categories).',
-   'Known for classic, quiet luxury (confirm current dining and spa).',
-   'A short ride from Kakaʻako, a walkable neighborhood of murals and local shops.',
+   'On Wailea Beach, a shallow, sandy beach that is gentle for little ones, with complimentary beach chairs.',
+   'A Keiki Pool with a waterfall, a slide and pool toys, plus a heated family pool and an adults-only infinity pool.',
+   'Baby bath, highchair, bottle warmer, diapers, rocking chair and pop-up tent listed as complimentary family amenities.',
+   'Spago, Ferraro\'s, DUO and a Lobby Lounge with a nightly sunset hula show, all on property.',
+   'A fitness center open 24 hours, with an outdoor ocean-facing cardio room.',
+   'Wailea Beach Path and the Shops at Wailea close by, with upcountry makers and the north shore a drive away.',
   ],
-  why='Your strongest story. A proud Kanaka showing Hawaiian-owned makers and neighborhoods beats a generic beach feed, and the hotel gives the pitch a refined, grounded base.',
+  hl=dict(
+   title='Resort luxury, made easy for the whole family',
+   lede="A beautiful resort is only worth it if it works for the people I travel with. Here is what makes this one easy with a baby, and what I would still need to check for the dog.",
+   walks=[
+    ('3','Wailea Beach','Wailea Beach, Maui',True),
+    ('5','Wailea Beach Path','Wailea Beach Path, Maui',True),
+    ('15','Shops at Wailea','Shops at Wailea, Maui',True),
+   ],
+   walknote='Times at about 20 minutes per mile. The Shops at Wailea are listed at under a mile from the resort; the beach and path times are estimates. Confirm on the day.',
+   baby=[
+    ('Complimentary family amenities:','rocking chair, pop-up tent, baby bath, organic bath products, highchair, bottle warmer and diapers, as listed by the hotel.',False),
+    ('Wailea Beach','is shallow and sandy, with complimentary beach chairs, and the Keiki Pool has a waterfall, a slide and toys.',True),
+    ('Kids 4 and under eat free','with a paying adult at Ferraro\'s, DUO and the Lobby Lounge, and every restaurant has a kids menu.',True),
+    ('Cribs and strollers:','mentioned for some suites. Ask for both when booking, and ask what babysitting is available.',True),
+    ('Kids For All Seasons','is for ages 5 to 12, daily 9 to 5, so it is not for the baby yet.',False),
+   ],
+   dog=[
+    ('Pet policy:','not confirmed. Ask whether dogs are welcome, any size limit and the fee before building the dog into this pitch.',True),
+    ('Morning and afternoon walks:','Wailea Beach Path runs about 1.6 miles one way along the coast. Confirm whether dogs are allowed on the path and the beach.',True),
+    ('Relief break:','if dogs are welcome, the front desk can point to the nearest grassy spot.',True),
+   ],
+   given=[
+    ('In the resort','Spago by Wolfgang Puck, Ferraro\'s beachside Italian with nightly live music, DUO Steak and Seafood with a breakfast buffet, and the Lobby Lounge with a nightly sunset hula show.',False),
+    ('Views of the ocean','Ocean-view and deluxe ocean-view rooms look over Wailea Beach and the Pacific. Garden and mountain-side categories cost less, so ask for the view.',True),
+   ],
+   mom=[
+    ('Fitness center','open 24 hours, with an outdoor ocean-facing cardio room.',False),
+    ('Spa and Wellness Center:','Lomi Mohala massage, facials and poolside or oceanside treatments.',True),
+    ('Serenity Pool:','an adults-only (21+) infinity pool with a swim-up bar and cabanas.',False),
+    ('Fountain Pool:','heated to about 82 degrees, with whirlpools and poolside food and drinks.',True),
+   ],
+  ),
+  why_title="What I'd show other moms",
+  why="I'm a mom who travels with a baby and a dog, and I want other moms to see what's possible. Pampering and excitement belong back in the picture, without giving up anything baby needs. Here that looks like a shallow beach for baby, a Keiki Pool with a waterfall, a gym with an ocean view, a sunset hula show, and a day upcountry meeting the makers behind the island's best goods.",
   angle=dict(
-   hotel='Sunrise on the water, the beach walk, and the lobby-to-sea path. Then a "worth the ride" day in Kakaʻako to show the local side.'),
+   hotel='Open on the beach at sunrise. Cut to the Keiki Pool, then the Wailea Beach Path with a stroller. Close with the sunset hula show and dinner at Ferraro\'s.'),
   pins=[
-   ('stay','Oceanfront room and lanai view','here','Confirm room categories.',True),
-   ('night','Sunrise on the beach','here','Soft light, no filter.',False),
-   ('eat','Sunset dinner at the hotel','here','Confirm the restaurant and hours.',True),
-   ('shop','Waikiki shops','walk','A quick browse before the beach.',True),
-   ('art','Kakaʻako murals walk','ride','Colorful neighborhood, easy to wander.',False),
-   ('shop','House of Mana Up','ride','Hawaiian entrepreneurs, beauty and local foods.',False),
-   ('shop','MORI by Art+Flea','ride','Goods by Hawaiian artists.',False),
-   ('shop','always a.line and Salvage Public','ride','Hawaiian-inspired prints and surf graphic tees.',False),
-   ('sweet','Black Sheep Cream Company','ride','Rotating ice cream flavors.',False),
-   ('eat',"Merriman's Honolulu",'ride','Farm-to-table dinner.',False),
-   ('sweet',"Lin's Hawaiian Snacks",'ride','Shave ice, open since the 1980s.',False),
-   ('matcha','Local matcha stop','ride','Pick one the week you go.',True),
-   ('art','Honolulu Museum of Art','trip','Local artists and a quiet gallery moment.',True),
+   ('stay','Room view and amenities','here','Ocean-view rooms are the opening shot.',True),
+   ('night','Wailea Beach at sunrise','walk','Soft light, no filter.',False),
+   ('eat','Lobby Lounge sunset hula','here','Cocktails and small plates, with a nightly show.',True),
+   ('eat',"Ferraro's beachside Italian",'here','Live music nightly; kids 4 and under eat free.',True),
+   ('walk','Wailea Beach Path','walk','Morning walk along the coast.',True),
+   ('shop','Shops at Wailea','walk','Under a mile from the resort.',True),
+   ('art',"Hui Noʻeau Visual Arts Center",'ride','Gallery and grounds in Makawao.',True),
+   ('shop','Makawao town','ride','Small galleries and boutiques.',True),
+   ('sweet','Surfing Goat Dairy','ride','Kula goat farm and tastings.',True),
+   ('walk',"Aliʻi Kula Lavender",'ride','Lavender gardens above the coast.',True),
+   ('shop','Paʻia town','trip','Shops, cafés and surf culture.',True),
+   ('eat',"Mama's Fish House",'trip','Waterfront lunch; reservations needed.',True),
+   ('pack','Last look and checkout','here','One last walk on the beach.',False),
   ]),
  dict(
   slug='proper', no='04', city='Los Angeles', name='Santa Monica Proper', short='Santa Monica Proper',
@@ -589,14 +625,14 @@ HUB_JS = r"""
 
 BINDERS = [
  dict(id='travel', no='01', title='Travel', sub='hotel & destination pitches', lea='#9a6b47', lea2='#6d4529', deb='rgba(38,20,8,.62)', debs='0 1px 0 rgba(255,228,196,.3), 0 -1px 1px rgba(0,0,0,.32)',
-      pitches=[('nomad', 'NoMad'), ('brooklyn', '1 Hotel'), ('halekulani', 'Halekulani'), ('proper', 'Proper'), ('shutters', 'Shutters')]),
+      pitches=[('nomad', 'NoMad'), ('brooklyn', '1 Hotel'), ('maui', 'Maui'), ('proper', 'Proper'), ('shutters', 'Shutters')]),
  dict(id='skincare', no='02', title='Skincare', sub='routines & rituals', lea='#d3b2a4', lea2='#b9917f', deb='rgba(88,52,40,.6)', debs='0 1px 0 rgba(255,255,255,.38), 0 -1px 1px rgba(60,30,20,.25)', pitches=[]),
  dict(id='homegoods', no='03', title='Homegoods', sub='rooms & rituals at home', lea='#8b9479', lea2='#667057', deb='rgba(25,32,18,.6)', debs='0 1px 0 rgba(255,255,255,.22), 0 -1px 1px rgba(10,16,6,.35)', pitches=[]),
  dict(id='fashion', no='04', title='Fashion', sub='wardrobe & style pitches', lea='#3d3a38', lea2='#252322', deb='rgba(0,0,0,.7)', debs='0 1px 0 rgba(255,255,255,.14), 0 -1px 1px rgba(0,0,0,.6)', pitches=[]),
 ]
 
 
-PUBLIC = {'nomad': 'pitch-ritz-carlton-nomad-nyc'}  # public address names (internal page key stays pitch-nomad)
+PUBLIC = {'nomad': 'pitch-ritz-carlton-nomad-nyc', 'maui': 'pitch-four-seasons-maui-wailea'}  # public address names (internal page key stays pitch-nomad)
 
 
 def hub():

@@ -26,7 +26,7 @@ const pages = [
   { file: 'site/pitches.html', export: 'PITCHES_HTML' },
   { file: 'site/pitch-nomad.html', export: 'PITCH_NOMAD_HTML' },
   { file: 'site/pitch-brooklyn.html', export: 'PITCH_BROOKLYN_HTML' },
-  { file: 'site/pitch-halekulani.html', export: 'PITCH_HALEKULANI_HTML' },
+  { file: 'site/pitch-maui.html', export: 'PITCH_MAUI_HTML' },
   { file: 'site/pitch-proper.html', export: 'PITCH_PROPER_HTML' },
   { file: 'site/pitch-shutters.html', export: 'PITCH_SHUTTERS_HTML' },
 ];

@@ -62,23 +62,31 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `brooklyn/printemps-one-wall-street.jpg`: Printemps, One Wall Street
 - `brooklyn/aura-reading-at-magic-jewelry.jpg`: Aura reading at Magic Jewelry
 
-## Halekulani  (`halekulani`)
+## Four Seasons Maui  (`maui`)
 
-- `halekulani-hero.jpg` (full-bleed cover background)
-- `halekulani/cover-1.jpg`, `cover-2.jpg`, `cover-3.jpg` (floating cover cut-outs)
-- `halekulani/oceanfront-room-and-lanai-view.jpg`: Oceanfront room and lanai view
-- `halekulani/sunrise-on-the-beach.jpg`: Sunrise on the beach
-- `halekulani/waikiki-shops.jpg`: Waikiki shops
-- `halekulani/sunset-dinner-at-the-hotel.jpg`: Sunset dinner at the hotel
-- `halekulani/kaka-ako-murals-walk.jpg`: Kakaʻako murals walk
-- `halekulani/house-of-mana-up.jpg`: House of Mana Up
-- `halekulani/mori-by-art-flea.jpg`: MORI by Art+Flea
-- `halekulani/always-a-line-and-salvage-public.jpg`: always a.line and Salvage Public
-- `halekulani/black-sheep-cream-company.jpg`: Black Sheep Cream Company
-- `halekulani/lin-s-hawaiian-snacks.jpg`: Lin's Hawaiian Snacks
-- `halekulani/local-matcha-stop.jpg`: Local matcha stop
-- `halekulani/merriman-s-honolulu.jpg`: Merriman's Honolulu
-- `halekulani/honolulu-museum-of-art.jpg`: Honolulu Museum of Art
+- `maui-hero.jpg` (full-bleed cover background)
+- `maui/cover-1.jpg`, `cover-2.jpg`, `cover-3.jpg` (floating cover cut-outs)
+- `maui/room-and-lanai-view.jpg`: Room and lanai view
+- `maui/wailea-beach.jpg`: Wailea Beach
+- `maui/keiki-pool.jpg`: Keiki Pool
+- `maui/baby-amenities.jpg`: Baby amenities
+- `maui/lobby-lounge-sunset-hula.jpg`: Lobby Lounge sunset hula
+- `maui/ferraro-s-beachside-italian.jpg`: Ferraro's beachside Italian
+- `maui/fitness-center.jpg`: Fitness center
+- `maui/wailea-beach-path.jpg`: Wailea Beach Path
+- `maui/shops-at-wailea.jpg`: Shops at Wailea
+- `maui/hui-no-eau-visual-arts-center.jpg`: Hui Noʻeau Visual Arts Center
+- `maui/makawao-town.jpg`: Makawao town
+- `maui/surfing-goat-dairy.jpg`: Surfing Goat Dairy
+- `maui/ali-i-kula-lavender.jpg`: Aliʻi Kula Lavender
+- `maui/the-quiet-room.jpg`: The quiet room
+- `maui/fountain-pool.jpg`: Fountain Pool
+- `maui/serenity-pool-adults-only.jpg`: Serenity Pool, adults only
+- `maui/pa-ia-town.jpg`: Paʻia town
+- `maui/ho-okipa-beach-lookout.jpg`: Hoʻokipa Beach lookout
+- `maui/mama-s-fish-house.jpg`: Mama's Fish House
+- `maui/duo-breakfast-buffet.jpg`: DUO breakfast buffet
+- `maui/last-walk-on-wailea-beach.jpg`: Last walk on Wailea Beach
 
 ## Santa Monica Proper  (`proper`)
 

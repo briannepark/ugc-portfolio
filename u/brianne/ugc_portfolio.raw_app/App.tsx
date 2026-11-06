@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { HOME_HTML, GALLERY_HTML, CONTACT_HTML, PARTNERSHIPS_HTML, STRATEGY_HTML, TRAVEL_HTML, BRANDS_HTML, PITCHES_HTML, PITCH_NOMAD_HTML, PITCH_BROOKLYN_HTML, PITCH_HALEKULANI_HTML, PITCH_PROPER_HTML, PITCH_SHUTTERS_HTML } from './pages.generated';
+import { HOME_HTML, GALLERY_HTML, CONTACT_HTML, PARTNERSHIPS_HTML, STRATEGY_HTML, TRAVEL_HTML, BRANDS_HTML, PITCHES_HTML, PITCH_NOMAD_HTML, PITCH_BROOKLYN_HTML, PITCH_MAUI_HTML, PITCH_PROPER_HTML, PITCH_SHUTTERS_HTML } from './pages.generated';
 import { backend } from './wmill';
 
 const PAGES = {
@@ -15,7 +15,7 @@ const PAGES = {
   pitches: PITCHES_HTML,
   'pitch-nomad': PITCH_NOMAD_HTML,
   'pitch-brooklyn': PITCH_BROOKLYN_HTML,
-  'pitch-halekulani': PITCH_HALEKULANI_HTML,
+  'pitch-maui': PITCH_MAUI_HTML,
   'pitch-proper': PITCH_PROPER_HTML,
   'pitch-shutters': PITCH_SHUTTERS_HTML,
 } as const;
@@ -23,8 +23,8 @@ const PAGES = {
 type Page = keyof typeof PAGES;
 
 // Friendly public addresses → internal page keys (and back, for the address bar).
-const ALIASES: Record<string, Page> = { 'pitch-ritz-carlton-nomad-nyc': 'pitch-nomad' };
-const PUBLIC_NAME: Partial<Record<Page, string>> = { 'pitch-nomad': 'pitch-ritz-carlton-nomad-nyc' };
+const ALIASES: Record<string, Page> = { 'pitch-ritz-carlton-nomad-nyc': 'pitch-nomad', 'pitch-four-seasons-maui-wailea': 'pitch-maui' };
+const PUBLIC_NAME: Partial<Record<Page, string>> = { 'pitch-nomad': 'pitch-ritz-carlton-nomad-nyc', 'pitch-maui': 'pitch-four-seasons-maui-wailea' };
 
 function toPage(p: unknown): Page {
   if (typeof p === 'string' && Object.prototype.hasOwnProperty.call(ALIASES, p)) return ALIASES[p];
