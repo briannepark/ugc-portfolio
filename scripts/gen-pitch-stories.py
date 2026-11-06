@@ -58,8 +58,8 @@ STORY = {
     [('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.',False),('Rhythm Zero','ride','An art-gallery café with a West Village location. Seasonal matcha drinks.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True)]),
    ('Day 2 · Evening','A bowl worth the ride',"Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.",
     [('Ippudo','ride','Hakata-style ramen under a canopy of bamboo. Confirm which location (the storefront photo is #24) and wait times.',True)]),
-   ('Day 3 · Morning','The secret garden',"A quick train up the Hudson and the city drops away: stone terraces, a long reflecting pool, and the river below. This is the quiet chapter.",
-    [('Untermyer Gardens','trip','Metro-North from Grand Central to Greystone, about 40 minutes, then a short ride or walk. Free; closes at dusk.',False)]),
+   ('Day 3 · Morning','The quiet garden',"The city drops away: a Japanese hill-and-pond garden, a rose garden, and a glass conservatory of greenhouse blooms. This is the quiet chapter.",
+    [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. The glass conservatory stays green and warm in winter, and the Japanese garden is quiet under frost. Confirm winter hours and tickets.',True)]),
    ('Day 3 · Afternoon','Downtown, in one sweep',"Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.",
     [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False)]),
    ('Day 4 · Across the bridge','Brooklyn, then the big dinner',"A scoop of ice cream, the bridge in the frame, and one last dinner that earns its place in the story.",
@@ -82,8 +82,8 @@ STORY = {
     [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Cross the bridge for a design stop.',True),('Kith, SoHo','ride','The all-white sneaker wall and a tiled flagship. Confirm which store and hours.',True),('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line.',False)]),
    ('Day 2 · Evening','Art-gallery coffee and ramen',"A café that doubles as an art space in Williamsburg, then ramen and a scoop by the water on the way home.",
     [('Rhythm Zero','ride','An art-gallery café with locations in Williamsburg and Greenpoint.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True),('Ippudo','ride','Hakata-style ramen under a canopy of bamboo. Confirm which location and wait times.',True),('Ice cream by the water','ride','A scoop at golden hour.',True)]),
-   ('Day 3 · Morning','The secret garden',"A quick train up the Hudson and the city drops away: stone terraces, a long reflecting pool, and the river below.",
-    [('Untermyer Gardens','trip','Metro-North from Grand Central to Greystone, about 40 minutes, then a short ride or walk. Free; closes at dusk.',False)]),
+   ('Day 3 · Morning','The quiet garden',"The city drops away: a Japanese hill-and-pond garden, a rose garden, and a glass conservatory of greenhouse blooms.",
+    [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. The glass conservatory stays green and warm in winter, and the Japanese garden is quiet under frost. Confirm winter hours and tickets.',True)]),
    ('Day 3 · Afternoon','Lower Manhattan, in one sweep',"An immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed. All a short ride across the bridge.",
     [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False)]),
   ]),
@@ -671,6 +671,30 @@ CSS = r"""
     .kscene .msg.k2 { left:8%; top:90%; width:60%; }
   }
 
+  /* ---- Aura reading collage scene ---- */
+  .ascene { position:relative; width:min(1180px,100%); aspect-ratio:16/7.2; margin:30px auto 20px; }
+  .ascene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
+  .ascene img.lyr { height:auto; max-width:none; }
+  .ascene .print { background:#f4efe3; padding:9px 9px 34px; }
+  .ascene .print img { display:block; width:100%; height:auto; }
+  .ascene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .ascene .tape { z-index:5; }
+  .ascene .cards { left:4%; top:4%; width:46%; --r:-1.6deg; z-index:1; }
+  .ascene .blue { left:54%; top:2%; width:17%; --r:-5deg; z-index:5; }
+  .ascene .red { left:73%; top:10%; width:16%; --r:4deg; z-index:5; }
+  .ascene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .ascene .msg.a1 { left:56%; top:66%; --r:-3deg; }
+  .ascene .msg.a2 { left:78%; top:72%; --r:-2deg; }
+  @media (max-width:820px) {
+    .ascene { aspect-ratio:3/4.6; }
+    .ascene .cards { left:3%; top:1%; width:92%; }
+    .ascene .blue { left:4%; top:34%; width:44%; }
+    .ascene .red { right:4%; left:auto; top:38%; width:42%; }
+    .ascene .msg { font-size:15px; }
+    .ascene .msg.a1 { left:8%; top:84%; }
+    .ascene .msg.a2 { display:none; }
+  }
+
   /* ending */
   .about { max-width:1100px; margin:0 auto; padding:110px 24px 40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; }
   .about h2 { font-size:clamp(30px,4vw,50px); margin:8px 0 14px; } .about p { line-height:1.8; max-width:52ch; }
@@ -774,6 +798,20 @@ def snaps(slug_h, key):
     for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
         out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
+
+def aura_scene(slug_h, cap_html):
+    M = CDN + 'shared/aura/'
+    return f'''
+        <div class="scene-col">
+          <div class="ascene reveal">
+            <figure class="lyr print cards" data-speed="0.015"><div class="tape"></div><img src="{M}cards.jpg" alt="Two aura photographs" loading="lazy"><figcaption class="hand">my aura, then and now</figcaption></figure>
+            <img class="lyr blue" data-speed="0.04" src="{M}cut-card-blue.png" alt="" loading="lazy">
+            <img class="lyr red" data-speed="-0.04" src="{M}cut-card-red.png" alt="" loading="lazy">
+            <div class="lyr msg a1 hand" data-speed="0.01">what color<br>are you?</div>
+            <div class="lyr msg a2 hand" data-speed="0.02">a tiny Canal St<br>detour</div>
+          </div>
+          {cap_html}
+        </div>'''
 
 def kith_scene(slug_h, cap_html):
     M = CDN + 'shared/kith/'
@@ -1050,6 +1088,9 @@ def render(h):
           <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">{esc(name)}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{esc(note)}</span></figcaption>{snaps(slug_h, key)}
         </figure>'''
+            if key == 'aura-reading-at-magic-jewelry':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + aura_scene(slug_h, cap)
             if key == 'kith-soho':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + kith_scene(slug_h, cap)

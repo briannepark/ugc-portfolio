@@ -20,7 +20,7 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/rhythm-zero.jpg`: Rhythm Zero
 - `nomad/rok-matcha.jpg`: Rok Matcha
 - `nomad/ippudo.jpg`: Ippudo
-- `nomad/untermyer-gardens.jpg`: Untermyer Gardens
+- `nomad/brooklyn-botanical-garden.jpg`: Brooklyn Botanical Garden
 - `nomad/mercer-labs.jpg`: Mercer Labs
 - `nomad/printemps-one-wall-street.jpg`: Printemps, One Wall Street
 - `nomad/aura-reading-at-magic-jewelry.jpg`: Aura reading at Magic Jewelry
@@ -48,7 +48,7 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `brooklyn/rok-matcha.jpg`: Rok Matcha
 - `brooklyn/ippudo.jpg`: Ippudo
 - `brooklyn/ice-cream-by-the-water.jpg`: Ice cream by the water
-- `brooklyn/untermyer-gardens.jpg`: Untermyer Gardens
+- `brooklyn/brooklyn-botanical-garden.jpg`: Brooklyn Botanical Garden
 - `brooklyn/mercer-labs.jpg`: Mercer Labs
 - `brooklyn/printemps-one-wall-street.jpg`: Printemps, One Wall Street
 - `brooklyn/aura-reading-at-magic-jewelry.jpg`: Aura reading at Magic Jewelry
