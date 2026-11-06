@@ -752,21 +752,22 @@ CSS = r"""
   .bstage .bd-book { --bw:min(780px,94vw); --bh:min(86vh,900px); will-change:transform; }
   .bstage.live .bd-book a { pointer-events:auto; }
   .bk-kick { margin-bottom:18px; }
-  .bstage .bd-page > :not(.bk-pol):not(.bk-cue) { max-width:56%; }
+  .bstage .bd-page > :not(.bk-pol):not(.bk-cue) { max-width:52%; }
   .bk-logo { display:block; max-width:min(260px,60%); max-height:84px; object-fit:contain; margin:0 0 14px; }
   .bk-name { font-family:var(--head); font-weight:400; font-style:italic; font-size:clamp(34px,4.6vw,56px); line-height:1.04; margin:0 0 12px; color:#231c17; }
   .bk-tag { font-family:var(--body); font-size:clamp(14px,1.5vw,17px); line-height:1.6; max-width:30ch; color:#5a4d3e; }
   .bk-hand { font-family:var(--hand); font-size:clamp(22px,2.4vw,28px); color:#7a6850; margin-top:12px; }
-  .bk-pol { position:absolute; right:34px; top:46px; width:min(38%,250px); margin:0; padding:10px 10px 36px; background:#fbf8f1; box-shadow:0 10px 24px rgba(0,0,0,.35); transform:rotate(3.5deg); }
+  .bk-pol { position:absolute; right:36px; top:0; width:min(33%,225px); margin:0; padding:10px 10px 36px; background:#fbf8f1; box-shadow:0 10px 24px rgba(0,0,0,.35); transform:rotate(3.5deg); }
   .bk-pol .ph { display:block; aspect-ratio:4/5; background:linear-gradient(150deg,var(--accent2),var(--accent)); position:relative; overflow:hidden; }
   .bk-pol img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .bk-pol .bd-clip { left:50%; margin-left:-13px; top:-34px; }
+  .bk-pol .bd-clip { left:50%; margin-left:-13px; top:-42px; }
+  .bstage .bd-page { overflow:visible; padding-top:0; } .bstage .bk-kick { margin-top:96px; }
   .bk-pol figcaption { position:absolute; left:0; right:0; bottom:8px; white-space:nowrap; text-align:center; font-family:var(--hand); font-size:18px; color:#4a3d2c; }
   .bk-cue { position:absolute; left:42px; bottom:30px; font-family:var(--hand); font-size:clamp(20px,2.2vw,26px); color:#7a6850; animation:bob 2s ease-in-out infinite; }
   .bstage .bd-tabs { gap:6px; }
   .bstage .bd-tab { flex:1 1 0; min-height:0; max-height:128px; font-size:17px; }
   @media (max-width:640px) {
-    .bstage .bd-page { display:flex; flex-direction:column; } .bk-pol figcaption { font-size:15px; } .bk-pol { position:relative; right:auto; top:auto; order:-1; align-self:center; width:56%; margin:30px 0 22px; padding:7px 7px 28px; } .bk-pol .bd-clip { top:-30px; transform:scale(.8); }
+    .bstage .bd-page { display:flex; flex-direction:column; } .bk-pol figcaption { font-size:15px; } .bk-pol { position:relative; right:auto; top:auto; order:-1; align-self:center; width:52%; margin:0 0 26px; padding:7px 7px 28px; } .bk-pol .bd-clip { top:-34px; transform:scale(.8); } .bstage .bk-kick { margin-top:0; }
     .bstage .bd-page > :not(.bk-pol):not(.bk-cue) { max-width:100%; } .bk-name { font-size:32px; } .bk-tag { max-width:24ch; } .bk-cue { left:22px; bottom:20px; font-size:20px; } .bstage .bd-tab { font-size:14px; }
   }
   @media (prefers-reduced-motion: reduce) { .bopen { height:auto; margin:0; } .bstage { position:relative; height:100vh; } .bk-cue { animation:none; } }
