@@ -199,9 +199,8 @@ CSS = r"""
   /* intro + marquee */
   .intro { max-width:760px; margin:0 auto; padding:110px 24px 70px; text-align:center; }
   .intro.short { padding:120px 24px 90px; }
-  .intro.short h2 { font-family:var(--head); font-weight:400; font-size:clamp(44px,7vw,84px); line-height:1.05; margin:0 0 28px; }
-  .tagpill { display:inline-flex; align-items:center; gap:12px; padding:10px 22px 10px 16px; border:1px solid color-mix(in srgb, var(--txt) 30%, transparent); border-radius:999px; font-size:clamp(11px,1.4vw,14px); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); font-weight:500; }
-  .tagpill i { width:16px; height:16px; border-radius:50%; background:var(--accent); flex:0 0 auto; }
+  .intro.short h2 { font-family:var(--head); font-weight:400; font-style:italic; font-size:clamp(44px,7vw,84px); line-height:1.05; margin:0 0 28px; }
+  .tagpill { display:inline-flex; align-items:center; gap:12px; padding:10px 24px; border:1.5px solid var(--accent); border-radius:999px; font-size:clamp(11px,1.4vw,14px); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); font-weight:500; }
   .intro p { font-family:var(--head); font-size:clamp(24px,3.4vw,38px); line-height:1.3; margin:18px 0 0; }
   .marq { overflow:hidden; border-block:1px solid color-mix(in srgb, var(--txt) 25%, transparent); padding:14px 0; white-space:nowrap; }
   .marq div { display:inline-block; animation:mq 40s linear infinite; font-family:var(--head); font-style:italic; font-size:22px; letter-spacing:.04em; color:var(--accent); }
@@ -1370,7 +1369,7 @@ def render(h):
         hlsec = (f'<section class="hl rise"><div class="kick">Highlights</div><h2>{esc(H["title"])}</h2><p class="lede">{esc(H["lede"])}</p>'
                  f'<div class="walks">{walks_h}</div><p class="wn">{esc(H["walknote"])}</p>{care_h}'
                  f'<div class="cards">{_card("For baby", H["baby"])}{_card("For the dog", H["dog"])}{_card("For mom", H["mom"])}{_card("At the hotel", [(a_, b_, c_) for a_, b_, c_ in H["given"]])}</div></section>')
-    intro_h = ('<section class="intro short rise"><h2>For moms&hellip;</h2><span class="tagpill"><i></i>a guide to vacation with baby + puppy</span></section>' if slug_h == 'nomad' else f'<section class="intro rise"><div class="kick">The trip</div><p>{sv(S["intro"])}</p></section>')
+    intro_h = ('<section class="intro short rise"><h2>for moms&hellip;</h2><span class="tagpill">a guide to vacation with baby + puppy</span></section>' if slug_h == 'nomad' else f'<section class="intro rise"><div class="kick">The trip</div><p>{sv(S["intro"])}</p></section>')
     lobby = ('''<section class="lobby rise"><div class="pad"><div class="sheet"><div class="lh">The Ritz-Carlton<small>NoMad</small></div><div class="msg">meet you in the lobby at 4PM?</div></div><span class="pen"></span></div><div class="cap2">scroll for the guide &darr;</div></section>''' if slug_h == 'nomad' else '')
     tabs_raw = ([('ch1', S['walk']['kick'])] if 'walk' in S else []) + [(f'ch{i+1+off}', c[0]) for i, c in enumerate(S['chapters'])]
     tabs_l = []
