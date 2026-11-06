@@ -37,6 +37,42 @@ HOTELS = [
    'Ritz Kids activities, and pets welcome: up to two, 60 lbs combined, with a per-stay fee.',
    'In NoMad, with Madison Square Park, Flatiron, Chelsea, and SoHo pop-ups within easy reach.',
   ],
+  hl=dict(
+   title='Luxury, made easy for the whole family',
+   lede="A beautiful hotel is only worth it if it works for the people I travel with. Here is what makes this one easy with a baby and a dog.",
+   walks=[
+    ('4','National Museum of Mathematics','National Museum of Mathematics, New York',False),
+    ('5','Madison Square Park and Jemmy\'s Dog Run','Madison Square Park Dog Run, New York',True),
+    ('6','LEGO Store, Fifth Avenue','LEGO Store, 5th Avenue, New York',False),
+    ('8','Harry Potter New York','Harry Potter New York flagship store',False),
+    ('8','Flatiron Building','Flatiron Building, New York',True),
+   ],
+   walknote='Times at about 20 minutes per mile. Museum, LEGO and Harry Potter distances are from the hotel\'s own listing; the park and Flatiron are estimates. Confirm on the day.',
+   baby=[
+    ('Cribs, extra beds, adjoining rooms and kids\' bath products','are part of Ritz-Carlton\'s family offering. Ask for each when booking.',True),
+    ('Bath time:','deep soaking tubs in select rooms. Request a tub room for the baby\'s bath.',True),
+    ('24-hour in-room dining,','so bottle and snack times never depend on a restaurant\'s hours.',False),
+    ('Childcare:','the concierge can arrange it for an evening out.',True),
+    ('Ritz Kids','is for ages 4 to 12, and Nubeluz has kids\' options at weekend high tea (Sat and Sun, 11 to 3). Ask about this season\'s Ritz Kids tea.',True),
+   ],
+   dog=[
+    ('Pets welcome:','up to two, 60 lbs combined, no breed restrictions.',True),
+    ('Pet beds, bowls and treats','are provided, subject to availability.',True),
+    ('Morning and afternoon walks:','Madison Square Park is a few minutes away, with Jemmy\'s Dog Run: separate small and large dog areas, open with the park (around 6 am to 11 pm), waste bags provided.',True),
+    ('Relief break:','the front desk can point to the closest grassy spot for a quick potty walk.',True),
+    ('The fee','is per stay and reported anywhere from $250 to $375.',True),
+   ],
+   given=[
+    ('In the hotel','Zaytinya, an all-day Mediterranean restaurant from José Andrés. Bazaar Meat by José Andrés, on Level 2. Nubeluz, the rooftop bar with 270-degree skyline views. The Lobby Lounge, for pastries and coffee in the morning and cocktails at night.',False),
+    ('Views of the city','Oversize windows in the rooms, with views from the Empire State Building down to the Statue of Liberty.',False),
+   ],
+   mom=[
+    ('Fitness center','open 24 hours, with Peloton bikes, right by the spa.',False),
+    ('Spa:','a 6,800 sq ft spa with a sauna and steam room.',True),
+    ('Bath and rain shower:','Diptyque products in every room.',False),
+    ('Nubeluz and Bazaar Meat','are in the building, so a date night is an elevator ride.',False),
+   ],
+  ),
   why_title="What I'd show other moms",
   why="I'm a mom who travels with a baby and a dog, and I want other moms to see what's possible. Pampering and excitement belong back in the picture, without giving up anything baby or the dog needs. This stay makes that real: quiet rooms for naps, soaking tubs for bath time, a gym downstairs, a skyline bar for the night, and the trendy pop-ups I usually miss a short ride away.",
   angle=dict(

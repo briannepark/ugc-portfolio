@@ -662,6 +662,25 @@
   .stayline { margin-top:16px; font-size:13px; letter-spacing:.04em; display:flex; gap:14px; flex-wrap:wrap; align-items:center; } .stayline a { border-bottom:1px solid rgba(255,255,255,.6); padding-bottom:1px; }
   .bk-addr { margin-top:14px; font-size:12px; letter-spacing:.05em; color:#5a4d3e; display:flex; gap:12px; flex-wrap:wrap; } .bk-addr a { border-bottom:1px solid currentColor; }
 
+  .hl { max-width:1120px; margin:0 auto; padding:80px 24px 30px; }
+  .hl h2 { font-family:var(--head); font-weight:400; font-size:clamp(32px,4.6vw,54px); line-height:1.08; margin:8px 0 10px; }
+  .hl .lede { max-width:56ch; line-height:1.7; opacity:.85; margin:0 0 30px; }
+  .hl .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:44px 64px; }
+  .hl h3 { font-family:var(--hand); font-weight:400; font-size:clamp(26px,3vw,34px); color:var(--accent); margin:0 0 8px; }
+  .hl ul { list-style:none; margin:0; padding:0; }
+  .hl li { padding:12px 0; line-height:1.6; border-bottom:1px solid color-mix(in srgb, currentColor 16%, transparent); }
+  .hl li b { font-weight:600; }
+  .hl .w { display:grid; grid-template-columns:84px 1fr; gap:14px; align-items:baseline; }
+  .hl .w .m { font-family:var(--head); font-style:italic; font-size:34px; line-height:1; } .hl .w .m small { font-family:var(--body); font-style:normal; font-size:10px; letter-spacing:.16em; text-transform:uppercase; opacity:.7; margin-left:3px; }
+  .hl .cf { display:inline-block; margin-left:8px; padding:1px 7px; border:1px dashed currentColor; border-radius:3px; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#d98a8a; vertical-align:2px; }
+  .hl .wn { margin-top:12px; font-size:12px; line-height:1.6; opacity:.6; }
+  .about.solo { grid-template-columns:1fr; }
+  @media (max-width:760px) { .hl .grid { grid-template-columns:1fr; gap:34px; } .hl .w { grid-template-columns:70px 1fr; } }
+
+  .hl .given { margin-top:56px; padding-top:30px; border-top:1px solid color-mix(in srgb, currentColor 22%, transparent); }
+  .hl .given .two { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 64px; margin-top:14px; } .hl .given p { margin:0; line-height:1.7; opacity:.88; }
+  @media (max-width:760px) { .hl .given .two { grid-template-columns:1fr; } }
+
   .bd-book { position:relative; width:var(--bw,min(760px,94vw)); height:var(--bh,min(84vh,860px)); border-radius:18px; color:#2a2420;
      background-color:var(--lea,#4a2621); background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='l' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='3' seed='7' stitchTiles='stitch' result='n'/%3E%3CfeDiffuseLighting in='n' surfaceScale='1.8' diffuseConstant='1' lighting-color='%23ffffff'%3E%3CfeDistantLight azimuth='50' elevation='62'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23l)'/%3E%3C/svg%3E"), radial-gradient(ellipse at 28% 18%, rgba(255,255,255,.2), transparent 55%), linear-gradient(150deg,var(--lea,#4a2621),var(--lea2,#2a110d));
      background-blend-mode:multiply, soft-light, normal; box-shadow:0 40px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,235,200,.08); }
@@ -724,6 +743,7 @@
 </header>
 
 <section class="intro rise"><div class="kick">The trip</div><p><span data-s="w">Picture a slower New York. The skyline is right across the water, the bridge is outside your window, and the city glitters in the cold. This is the stay for people who want the city without the rush.</span><span data-s="m">Picture a slower New York. The skyline is right across the water, the bridge is outside your window, and there&#x27;s a rooftop pool above it all. This is the stay for people who want the city without the rush.</span></p></section>
+
 
 <div class="index"><div class="kick">In this guide</div><p><span>Room and skyline view</span> <span>Rooftop pool deck</span> <span>Bamford Wellness Spa</span> <span>Brooklyn Bridge Park walk</span> <span>Washington Street bridge shot</span> <span>Jane&#x27;s Carousel</span> <span>Time Out Market</span> <span>Dumbo gallery stop</span> <span>CJ Hendry Flower Market</span> <span>Gentle Monster, SoHo</span> <span>Kith, SoHo</span> <span>12 Matcha</span> <span>Rhythm Zero</span> <span>Rok Matcha</span> <span>Ippudo</span> <span>Ice cream by the water</span> <span>Brooklyn Botanical Garden</span> <span>Mercer Labs</span> <span>Printemps, One Wall Street</span> <span>Aura reading at Magic Jewelry</span></p></div>
 
