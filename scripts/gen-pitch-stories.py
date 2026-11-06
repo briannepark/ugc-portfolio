@@ -770,6 +770,22 @@ CSS = r"""
     .bstage .bd-page { display:flex; flex-direction:column; } .bk-pol figcaption { font-size:15px; } .bk-pol { position:relative; right:auto; top:auto; order:-1; align-self:center; width:52%; margin:0 0 26px; padding:7px 7px 28px; } .bk-pol .bd-clip { top:-34px; transform:scale(.8); } .bstage .bk-kick { margin-top:0; }
     .bstage .bd-page > :not(.bk-pol):not(.bk-cue) { max-width:100%; } .bk-name { font-size:32px; } .bk-tag { max-width:24ch; } .bk-cue { left:22px; bottom:20px; font-size:20px; } .bstage .bd-tab { font-size:14px; }
   }
+  .bk-cue { text-decoration:none; cursor:pointer; }
+  .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
+  .rail.on { opacity:1; pointer-events:auto; }
+  .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
+  .rail a .s, .rail a .f { white-space:nowrap; transition:opacity .2s, transform .2s; opacity:0; transform:translateX(6px); }
+  .rail a.day .s { opacity:.8; transform:none; font-weight:500; }
+  .rail a.day { margin-top:7px; } .rail a.day:first-child { margin-top:0; }
+  .rail a .f { position:absolute; right:30px; }
+  .rail a { position:relative; }
+  .rail a:hover .f, .rail a:focus-visible .f, .rail a.act .f { opacity:1; transform:none; }
+  .rail a:hover .s, .rail a:focus-visible .s, .rail a.act .s { opacity:0; }
+  .rail a i { flex:0 0 auto; width:7px; height:7px; border-radius:50%; border:1px solid #fff; opacity:.75; transition:background .2s, transform .2s, opacity .2s; }
+  .rail a.day i { width:10px; height:10px; border-width:1.5px; }
+  .rail a.act i { background:#fff; opacity:1; transform:scale(1.25); }
+  .rail a:hover i { opacity:1; transform:scale(1.3); }
+  @media (max-width:820px) { .rail { right:0; } .rail a { padding:5px 7px; } .rail a.act .f, .rail a:hover .f { display:none; } .rail a.act .s { opacity:.8; } .rail a.day .s { display:none; } }
   @media (prefers-reduced-motion: reduce) { .bopen { height:auto; margin:0; } .bstage { position:relative; height:100vh; } .bk-cue { animation:none; } }
 
   /* ---- lobby note on a leather notepad ---- */
@@ -879,8 +895,24 @@ JS = r"""
     bbk.style.transform = 'scale(' + (1 + p * .85).toFixed(3) + ')';
     bst.classList.toggle('live', p < .5); bst.style.visibility = p >= 1 ? 'hidden' : 'visible';
   }
-  function onScroll() { opener(); if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
-  window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll); frame(); opener();
+  var rail = document.querySelector('.rail'), rlinks = rail ? Array.prototype.slice.call(rail.querySelectorAll('a')) : [];
+  function railUpdate() {
+    if (!rail) return;
+    var vh = window.innerHeight, st = window.pageYOffset || document.documentElement.scrollTop, act = null;
+    rail.classList.toggle('on', st > vh * .55);
+    Array.prototype.forEach.call(document.querySelectorAll('.chapter[id]'), function (c) { if (c.getBoundingClientRect().top < vh * .5) act = c.id; });
+    rlinks.forEach(function (a) { a.classList.toggle('act', a.getAttribute('data-t') === act); });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1), t = id && document.getElementById(id);
+    if (!t) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+  function onScroll() { railUpdate(); opener(); if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll); frame(); opener(); railUpdate();
 })();
 </script>
 """
@@ -1317,6 +1349,14 @@ def render(h):
         m_ = re.match(r'(Day \d+)', kk); lab = m_.group(1) if m_ else kk
         if not tabs_l or tabs_l[-1][1] != lab: tabs_l.append((tid, lab))
     tabs_h = ''.join(f'<a class="bd-tab" href="#{i}">{esc(t)}</a>' for i, t in tabs_l)
+    rail_h = ''
+    _seen = set()
+    for _i, (_tid, _kk) in enumerate(tabs_raw):
+        _m = re.match(r'(Day \d+)\s*·\s*(.*)', _kk); _day = _m.group(1) if _m else None
+        _first = bool(_day) and _day not in _seen
+        if _day: _seen.add(_day)
+        _full = _m.group(2) if _m else _kk
+        rail_h += f'<a href="#{_tid}" class="{"day" if _first else ""}" data-t="{_tid}"><span class="s">{esc(_day) if _first else ""}</span><span class="f">{esc((_day + " · " if _day else "") + _full)}</span><i></i></a>'
     opener = f'''<section class="bopen" aria-label="Pitch binder"><div class="bstage live"><div class="bd-book" style="--lea:#9a6b47;--lea2:#6d4529;--deb:rgba(38,20,8,.62);--debs:0 1px 0 rgba(255,228,196,.3), 0 -1px 1px rgba(0,0,0,.32)">
       <div class="bd-page">
         <div class="bd-kick bk-kick">Travel &middot; Pitch {h['no']} &middot; {esc(h['city'])}</div>
@@ -1326,7 +1366,7 @@ def render(h):
         <div class="bk-hand">&mdash; {esc(h['hand'])}</div>
         <div class="bk-addr">{hotel_line}</div>
         <figure class="bk-pol">{gp.CLIP}<span class="ph"><img src="{CDN}{slug_h}/walk-room.jpg" alt="" onerror="this.remove()"></span><figcaption>a pitch by Brianne</figcaption></figure>
-        <div class="bk-cue">scroll to open the itinerary &darr;</div>
+        <a class="bk-cue" href="#{tabs_l[0][0] if tabs_l else 'ch1'}">scroll to open the itinerary &darr;</a>
       </div>
       <nav class="bd-tabs">{tabs_h}</nav>
       <div class="bd-rings">{'<span class="bd-ring"></span>' * 6}</div>
@@ -1345,6 +1385,7 @@ def render(h):
 <body>
 {DOODLES}
 <div class="hud"><a href="pitches.html#travel">&larr; All pitches</a><span class="cur">Intro</span><div class="season" role="group" aria-label="Season"><button type="button" data-v="winter" aria-pressed="true">Winter</button><button type="button" data-v="warm" aria-pressed="false">Spring &amp; Summer</button></div><span class="bar"></span></div>
+<nav class="rail" aria-label="Timeline">{rail_h}</nav>
 
 {opener}
 <section class="intro rise"><div class="kick">The trip</div><p>{sv(S['intro'])}</p></section>
