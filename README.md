@@ -149,6 +149,17 @@ automatically in CI.
    Actions tab). Open the app in Windmill afterward to confirm a new version
    appears, and to copy its public link (custom path `ugc-portfolio`).
 
+### Pitch center: filing cabinet and direct links
+
+Typing "pitch" opens a filing cabinet (`site/pitches.html`, built by `scripts/gen-pitches.py`) with one leather binder per category (Travel, Skincare, Homegoods, Fashion; the last three show "coming soon"). Clicking a binder opens it with a handwritten tab per pitch; clicking a tab zooms into that pitch, which opens on a binder page (brand name, optional logo, chapter tabs) and scrolls into the itinerary.
+
+Direct links to send to a brand (append to the app's address):
+
+- `?page=pitch-nomad`, `?page=pitch-brooklyn`, `?page=pitch-halekulani`, `?page=pitch-proper`, `?page=pitch-shutters` (or `?pitch=nomad` etc.)
+- `?binder=travel` opens the cabinet with that binder open.
+
+Each row in an open binder has a "copy link" button. To add a brand logo to a pitch's first page, drop a PNG at `site/media/pitches/<slug>/logo.png`; until then the brand name is shown as text. The tape on the collage prints is translucent washi (CSS only, at the end of the story CSS in `scripts/gen-pitch-stories.py`).
+
 ## Pages and photo slots
 
 - Each topic has its own page with its own look: `site/partnerships.html` (editorial, product shots + lightbox), `site/strategy.html` (sketchbook of ideas with a question and target each) and `site/travel.html` (dark, luxe, longing). Travel photos go in `site/media/travel/` as `hero-v2.jpg`, `room.jpg`, `ritual.jpg`, `table.jpg`; they fade over the gradient scenes.

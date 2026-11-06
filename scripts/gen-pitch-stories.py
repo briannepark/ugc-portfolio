@@ -728,6 +728,42 @@ CSS = r"""
     .chapter { padding-top:90px; } .dd.pt { display:none; }
   }
   @media (prefers-reduced-motion: reduce) { .reveal,.rise { opacity:1; transform:none; transition:none; } .reveal .img { transform:none; } .marq div,.scroll { animation:none; } }
+
+  /* ---- washi tape: translucent, pale, torn at the ends ---- */
+  .tape { position:absolute; width:98px; height:27px; margin:0; top:-9px; left:-30px; right:auto; bottom:auto; transform:rotate(-38deg); z-index:4; pointer-events:none;
+          background-color:rgba(214,219,160,.62);
+          background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.24) 0 1px,transparent 1px 4px), linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,0) 45%,rgba(90,90,40,.07));
+          box-shadow:0 1px 2px rgba(0,0,0,.25), inset 0 0 0 1px rgba(140,145,80,.2); clip-path:polygon(0% 0%,2% 12%,0% 25%,2% 38%,0% 50%,2% 63%,0% 75%,2% 88%,0% 100%,100% 100%,98% 88%,100% 75%,98% 63%,100% 50%,98% 38%,100% 25%,98% 12%,100% 0%); mix-blend-mode:normal; }
+  .cut:nth-child(even) > .tape, figure.print:nth-of-type(even) > .tape { left:auto; right:-30px; transform:rotate(38deg); }
+  figure.print:nth-of-type(3n) > .tape, .cut:nth-child(3n) > .tape { top:auto; bottom:-8px; left:-30px; right:auto; transform:rotate(36deg); }
+  .cut .snap .tape, .snap .tape { width:58px; height:18px; left:-16px; top:-6px; right:auto; bottom:auto; transform:rotate(-36deg); }
+  .note .tape { display:none; }
+
+  /* ---- open binder opener ---- */
+  .bopen { position:relative; height:200vh; margin-bottom:-100vh; z-index:30; pointer-events:none; }
+  .bstage { position:sticky; top:0; height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden;
+            background:#1b1410 radial-gradient(ellipse at 50% 30%, rgba(120,80,50,.3), transparent 65%); will-change:opacity; }
+  .bstage .bd-book { --bw:min(780px,94vw); --bh:min(86vh,900px); will-change:transform; }
+  .bstage.live .bd-book a { pointer-events:auto; }
+  .bk-kick { margin-bottom:18px; }
+  .bstage .bd-page > :not(.bk-pol):not(.bk-cue) { max-width:56%; }
+  .bk-logo { display:block; max-width:min(260px,60%); max-height:84px; object-fit:contain; margin:0 0 14px; }
+  .bk-name { font-family:var(--head); font-weight:400; font-style:italic; font-size:clamp(34px,4.6vw,56px); line-height:1.04; margin:0 0 12px; color:#231c17; }
+  .bk-tag { font-family:var(--body); font-size:clamp(14px,1.5vw,17px); line-height:1.6; max-width:30ch; color:#5a4d3e; }
+  .bk-hand { font-family:var(--hand); font-size:clamp(22px,2.4vw,28px); color:#7a6850; margin-top:12px; }
+  .bk-pol { position:absolute; right:34px; bottom:42px; width:min(42%,270px); margin:0; padding:10px 10px 36px; background:#fbf8f1; box-shadow:0 10px 24px rgba(0,0,0,.35); transform:rotate(3.5deg); }
+  .bk-pol .ph { display:block; aspect-ratio:4/5; background:linear-gradient(150deg,var(--accent2),var(--accent)); position:relative; overflow:hidden; }
+  .bk-pol img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .bk-pol .bd-clip { left:50%; margin-left:-13px; top:-34px; }
+  .bk-pol figcaption { position:absolute; left:0; right:0; bottom:8px; white-space:nowrap; text-align:center; font-family:var(--hand); font-size:18px; color:#4a3d2c; }
+  .bk-cue { position:absolute; left:42px; bottom:30px; font-family:var(--hand); font-size:clamp(20px,2.2vw,26px); color:#7a6850; animation:bob 2s ease-in-out infinite; }
+  .bstage .bd-tabs { gap:6px; }
+  .bstage .bd-tab { flex:1 1 0; min-height:0; max-height:128px; font-size:17px; }
+  @media (max-width:640px) {
+    .bk-pol figcaption { font-size:15px; } .bk-pol { right:14px; bottom:48px; width:44%; padding:7px 7px 28px; } .bk-pol .bd-clip { top:-28px; transform:scale(.8); }
+    .bstage .bd-page > :not(.bk-pol):not(.bk-cue) { max-width:100%; } .bk-name { font-size:32px; } .bk-tag { max-width:24ch; } .bk-cue { left:22px; bottom:20px; font-size:20px; } .bstage .bd-tab { font-size:14px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .bopen { height:auto; margin:0; } .bstage { position:relative; height:100vh; } .bk-cue { animation:none; } }
 """
 
 DOODLES = """<svg width="0" height="0" style="position:absolute"><defs>
@@ -788,8 +824,16 @@ JS = r"""
       c.style.setProperty('--py', d.toFixed(1) + 'px');
     });
   }
-  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
-  window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll); frame();
+  var bo = document.querySelector('.bopen'), bst = bo && bo.querySelector('.bstage'), bbk = bst && bst.querySelector('.bd-book');
+  function opener() {
+    if (!bo || reduce) return;
+    var p = Math.max(0, Math.min(1, (window.pageYOffset || document.documentElement.scrollTop) / (window.innerHeight * .8)));
+    bst.style.opacity = Math.max(0, Math.min(1, 1.5 - p * 1.5)).toFixed(3);
+    bbk.style.transform = 'scale(' + (1 + p * .85).toFixed(3) + ')';
+    bst.classList.toggle('live', p < .5); bst.style.visibility = p >= 1 ? 'hidden' : 'visible';
+  }
+  function onScroll() { opener(); if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll); frame(); opener();
 })();
 </script>
 """
@@ -1077,7 +1121,7 @@ def render(h):
     css = (CSS.replace('%%BG%%', c['desk'] if dark else c['paper']).replace('%%TXT%%', '#f3ead6' if dark else c['ink'])
               .replace('%%PAPER%%', c['paper']).replace('%%INK%%', c['ink']).replace('%%ACCENT%%', c['accent'])
               .replace('%%ACCENT2%%', c['accent2']).replace('%%SOFT%%', c['soft'] if not dark else '#1d2547')
-              .replace('%%HEAD%%', h['head']).replace('%%BODY%%', h['body']).replace('%%DESK%%', c['desk']).replace('%%PEN%%', '#efe5cc' if dark else '#1d2a4a').replace('%%RED%%', '#ff8a7a' if dark else '#b3362b').replace('%%PAPER_TEX%%', paper_tex(dark)).replace('%%MUTE%%', '#2b3048' if dark else '#d8d0bf').replace('%%PHC%%', 'rgba(240,234,214,.7)' if dark else 'rgba(28,34,51,.55)'))
+              .replace('%%HEAD%%', h['head']).replace('%%BODY%%', h['body']).replace('%%DESK%%', c['desk']).replace('%%PEN%%', '#efe5cc' if dark else '#1d2a4a').replace('%%RED%%', '#ff8a7a' if dark else '#b3362b').replace('%%PAPER_TEX%%', paper_tex(dark)).replace('%%MUTE%%', '#2b3048' if dark else '#d8d0bf').replace('%%PHC%%', 'rgba(240,234,214,.7)' if dark else 'rgba(28,34,51,.55)')) + gp.BINDER_CSS
     clips = ['c1', 'c2', 'c3', 'c4']
     chapters = ''
     allstops = []
@@ -1186,6 +1230,25 @@ def render(h):
     li = lambda arr: ''.join(f'<li>{esc(s[0])}{" <em>(confirm)</em>" if s[3] else ""}</li>' for s in arr)
     ticker = ' '.join(f'<span>{esc(s[0])}</span>' for s in allstops)
     facts = ''.join(f'<li>{esc(f)}</li>' for f in h['facts'])
+    tabs_raw = ([('ch1', S['walk']['kick'])] if 'walk' in S else []) + [(f'ch{i+1+off}', c[0]) for i, c in enumerate(S['chapters'])]
+    tabs_l = []
+    for tid, kk in tabs_raw:
+        m_ = re.match(r'(Day \d+)', kk); lab = m_.group(1) if m_ else kk
+        if not tabs_l or tabs_l[-1][1] != lab: tabs_l.append((tid, lab))
+    tabs_h = ''.join(f'<a class="bd-tab" href="#{i}">{esc(t)}</a>' for i, t in tabs_l)
+    opener = f'''<section class="bopen" aria-label="Pitch binder"><div class="bstage live"><div class="bd-book" style="--lea:#4a2621;--lea2:#2a110d">
+      <div class="bd-page">
+        <div class="bd-kick bk-kick">Travel &middot; Pitch {h['no']} &middot; {esc(h['city'])}</div>
+        <img class="bk-logo" src="{CDN}{slug_h}/logo.png" alt="{esc(h['short'])} logo" onerror="this.remove()">
+        <h1 class="bk-name">{esc(h['name'])}</h1>
+        <div class="bk-tag">{esc(h['tagline'])}</div>
+        <div class="bk-hand">&mdash; {esc(h['hand'])}</div>
+        <figure class="bk-pol">{gp.CLIP}<span class="ph"><img src="{CDN}{slug_h}/walk-room.jpg" alt="" onerror="this.remove()"></span><figcaption>a pitch by Brianne</figcaption></figure>
+        <div class="bk-cue">scroll to open the itinerary &darr;</div>
+      </div>
+      <nav class="bd-tabs">{tabs_h}</nav>
+      <div class="bd-rings">{'<span class="bd-ring"></span>' * 6}</div>
+    </div></div></section>'''
     chips = ''.join(f'<span class="chip"><i></i>{esc(v)}</span>' for v in h['vibe'])
     return f'''<!doctype html>
 <html lang="en" data-season="winter">
@@ -1199,8 +1262,9 @@ def render(h):
 </head>
 <body>
 {DOODLES}
-<div class="hud"><a href="pitches.html">&larr; All pitches</a><span class="cur">Intro</span><div class="season" role="group" aria-label="Season"><button type="button" data-v="winter" aria-pressed="true">Winter</button><button type="button" data-v="warm" aria-pressed="false">Spring &amp; Summer</button></div><span class="bar"></span></div>
+<div class="hud"><a href="pitches.html#travel">&larr; All pitches</a><span class="cur">Intro</span><div class="season" role="group" aria-label="Season"><button type="button" data-v="winter" aria-pressed="true">Winter</button><button type="button" data-v="warm" aria-pressed="false">Spring &amp; Summer</button></div><span class="bar"></span></div>
 
+{opener}
 <header class="cover">
   <img class="bg" src="{CDN}{slug_h}-hero.jpg" alt="" onerror="this.remove()">
   <figure class="cut float a c1 g0" style="--r:2deg" data-speed="0.04"><div class="img" style="--ar:4/5"><span class="ph"></span><img src="{CDN}{slug_h}/cover-1.jpg" alt="" onerror="this.remove()"></div></figure>

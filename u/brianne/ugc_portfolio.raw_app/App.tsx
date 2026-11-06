@@ -32,6 +32,15 @@ function getInitialState(): { page: Page; hash: string } {
   const p = params.get('page');
   // "brands" is the private brand-outreach dashboard — reached directly via
   // ?page=brands, never linked from the public nav.
+  // Direct links for sending a pitch to a brand:
+  //   ?page=pitch-nomad  or  ?pitch=nomad   → opens that pitch straight to its binder
+  //   ?binder=travel                          → opens the filing cabinet with that binder open
+  const pitch = params.get('pitch');
+  const binder = params.get('binder');
+  if (pitch && Object.prototype.hasOwnProperty.call(PAGES, 'pitch-' + pitch)) {
+    return { page: ('pitch-' + pitch) as Page, hash: '' };
+  }
+  if (binder && /^[a-z]+$/.test(binder)) return { page: 'pitches', hash: '#' + binder };
   const page: Page = toPage(p);
   return { page, hash: window.location.hash || '' };
 }
