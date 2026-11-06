@@ -30,15 +30,15 @@ HOTELS = [
   c=dict(desk='#0d1120', paper='#f7f1e3', ink='#1a2038', accent='#b8934a', accent2='#1f2a52', soft='#efe5cd'),
   vibe=['Deep navy', 'Champagne gold', 'Warm lamplight'],
   facts=[
-   'Oversize windows and gold-link light fixtures in the rooms.',
-   'Bazaar Meat by José Andrés, in the hotel.',
-   'Nubeluz, a cocktail bar on the 50th floor.',
-   'In NoMad, with Madison Square Park, Flatiron, and Chelsea nearby.',
-   'Diptyque bath products and separate rain showers, with deep soaking tubs in some rooms.',
+   'Oversize windows with the skyline in every frame.',
+   'Bazaar Meat by José Andrés and Nubeluz on the 50th floor, without leaving the building.',
+   'Bath time for baby, then for mom: Diptyque products, rain showers, and deep soaking tubs in some rooms.',
    'A fitness center open 24 hours, with Peloton bikes, next to a 6,800 sq ft spa.',
    'Ritz Kids activities, and pets welcome: up to two, 60 lbs combined, with a per-stay fee.',
+   'In NoMad, with Madison Square Park, Flatiron, Chelsea, and SoHo pop-ups within easy reach.',
   ],
-  why='The most "New York at night" stay on the list. It gives a hotel pitch its strongest opening shot: the window, then the skyline, then a walk that starts right at the lobby. It also works for a family: quiet rooms for naps, soaking tubs for bath time, a gym downstairs, and a dog-friendly policy.',
+  why_title="What I'd show other moms",
+  why="I'm a mom who travels with a baby and a dog, and I want other moms to see what's possible. Pampering and excitement belong back in the picture, without giving up anything baby or the dog needs. This stay makes that real: quiet rooms for naps, soaking tubs for bath time, a gym downstairs, a skyline bar for the night, and the trendy pop-ups I usually miss a short ride away.",
   angle=dict(
    hotel='Open on the window view at dusk. Cut to Nubeluz, then a map of the walk to Madison Square Park, Flatiron, and the Chelsea galleries. Close with a hotel dinner.'),
   pins=[
