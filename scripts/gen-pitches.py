@@ -140,7 +140,7 @@ HOTELS = [
   ],
   hl=dict(
    title='A short stay, done with care',
-   lede="Many people in Hawaiʻi are tired of a tourism industry that uses up the island's resources and gives little back to Kanaka. I want this pitch to honor that. It is a short, quiet stay that still shows how beautiful Maui is, built around local business, good food, and a baby who needs an early bedtime.",
+   lede="A short, quiet stay that honors a place many are tired of seeing taken from. Local business, good food, and a baby who needs an early bedtime.",
    care_title='How I would do it',
    care=[
     ('Short and light:','two nights, one rental car, one drive up the mountain. Nothing extra, nothing wasted.',False),

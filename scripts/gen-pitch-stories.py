@@ -813,25 +813,32 @@ CSS = r"""
   .stayline { margin-top:16px; font-size:13px; letter-spacing:.04em; display:flex; gap:14px; flex-wrap:wrap; align-items:center; } .stayline a { border-bottom:1px solid rgba(255,255,255,.6); padding-bottom:1px; }
   .bk-addr { margin-top:14px; font-size:12px; letter-spacing:.05em; color:#5a4d3e; display:flex; gap:12px; flex-wrap:wrap; } .bk-addr a { border-bottom:1px solid currentColor; }
 
-  .hl { max-width:1120px; margin:0 auto; padding:80px 24px 30px; }
+  .hl { max-width:1120px; margin:0 auto; padding:90px 24px 40px; }
   .hl h2 { font-family:var(--head); font-weight:400; font-size:clamp(32px,4.6vw,54px); line-height:1.08; margin:8px 0 10px; }
-  .hl .lede { max-width:56ch; line-height:1.7; opacity:.85; margin:0 0 30px; }
-  .hl .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:44px 64px; }
-  .hl h3 { font-family:var(--hand); font-weight:400; font-size:clamp(26px,3vw,34px); color:var(--accent); margin:0 0 8px; }
-  .hl ul { list-style:none; margin:0; padding:0; }
-  .hl li { padding:12px 0; line-height:1.6; border-bottom:1px solid color-mix(in srgb, currentColor 16%, transparent); }
-  .hl li b { font-weight:600; }
-  .hl .w { display:grid; grid-template-columns:84px 1fr; gap:14px; align-items:baseline; }
-  .hl .w .m { font-family:var(--head); font-style:italic; font-size:34px; line-height:1; } .hl .w .m small { font-family:var(--body); font-style:normal; font-size:10px; letter-spacing:.16em; text-transform:uppercase; opacity:.7; margin-left:3px; }
+  .hl .lede { max-width:48ch; line-height:1.65; opacity:.8; margin:0 0 34px; font-size:15.5px; }
+  .hl h3 { font-family:var(--hand); font-weight:400; font-size:clamp(26px,3vw,32px); color:var(--accent); margin:0 0 6px; }
+  .hl .walks { display:flex; flex-wrap:wrap; gap:14px; margin:0 0 12px; }
+  .hl .walk { flex:1 1 190px; display:flex; align-items:center; gap:12px; padding:14px 16px; border:1px solid color-mix(in srgb, currentColor 22%, transparent); border-radius:14px; line-height:1.3; font-size:14px; }
+  .hl .walk .m { font-family:var(--head); font-style:italic; font-size:38px; line-height:1; } .hl .walk .m small { font-family:var(--body); font-style:normal; font-size:10px; letter-spacing:.16em; text-transform:uppercase; opacity:.7; margin-left:3px; }
   .hl .cf { display:inline-block; margin-left:8px; padding:1px 7px; border:1px dashed currentColor; border-radius:3px; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#d98a8a; vertical-align:2px; }
-  .hl .wn { margin-top:12px; font-size:12px; line-height:1.6; opacity:.6; }
+  .hl .card .cf { color:#b5605a; }
+  .hl .wn { margin:0 0 44px; font-size:12px; line-height:1.6; opacity:.6; }
+  .hl .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px 26px; margin-bottom:34px; }
+  .hl .card { position:relative; background:var(--paper); color:var(--ink); padding:30px 22px 18px; border-radius:3px; box-shadow:0 14px 26px rgba(0,0,0,.2), 0 2px 4px rgba(0,0,0,.15); transform:rotate(var(--r,0deg)); }
+  .hl .card:nth-child(4n+1){--r:-1.2deg} .hl .card:nth-child(4n+2){--r:.9deg} .hl .card:nth-child(4n+3){--r:-.6deg} .hl .card:nth-child(4n){--r:1.1deg}
+  .hl .card::before { content:''; position:absolute; top:-12px; left:50%; width:84px; height:26px; margin-left:-42px; transform:rotate(-2deg); background:rgba(214,219,160,.7); box-shadow:0 1px 2px rgba(0,0,0,.18); clip-path:polygon(0 8%,4% 0,8% 10%,12% 0,16% 10%,20% 0,24% 8%,76% 8%,80% 0,84% 10%,88% 0,92% 10%,96% 0,100% 8%,100% 92%,96% 100%,92% 90%,88% 100%,84% 90%,80% 100%,76% 92%,24% 92%,20% 100%,16% 90%,12% 100%,8% 90%,4% 100%,0 92%); }
+  .hl ul { list-style:none; margin:0; padding:0; }
+  .hl li { border-bottom:1px solid color-mix(in srgb, currentColor 14%, transparent); }
+  .hl li:last-child { border-bottom:0; }
+  .hl summary { list-style:none; cursor:pointer; padding:10px 24px 10px 0; position:relative; font-size:15px; line-height:1.4; font-weight:500; }
+  .hl summary::-webkit-details-marker { display:none; }
+  .hl summary::after { content:'+'; position:absolute; right:2px; top:8px; font-size:18px; font-weight:300; opacity:.55; transition:transform .2s; }
+  .hl details[open] > summary::after { transform:rotate(45deg); }
+  .hl details p { margin:0 0 12px; font-size:14px; line-height:1.65; opacity:.82; }
   .about.solo { grid-template-columns:1fr; }
-  @media (max-width:760px) { .hl .grid { grid-template-columns:1fr; gap:34px; } .hl .w { grid-template-columns:70px 1fr; } }
-
-  .hl .given { margin-top:56px; padding-top:30px; border-top:1px solid color-mix(in srgb, currentColor 22%, transparent); }
-  .hl .given .two { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 64px; margin-top:14px; } .hl .given p { margin:0; line-height:1.7; opacity:.88; }
-  .hl .given.care { margin:34px 0 40px; padding-top:0; border-top:0; }
-  @media (max-width:760px) { .hl .given .two { grid-template-columns:1fr; } }
+  .hl .care .card { background:color-mix(in srgb, var(--paper) 92%, var(--accent)); }
+  .hl .kick2 { font-size:11px; letter-spacing:.3em; text-transform:uppercase; opacity:.7; margin:6px 0 18px; }
+  @media (max-width:760px) { .hl { padding-top:60px; } .hl .cards { grid-template-columns:1fr; } }
 """
 
 DOODLES = """<svg width="0" height="0" style="position:absolute"><defs>
@@ -1346,8 +1353,19 @@ def render(h):
                 href_ = 'https://www.google.com/maps/search/?api=1&query=' + _up.quote(q_)
                 out += f'<li class="w"><span class="m">{m_}<small>min</small></span><span><a class="pin" href="{href_}" target="_blank" rel="noopener" style="margin:0">{esc(nm_)}</a>{"<span class=cf>est.</span>" if est_ else ""}</span></li>'
             return out
-        care_h = ('<div class="given care"><div class="kick">' + esc(H['care_title']) + '</div><div class="two">' + ''.join(f'<div><h3>{esc(a.rstrip(":"))}</h3><p>{esc(b[:1].upper() + b[1:])}{_cf if c else ""}</p></div>' for a, b, c in H['care']) + '</div></div>') if H.get('care') else ''
-        hlsec = f'<section class="hl rise"><div class="kick">Highlights</div><h2>{esc(H["title"])}</h2><p class="lede">{esc(H["lede"])}</p>{care_h}<div class="grid"><div><h3>Short walks</h3><ul>{_w(H["walks"])}</ul><p class="wn">{esc(H["walknote"])}</p></div><div><h3>For baby</h3><ul>{_li(H["baby"])}</ul></div><div><h3>For the dog</h3><ul>{_li(H["dog"])}</ul></div><div><h3>For mom</h3><ul>{_li(H["mom"])}</ul></div></div><div class="given"><div class="kick">And, of course</div><div class="two">{"".join(f'<div><h3>{esc(a)}</h3><p>{esc(b)}</p></div>' for a, b, _c in H["given"])}</div></div></section>'
+        def _det(items, strip=True):
+            out = ''
+            for a_, b_, c_ in items:
+                lead = a_.rstrip(':') if strip else a_
+                out += f'<li><details><summary>{esc(lead)}{_cf if c_ else ""}</summary><p>{esc(b_[:1].upper() + b_[1:])}</p></details></li>'
+            return out
+        def _card(title, items, extra=''):
+            return f'<div class="card"><h3>{esc(title)}</h3><ul>{_det(items)}</ul>{extra}</div>'
+        walks_h = ''.join(f'<a class="walk pin" href="https://www.google.com/maps/search/?api=1&query={_up.quote(q_)}" target="_blank" rel="noopener" style="margin:0;text-decoration:none"><span class="m">{m_}<small>min</small></span><span>{esc(nm_)}{"<span class=cf>est.</span>" if est_ else ""}</span></a>' for m_, nm_, q_, est_ in H['walks'])
+        care_h = ('<div class="care"><div class="kick2">' + esc(H['care_title']) + '</div><div class="cards">' + _card('A short stay', H['care']) + '</div></div>') if H.get('care') else ''
+        hlsec = (f'<section class="hl rise"><div class="kick">Highlights</div><h2>{esc(H["title"])}</h2><p class="lede">{esc(H["lede"])}</p>'
+                 f'<div class="walks">{walks_h}</div><p class="wn">{esc(H["walknote"])}</p>{care_h}'
+                 f'<div class="cards">{_card("For baby", H["baby"])}{_card("For the dog", H["dog"])}{_card("For mom", H["mom"])}{_card("At the hotel", [(a_, b_, c_) for a_, b_, c_ in H["given"]])}</div></section>')
     lobby = ('''<section class="lobby rise"><div class="pad"><div class="sheet"><div class="lh">The Ritz-Carlton<small>NoMad</small></div><div class="msg">meet you in the lobby at 4PM?</div></div><span class="pen"></span></div><div class="cap2">day 1 starts here &darr;</div></section>''' if slug_h == 'nomad' else '')
     tabs_raw = ([('ch1', S['walk']['kick'])] if 'walk' in S else []) + [(f'ch{i+1+off}', c[0]) for i, c in enumerate(S['chapters'])]
     tabs_l = []
@@ -1394,11 +1412,11 @@ def render(h):
 <nav class="rail" aria-label="Timeline">{rail_h}</nav>
 
 {opener}
-<section class="intro rise"><div class="kick">The trip</div><p>{sv(S['intro'])}</p></section>
-{hlsec}
 {lobby}
+<section class="intro rise"><div class="kick">The trip</div><p>{sv(S['intro'])}</p></section>
 <div class="index"><div class="kick">In this guide</div><p>{ticker}</p></div>
 {chapters}
+{hlsec}
 
 <section class="about{' solo' if h.get('hl') else ''}">
   <div class="rise"><div class="kick">Why this stay</div><h2>{esc(h.get('why_title', "The feeling I'd film"))}</h2><p>{esc(h['why'])}</p><div class="chips">{chips}</div></div>
