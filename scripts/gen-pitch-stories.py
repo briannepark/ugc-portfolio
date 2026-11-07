@@ -50,7 +50,7 @@ STORY = {
   chapters=[
    ('Day 1 · Settle in','Sleep like you mean it',"I travel with my baby and my dog, so the hotel has to work for all three of us. This is the part of the trip I'd film first: a quiet room, a long nap while the city hums far below, and a soak at the end of the day.",
     [('The bed and the quiet','here','Oversize windows, high above the street. Nap time and bedtime, on the clock. Ask about the bedding and a crib.',True),('Family perks','here','Ritz Kids activities are listed on the hotel site, and adjoining rooms may be possible. Ask what is offered for babies and toddlers.',True),('Dogs welcome','here','Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.',True)]),
-   ('Day 1 · Bath time','Bath time, for mom and baby',"Bath time is the golden hour of the day: warm water for baby first, then a long, quiet soak for me while the skyline lights up outside the window. Candles on the ledge, bubbles on the water, and a rubber ducky invited.",
+   ('Day 1 · Bath time','Bath time, for mom and baby',"Bath time is the golden hour of the day: warm water for baby first, then a long, quiet soak for me while the skyline lights up outside the window. Bubbles on the water and a rubber ducky invited.",
     [('Bath time, mom and baby','here','Diptyque bath products and a separate rain shower, with a deep soaking tub in select rooms. Request a tub room: a warm bath for baby, then a long one for me.',True)]),
    ('Day 1 · Nightfall','Fifty floors up',"Dinner at the hotel turns into a nightcap, and the nightcap turns into the best view of the trip. Blue hour, every light in Midtown below.",
     [('Bazaar Meat by José Andrés','here','Velvet booths, feather chandeliers, dinner at the hotel.',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
@@ -841,39 +841,28 @@ CSS = r"""
   .bscene .tape { z-index:5; }
   .bscene .print.day { left:3%; top:1%; width:46%; --r:-2deg; z-index:1; }
   .bscene .print.dusk { right:3%; top:0%; width:42%; --r:2.4deg; z-index:2; }
-  .bscene .tub { left:19%; bottom:3%; width:62%; --r:-1deg; z-index:4; filter:drop-shadow(0 16px 20px rgba(0,0,0,.5)); }
+  .bscene .tub { left:21%; bottom:3%; width:58%; --r:-1deg; z-index:4; filter:drop-shadow(0 16px 20px rgba(0,0,0,.5)); }
   .bscene svg.lyr { overflow:visible; }
-  .bscene .bubbles { left:30%; bottom:19%; width:36%; z-index:5; filter:none; mix-blend-mode:screen; animation:bfloat 6s ease-in-out infinite; }
-  .bscene .bubbles.b2 { left:57%; bottom:23%; width:24%; z-index:7; transform:scaleX(-1); animation-duration:7.500s; }
-  .bscene .scrub { right:3%; bottom:3%; width:11%; --r:3deg; z-index:6; }
-  .bscene .duck { left:57%; bottom:27%; width:9.500%; --r:-4deg; z-index:6; animation:bbob 4.500s ease-in-out infinite; }
-  .bscene .candles { z-index:6; filter:drop-shadow(0 6px 8px rgba(0,0,0,.4)); }
-  .bscene svg.candles { overflow:visible; }
-  .bscene .bglow { left:12%; bottom:-4%; width:76%; height:46%; z-index:0; background:radial-gradient(ellipse at 50% 60%, rgba(255,206,130,.26), rgba(255,206,130,0) 66%); filter:none; mix-blend-mode:screen; }
+  .bscene .bubbles { left:27%; bottom:29%; width:34%; z-index:5; filter:none; mix-blend-mode:screen; animation:bfloat 6s ease-in-out infinite; }
+  .bscene .bubbles.b2 { left:46%; bottom:33%; width:22%; z-index:7; transform:scaleX(-1); animation-duration:7.500s; }
+  .bscene .duck { left:36%; bottom:31%; width:9.500%; --r:-4deg; z-index:6; animation:bbob 4.500s ease-in-out infinite; }
   .bscene .dd { filter:none; z-index:7; } .bscene .dd.a1 { left:13%; top:57%; width:10%; --r:6deg; } .bscene .dd.u1 { right:3.500%; top:60.500%; width:20%; }
-  .bscene .candles.cl { left:2%; bottom:2%; width:19%; }
-  .bscene .candles.cr { right:15%; bottom:3%; width:12%; }
-  .bscene .flame { transform-origin:50% 90%; transform-box:fill-box; animation:bflick 1.400s ease-in-out infinite alternate; }
-  .bscene .candles.cr .flame { animation-duration:1.900s; }
   .bscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
   .bscene .msg.b1 { left:5%; top:48%; --r:-4deg; }
   .bscene .msg.b2 { right:4%; top:52%; --r:3deg; text-align:right; }
   @keyframes bfloat { 0%,100% { translate:0 0; } 50% { translate:0 -5px; } }
   @keyframes bbob { 0%,100% { translate:0 0; } 50% { translate:0 -4px; } }
-  @keyframes bflick { 0% { transform:scale(1,.94) rotate(-2deg); opacity:.92; } 100% { transform:scale(1,1.06) rotate(2deg); opacity:1; } }
   @media (max-width:760px) {
     .bscene { aspect-ratio:3/5.6; }
     .bscene .print.day { left:3%; top:1%; width:80%; }
     .bscene .print.dusk { right:3%; top:22%; width:70%; }
     .bscene .tub { left:-4%; bottom:12%; width:108%; }
-    .bscene .bubbles { left:20%; bottom:20%; width:46%; }
-    .bscene .duck { left:62%; bottom:24%; width:16%; }
-    .bscene .candles.cl { left:2%; bottom:1%; width:34%; }
+    .bscene .bubbles { left:20%; bottom:22%; width:50%; }
+    .bscene .duck { left:36%; bottom:26%; width:16%; }
     .bscene .dd { display:none; }
-    .bscene .candles.cr { right:30%; bottom:2%; width:22%; }
     .bscene .msg { font-size:15px; }
     .bscene .msg.b1 { left:4%; top:52.500%; }
-    .bscene .msg.b2 { right:4%; top:47.500%; }
+    .bscene .msg.b2 { right:4%; top:60%; }
   }
   @media (prefers-reduced-motion:reduce) { .bscene .bubbles, .bscene .duck, .bscene .flame { animation:none; } }
   .gymscene { position:relative; width:min(1180px,100%); aspect-ratio:16/10.4; margin:30px auto 20px; }
@@ -1350,12 +1339,8 @@ def bath_scene(slug_h, cap_html):
             <img class="lyr bubbles" data-speed="0.05" src="{M}cut-bubbles.png" alt="" loading="lazy">
             <img class="lyr bubbles b2" data-speed="-0.03" src="{M}cut-bubbles.png" alt="" loading="lazy">
             <img class="lyr duck" data-speed="0.06" src="{M}cut-duck.png" alt="A rubber ducky" loading="lazy">
-            <img class="lyr scrub" data-speed="0.04" src="{M}cut-scrub.png" alt="OSEA Salts of the Earth body scrub" loading="lazy">
-            <svg class="lyr candles cl" viewBox="0 0 190 130" data-speed="0.03" aria-hidden="true">{defs}{candle(0,44)}{candle(62,34)}{candle(124,24)}</svg>
-            <svg class="lyr candles cr" viewBox="0 0 130 130" data-speed="0.035" aria-hidden="true">{candle(0,38)}{candle(66,28)}</svg>
-            <div class="lyr bglow" aria-hidden="true"></div>
             <div class="lyr msg b1 hand" data-speed="0.01">a soak with<br>the whole skyline</div>
-            <div class="lyr msg b2 hand" data-speed="0.02">bubbles, candles,<br>a little duck &amp; a scrub</div>
+            <div class="lyr msg b2 hand" data-speed="0.02">bubbles &amp;<br>a little duck</div>
             <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
             <svg class="lyr dd u1" viewBox="0 0 300 14" data-speed="0"><use href="#d-under"/></svg>
           </div>

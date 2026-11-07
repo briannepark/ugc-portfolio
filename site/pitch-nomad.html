@@ -696,39 +696,28 @@
   .bscene .tape { z-index:5; }
   .bscene .print.day { left:3%; top:1%; width:46%; --r:-2deg; z-index:1; }
   .bscene .print.dusk { right:3%; top:0%; width:42%; --r:2.4deg; z-index:2; }
-  .bscene .tub { left:19%; bottom:3%; width:62%; --r:-1deg; z-index:4; filter:drop-shadow(0 16px 20px rgba(0,0,0,.5)); }
+  .bscene .tub { left:21%; bottom:3%; width:58%; --r:-1deg; z-index:4; filter:drop-shadow(0 16px 20px rgba(0,0,0,.5)); }
   .bscene svg.lyr { overflow:visible; }
-  .bscene .bubbles { left:30%; bottom:19%; width:36%; z-index:5; filter:none; mix-blend-mode:screen; animation:bfloat 6s ease-in-out infinite; }
-  .bscene .bubbles.b2 { left:57%; bottom:23%; width:24%; z-index:7; transform:scaleX(-1); animation-duration:7.500s; }
-  .bscene .scrub { right:3%; bottom:3%; width:11%; --r:3deg; z-index:6; }
-  .bscene .duck { left:57%; bottom:27%; width:9.500%; --r:-4deg; z-index:6; animation:bbob 4.500s ease-in-out infinite; }
-  .bscene .candles { z-index:6; filter:drop-shadow(0 6px 8px rgba(0,0,0,.4)); }
-  .bscene svg.candles { overflow:visible; }
-  .bscene .bglow { left:12%; bottom:-4%; width:76%; height:46%; z-index:0; background:radial-gradient(ellipse at 50% 60%, rgba(255,206,130,.26), rgba(255,206,130,0) 66%); filter:none; mix-blend-mode:screen; }
+  .bscene .bubbles { left:27%; bottom:29%; width:34%; z-index:5; filter:none; mix-blend-mode:screen; animation:bfloat 6s ease-in-out infinite; }
+  .bscene .bubbles.b2 { left:46%; bottom:33%; width:22%; z-index:7; transform:scaleX(-1); animation-duration:7.500s; }
+  .bscene .duck { left:36%; bottom:31%; width:9.500%; --r:-4deg; z-index:6; animation:bbob 4.500s ease-in-out infinite; }
   .bscene .dd { filter:none; z-index:7; } .bscene .dd.a1 { left:13%; top:57%; width:10%; --r:6deg; } .bscene .dd.u1 { right:3.500%; top:60.500%; width:20%; }
-  .bscene .candles.cl { left:2%; bottom:2%; width:19%; }
-  .bscene .candles.cr { right:15%; bottom:3%; width:12%; }
-  .bscene .flame { transform-origin:50% 90%; transform-box:fill-box; animation:bflick 1.400s ease-in-out infinite alternate; }
-  .bscene .candles.cr .flame { animation-duration:1.900s; }
   .bscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
   .bscene .msg.b1 { left:5%; top:48%; --r:-4deg; }
   .bscene .msg.b2 { right:4%; top:52%; --r:3deg; text-align:right; }
   @keyframes bfloat { 0%,100% { translate:0 0; } 50% { translate:0 -5px; } }
   @keyframes bbob { 0%,100% { translate:0 0; } 50% { translate:0 -4px; } }
-  @keyframes bflick { 0% { transform:scale(1,.94) rotate(-2deg); opacity:.92; } 100% { transform:scale(1,1.06) rotate(2deg); opacity:1; } }
   @media (max-width:760px) {
     .bscene { aspect-ratio:3/5.6; }
     .bscene .print.day { left:3%; top:1%; width:80%; }
     .bscene .print.dusk { right:3%; top:22%; width:70%; }
     .bscene .tub { left:-4%; bottom:12%; width:108%; }
-    .bscene .bubbles { left:20%; bottom:20%; width:46%; }
-    .bscene .duck { left:62%; bottom:24%; width:16%; }
-    .bscene .candles.cl { left:2%; bottom:1%; width:34%; }
+    .bscene .bubbles { left:20%; bottom:22%; width:50%; }
+    .bscene .duck { left:36%; bottom:26%; width:16%; }
     .bscene .dd { display:none; }
-    .bscene .candles.cr { right:30%; bottom:2%; width:22%; }
     .bscene .msg { font-size:15px; }
     .bscene .msg.b1 { left:4%; top:52.500%; }
-    .bscene .msg.b2 { right:4%; top:47.500%; }
+    .bscene .msg.b2 { right:4%; top:60%; }
   }
   @media (prefers-reduced-motion:reduce) { .bscene .bubbles, .bscene .duck, .bscene .flame { animation:none; } }
   .gymscene { position:relative; width:min(1180px,100%); aspect-ratio:16/10.4; margin:30px auto 20px; }
@@ -931,7 +920,7 @@
       <div class="num">7:00 pm</div>
       <div class="ch-head">
         <div class="rise"><div class="kick">Day 1 · Bath time</div><h2>Bath time, for mom and baby</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
-        <div class="note rise"><div class="tape"></div>Bath time is the golden hour of the day: warm water for baby first, then a long, quiet soak for me while the skyline lights up outside the window. Candles on the ledge, bubbles on the water, and a rubber ducky invited.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
+        <div class="note rise"><div class="tape"></div>Bath time is the golden hour of the day: warm water for baby first, then a long, quiet soak for me while the skyline lights up outside the window. Bubbles on the water and a rubber ducky invited.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n1 rev">
         <div class="scene-col">
@@ -942,12 +931,8 @@
             <img class="lyr bubbles" data-speed="0.05" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/bath/cut-bubbles.png" alt="" loading="lazy">
             <img class="lyr bubbles b2" data-speed="-0.03" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/bath/cut-bubbles.png" alt="" loading="lazy">
             <img class="lyr duck" data-speed="0.06" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/bath/cut-duck.png" alt="A rubber ducky" loading="lazy">
-            <img class="lyr scrub" data-speed="0.04" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/bath/cut-scrub.png" alt="OSEA Salts of the Earth body scrub" loading="lazy">
-            <svg class="lyr candles cl" viewBox="0 0 190 130" data-speed="0.03" aria-hidden="true"><defs><linearGradient id="jarg" x1="0" x2="1"><stop offset="0" stop-color="#e9d3a8"/><stop offset=".5" stop-color="#f6e8c8"/><stop offset="1" stop-color="#cfae78"/></linearGradient><linearGradient id="jarw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9b0" stop-opacity=".55"/><stop offset="1" stop-color="#c8955a" stop-opacity=".25"/></linearGradient><linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#b98f4a"/><stop offset=".5" stop-color="#f1d58f"/><stop offset="1" stop-color="#a77c3a"/></linearGradient><radialGradient id="fg"><stop offset="0" stop-color="#ffe6a3"/><stop offset="1" stop-color="#ffe6a3" stop-opacity="0"/></radialGradient></defs><g transform="translate(0,0)"><ellipse cx="30" cy="120" rx="30" ry="5" fill="rgba(0,0,0,.28)"/><rect x="4" y="74" width="52" height="44" rx="9" fill="url(#jarg)" stroke="rgba(255,238,205,.55)" stroke-width=".8"/><rect x="4" y="74" width="52" height="44" rx="9" fill="url(#jarw)"/><rect x="9" y="80" width="5" height="30" rx="2.500" fill="rgba(255,255,255,.45)"/><ellipse cx="30" cy="78" rx="23" ry="5" fill="#f7eed9"/><rect x="3" y="71" width="54" height="6" rx="3" fill="url(#gold)"/><rect x="29.200" y="60" width="1.600" height="12" rx=".8" fill="#2e2216"/><g class="flame"><ellipse cx="30" cy="48" rx="20" ry="26" fill="url(#fg)" opacity=".55"/><path d="M30 28 C 37 40, 36 52, 30 60 C 24 52, 23 40, 30 28 Z" fill="#ffd98a"/><path d="M30 40 C 33 47, 32.500 55, 30 59 C 27.500 55, 27 47, 30 40 Z" fill="#fff6dc"/></g></g><g transform="translate(62,0)"><ellipse cx="30" cy="110" rx="30" ry="5" fill="rgba(0,0,0,.28)"/><rect x="4" y="74" width="52" height="34" rx="9" fill="url(#jarg)" stroke="rgba(255,238,205,.55)" stroke-width=".8"/><rect x="4" y="74" width="52" height="34" rx="9" fill="url(#jarw)"/><rect x="9" y="80" width="5" height="20" rx="2.500" fill="rgba(255,255,255,.45)"/><ellipse cx="30" cy="78" rx="23" ry="5" fill="#f7eed9"/><rect x="3" y="71" width="54" height="6" rx="3" fill="url(#gold)"/><rect x="29.200" y="60" width="1.600" height="12" rx=".8" fill="#2e2216"/><g class="flame"><ellipse cx="30" cy="48" rx="20" ry="26" fill="url(#fg)" opacity=".55"/><path d="M30 28 C 37 40, 36 52, 30 60 C 24 52, 23 40, 30 28 Z" fill="#ffd98a"/><path d="M30 40 C 33 47, 32.500 55, 30 59 C 27.500 55, 27 47, 30 40 Z" fill="#fff6dc"/></g></g><g transform="translate(124,0)"><ellipse cx="30" cy="100" rx="30" ry="5" fill="rgba(0,0,0,.28)"/><rect x="4" y="74" width="52" height="24" rx="9" fill="url(#jarg)" stroke="rgba(255,238,205,.55)" stroke-width=".8"/><rect x="4" y="74" width="52" height="24" rx="9" fill="url(#jarw)"/><rect x="9" y="80" width="5" height="10" rx="2.500" fill="rgba(255,255,255,.45)"/><ellipse cx="30" cy="78" rx="23" ry="5" fill="#f7eed9"/><rect x="3" y="71" width="54" height="6" rx="3" fill="url(#gold)"/><rect x="29.200" y="60" width="1.600" height="12" rx=".8" fill="#2e2216"/><g class="flame"><ellipse cx="30" cy="48" rx="20" ry="26" fill="url(#fg)" opacity=".55"/><path d="M30 28 C 37 40, 36 52, 30 60 C 24 52, 23 40, 30 28 Z" fill="#ffd98a"/><path d="M30 40 C 33 47, 32.500 55, 30 59 C 27.500 55, 27 47, 30 40 Z" fill="#fff6dc"/></g></g></svg>
-            <svg class="lyr candles cr" viewBox="0 0 130 130" data-speed="0.035" aria-hidden="true"><g transform="translate(0,0)"><ellipse cx="30" cy="114" rx="30" ry="5" fill="rgba(0,0,0,.28)"/><rect x="4" y="74" width="52" height="38" rx="9" fill="url(#jarg)" stroke="rgba(255,238,205,.55)" stroke-width=".8"/><rect x="4" y="74" width="52" height="38" rx="9" fill="url(#jarw)"/><rect x="9" y="80" width="5" height="24" rx="2.500" fill="rgba(255,255,255,.45)"/><ellipse cx="30" cy="78" rx="23" ry="5" fill="#f7eed9"/><rect x="3" y="71" width="54" height="6" rx="3" fill="url(#gold)"/><rect x="29.200" y="60" width="1.600" height="12" rx=".8" fill="#2e2216"/><g class="flame"><ellipse cx="30" cy="48" rx="20" ry="26" fill="url(#fg)" opacity=".55"/><path d="M30 28 C 37 40, 36 52, 30 60 C 24 52, 23 40, 30 28 Z" fill="#ffd98a"/><path d="M30 40 C 33 47, 32.500 55, 30 59 C 27.500 55, 27 47, 30 40 Z" fill="#fff6dc"/></g></g><g transform="translate(66,0)"><ellipse cx="30" cy="104" rx="30" ry="5" fill="rgba(0,0,0,.28)"/><rect x="4" y="74" width="52" height="28" rx="9" fill="url(#jarg)" stroke="rgba(255,238,205,.55)" stroke-width=".8"/><rect x="4" y="74" width="52" height="28" rx="9" fill="url(#jarw)"/><rect x="9" y="80" width="5" height="14" rx="2.500" fill="rgba(255,255,255,.45)"/><ellipse cx="30" cy="78" rx="23" ry="5" fill="#f7eed9"/><rect x="3" y="71" width="54" height="6" rx="3" fill="url(#gold)"/><rect x="29.200" y="60" width="1.600" height="12" rx=".8" fill="#2e2216"/><g class="flame"><ellipse cx="30" cy="48" rx="20" ry="26" fill="url(#fg)" opacity=".55"/><path d="M30 28 C 37 40, 36 52, 30 60 C 24 52, 23 40, 30 28 Z" fill="#ffd98a"/><path d="M30 40 C 33 47, 32.500 55, 30 59 C 27.500 55, 27 47, 30 40 Z" fill="#fff6dc"/></g></g></svg>
-            <div class="lyr bglow" aria-hidden="true"></div>
             <div class="lyr msg b1 hand" data-speed="0.01">a soak with<br>the whole skyline</div>
-            <div class="lyr msg b2 hand" data-speed="0.02">bubbles, candles,<br>a little duck &amp; a scrub</div>
+            <div class="lyr msg b2 hand" data-speed="0.02">bubbles &amp;<br>a little duck</div>
             <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
             <svg class="lyr dd u1" viewBox="0 0 300 14" data-speed="0"><use href="#d-under"/></svg>
           </div>
