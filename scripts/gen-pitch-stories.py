@@ -707,7 +707,7 @@ CSS = r"""
   }
 
   /* ---- Aura reading collage scene ---- */
-  .ascene { position:relative; width:min(1180px,100%); aspect-ratio:16/7.2; margin:30px auto 20px; }
+  .ascene { position:relative; width:min(1180px,100%); aspect-ratio:16/9; margin:30px auto 20px; }
   .ascene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
   .ascene img.lyr { height:auto; max-width:none; }
   .ascene .print { background:#f4efe3; padding:9px 9px 34px; }
@@ -718,15 +718,17 @@ CSS = r"""
   .ascene .blue { left:54%; top:2%; width:17%; --r:-5deg; z-index:5; }
   .ascene .red { left:73%; top:10%; width:16%; --r:4deg; z-index:5; }
   .ascene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
-  .ascene .msg.a1 { left:56%; top:66%; --r:-3deg; }
-  .ascene .msg.a2 { left:78%; top:72%; --r:-2deg; }
+  .ascene .print.shop { left:55%; top:44%; width:33%; --r:2.200deg; z-index:3; }
+  .ascene .msg.a1 { left:60%; top:80%; --r:-3deg; }
+  .ascene .msg.a2 { left:8%; top:84%; --r:-2deg; }
   @media (max-width:820px) {
-    .ascene { aspect-ratio:3/4.6; }
+    .ascene { aspect-ratio:3/6.8; }
+    .ascene .print.shop { left:6%; top:68%; width:88%; }
     .ascene .cards { left:3%; top:1%; width:92%; }
     .ascene .blue { left:4%; top:34%; width:44%; }
     .ascene .red { right:4%; left:auto; top:38%; width:42%; }
     .ascene .msg { font-size:15px; }
-    .ascene .msg.a1 { left:8%; top:84%; }
+    .ascene .msg.a1 { left:8%; top:61%; }
     .ascene .msg.a2 { display:none; }
   }
 
@@ -1138,6 +1140,7 @@ def aura_scene(slug_h, cap_html):
         <div class="scene-col">
           <div class="ascene reveal">
             <figure class="lyr print cards" data-speed="0.015"><div class="tape"></div><img src="{M}cards.jpg" alt="Two aura photographs" loading="lazy"><figcaption class="hand">my aura, then and now</figcaption></figure>
+            <figure class="lyr print shop" data-speed="-0.02"><div class="tape"></div><img src="{M}shop.jpg" alt="Magic Jewelry storefront on Canal Street" loading="lazy"><figcaption class="hand">Magic Jewelry, 238 Canal St</figcaption></figure>
             <img class="lyr blue" data-speed="0.04" src="{M}cut-card-blue.png" alt="" loading="lazy">
             <img class="lyr red" data-speed="-0.04" src="{M}cut-card-red.png" alt="" loading="lazy">
             <div class="lyr msg a1 hand" data-speed="0.01">what color<br>are you?</div>
