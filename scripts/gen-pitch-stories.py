@@ -830,6 +830,44 @@ CSS = r"""
   @keyframes nfxfall { 0% { transform:translate3d(0,-20px,0); } 100% { transform:translate3d(var(--x),1500px,0); } }
   html[data-season="warm"] .nightfx { display:none; }
   @media (prefers-reduced-motion:reduce) { .nightfx i.f { display:none; } .nightfx i.t { animation:none; opacity:.5; } }
+  .bscene { position:relative; width:min(1180px,100%); aspect-ratio:16/11.4; margin:30px auto 20px; }
+  .bscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
+  .bscene img.lyr { height:auto; max-width:none; }
+  .bscene .print { background:#f4efe3; padding:10px 10px 34px; filter:drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
+  .bscene .print img { display:block; width:100%; height:auto; }
+  .bscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(14px,1.7vw,22px); color:#2a2a2a; }
+  .bscene .tape { z-index:5; }
+  .bscene .print.day { left:3%; top:1%; width:46%; --r:-2deg; z-index:1; }
+  .bscene .print.dusk { right:3%; top:0%; width:42%; --r:2.4deg; z-index:2; }
+  .bscene .tub { left:19%; bottom:3%; width:62%; --r:-1deg; z-index:4; filter:drop-shadow(0 16px 20px rgba(0,0,0,.5)); }
+  .bscene svg.lyr { overflow:visible; }
+  .bscene .bubbles { left:31%; bottom:21%; width:30%; z-index:5; filter:none; animation:bfloat 6s ease-in-out infinite; }
+  .bscene .duck { left:57%; bottom:27%; width:9.500%; --r:-4deg; z-index:6; animation:bbob 4.500s ease-in-out infinite; }
+  .bscene .candles { z-index:6; filter:drop-shadow(0 6px 8px rgba(0,0,0,.4)); }
+  .bscene .candles.cl { left:2%; bottom:1%; width:21%; }
+  .bscene .candles.cr { right:3%; bottom:3%; width:17%; }
+  .bscene .flame { transform-origin:50% 90%; transform-box:fill-box; animation:bflick 1.400s ease-in-out infinite alternate; }
+  .bscene .candles.cr .flame { animation-duration:1.900s; }
+  .bscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .bscene .msg.b1 { left:5%; top:48%; --r:-4deg; }
+  .bscene .msg.b2 { right:4%; top:52%; --r:3deg; text-align:right; }
+  @keyframes bfloat { 0%,100% { translate:0 0; } 50% { translate:0 -5px; } }
+  @keyframes bbob { 0%,100% { translate:0 0; } 50% { translate:0 -4px; } }
+  @keyframes bflick { 0% { transform:scale(1,.94) rotate(-2deg); opacity:.92; } 100% { transform:scale(1,1.06) rotate(2deg); opacity:1; } }
+  @media (max-width:760px) {
+    .bscene { aspect-ratio:3/5.6; }
+    .bscene .print.day { left:3%; top:1%; width:80%; }
+    .bscene .print.dusk { right:3%; top:22%; width:70%; }
+    .bscene .tub { left:-4%; bottom:12%; width:108%; }
+    .bscene .bubbles { left:20%; bottom:20%; width:46%; }
+    .bscene .duck { left:62%; bottom:24%; width:16%; }
+    .bscene .candles.cl { left:2%; bottom:0%; width:36%; }
+    .bscene .candles.cr { right:2%; bottom:1%; width:30%; }
+    .bscene .msg { font-size:15px; }
+    .bscene .msg.b1 { left:4%; top:52.500%; }
+    .bscene .msg.b2 { right:4%; top:47.500%; }
+  }
+  @media (prefers-reduced-motion:reduce) { .bscene .bubbles, .bscene .duck, .bscene .flame { animation:none; } }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1253,7 +1291,27 @@ def madison_scene(slug_h, cap_html):
           {cap_html}
         </div>'''
 
-LAYOUTS = ['', 'L-side', 'L-center', 'L-hero', 'L-mason']
+def bath_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/bath/'
+    bub = ''.join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="url(#bg)" stroke="rgba(255,255,255,.75)" stroke-width=".8"/><circle cx="{x - r*.35:.1f}" cy="{y - r*.35:.1f}" r="{r*.22:.1f}" fill="#fff" opacity=".85"/>' for x, y, r in [(30,70,22),(62,60,26),(98,66,20),(130,72,16),(50,40,15),(84,36,17),(112,44,12),(20,48,10),(70,18,9),(142,52,8)])
+    candle = lambda x, h: f'<g transform="translate({x},0)"><rect x="0" y="{86-h}" width="22" height="{h}" rx="3" fill="#f3ead6"/><rect x="0" y="{86-h}" width="22" height="7" rx="3" fill="#fffaf0"/><rect x="10.200" y="{74-h}" width="1.600" height="8" fill="#3a2a1a"/><g class="flame"><ellipse cx="11" cy="{66-h}" rx="9" ry="13" fill="url(#fg)" opacity=".5"/><path d="M11 {52-h} C 17 {62-h}, 16 {70-h}, 11 {74-h} C 6 {70-h}, 5 {62-h}, 11 {52-h} Z" fill="#ffd36b"/><path d="M11 {60-h} C 14 {66-h}, 13 {70-h}, 11 {73-h} C 9 {70-h}, 8 {66-h}, 11 {60-h} Z" fill="#fff4cf"/></g></g>'
+    return f'''
+        <div class="scene-col">
+          <div class="bscene reveal">
+            <figure class="lyr print day" data-speed="0.015"><div class="tape"></div><img src="{M}day.jpg" alt="The soaking tub by day, skyline through the window" loading="lazy"><figcaption class="hand">by day</figcaption></figure>
+            <figure class="lyr print dusk" data-speed="-0.025"><div class="tape"></div><img src="{M}dusk.jpg" alt="The soaking tub at dusk" loading="lazy"><figcaption class="hand">at dusk</figcaption></figure>
+            <img class="lyr tub" data-speed="0.04" src="{M}cut-tub.png" alt="The soaking tub" loading="lazy">
+            <svg class="lyr bubbles" viewBox="0 0 160 90" data-speed="0.05" aria-hidden="true"><defs><radialGradient id="bg" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".6" stop-color="#e8f4ff" stop-opacity=".55"/><stop offset="1" stop-color="#bfe0ff" stop-opacity=".35"/></radialGradient></defs>{bub}</svg>
+            <svg class="lyr duck" viewBox="0 0 80 70" data-speed="0.06" aria-label="A rubber ducky"><ellipse cx="38" cy="48" rx="28" ry="16" fill="#ffd23f"/><path d="M60 44 C 72 40, 76 30, 66 28 C 62 34, 58 38, 52 40 Z" fill="#ffd23f"/><circle cx="52" cy="28" r="14" fill="#ffd23f"/><path d="M64 28 L 77 31 L 64 36 Z" fill="#ff8a2a"/><circle cx="56" cy="24" r="2.200" fill="#2a2118"/><ellipse cx="34" cy="50" rx="13" ry="8" fill="#f2b81f"/><path d="M14 40 C 10 36, 14 30, 18 34" stroke="#f2b81f" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+            <svg class="lyr candles cl" viewBox="0 0 120 90" data-speed="0.03" aria-hidden="true"><defs><radialGradient id="fg"><stop offset="0" stop-color="#ffe6a3"/><stop offset="1" stop-color="#ffe6a3" stop-opacity="0"/></radialGradient></defs>{candle(8,40)}{candle(44,58)}{candle(82,30)}</svg>
+            <svg class="lyr candles cr" viewBox="0 0 120 90" data-speed="0.035" aria-hidden="true">{candle(18,34)}{candle(64,50)}</svg>
+            <div class="lyr msg b1 hand" data-speed="0.01">a soak with<br>the whole skyline</div>
+            <div class="lyr msg b2 hand" data-speed="0.02">bubbles, candles,<br>and a little duck</div>
+          </div>
+          {cap_html}
+        </div>'''
+
+LAYOUTS =['', 'L-side', 'L-center', 'L-hero', 'L-mason']
 
 # ---- seasons: the source copy above is the spring/summer version; winter is the default view ----
 WINTER_STOP = {   # warm name -> (winter name, winter note); a None keeps the warm one
@@ -1428,6 +1486,9 @@ def render(h):
             if slug_h == 'nomad' and key == 'chelsea-gallery-streets':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + chelsea_scene(slug_h, cap)
+            if slug_h == 'nomad' and key == 'bath-time-mom-and-baby':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + bath_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'madison-square-park-and-flatiron':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + madison_scene(slug_h, cap)
