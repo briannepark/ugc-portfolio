@@ -655,6 +655,27 @@
     .bstage .bd-page > :not(.bk-pol):not(.bk-cue) { max-width:100%; } .bk-name { font-size:32px; } .bk-tag { max-width:24ch; } .bk-cue { left:22px; bottom:20px; font-size:20px; } .bstage .bd-tab { font-size:14px; }
   }
   .bk-cue { text-decoration:none; cursor:pointer; }
+  .smap { display:grid; grid-template-columns:minmax(150px,230px) 1fr; gap:34px; align-items:center; max-width:640px; margin:46px auto 0; padding:26px 28px; border:1px solid color-mix(in srgb,var(--txt) 18%, transparent); border-radius:4px; }
+  .smap svg { width:100%; height:auto; overflow:visible; }
+  .smap .sw { fill:color-mix(in srgb,var(--accent) 16%, transparent); }
+  .smap .sg line { stroke:var(--txt); stroke-opacity:.12; stroke-width:.5; }
+  .smap .sbase { fill:none; stroke:var(--txt); stroke-opacity:.22; stroke-width:1; stroke-linecap:round; }
+  .smap .sline { fill:none; stroke:var(--accent); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:100; stroke-dashoffset:100; }
+  .smap .shotel { fill:var(--accent); } .smap .slab { font:500 7px var(--body); letter-spacing:.18em; text-transform:uppercase; fill:var(--txt); opacity:.6; }
+  .smap .sdest { fill:none; stroke:var(--accent); stroke-width:1.2; opacity:0; }
+  .smap .sdot { fill:var(--txt); opacity:0; offset-distance:0%; }
+  .smap.in .sline { animation:sdraw 3.2s .3s cubic-bezier(.5,0,.3,1) forwards; }
+  .smap.in .sdot { animation:smove 3.2s .3s cubic-bezier(.5,0,.3,1) forwards; }
+  .smap.in .sdest { animation:sping 1.4s 3.3s ease-out forwards; }
+  @keyframes sdraw { to { stroke-dashoffset:0; } }
+  @keyframes smove { 0% { opacity:1; offset-distance:0%; } 96% { opacity:1; } 100% { opacity:0; offset-distance:100%; } }
+  @keyframes sping { 0% { opacity:.9; r:3; } 100% { opacity:.9; r:6; } }
+  .smap .sinfo .stm { font-family:var(--head); font-style:italic; font-size:18px; line-height:1.3; margin:8px 0 12px; }
+  .smap ol { margin:0 0 12px; padding-left:20px; font-size:15px; line-height:1.5; opacity:.88; }
+  .smap ol li { padding:2px 0; }
+  .smap .spup { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
+  @media (max-width:640px) { .smap { grid-template-columns:1fr; gap:20px; padding:22px 20px; } .smap svg { max-width:190px; margin:0 auto; } }
+  @media (prefers-reduced-motion:reduce) { .smap .sline { stroke-dashoffset:0; animation:none !important; } .smap .sdest { opacity:.9; animation:none !important; } .smap .sdot { display:none; } }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -753,7 +774,7 @@
 <symbol id="d-up" viewBox="0 0 40 30"><path d="M4 26 C 14 25, 24 15, 31 4"/><path d="M22 6 L32 3 L34 13"/></symbol>
 </defs></svg>
 <div class="hud"><a href="pitches.html#travel">&larr; All pitches</a><span class="cur">Intro</span><div class="season" role="group" aria-label="Season"><button type="button" data-v="winter" aria-pressed="true">Winter</button><button type="button" data-v="warm" aria-pressed="false">Spring &amp; Summer</button></div><span class="bar"></span></div>
-<nav class="rail" aria-label="Timeline"><a href="#ch1" class="day" data-t="ch1"><span class="s">Day 1</span><span class="f">Day 1 · Arrival</span><i></i></a><a href="#ch2" class="" data-t="ch2"><span class="s"></span><span class="f">Day 1 · Settle in</span><i></i></a><a href="#ch3" class="" data-t="ch3"><span class="s"></span><span class="f">Day 1 · Nightfall</span><i></i></a><a href="#ch4" class="day" data-t="ch4"><span class="s">Day 2</span><span class="f">Day 2 · Early morning</span><i></i></a><a href="#ch5" class="" data-t="ch5"><span class="s"></span><span class="f">Day 2 · Morning</span><i></i></a><a href="#ch6" class="" data-t="ch6"><span class="s"></span><span class="f">Day 2 · Afternoon</span><i></i></a><a href="#ch7" class="" data-t="ch7"><span class="s"></span><span class="f">Day 2 · The matcha crawl</span><i></i></a><a href="#ch8" class="" data-t="ch8"><span class="s"></span><span class="f">Day 2 · Rest hour</span><i></i></a><a href="#ch9" class="" data-t="ch9"><span class="s"></span><span class="f">Day 2 · Evening</span><i></i></a><a href="#ch10" class="day" data-t="ch10"><span class="s">Day 3</span><span class="f">Day 3 · Morning</span><i></i></a><a href="#ch11" class="" data-t="ch11"><span class="s"></span><span class="f">Day 3 · Afternoon</span><i></i></a><a href="#ch12" class="day" data-t="ch12"><span class="s">Day 4</span><span class="f">Day 4 · Across the bridge</span><i></i></a><a href="#ch13" class="" data-t="ch13"><span class="s"></span><span class="f">Day 4 · Goodbye</span><i></i></a></nav>
+<nav class="rail" aria-label="Timeline"><a href="#ch1" class="day" data-t="ch1"><span class="s">Day 1</span><span class="f">Day 1 · Arrival</span><i></i></a><a href="#ch2" class="" data-t="ch2"><span class="s"></span><span class="f">Day 1 · Settle in</span><i></i></a><a href="#ch3" class="" data-t="ch3"><span class="s"></span><span class="f">Day 1 · Nightfall</span><i></i></a><a href="#ch4" class="day" data-t="ch4"><span class="s">Day 2</span><span class="f">Day 2 · Early morning</span><i></i></a><a href="#ch5" class="" data-t="ch5"><span class="s"></span><span class="f">Day 2 · Morning</span><i></i></a><a href="#ch6" class="" data-t="ch6"><span class="s"></span><span class="f">Day 2 · Afternoon</span><i></i></a><a href="#ch7" class="" data-t="ch7"><span class="s"></span><span class="f">Day 2 · The matcha crawl</span><i></i></a><a href="#ch8" class="" data-t="ch8"><span class="s"></span><span class="f">Day 2 · Rest hour</span><i></i></a><a href="#ch9" class="" data-t="ch9"><span class="s"></span><span class="f">Day 2 · Evening</span><i></i></a><a href="#ch10" class="day" data-t="ch10"><span class="s">Day 3</span><span class="f">Day 3 · Early morning</span><i></i></a><a href="#ch11" class="" data-t="ch11"><span class="s"></span><span class="f">Day 3 · Morning</span><i></i></a><a href="#ch12" class="" data-t="ch12"><span class="s"></span><span class="f">Day 3 · Afternoon</span><i></i></a><a href="#ch13" class="day" data-t="ch13"><span class="s">Day 4</span><span class="f">Day 4 · Early morning</span><i></i></a><a href="#ch14" class="" data-t="ch14"><span class="s"></span><span class="f">Day 4 · Across the bridge</span><i></i></a><a href="#ch15" class="" data-t="ch15"><span class="s"></span><span class="f">Day 4 · Goodbye</span><i></i></a></nav>
 
 <section class="bopen" aria-label="Pitch binder"><div class="bstage live"><div class="bd-book" style="--lea:#9a6b47;--lea2:#6d4529;--deb:rgba(38,20,8,.62);--debs:0 1px 0 rgba(255,228,196,.3), 0 -1px 1px rgba(0,0,0,.32)">
       <div class="bd-page">
@@ -766,12 +787,12 @@
         <figure class="bk-pol"><svg class="bd-clip" viewBox="0 0 26 76" aria-hidden="true"><path d="M5 52V15a8 8 0 0 1 16 0v47a11 11 0 0 1-22 0V22" transform="translate(2 0)" fill="none" stroke="#a8acb2" stroke-width="2.4" stroke-linecap="round"/></svg><span class="ph"><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/walk-room.jpg" alt="" onerror="this.remove()"></span><figcaption>a pitch by Brianne</figcaption></figure>
         <a class="bk-cue" href="#ch1">scroll to open the itinerary &darr;</a>
       </div>
-      <nav class="bd-tabs"><a class="bd-tab" href="#ch1">Day 1</a><a class="bd-tab" href="#ch4">Day 2</a><a class="bd-tab" href="#ch10">Day 3</a><a class="bd-tab" href="#ch12">Day 4</a></nav>
+      <nav class="bd-tabs"><a class="bd-tab" href="#ch1">Day 1</a><a class="bd-tab" href="#ch4">Day 2</a><a class="bd-tab" href="#ch10">Day 3</a><a class="bd-tab" href="#ch13">Day 4</a></nav>
       <div class="bd-rings"><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span><span class="bd-ring"></span></div>
     </div></div></section>
 <section class="lobby rise"><div class="pad"><div class="sheet"><div class="lh">The Ritz-Carlton<small>NoMad</small></div><div class="msg">meet you in the lobby at 4PM?</div></div><span class="pen"></span></div><div class="cap2">scroll for the guide &darr;</div></section>
 <section class="intro short rise"><h2>for moms&hellip;</h2><span class="tagpill">a guide to vacation with baby + puppy</span></section>
-<div class="index"><div class="kick">In this guide</div><div class="gcats"><details class="gcat"><summary><h3>Hotel<small>3</small></h3></summary><ul><li>Bazaar Meat by José Andrés</li><li>Nubeluz, 50th floor</li><li>Lobby Lounge coffee</li></ul></details><details class="gcat"><summary><h3>Matcha<small>3</small></h3></summary><ul><li>12 Matcha</li><li>Rhythm Zero</li><li>Rok Matcha</li></ul></details><details class="gcat"><summary><h3>Food<small>5</small></h3></summary><ul><li>The bar</li><li>Ippudo</li><li>Printemps, One Wall Street</li><li>Dumbo ice cream and bridge shot</li><li>Nobu Downtown dinner</li></ul></details><details class="gcat"><summary><h3>Shops<small>2</small></h3></summary><ul><li>Gentle Monster, SoHo</li><li>Kith, SoHo</li></ul></details><details class="gcat"><summary><h3>Activities<small>6</small></h3></summary><ul><li>Morning walk with the dog</li><li>Madison Square Park and Flatiron</li><li>Chelsea galleries and the start of the High Line</li><li>Brooklyn Botanical Garden</li><li>Mercer Labs</li><li>Aura reading at Magic Jewelry</li></ul></details><details class="gcat"><summary><h3>Sample sale<small>1</small></h3></summary><ul><li>Sample-sale hunt</li></ul></details><details class="gcat"><summary><h3>Pop-ups<small>2</small></h3></summary><ul><li>CJ Hendry Flower Market</li><li>Pop-up of the week</li></ul></details></div></div>
+<div class="index"><div class="kick">In this guide</div><div class="gcats"><details class="gcat"><summary><h3>Hotel<small>3</small></h3></summary><ul><li>Bazaar Meat by José Andrés</li><li>Nubeluz, 50th floor</li><li>Lobby Lounge coffee</li></ul></details><details class="gcat"><summary><h3>Matcha<small>3</small></h3></summary><ul><li>12 Matcha</li><li>Rhythm Zero</li><li>Rok Matcha</li></ul></details><details class="gcat"><summary><h3>Food<small>5</small></h3></summary><ul><li>The bar</li><li>Ippudo</li><li>Printemps, One Wall Street</li><li>Dumbo ice cream and bridge shot</li><li>Nobu Downtown dinner</li></ul></details><details class="gcat"><summary><h3>Shops<small>2</small></h3></summary><ul><li>Gentle Monster, SoHo</li><li>Kith, SoHo</li></ul></details><details class="gcat"><summary><h3>Activities<small>6</small></h3></summary><ul><li>Madison Square Park and Flatiron</li><li>Chelsea galleries and the start of the High Line</li><li>Brooklyn Botanical Garden</li><li>Mercer Labs</li><li>Aura reading at Magic Jewelry</li><li>Hudson River Greenway</li></ul></details><details class="gcat"><summary><h3>Sample sale<small>1</small></h3></summary><ul><li>Sample-sale hunt</li></ul></details><details class="gcat"><summary><h3>Pop-ups<small>2</small></h3></summary><ul><li>CJ Hendry Flower Market</li><li>Pop-up of the week</li></ul></details></div></div>
 
   <section class="chapter walkintro" id="ch1" data-label="Day 1 · Arrival">
     <div class="wrap">
@@ -825,6 +846,7 @@
           <figcaption class="cap"><span class="nm">Dogs welcome</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%2C%20NoMad%2C%2025%20W%2028th%20St%2C%20New%20York%2C%20NY%2010001" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>25 W 28th St</a></figcaption>
         </figure>
       </div>
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch2-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -847,6 +869,7 @@
           <figcaption class="cap"><span class="nm">Nubeluz, 50th floor</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Skyline at blue hour.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%2C%20NoMad%2C%2025%20W%2028th%20St%2C%20New%20York%2C%20NY%2010001" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>25 W 28th St</a></figcaption><span class="snap s1"><span class="tape"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/nubeluz-50th-floor-day.jpg" alt="by day" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">by day</em></span><span class="snap s2"><span class="tape"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/nubeluz-50th-floor-night.jpg" alt="by night" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">by night</em></span>
         </figure>
       </div>
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch3-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -855,9 +878,9 @@
       <div class="num">7:00 am</div>
       <div class="ch-head">
         <div class="rise"><div class="kick">Day 2 · Early morning</div><h2>Gym before the city wakes</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
-        <div class="note rise"><div class="tape"></div>While baby sleeps in, I slip down to the fitness center. It is open around the clock, with Peloton bikes, right next to the spa. Then a quick leashed loop with the dog, and coffee from the Lobby Lounge.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
+        <div class="note rise"><div class="tape"></div>While baby sleeps in, I slip down to the fitness center. It is open around the clock, with Peloton bikes, right next to the spa. Then coffee from the Lobby Lounge, ready for the morning stroll.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
-      <div class="collage n3 ">
+      <div class="collage n2 ">
         <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
           <div class="tape"></div>
           <div class="img"><span class="ph">Fitness center</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/fitness-center.jpg" alt="Fitness center" loading="lazy" onerror="this.remove()"></div>
@@ -865,15 +888,11 @@
         </figure>
         <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
           <div class="tape"></div>
-          <div class="img"><span class="ph">Morning walk with the dog</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/morning-walk-with-the-dog.jpg" alt="Morning walk with the dog" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Morning walk with the dog</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>A leashed loop out the lobby before breakfast. Confirm park rules.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Morning%20walk%20with%20the%20dog%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
-        </figure>
-        <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
-          <div class="tape"></div>
           <div class="img"><span class="ph">Lobby Lounge coffee</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/lobby-lounge-coffee.jpg" alt="Lobby Lounge coffee" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">Lobby Lounge coffee</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Pastries, coffee and tea in the morning.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%2C%20NoMad%2C%2025%20W%2028th%20St%2C%20New%20York%2C%20NY%2010001" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>25 W 28th St</a></figcaption>
         </figure>
       </div>
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch4-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -881,10 +900,10 @@
     <div class="wrap">
       <div class="num">9:30 am</div>
       <div class="ch-head">
-        <div class="rise"><div class="kick">Day 2 · Morning</div><h2>Coffee in hand, on foot</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
-        <div class="note rise"><div class="tape"></div>Out the lobby and into the neighborhood. Everything good around here is a walk away: the park, the Flatiron, the galleries of Chelsea.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
+        <div class="rise"><div class="kick">Day 2 · Morning</div><h2>Madison Square Park, at stroller pace</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>First morning, nice and easy: a few blocks from the lobby to Madison Square Park with baby in the stroller and the pup on a leash. Coffee in hand, one slow loop of the lawn, the Flatiron in the frame.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
-      <div class="collage n2 rev">
+      <div class="collage n1 rev">
         <div class="scene-col">
           <div class="mscene reveal">
             <figure class="lyr print wide" data-speed="0.015"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/madison/wide.jpg" alt="Madison Square Park from above" loading="lazy"></figure>
@@ -901,24 +920,21 @@
             <svg class="lyr dd a2" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
             <svg class="lyr dd u1" viewBox="0 0 300 14" data-speed="0"><use href="#d-under"/></svg>
           </div>
-          <figcaption class="cap"><span class="nm">Madison Square Park and Flatiron</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Morning walk, coffee in hand.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Madison%20Square%20Park%20and%20Flatiron%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
+          <figcaption class="cap"><span class="nm">Madison Square Park and Flatiron</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>A short, flat stroll with baby and pup. Leashed dogs only; the park also has a dog run. Confirm rules and hours.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Madison%20Square%20Park%20and%20Flatiron%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </div>
-        <div class="scene-col">
-          <div class="cscene reveal">
-            <figure class="lyr print ext" data-speed="0.015"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/ext.jpg" alt="A gallery entrance under the High Line" loading="lazy"><figcaption class="hand">under the High Line</figcaption></figure>
-            <figure class="lyr print night" data-speed="-0.03"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/night.jpg" alt="The High Line at blue hour" loading="lazy"><figcaption class="hand">High Line, blue hour</figcaption></figure>
-            <figure class="lyr print eve" data-speed="0.03"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/eve.jpg" alt="Dinner under the High Line stairs" loading="lazy"><figcaption class="hand">dinner nearby</figcaption></figure>
-            <figure class="lyr print branches" data-speed="0.02"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/branches.jpg" alt="A gallery of hanging sculptures" loading="lazy"></figure>
-            <figure class="lyr print paint" data-speed="-0.02"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/paint.jpg" alt="Paintings in a gallery" loading="lazy"></figure>
-            <figure class="lyr print kawsroom" data-speed="0.025"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/kaws.jpg" alt="A big gallery with a yellow figure" loading="lazy"></figure>
-            <img class="lyr koons" data-speed="0.045" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/cut-koons.png" alt="" loading="lazy">
-            <img class="lyr kaws" data-speed="-0.04" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/cut-kaws.png" alt="" loading="lazy">
-            <div class="lyr msg c1 hand" data-speed="0.01">one gallery<br>per hour</div>
-            <div class="lyr msg c2 hand" data-speed="0.02">art you can<br>walk right into</div>
-            <div class="lyr msg c3 hand" data-speed="0.02">then the High Line<br>at golden hour &rarr;</div>
-          </div>
-          <figcaption class="cap"><span class="nm">Chelsea galleries and the start of the High Line</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Local artists, one gallery per hour.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Chelsea%20galleries%20and%20the%20start%20of%20the%20High%20Line%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
-        </div>
+      </div>
+      
+      <div class="smap rise">
+        <svg viewBox="0 0 200 220" role="img" aria-label="Route from the hotel to Madison Square Park">
+          <path class="sw" d="M 0 0 H 12 V 220 H 0 Z"/>
+          <g class="sg"><line x1="24" y1="14" x2="24" y2="206"/><line x1="44" y1="14" x2="44" y2="206"/><line x1="84" y1="14" x2="84" y2="206"/><line x1="126" y1="14" x2="126" y2="206"/><line x1="176" y1="14" x2="176" y2="206"/><line x1="2" y1="78" x2="196" y2="78"/><line x1="2" y1="112" x2="196" y2="112"/><line x1="2" y1="150" x2="196" y2="150"/><line x1="2" y1="190" x2="196" y2="190"/><line x1="2" y1="248" x2="196" y2="248"/><line x1="2" y1="292" x2="196" y2="292"/></g>
+          <path class="sbase" d="M 104 78 L 126 78 L 126 112 L 176 112 L 176 190 L 126 190 L 126 112" pathLength="100"/>
+          <path class="sline" d="M 104 78 L 126 78 L 126 112 L 176 112 L 176 190 L 126 190 L 126 112" pathLength="100"/>
+          <circle class="shotel" cx="104" cy="78" r="4"/><text class="slab" x="112" y="68">hotel</text>
+          <circle class="sdest" cx="151" cy="150" r="5"/>
+          <circle class="sdot" r="3" style="offset-path:path('M 104 78 L 126 78 L 126 112 L 176 112 L 176 190 L 126 190 L 126 112')"/>
+        </svg>
+        <div class="sinfo"><div class="kick">How to get there</div><div class="stm">About 6 minutes, flat the whole way (est.)</div><ol><li>Out the lobby and east on W 28th St toward Fifth Ave.</li><li>South on Fifth Ave, about three blocks.</li><li>Enter at the Fifth Ave and 26th St corner, then loop the lawn.</li></ol><div class="spup">Leashed pup welcome. Confirm park rules.</div></div>
       </div>
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch5-cutout.png" alt="" onerror="this.remove()">
     </div>
@@ -979,6 +995,7 @@
           <figcaption class="cap"><span class="nm">Pop-up of the week</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Pop-ups rotate weekly. The kind I usually miss with a baby in tow. Pick one for the feed.</span></figcaption>
         </figure>
       </div>
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch6-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1021,6 +1038,7 @@
           <figcaption class="cap"><span class="nm">Rok Matcha</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Rok%20Matcha%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </div>
       </div>
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch7-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1043,6 +1061,7 @@
           <figcaption class="cap"><span class="nm">Spa and steam room</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>A 6,800 sq ft spa with a sauna and steam room. Confirm treatments and age rules.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%2C%20NoMad%2C%2025%20W%2028th%20St%2C%20New%20York%2C%20NY%2010001" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>25 W 28th St</a></figcaption>
         </figure>
       </div>
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch8-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1067,34 +1086,77 @@
           <figcaption class="cap"><span class="nm">Ippudo</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Hakata-style ramen under a canopy of bamboo. Confirm which location (the storefront photo is #24) and wait times.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Ippudo%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </div>
       </div>
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch9-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
-  <section class="chapter L-mason" id="ch10" data-label="Day 3 · Morning">
+  <section class="chapter L-mason" id="ch10" data-label="Day 3 · Early morning">
+    <div class="wrap">
+      <div class="num">8:00 am</div>
+      <div class="ch-head">
+        <div class="rise"><div class="kick">Day 3 · Early morning</div><h2>The High Line, baby first</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>Second morning, up above the street: gardens, art and city views along the old rail line, with the galleries of Chelsea just below. One rule to plan around: dogs are not allowed on the High Line (service dogs only), so the pup gets a leashed street-level loop first, then a rest at the hotel.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
+      </div>
+      <div class="collage n1 ">
+        <div class="scene-col">
+          <div class="cscene reveal">
+            <figure class="lyr print ext" data-speed="0.015"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/ext.jpg" alt="A gallery entrance under the High Line" loading="lazy"><figcaption class="hand">under the High Line</figcaption></figure>
+            <figure class="lyr print night" data-speed="-0.03"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/night.jpg" alt="The High Line at blue hour" loading="lazy"><figcaption class="hand">High Line, blue hour</figcaption></figure>
+            <figure class="lyr print eve" data-speed="0.03"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/eve.jpg" alt="Dinner under the High Line stairs" loading="lazy"><figcaption class="hand">dinner nearby</figcaption></figure>
+            <figure class="lyr print branches" data-speed="0.02"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/branches.jpg" alt="A gallery of hanging sculptures" loading="lazy"></figure>
+            <figure class="lyr print paint" data-speed="-0.02"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/paint.jpg" alt="Paintings in a gallery" loading="lazy"></figure>
+            <figure class="lyr print kawsroom" data-speed="0.025"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/kaws.jpg" alt="A big gallery with a yellow figure" loading="lazy"></figure>
+            <img class="lyr koons" data-speed="0.045" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/cut-koons.png" alt="" loading="lazy">
+            <img class="lyr kaws" data-speed="-0.04" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/chelsea/cut-kaws.png" alt="" loading="lazy">
+            <div class="lyr msg c1 hand" data-speed="0.01">one gallery<br>per hour</div>
+            <div class="lyr msg c2 hand" data-speed="0.02">art you can<br>walk right into</div>
+            <div class="lyr msg c3 hand" data-speed="0.02">then the High Line<br>at golden hour &rarr;</div>
+          </div>
+          <figcaption class="cap"><span class="nm">Chelsea galleries and the start of the High Line</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Local artists, one gallery per hour. Take the elevator at 23rd St with the stroller. No dogs on the High Line except service dogs.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Chelsea%20galleries%20and%20the%20start%20of%20the%20High%20Line%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
+        </div>
+      </div>
+      
+      <div class="smap rise">
+        <svg viewBox="0 0 200 322" role="img" aria-label="Route from the hotel to The High Line">
+          <path class="sw" d="M 0 0 H 12 V 322 H 0 Z"/>
+          <g class="sg"><line x1="24" y1="14" x2="24" y2="308"/><line x1="44" y1="14" x2="44" y2="308"/><line x1="84" y1="14" x2="84" y2="308"/><line x1="126" y1="14" x2="126" y2="308"/><line x1="176" y1="14" x2="176" y2="308"/><line x1="2" y1="78" x2="196" y2="78"/><line x1="2" y1="112" x2="196" y2="112"/><line x1="2" y1="150" x2="196" y2="150"/><line x1="2" y1="190" x2="196" y2="190"/><line x1="2" y1="248" x2="196" y2="248"/><line x1="2" y1="292" x2="196" y2="292"/></g>
+          <path class="sbase" stroke-dasharray="1 5" d="M 104 78 L 44 78 L 44 190 L 30 190 L 24 292" pathLength="100"/>
+          <path class="sline" d="M 104 78 L 44 78 L 44 190 L 30 190 L 24 292" pathLength="100"/>
+          <circle class="shotel" cx="104" cy="78" r="4"/><text class="slab" x="112" y="68">hotel</text>
+          <circle class="sdest" cx="24" cy="292" r="5"/>
+          <circle class="sdot" r="3" style="offset-path:path('M 104 78 L 44 78 L 44 190 L 30 190 L 24 292')"/>
+        </svg>
+        <div class="sinfo"><div class="kick">How to get there</div><div class="stm">A short cab or subway ride, then the elevator (est. 15 min)</div><ol><li>Ride or cab west to W 23rd St and 10th Ave.</li><li>Take the elevator up at 23rd St (stroller friendly).</li><li>Stroll south along the rail bed toward the Whitney.</li></ol><div class="spup">No dogs on the High Line. Walk the pup first.</div></div>
+      </div>
+      <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch10-cutout.png" alt="" onerror="this.remove()">
+    </div>
+  </section>
+  <section class="chapter " id="ch11" data-label="Day 3 · Morning">
     <div class="wrap">
       <div class="num">10:00 am</div>
       <div class="ch-head">
         <div class="rise"><div class="kick">Day 3 · Morning</div><h2><span data-s="w">The quiet garden</span><span data-s="m">The secret garden</span></h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
         <div class="note rise"><div class="tape"></div><span data-s="w">The city drops away: a Japanese hill-and-pond garden, and a glass conservatory of greenhouse blooms. This is the quiet chapter.</span><span data-s="m">The city drops away: cherry blossoms in spring, a Japanese hill-and-pond garden, and roses in early summer. This is the quiet chapter.</span><svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
-      <div class="collage n1 ">
-        <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
+      <div class="collage n1 rev">
+        <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Brooklyn Botanical Garden</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/brooklyn-botanical-garden.jpg" alt="Brooklyn Botanical Garden" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">Brooklyn Botanical Garden</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg><span data-s="w">990 Washington Ave, Prospect Heights. The glass conservatory stays green and warm in winter, and the Japanese garden is quiet under frost. Confirm winter hours and tickets.</span><span data-s="m">990 Washington Ave, Prospect Heights. Cherry blossoms in spring, roses in early summer, the Japanese garden and the conservatory year-round. Confirm hours and tickets.</span></span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Brooklyn%20Botanical%20Garden%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>990 Washington Ave</a></figcaption>
         </figure>
       </div>
-      <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch10-cutout.png" alt="" onerror="this.remove()">
+      
+      <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch11-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
-  <section class="chapter " id="ch11" data-label="Day 3 · Afternoon">
+  <section class="chapter L-side" id="ch12" data-label="Day 3 · Afternoon">
     <div class="wrap">
       <div class="num">1:30 pm</div>
       <div class="ch-head">
         <div class="rise"><div class="kick">Day 3 · Afternoon</div><h2>Downtown, in one sweep</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
         <div class="note rise"><div class="tape"></div>Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
-      <div class="collage n3 rev">
+      <div class="collage n3 ">
         <div class="scene-col">
           <div class="mlscene reveal">
             <figure class="lyr print room" data-speed="0.015"><div class="tape"></div><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/shared/mercer/room.jpg" alt="A room of projected flowers" loading="lazy"><figcaption class="hand">step inside the garden</figcaption></figure>
@@ -1133,10 +1195,41 @@
           <figcaption class="cap"><span class="nm">Aura reading at Magic Jewelry</span><span class="row"><span class="tg ride">Short ride</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>238 Canal St, Chinatown. Aura photographs.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Aura%20reading%20at%20Magic%20Jewelry%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>238 Canal St</a></figcaption>
         </div>
       </div>
-      <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch11-cutout.png" alt="" onerror="this.remove()">
+      
+      <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch12-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
-  <section class="chapter L-side" id="ch12" data-label="Day 4 · Across the bridge">
+  <section class="chapter L-center" id="ch13" data-label="Day 4 · Early morning">
+    <div class="wrap">
+      <div class="num">8:00 am</div>
+      <div class="ch-head">
+        <div class="rise"><div class="kick">Day 4 · Early morning</div><h2>Along the Hudson, one last stroll</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
+        <div class="note rise"><div class="tape"></div>Last morning, flat and unhurried: the riverside greenway on the west edge of the city. Water on one side, the stroller rolls easily, and leashed pups are generally welcome in Hudson River Park.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
+      </div>
+      <div class="collage n1 rev">
+        <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
+          <div class="tape"></div>
+          <div class="img"><span class="ph">Hudson River Greenway</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/hudson-river-greenway.jpg" alt="Hudson River Greenway" loading="lazy" onerror="this.remove()"></div>
+          <figcaption class="cap"><span class="nm">Hudson River Greenway</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>A flat, car-free waterfront path. Confirm dog rules and any dog run hours.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Hudson%20River%20Greenway%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
+        </figure>
+      </div>
+      
+      <div class="smap rise">
+        <svg viewBox="0 0 200 278" role="img" aria-label="Route from the hotel to Hudson River Greenway">
+          <path class="sw" d="M 0 0 H 12 V 278 H 0 Z"/>
+          <g class="sg"><line x1="24" y1="14" x2="24" y2="264"/><line x1="44" y1="14" x2="44" y2="264"/><line x1="84" y1="14" x2="84" y2="264"/><line x1="126" y1="14" x2="126" y2="264"/><line x1="176" y1="14" x2="176" y2="264"/><line x1="2" y1="78" x2="196" y2="78"/><line x1="2" y1="112" x2="196" y2="112"/><line x1="2" y1="150" x2="196" y2="150"/><line x1="2" y1="190" x2="196" y2="190"/><line x1="2" y1="248" x2="196" y2="248"/><line x1="2" y1="292" x2="196" y2="292"/></g>
+          <path class="sbase" d="M 104 78 L 18 78 L 8 78 L 8 248" pathLength="100"/>
+          <path class="sline" d="M 104 78 L 18 78 L 8 78 L 8 248" pathLength="100"/>
+          <circle class="shotel" cx="104" cy="78" r="4"/><text class="slab" x="112" y="68">hotel</text>
+          <circle class="sdest" cx="8" cy="248" r="5"/>
+          <circle class="sdot" r="3" style="offset-path:path('M 104 78 L 18 78 L 8 78 L 8 248')"/>
+        </svg>
+        <div class="sinfo"><div class="kick">How to get there</div><div class="stm">About 25 minutes on foot, or a short ride (est.)</div><ol><li>West on W 28th St all the way to the river.</li><li>Join the greenway along 11th/12th Ave.</li><li>Stroll south with the water on your right.</li></ol><div class="spup">Leashed pup welcome. Confirm rules.</div></div>
+      </div>
+      <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch13-cutout.png" alt="" onerror="this.remove()">
+    </div>
+  </section>
+  <section class="chapter L-hero" id="ch14" data-label="Day 4 · Across the bridge">
     <div class="wrap">
       <div class="num">1:00 pm</div>
       <div class="ch-head">
@@ -1144,21 +1237,22 @@
         <div class="note rise"><div class="tape"></div><span data-s="w">A hot chocolate, the bridge in the frame, and one last dinner that earns its place in the story.</span><span data-s="m">A scoop of ice cream, the bridge in the frame, and one last dinner that earns its place in the story.</span><svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n2 ">
-        <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
+        <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
           <div class="img"><span class="ph">Dumbo ice cream and bridge shot</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/dumbo-ice-cream-and-bridge-shot.jpg" alt="Dumbo ice cream and bridge shot" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm"><span data-s="w">Dumbo hot chocolate and bridge shot</span><span data-s="m">Dumbo ice cream and bridge shot</span></span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg><span data-s="w">Something warm in hand, then the bridge frame at dusk.</span><span data-s="m">Van Leeuwen or similar, then the bridge frame.</span></span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Dumbo%20ice%20cream%20and%20bridge%20shot%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
-        <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
+        <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Nobu Downtown dinner</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/nobu-downtown-dinner.jpg" alt="Nobu Downtown dinner" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">Nobu Downtown dinner</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>The big dinner moment.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Nobu%20Downtown%20dinner%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure>
       </div>
-      <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch12-cutout.png" alt="" onerror="this.remove()">
+      
+      <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch14-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
-  <section class="chapter L-center" id="ch13" data-label="Day 4 · Goodbye">
+  <section class="chapter L-mason" id="ch15" data-label="Day 4 · Goodbye">
     <div class="wrap">
       <div class="num">6:30 pm</div>
       <div class="ch-head">
@@ -1166,13 +1260,14 @@
         <div class="note rise"><div class="tape"></div>Back to the window for a final look, because you&#x27;ll want to come back.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       <div class="collage n1 rev">
-        <figure class="cut reveal c4 g3" style="--r:0.8deg" data-speed="-0.025">
+        <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
           <div class="tape"></div>
           <div class="img"><span class="ph">Last look and checkout</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/last-look-and-checkout.jpg" alt="Last look and checkout" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">Last look and checkout</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>One last lobby and window moment.</span></figcaption>
         </figure>
       </div>
-      <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch13-cutout.png" alt="" onerror="this.remove()">
+      
+      <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch15-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
 <section class="hl rise"><div class="kick">Highlights</div><h2>Luxury, made easy for the whole family</h2><p class="lede">A beautiful hotel is only worth it if it works for the people I travel with. Here is what makes this one easy with a baby and a dog.</p><div class="walks"><a class="walk pin" href="https://www.google.com/maps/search/?api=1&query=National%20Museum%20of%20Mathematics%2C%20New%20York" target="_blank" rel="noopener" style="margin:0;text-decoration:none"><span class="m">4<small>min</small></span><span>National Museum of Mathematics</span></a><a class="walk pin" href="https://www.google.com/maps/search/?api=1&query=Madison%20Square%20Park%20Dog%20Run%2C%20New%20York" target="_blank" rel="noopener" style="margin:0;text-decoration:none"><span class="m">5<small>min</small></span><span>Madison Square Park and Jemmy&#x27;s Dog Run<span class=cf>est.</span></span></a><a class="walk pin" href="https://www.google.com/maps/search/?api=1&query=LEGO%20Store%2C%205th%20Avenue%2C%20New%20York" target="_blank" rel="noopener" style="margin:0;text-decoration:none"><span class="m">6<small>min</small></span><span>LEGO Store, Fifth Avenue</span></a><a class="walk pin" href="https://www.google.com/maps/search/?api=1&query=Harry%20Potter%20New%20York%20flagship%20store" target="_blank" rel="noopener" style="margin:0;text-decoration:none"><span class="m">8<small>min</small></span><span>Harry Potter New York</span></a><a class="walk pin" href="https://www.google.com/maps/search/?api=1&query=Flatiron%20Building%2C%20New%20York" target="_blank" rel="noopener" style="margin:0;text-decoration:none"><span class="m">8<small>min</small></span><span>Flatiron Building<span class=cf>est.</span></span></a></div><p class="wn">Times at about 20 minutes per mile. Museum, LEGO and Harry Potter distances are from the hotel&#x27;s own listing; the park and Flatiron are estimates. Confirm on the day.</p><div class="cards"><div class="card"><h3>For baby</h3><ul><li><details><summary>Cribs, extra beds, adjoining rooms and kids&#x27; bath products<span class="cf">confirm</span></summary><p>Are part of Ritz-Carlton&#x27;s family offering. Ask for each when booking.</p></details></li><li><details><summary>Bath time<span class="cf">confirm</span></summary><p>Deep soaking tubs in select rooms. Request a tub room for the baby&#x27;s bath.</p></details></li><li><details><summary>24-hour in-room dining,</summary><p>So bottle and snack times never depend on a restaurant&#x27;s hours.</p></details></li><li><details><summary>Childcare<span class="cf">confirm</span></summary><p>The concierge can arrange it for an evening out.</p></details></li><li><details><summary>Ritz Kids<span class="cf">confirm</span></summary><p>Is for ages 4 to 12, and Nubeluz has kids&#x27; options at weekend high tea (Sat and Sun, 11 to 3). Ask about this season&#x27;s Ritz Kids tea.</p></details></li></ul></div><div class="card"><h3>For the dog</h3><ul><li><details><summary>Pets welcome<span class="cf">confirm</span></summary><p>Up to two, 60 lbs combined, no breed restrictions.</p></details></li><li><details><summary>Pet beds, bowls and treats<span class="cf">confirm</span></summary><p>Are provided, subject to availability.</p></details></li><li><details><summary>Morning and afternoon walks<span class="cf">confirm</span></summary><p>Madison Square Park is a few minutes away, with Jemmy&#x27;s Dog Run: separate small and large dog areas, open with the park (around 6 am to 11 pm), waste bags provided.</p></details></li><li><details><summary>Relief break<span class="cf">confirm</span></summary><p>The front desk can point to the closest grassy spot for a quick potty walk.</p></details></li><li><details><summary>The fee<span class="cf">confirm</span></summary><p>Is per stay and reported anywhere from $250 to $375.</p></details></li></ul></div><div class="card"><h3>For mom</h3><ul><li><details><summary>Fitness center</summary><p>Open 24 hours, with Peloton bikes, right by the spa.</p></details></li><li><details><summary>Spa<span class="cf">confirm</span></summary><p>A 6,800 sq ft spa with a sauna and steam room.</p></details></li><li><details><summary>Bath and rain shower</summary><p>Diptyque products in every room.</p></details></li><li><details><summary>Nubeluz and Bazaar Meat</summary><p>Are in the building, so a date night is an elevator ride.</p></details></li></ul></div><div class="card"><h3>At the hotel</h3><ul><li><details><summary>In the hotel</summary><p>Zaytinya, an all-day Mediterranean restaurant from José Andrés. Bazaar Meat by José Andrés, on Level 2. Nubeluz, the rooftop bar with 270-degree skyline views. The Lobby Lounge, for pastries and coffee in the morning and cocktails at night.</p></details></li><li><details><summary>Views of the city</summary><p>Oversize windows in the rooms, with views from the Empire State Building down to the Statue of Liberty.</p></details></li></ul></div></div></section>
@@ -1182,7 +1277,7 @@
   
 </section>
 <section class="lists">
-  <div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean"><li>Lobby and lounge</li><li>The bar</li><li>Room view at dusk</li><li>The bed and the quiet <em>(confirm)</em></li><li>Bath time, mom and baby <em>(confirm)</em></li><li>Family perks <em>(confirm)</em></li><li>Dogs welcome <em>(confirm)</em></li><li>Bazaar Meat by José Andrés</li><li>Nubeluz, 50th floor</li><li>Fitness center <em>(confirm)</em></li><li>Morning walk with the dog <em>(confirm)</em></li><li>Lobby Lounge coffee</li><li>Madison Square Park and Flatiron <em>(confirm)</em></li><li>Chelsea galleries and the start of the High Line <em>(confirm)</em></li><li>Nap and soak</li><li>Spa and steam room <em>(confirm)</em></li><li>Last look and checkout</li></ul></div>
+  <div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean"><li>Lobby and lounge</li><li>The bar</li><li>Room view at dusk</li><li>The bed and the quiet <em>(confirm)</em></li><li>Bath time, mom and baby <em>(confirm)</em></li><li>Family perks <em>(confirm)</em></li><li>Dogs welcome <em>(confirm)</em></li><li>Bazaar Meat by José Andrés</li><li>Nubeluz, 50th floor</li><li>Fitness center <em>(confirm)</em></li><li>Lobby Lounge coffee</li><li>Madison Square Park and Flatiron <em>(confirm)</em></li><li>Nap and soak</li><li>Spa and steam room <em>(confirm)</em></li><li>Chelsea galleries and the start of the High Line <em>(confirm)</em></li><li>Hudson River Greenway <em>(confirm)</em></li><li>Last look and checkout</li></ul></div>
   <div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean"><li>CJ Hendry Flower Market</li><li>Gentle Monster, SoHo <em>(confirm)</em></li><li>Kith, SoHo <em>(confirm)</em></li><li>Sample-sale hunt <em>(confirm)</em></li><li>Pop-up of the week <em>(confirm)</em></li><li>12 Matcha</li><li>Rhythm Zero</li><li>Rok Matcha <em>(confirm)</em></li><li>Ippudo <em>(confirm)</em></li><li>Brooklyn Botanical Garden <em>(confirm)</em></li><li>Mercer Labs</li><li>Printemps, One Wall Street</li><li>Aura reading at Magic Jewelry</li><li>Dumbo ice cream and bridge shot <em>(confirm)</em></li><li>Nobu Downtown dinner <em>(confirm)</em></li></ul></div>
 </section>
 
@@ -1220,7 +1315,7 @@
 <script>
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els = document.querySelectorAll('.reveal,.rise');
+  var els = document.querySelectorAll('.reveal,.rise,.smap');
   if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); }
   else {
     var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: .12 });

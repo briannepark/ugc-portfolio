@@ -14,10 +14,8 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/bazaar-meat-by-jos-andr-s.jpg`: Bazaar Meat by José Andrés
 - `nomad/nubeluz-50th-floor.jpg`: Nubeluz, 50th floor
 - `nomad/fitness-center.jpg`: Fitness center
-- `nomad/morning-walk-with-the-dog.jpg`: Morning walk with the dog
 - `nomad/lobby-lounge-coffee.jpg`: Lobby Lounge coffee
 - `nomad/madison-square-park-and-flatiron.jpg`: Madison Square Park and Flatiron
-- `nomad/chelsea-galleries-and-the-start-of-the-high-line.jpg`: Chelsea galleries and the start of the High Line
 - `nomad/cj-hendry-flower-market.jpg`: CJ Hendry Flower Market
 - `nomad/gentle-monster-soho.jpg`: Gentle Monster, SoHo
 - `nomad/kith-soho.jpg`: Kith, SoHo
@@ -29,10 +27,12 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/nap-and-soak.jpg`: Nap and soak
 - `nomad/spa-and-steam-room.jpg`: Spa and steam room
 - `nomad/ippudo.jpg`: Ippudo
+- `nomad/chelsea-galleries-and-the-start-of-the-high-line.jpg`: Chelsea galleries and the start of the High Line
 - `nomad/brooklyn-botanical-garden.jpg`: Brooklyn Botanical Garden
 - `nomad/mercer-labs.jpg`: Mercer Labs
 - `nomad/printemps-one-wall-street.jpg`: Printemps, One Wall Street
 - `nomad/aura-reading-at-magic-jewelry.jpg`: Aura reading at Magic Jewelry
+- `nomad/hudson-river-greenway.jpg`: Hudson River Greenway
 - `nomad/dumbo-ice-cream-and-bridge-shot.jpg`: Dumbo ice cream and bridge shot
 - `nomad/nobu-downtown-dinner.jpg`: Nobu Downtown dinner
 - `nomad/last-look-and-checkout.jpg`: Last look and checkout

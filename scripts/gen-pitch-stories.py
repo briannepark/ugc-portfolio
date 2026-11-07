@@ -26,7 +26,7 @@ TAGS = gp.TAGS
 def slug(t): return re.sub(r'[^a-z0-9]+', '-', t.lower()).strip('-')
 
 TIMES = {
- 'nomad': ['4:00 pm','5:30 pm','8:30 pm','7:00 am','9:30 am','12:00 pm','2:30 pm','4:30 pm','7:00 pm','10:00 am','1:30 pm','1:00 pm','6:30 pm'],
+ 'nomad': ['4:00 pm','5:30 pm','8:30 pm','7:00 am','9:30 am','12:00 pm','2:30 pm','4:30 pm','7:00 pm','8:00 am','10:00 am','1:30 pm','8:00 am','1:00 pm','6:30 pm'],
  'brooklyn': ['8:00 am','10:30 am','2:00 pm','12:30 pm','1:00 pm','6:00 pm','10:00 am','1:30 pm'],
  'maui': ['12:30 pm','6:00 pm','9:30 am','1:30 pm','3:00 pm','9:30 am','11:30 am'],
  'proper': ['5:00 pm','7:00 pm','10:30 am','2:00 pm','11:00 am'],
@@ -52,10 +52,10 @@ STORY = {
     [('The bed and the quiet','here','Oversize windows, high above the street. Nap time and bedtime, on the clock. Ask about the bedding and a crib.',True),('Bath time, mom and baby','here','Diptyque bath products and a separate rain shower, with a deep soaking tub in select rooms. Request a tub room: a warm bath for baby, then a long one for me.',True),('Family perks','here','Ritz Kids activities are listed on the hotel site, and adjoining rooms may be possible. Ask what is offered for babies and toddlers.',True),('Dogs welcome','here','Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.',True)]),
    ('Day 1 · Nightfall','Fifty floors up',"Dinner at the hotel turns into a nightcap, and the nightcap turns into the best view of the trip. Blue hour, every light in Midtown below.",
     [('Bazaar Meat by José Andrés','here','Velvet booths, feather chandeliers, dinner at the hotel.',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
-   ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, I slip down to the fitness center. It is open around the clock, with Peloton bikes, right next to the spa. Then a quick leashed loop with the dog, and coffee from the Lobby Lounge.",
-    [('Fitness center','here','Open 24 hours, with Peloton bikes. Confirm hours and any age rules.',True),('Morning walk with the dog','walk','A leashed loop out the lobby before breakfast. Confirm park rules.',True),('Lobby Lounge coffee','here','Pastries, coffee and tea in the morning.',False)]),
-   ('Day 2 · Morning','Coffee in hand, on foot',"Out the lobby and into the neighborhood. Everything good around here is a walk away: the park, the Flatiron, the galleries of Chelsea.",
-    [('Madison Square Park and Flatiron','walk','Morning walk, coffee in hand.',True),('Chelsea galleries and the start of the High Line','walk','Local artists, one gallery per hour.',True)]),
+   ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, I slip down to the fitness center. It is open around the clock, with Peloton bikes, right next to the spa. Then coffee from the Lobby Lounge, ready for the morning stroll.",
+    [('Fitness center','here','Open 24 hours, with Peloton bikes. Confirm hours and any age rules.',True),('Lobby Lounge coffee','here','Pastries, coffee and tea in the morning.',False)]),
+   ('Day 2 · Morning','Madison Square Park, at stroller pace',"First morning, nice and easy: a few blocks from the lobby to Madison Square Park with baby in the stroller and the pup on a leash. Coffee in hand, one slow loop of the lawn, the Flatiron in the frame.",
+    [('Madison Square Park and Flatiron','walk','A short, flat stroll with baby and pup. Leashed dogs only; the park also has a dog run. Confirm rules and hours.',True)]),
    ('Day 2 · Afternoon','Petals and frames',"SoHo, but make it dreamy, and doable with a stroller: the trendy shops and pop-ups I usually skip, with an easy ride back for naps. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that's gone by Monday, and a pop-up only the locals know about.",
     [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Installation-style retail.',True),('Kith, SoHo','ride','The all-white sneaker wall and a tiled flagship. Confirm which store and hours.',True),('Sample-sale hunt','ride','Check the 260 Sample Sale list the week you go.',True),('Pop-up of the week','ride','Pop-ups rotate weekly. The kind I usually miss with a baby in tow. Pick one for the feed.',True)]),
    ('Day 2 · The matcha crawl','Three cups, three moods',"A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.",
@@ -64,10 +64,14 @@ STORY = {
     [('Nap and soak','here','The room at its calmest, afternoon light across the skyline.',False),('Spa and steam room','here','A 6,800 sq ft spa with a sauna and steam room. Confirm treatments and age rules.',True)]),
    ('Day 2 · Evening','A bowl worth the ride',"Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.",
     [('Ippudo','ride','Hakata-style ramen under a canopy of bamboo. Confirm which location (the storefront photo is #24) and wait times.',True)]),
+   ('Day 3 · Early morning','The High Line, baby first',"Second morning, up above the street: gardens, art and city views along the old rail line, with the galleries of Chelsea just below. One rule to plan around: dogs are not allowed on the High Line (service dogs only), so the pup gets a leashed street-level loop first, then a rest at the hotel.",
+    [('Chelsea galleries and the start of the High Line','walk','Local artists, one gallery per hour. Take the elevator at 23rd St with the stroller. No dogs on the High Line except service dogs.',True)]),
    ('Day 3 · Morning','The secret garden',"The city drops away: cherry blossoms in spring, a Japanese hill-and-pond garden, and roses in early summer. This is the quiet chapter.",
     [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. Cherry blossoms in spring, roses in early summer, the Japanese garden and the conservatory year-round. Confirm hours and tickets.',True)]),
    ('Day 3 · Afternoon','Downtown, in one sweep',"Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.",
     [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False)]),
+   ('Day 4 · Early morning','Along the Hudson, one last stroll',"Last morning, flat and unhurried: the riverside greenway on the west edge of the city. Water on one side, the stroller rolls easily, and leashed pups are generally welcome in Hudson River Park.",
+    [('Hudson River Greenway','walk','A flat, car-free waterfront path. Confirm dog rules and any dog run hours.',True)]),
    ('Day 4 · Across the bridge','Brooklyn, then the big dinner',"A scoop of ice cream, the bridge in the frame, and one last dinner that earns its place in the story.",
     [('Dumbo ice cream and bridge shot','trip','Van Leeuwen or similar, then the bridge frame.',True),('Nobu Downtown dinner','trip','The big dinner moment.',True)]),
    ('Day 4 · Goodbye','One last look',"Back to the window for a final look, because you'll want to come back.",
@@ -790,6 +794,27 @@ CSS = r"""
     .bstage .bd-page > :not(.bk-pol):not(.bk-cue) { max-width:100%; } .bk-name { font-size:32px; } .bk-tag { max-width:24ch; } .bk-cue { left:22px; bottom:20px; font-size:20px; } .bstage .bd-tab { font-size:14px; }
   }
   .bk-cue { text-decoration:none; cursor:pointer; }
+  .smap { display:grid; grid-template-columns:minmax(150px,230px) 1fr; gap:34px; align-items:center; max-width:640px; margin:46px auto 0; padding:26px 28px; border:1px solid color-mix(in srgb,var(--txt) 18%, transparent); border-radius:4px; }
+  .smap svg { width:100%; height:auto; overflow:visible; }
+  .smap .sw { fill:color-mix(in srgb,var(--accent) 16%, transparent); }
+  .smap .sg line { stroke:var(--txt); stroke-opacity:.12; stroke-width:.5; }
+  .smap .sbase { fill:none; stroke:var(--txt); stroke-opacity:.22; stroke-width:1; stroke-linecap:round; }
+  .smap .sline { fill:none; stroke:var(--accent); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:100; stroke-dashoffset:100; }
+  .smap .shotel { fill:var(--accent); } .smap .slab { font:500 7px var(--body); letter-spacing:.18em; text-transform:uppercase; fill:var(--txt); opacity:.6; }
+  .smap .sdest { fill:none; stroke:var(--accent); stroke-width:1.2; opacity:0; }
+  .smap .sdot { fill:var(--txt); opacity:0; offset-distance:0%; }
+  .smap.in .sline { animation:sdraw 3.2s .3s cubic-bezier(.5,0,.3,1) forwards; }
+  .smap.in .sdot { animation:smove 3.2s .3s cubic-bezier(.5,0,.3,1) forwards; }
+  .smap.in .sdest { animation:sping 1.4s 3.3s ease-out forwards; }
+  @keyframes sdraw { to { stroke-dashoffset:0; } }
+  @keyframes smove { 0% { opacity:1; offset-distance:0%; } 96% { opacity:1; } 100% { opacity:0; offset-distance:100%; } }
+  @keyframes sping { 0% { opacity:.9; r:3; } 100% { opacity:.9; r:6; } }
+  .smap .sinfo .stm { font-family:var(--head); font-style:italic; font-size:18px; line-height:1.3; margin:8px 0 12px; }
+  .smap ol { margin:0 0 12px; padding-left:20px; font-size:15px; line-height:1.5; opacity:.88; }
+  .smap ol li { padding:2px 0; }
+  .smap .spup { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
+  @media (max-width:640px) { .smap { grid-template-columns:1fr; gap:20px; padding:22px 20px; } .smap svg { max-width:190px; margin:0 auto; } }
+  @media (prefers-reduced-motion:reduce) { .smap .sline { stroke-dashoffset:0; animation:none !important; } .smap .sdest { opacity:.9; animation:none !important; } .smap .sdot { display:none; } }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -866,7 +891,7 @@ JS = r"""
 <script>
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els = document.querySelectorAll('.reveal,.rise');
+  var els = document.querySelectorAll('.reveal,.rise,.smap');
   if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); }
   else {
     var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: .12 });
@@ -1235,6 +1260,50 @@ def sv(warm, winter=None):
     if not w or w == warm: return esc(warm)
     return f'<span data-s="w">{esc(w)}</span><span data-s="m">{esc(warm)}</span>'
 
+STROLLS = {
+ 'Madison Square Park, at stroller pace': dict(
+   mode='walk', time='About 6 minutes, flat the whole way (est.)',
+   path='M 104 78 L 126 78 L 126 112 L 176 112 L 176 190 L 126 190 L 126 112',
+   dest=(151, 150), dlabel='Madison Square Park',
+   steps=['Out the lobby and east on W 28th St toward Fifth Ave.','South on Fifth Ave, about three blocks.','Enter at the Fifth Ave and 26th St corner, then loop the lawn.'],
+   pup='Leashed pup welcome. Confirm park rules.'),
+ 'The High Line, baby first': dict(
+   mode='ride', time='A short cab or subway ride, then the elevator (est. 15 min)',
+   path='M 104 78 L 44 78 L 44 190 L 30 190 L 24 292',
+   dest=(24, 292), dlabel='The High Line',
+   steps=['Ride or cab west to W 23rd St and 10th Ave.','Take the elevator up at 23rd St (stroller friendly).','Stroll south along the rail bed toward the Whitney.'],
+   pup='No dogs on the High Line. Walk the pup first.'),
+ 'Along the Hudson, one last stroll': dict(
+   mode='walk', time='About 25 minutes on foot, or a short ride (est.)',
+   path='M 104 78 L 18 78 L 8 78 L 8 248',
+   dest=(8, 248), dlabel='Hudson River Greenway',
+   steps=['West on W 28th St all the way to the river.','Join the greenway along 11th/12th Ave.','Stroll south with the water on your right.'],
+   pup='Leashed pup welcome. Confirm rules.'),
+}
+
+def stroll_html(title):
+    d = STROLLS.get(title)
+    if not d: return ''
+    vh = max(d['dest'][1], 190) + 30
+    gx = ''.join(f'<line x1="{x}" y1="14" x2="{x}" y2="{vh-14}"/>' for x in (24, 44, 84, 126, 176))
+    gy = ''.join(f'<line x1="2" y1="{y}" x2="196" y2="{y}"/>' for y in (78, 112, 150, 190, 248, 292))
+    dash = ' stroke-dasharray="1 5"' if d['mode'] == 'ride' else ''
+    steps = ''.join(f'<li>{esc(x)}</li>' for x in d['steps'])
+    dx, dy = d['dest']
+    return f'''
+      <div class="smap rise">
+        <svg viewBox="0 0 200 {vh}" role="img" aria-label="Route from the hotel to {esc(d['dlabel'])}">
+          <path class="sw" d="M 0 0 H 12 V {vh} H 0 Z"/>
+          <g class="sg">{gx}{gy}</g>
+          <path class="sbase"{dash} d="{d['path']}" pathLength="100"/>
+          <path class="sline" d="{d['path']}" pathLength="100"/>
+          <circle class="shotel" cx="104" cy="78" r="4"/><text class="slab" x="112" y="68">hotel</text>
+          <circle class="sdest" cx="{dx}" cy="{dy}" r="5"/>
+          <circle class="sdot" r="3" style="offset-path:path('{d['path']}')"/>
+        </svg>
+        <div class="sinfo"><div class="kick">How to get there</div><div class="stm">{esc(d['time'])}</div><ol>{steps}</ol><div class="spup">{esc(d['pup'])}</div></div>
+      </div>'''
+
 def render(h):
     S = STORY[h['slug']]; c = h['c']; slug_h = h['slug']
     dark = slug_h == 'nomad'
@@ -1342,6 +1411,7 @@ def render(h):
       </div>
       <div class="collage n{min(n,4)} {'rev' if i % 2 else ''}">{frames}
       </div>
+      {stroll_html(title) if slug_h == 'nomad' else ''}
       <img class="cutout" src="{CDN}{slug_h}/ch{i+1+off}-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>'''
