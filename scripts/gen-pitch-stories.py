@@ -876,6 +876,30 @@ CSS = r"""
     .bscene .msg.b2 { right:4%; top:47.500%; }
   }
   @media (prefers-reduced-motion:reduce) { .bscene .bubbles, .bscene .duck, .bscene .flame { animation:none; } }
+  .gymscene { position:relative; width:min(1180px,100%); aspect-ratio:16/10.4; margin:30px auto 20px; }
+  .gymscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
+  .gymscene img.lyr { height:auto; max-width:none; }
+  .gymscene .print { background:#f4efe3; padding:10px 10px 12px; filter:drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
+  .gymscene .print img { display:block; width:100%; height:auto; }
+  .gymscene .print.wide { left:3%; top:2%; width:58%; --r:-1.600deg; z-index:1; padding-bottom:36px; }
+  .gymscene .print.wide figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(14px,1.7vw,22px); color:#2a2a2a; }
+  .gymscene .print.pel { right:3%; top:0%; width:33%; --r:2.600deg; z-index:2; }
+  .gymscene .tape { z-index:5; }
+  .gymscene .rack { right:6%; bottom:2%; width:22%; --r:2deg; z-index:4; filter:drop-shadow(0 16px 20px rgba(0,0,0,.5)); }
+  .gymscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .gymscene .msg.f1 { left:8%; top:72%; --r:-4deg; white-space:nowrap; }
+  .gymscene .msg.f2 { right:31%; top:61%; --r:3deg; text-align:right; }
+  .gymscene .dd { filter:none; z-index:7; } .gymscene .dd.a1 { left:27%; top:62%; width:10%; --r:8deg; }
+  @media (max-width:760px) {
+    .gymscene { aspect-ratio:3/5.8; }
+    .gymscene .print.wide { left:3%; top:1%; width:92%; }
+    .gymscene .print.pel { right:3%; top:28%; width:66%; }
+    .gymscene .rack { right:4%; bottom:3%; width:44%; }
+    .gymscene .msg { font-size:15px; }
+    .gymscene .msg.f1 { left:4%; top:57%; white-space:nowrap; }
+    .gymscene .msg.f2 { left:4%; right:auto; top:80%; text-align:left; }
+    .gymscene .dd { display:none; }
+  }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1338,6 +1362,21 @@ def bath_scene(slug_h, cap_html):
           {cap_html}
         </div>'''
 
+def fit_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/fitness/'
+    return f'''
+        <div class="scene-col">
+          <div class="gymscene reveal">
+            <figure class="lyr print wide" data-speed="0.015"><div class="tape"></div><img src="{M}wide.jpg" alt="The fitness center with Peloton bikes and treadmills" loading="lazy"><figcaption class="hand">the fitness center</figcaption></figure>
+            <figure class="lyr print pel" data-speed="-0.025"><div class="tape"></div><img src="{M}peloton.jpg" alt="Peloton bike and treadmills with screens" loading="lazy"></figure>
+            <img class="lyr rack" data-speed="0.045" src="{M}cut-rack.png" alt="A rack of kettlebells, foam rollers and stability balls" loading="lazy">
+            <div class="lyr msg f1 hand" data-speed="0.01">a quick sweat<br>before the stroll</div>
+            <div class="lyr msg f2 hand" data-speed="0.02">Peloton bikes,<br>treadmills &amp; a<br>kettlebell rack</div>
+            <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
+          </div>
+          {cap_html}
+        </div>'''
+
 LAYOUTS =['', 'L-side', 'L-center', 'L-hero', 'L-mason']
 
 # ---- seasons: the source copy above is the spring/summer version; winter is the default view ----
@@ -1513,6 +1552,9 @@ def render(h):
             if slug_h == 'nomad' and key == 'chelsea-gallery-streets':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + chelsea_scene(slug_h, cap)
+            if slug_h == 'nomad' and key == 'fitness-center':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + fit_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'bath-time-mom-and-baby':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + bath_scene(slug_h, cap)
