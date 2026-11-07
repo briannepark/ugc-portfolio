@@ -70,8 +70,8 @@ STORY = {
     [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. Cherry blossoms in spring, roses in early summer, the Japanese garden and the conservatory year-round. Confirm hours and tickets.',True)]),
    ('Day 3 · Afternoon','Downtown, in one sweep',"Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.",
     [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False)]),
-   ('Day 4 · Early morning','Breakfast in bed, last morning',"We've explored the city the other days, so the last morning is slow. Breakfast in bed, baby and pup curled up beside me, and the skyline doing its thing out the window. Then we pack up and head across the bridge.",
-    [('In-room breakfast','here','Ritz-Carlton in-room dining, delivered to the room. Confirm the menu, hours and whether they can do matcha.',True)]),
+   ('Day 4 · Early morning','Breakfast in bed, then the river',"We've explored the city the other days, so the last morning starts slow: breakfast in bed, baby and pup curled up beside me. Then one last flat, easy stroll along the Hudson, water on one side and the stroller rolling smoothly.",
+    [('In-room breakfast','here','Ritz-Carlton in-room dining, delivered to the room. Confirm the menu, hours and whether they can do matcha.',True),('Hudson River Greenway','walk','A flat, car-free waterfront path. Leashed dogs are generally welcome in Hudson River Park. Confirm dog rules and any dog run hours.',True),('Matchaful, Manhattan West','walk','450 W 33rd St, inside Whole Foods (entrance on 10th Ave). Open 8 am to 7 pm per the building site. A matcha stop on the way toward the river.',True)]),
    ('Day 4 · Across the bridge','Brooklyn, then the big dinner',"A scoop of ice cream, the bridge in the frame, and one last dinner that earns its place in the story.",
     [('Dumbo ice cream and bridge shot','trip','Van Leeuwen or similar, then the bridge frame.',True),('Nobu Downtown dinner','trip','The big dinner moment.',True)]),
    ('Day 4 · Goodbye','One last look',"Back to the window for a final look, because you'll want to come back.",
@@ -1276,6 +1276,13 @@ STROLLS = {
    steps=['Ride or cab west to W 22nd St and 10th Ave.','Stroll the gallery blocks on the W 20s, between 10th and 11th Ave.','Look up: the High Line runs overhead. Peek from below, no dogs up top.'],
    matcha='Matcha: Cha Cha Matcha, 1158 Broadway, before you ride.',
    pup='All street level, leashed pup welcome.'),
+ 'Breakfast in bed, then the river': dict(
+   mode='walk', time='About 25 minutes on foot, or a short ride (est.)',
+   path='M 104 78 L 18 78 L 8 78 L 8 248',
+   dest=(8, 248), dlabel='Hudson River Greenway',
+   steps=['West on W 28th St all the way to the river.','Join the greenway along 11th/12th Ave.','Stroll south with the water on your right.'],
+   matcha='Matcha: Matchaful, 450 W 33rd St, a detour toward the river.',
+   pup='Leashed pup welcome. Confirm rules.'),
 }
 
 def stroll_html(title):

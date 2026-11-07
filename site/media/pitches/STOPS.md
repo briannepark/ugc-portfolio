@@ -34,6 +34,8 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/printemps-one-wall-street.jpg`: Printemps, One Wall Street
 - `nomad/aura-reading-at-magic-jewelry.jpg`: Aura reading at Magic Jewelry
 - `nomad/in-room-breakfast.jpg`: In-room breakfast
+- `nomad/hudson-river-greenway.jpg`: Hudson River Greenway
+- `nomad/matchaful-manhattan-west.jpg`: Matchaful, Manhattan West
 - `nomad/dumbo-ice-cream-and-bridge-shot.jpg`: Dumbo ice cream and bridge shot
 - `nomad/nobu-downtown-dinner.jpg`: Nobu Downtown dinner
 - `nomad/last-look-and-checkout.jpg`: Last look and checkout
