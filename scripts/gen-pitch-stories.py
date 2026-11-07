@@ -64,8 +64,8 @@ STORY = {
     [('Nap and soak','here','The room at its calmest, afternoon light across the skyline.',False),('Spa and steam room','here','A 6,800 sq ft spa with a sauna and steam room. Confirm treatments and age rules.',True)]),
    ('Day 2 · Evening','A bowl worth the ride',"Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.",
     [('Ippudo','ride','Hakata-style ramen under a canopy of bamboo. Confirm which location (the storefront photo is #24) and wait times.',True)]),
-   ('Day 3 · Early morning','The High Line, baby first',"Second morning, up above the street: gardens, art and city views along the old rail line, with the galleries of Chelsea just below. One rule to plan around: dogs are not allowed on the High Line (service dogs only), so the pup gets a leashed street-level loop first, then a rest at the hotel.",
-    [('Chelsea galleries and the start of the High Line','walk','Local artists, one gallery per hour. Take the elevator at 23rd St with the stroller. No dogs on the High Line except service dogs.',True)]),
+   ('Day 3 · Early morning','Chelsea gallery streets, pup in tow',"Second morning, west side: the tree-lined blocks of the Chelsea galleries, all at street level so baby and the pup can both come. The High Line runs overhead, and we'll admire it from below (dogs aren't allowed up there, except service dogs).",
+    [('Chelsea gallery streets','walk','Window-shop the galleries on the W 20s blocks, leashed pup and stroller along. Many galleries may not allow dogs inside, so confirm before going in.',True)]),
    ('Day 3 · Morning','The secret garden',"The city drops away: cherry blossoms in spring, a Japanese hill-and-pond garden, and roses in early summer. This is the quiet chapter.",
     [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. Cherry blossoms in spring, roses in early summer, the Japanese garden and the conservatory year-round. Confirm hours and tickets.',True)]),
    ('Day 3 · Afternoon','Downtown, in one sweep',"Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.",
@@ -1267,12 +1267,12 @@ STROLLS = {
    dest=(151, 150), dlabel='Madison Square Park',
    steps=['Out the lobby and east on W 28th St toward Fifth Ave.','South on Fifth Ave, about three blocks.','Enter at the Fifth Ave and 26th St corner, then loop the lawn.'],
    pup='Leashed pup welcome. Confirm park rules.'),
- 'The High Line, baby first': dict(
-   mode='ride', time='A short cab or subway ride, then the elevator (est. 15 min)',
-   path='M 104 78 L 44 78 L 44 190 L 30 190 L 24 292',
-   dest=(24, 292), dlabel='The High Line',
-   steps=['Ride or cab west to W 23rd St and 10th Ave.','Take the elevator up at 23rd St (stroller friendly).','Stroll south along the rail bed toward the Whitney.'],
-   pup='No dogs on the High Line. Walk the pup first.'),
+ 'Chelsea gallery streets, pup in tow': dict(
+   mode='ride', time='A short cab or subway ride west (est. 15 min)',
+   path='M 104 78 L 44 78 L 44 175 L 30 175',
+   dest=(30, 175), dlabel='Chelsea gallery streets',
+   steps=['Ride or cab west to W 22nd St and 10th Ave.','Stroll the gallery blocks on the W 20s, between 10th and 11th Ave.','Look up: the High Line runs overhead. Peek from below, no dogs up top.'],
+   pup='All street level, leashed pup welcome.'),
  'Along the Hudson, one last stroll': dict(
    mode='walk', time='About 25 minutes on foot, or a short ride (est.)',
    path='M 104 78 L 18 78 L 8 78 L 8 248',
@@ -1394,7 +1394,7 @@ def render(h):
             if key == 'cj-hendry-flower-market':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + flower_scene(slug_h, cap)
-            if slug_h == 'nomad' and key == 'chelsea-galleries-and-the-start-of-the-high-line':
+            if slug_h == 'nomad' and key == 'chelsea-gallery-streets':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + chelsea_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'madison-square-park-and-flatiron':

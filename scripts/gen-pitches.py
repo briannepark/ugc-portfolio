@@ -82,7 +82,7 @@ HOTELS = [
    ('eat','Bazaar Meat by José Andrés','here','Velvet booths, feather chandeliers, dinner at the hotel.',False),
    ('night','Nubeluz, 50th floor','here','Skyline at blue hour.',False),
    ('walk','Madison Square Park and Flatiron','walk','Morning walk, coffee in hand.',True),
-   ('art','Chelsea galleries and the start of the High Line','walk','Local artists, one gallery per hour.',True),
+   ('art','Chelsea gallery streets','walk','Local artists, one gallery per hour.',True),
    ('sale','Sample-sale hunt','ride','Check the 260 Sample Sale list the week you go.',True),
    ('matcha','Matcha in SoHo or NoLita','ride','Cha Cha Matcha is the photogenic pick.',True),
    ('shop','Gentle Monster, SoHo','ride','Installation-style retail.',True),

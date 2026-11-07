@@ -27,7 +27,7 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/nap-and-soak.jpg`: Nap and soak
 - `nomad/spa-and-steam-room.jpg`: Spa and steam room
 - `nomad/ippudo.jpg`: Ippudo
-- `nomad/chelsea-galleries-and-the-start-of-the-high-line.jpg`: Chelsea galleries and the start of the High Line
+- `nomad/chelsea-gallery-streets.jpg`: Chelsea gallery streets
 - `nomad/brooklyn-botanical-garden.jpg`: Brooklyn Botanical Garden
 - `nomad/mercer-labs.jpg`: Mercer Labs
 - `nomad/printemps-one-wall-street.jpg`: Printemps, One Wall Street
