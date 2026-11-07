@@ -801,6 +801,7 @@ CSS = r"""
   }
   .bk-cue { text-decoration:none; cursor:pointer; }
   .smap { display:grid; grid-template-columns:minmax(150px,230px) 1fr; gap:34px; align-items:center; max-width:640px; margin:46px auto 0; padding:26px 28px; border:1px solid color-mix(in srgb,var(--txt) 18%, transparent); border-radius:4px; }
+  .smap { grid-column:1 / -1 !important; position:relative !important; top:auto !important; width:100%; box-sizing:border-box; justify-self:center; }
   .smap svg { width:100%; height:auto; overflow:visible; }
   .smap .sw { fill:color-mix(in srgb,var(--accent) 16%, transparent); }
   .smap .sg line { stroke:var(--txt); stroke-opacity:.12; stroke-width:.5; }
@@ -1442,8 +1443,8 @@ STROLLS = {
    pup='Leashed pup welcome. Confirm park rules.'),
  'Chelsea gallery streets, pup in tow': dict(
    mode='ride', time='A short cab or subway ride west (est. 15 min)',
-   path='M 104 78 L 44 78 L 44 175 L 30 175',
-   dest=(30, 175), dlabel='Chelsea gallery streets',
+   path='M 104 78 L 104 150 L 62 150 L 62 190 L 30 190',
+   dest=(30, 190), dlabel='Chelsea gallery streets', vbw=140,
    steps=['Ride or cab west to W 22nd St and 10th Ave.','Stroll the gallery blocks on the W 20s, between 10th and 11th Ave.','Look up: the High Line runs overhead. Peek from below, no dogs up top.'],
    matcha='Matcha: Cha Cha Matcha, 1158 Broadway, before you ride.',
    pup='All street level, leashed pup welcome.'),
@@ -1477,7 +1478,7 @@ def stroll_html(title):
     dx, dy = d['dest']
     return f'''
       <div class="smap rise">
-        <svg viewBox="0 0 200 {vh}" role="img" aria-label="Route from the hotel to {esc(d['dlabel'])}">
+        <svg viewBox="0 0 {d.get('vbw',200)} {vh}"{' style="overflow:hidden"' if d.get('vbw') else ''} role="img" aria-label="Route from the hotel to {esc(d['dlabel'])}">
           <path class="sw" d="M 0 0 H 12 V {vh} H 0 Z"/>
           <g class="sg">{gx}{gy}</g>
           <path class="sbase"{dash} d="{d['path']}" pathLength="100"/>

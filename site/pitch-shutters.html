@@ -656,6 +656,7 @@
   }
   .bk-cue { text-decoration:none; cursor:pointer; }
   .smap { display:grid; grid-template-columns:minmax(150px,230px) 1fr; gap:34px; align-items:center; max-width:640px; margin:46px auto 0; padding:26px 28px; border:1px solid color-mix(in srgb,var(--txt) 18%, transparent); border-radius:4px; }
+  .smap { grid-column:1 / -1 !important; position:relative !important; top:auto !important; width:100%; box-sizing:border-box; justify-self:center; }
   .smap svg { width:100%; height:auto; overflow:visible; }
   .smap .sw { fill:color-mix(in srgb,var(--accent) 16%, transparent); }
   .smap .sg line { stroke:var(--txt); stroke-opacity:.12; stroke-width:.5; }
