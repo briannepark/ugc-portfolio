@@ -894,6 +894,27 @@ CSS = r"""
     .gymscene .msg.f2 { left:4%; right:auto; top:80%; text-align:left; }
     .gymscene .dd { display:none; }
   }
+  .bedscene { position:relative; width:min(1180px,100%); aspect-ratio:16/10; margin:30px auto 20px; }
+  .bedscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
+  .bedscene .print { background:#f4efe3; padding:10px 10px 36px; filter:drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
+  .bedscene .print img { display:block; width:100%; height:auto; }
+  .bedscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(14px,1.7vw,22px); color:#2a2a2a; }
+  .bedscene .print.bed { left:4%; top:2%; width:60%; --r:-1.800deg; z-index:2; }
+  .bedscene .print.dusk { right:4%; bottom:4%; width:40%; --r:2.800deg; z-index:3; }
+  .bedscene .tape { z-index:5; }
+  .bedscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .bedscene .msg.d1 { right:5%; top:10%; --r:3deg; text-align:right; }
+  .bedscene .msg.d2 { left:6%; bottom:10%; --r:-3deg; }
+  .bedscene .dd { filter:none; z-index:7; } .bedscene .dd.a1 { left:26%; bottom:20%; width:10%; --r:-8deg; } .bedscene .dd.u1 { right:4%; top:23%; width:20%; }
+  @media (max-width:760px) {
+    .bedscene { aspect-ratio:3/5.2; }
+    .bedscene .print.bed { left:3%; top:1%; width:92%; }
+    .bedscene .print.dusk { right:3%; bottom:11%; width:68%; }
+    .bedscene .msg { font-size:15px; }
+    .bedscene .msg.d1 { right:4%; top:43.500%; }
+    .bedscene .msg.d2 { left:4%; bottom:2%; }
+    .bedscene .dd { display:none; }
+  }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1356,6 +1377,21 @@ def bath_scene(slug_h, cap_html):
           {cap_html}
         </div>'''
 
+def bed_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/bed/'
+    return f'''
+        <div class="scene-col">
+          <div class="bedscene reveal">
+            <figure class="lyr print bed" data-speed="0.015"><div class="tape"></div><img src="{M}bed.jpg" alt="The king bed with a view over the city" loading="lazy"><figcaption class="hand">the bed</figcaption></figure>
+            <figure class="lyr print dusk" data-speed="-0.025"><div class="tape"></div><img src="{M}dusk.jpg" alt="The room view at dusk" loading="lazy"><figcaption class="hand">at dusk</figcaption></figure>
+            <div class="lyr msg d1 hand" data-speed="0.01">oversize windows,<br>high above the street</div>
+            <div class="lyr msg d2 hand" data-speed="0.02">nap time &amp;<br>bedtime, on the clock</div>
+            <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
+            <svg class="lyr dd u1" viewBox="0 0 140 24" data-speed="0.01"><use href="#d-under"/></svg>
+          </div>
+          {cap_html}
+        </div>'''
+
 def fit_scene(slug_h, cap_html):
     M = CDN + slug_h + '/fitness/'
     return f'''
@@ -1546,6 +1582,9 @@ def render(h):
             if slug_h == 'nomad' and key == 'chelsea-gallery-streets':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + chelsea_scene(slug_h, cap)
+            if slug_h == 'nomad' and key == 'the-bed-and-the-quiet':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + bed_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'fitness-center':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + fit_scene(slug_h, cap)
