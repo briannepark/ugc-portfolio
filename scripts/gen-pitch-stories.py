@@ -71,7 +71,7 @@ STORY = {
    ('Day 3 · Morning','The secret garden',"The city drops away: cherry blossoms in spring, a Japanese hill-and-pond garden, and roses in early summer. This is the quiet chapter.",
     [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. Cherry blossoms in spring, roses in early summer, the Japanese garden and the conservatory year-round. Confirm hours and tickets.',True)]),
    ('Day 3 · Afternoon','Downtown, in one sweep',"Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.",
-    [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False)]),
+    [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False),('Glace, Upper East Side','ride','1266 Madison Ave. Famous frozen hot chocolate and small-batch ice cream. Mostly takeout with outdoor seating only, and lines can pass 30 minutes at peak. Uptown, so pair it with the car. Daily noon to 8 pm. Confirm hours.',True)]),
    ('Day 3 · Winter lights','A million lights, after dark',"One big light night, your pick: a ticketed trail through the Botanic Garden, or the over-the-top house displays of Dyker Heights. Either way, it's the evening everyone ends up talking about.",
     [('Lightscape at Brooklyn Botanic Garden','trip','A ticketed light trail, about Nov 20 to Jan 3 (adults $39 to $44, ages 3 to 11 $22 to $28). Confirm dates, tickets and stroller rules.',True),('Dyker Heights Christmas lights','trip','Free neighborhood displays in Brooklyn, 83rd to 86th Sts between 11th and 13th Aves. Best on a mid-December weeknight around 5 to 6 pm. Confirm dog rules.',True)]),
    ('Day 4 · Early morning','Breakfast in bed, then the river',"We've explored the city the other days, so the last morning starts slow: breakfast in bed, baby and pup curled up beside me. Then one last flat, easy stroll along the Hudson, water on one side and the stroller rolling smoothly.",
@@ -1458,7 +1458,7 @@ def render(h):
         if has('matcha', 'rhythm zero'): return 'Matcha'
         if has('sample'): return 'Sample sale'
         if has('pop-up', 'cj hendry'): return 'Pop-ups'
-        if has('bazaar', 'nubeluz', 'lobby lounge', 'the bar', 'ippudo', 'nobu', 'ice cream', 'printemps', 'poi by', 'fish co', 'mixed plate', 'star noodle', 'poke', 'breakfast', 'ferraro', 'duo', 'dinner', 'coffee'): return 'Food'
+        if has('glace', 'bazaar', 'nubeluz', 'lobby lounge', 'the bar', 'ippudo', 'nobu', 'ice cream', 'printemps', 'poi by', 'fish co', 'mixed plate', 'star noodle', 'poke', 'breakfast', 'ferraro', 'duo', 'dinner', 'coffee'): return 'Food'
         if has('gentle monster', 'kith', 'intelligence', 'marketplace', 'holoholo', 'kūlua', 'makawao town', 'shops at', 'paʻia town'): return 'Shops'
         if tag == 'here': return 'Hotel'
         return 'Activities'
