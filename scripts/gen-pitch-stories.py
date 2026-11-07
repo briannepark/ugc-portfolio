@@ -1500,6 +1500,7 @@ STROLLS = {
 }
 
 WINTER_ONLY = {'Day 2 · Winter lights', 'Day 3 · Winter lights'}
+WARM_ONLY = {'Day 3 · Morning'}
 NIGHT_KICKS = {'Day 1 · Nightfall', 'Day 2 · Evening'} | WINTER_ONLY
 
 def night_fx(seed):
@@ -1642,7 +1643,7 @@ def render(h):
                 frames = frames[:_before] + madison_scene(slug_h, cap)
         k += 1
         chapters += f'''
-  <section class="chapter {LAYOUTS[(i + off) % 5]}" id="ch{i+1+off}" data-label="{esc(kick)}"{' data-s="w"' if slug_h == 'nomad' and kick in WINTER_ONLY else ''}>
+  <section class="chapter {LAYOUTS[(i + off) % 5]}" id="ch{i+1+off}" data-label="{esc(kick)}"{' data-s="w"' if slug_h == 'nomad' and kick in WINTER_ONLY else (' data-s="m"' if slug_h == 'nomad' and kick in WARM_ONLY else '')}>
     {night_fx(i) if slug_h == 'nomad' and kick in NIGHT_KICKS else ''}
     <div class="wrap">
       <div class="num">{tm(slug_h,i+off)}</div>
@@ -1677,7 +1678,7 @@ def render(h):
     for _s in allstops:
         if _s[0].lower() in _skip: continue
         _g[_cat(_s[0], _s[1])].append(_s[0])
-    ticker = '<div class="gcats">' + ''.join(f'<details class="gcat"{" data-s=\"w\"" if k == "Winter lights" else ""}><summary><h3>{k}<small>{len(v)}</small></h3></summary><ul>' + ''.join(f'<li>{esc(x)}</li>' for x in v) + '</ul></details>' for k, v in _g.items() if v) + '</div>'
+    ticker = '<div class="gcats">' + ''.join(f'<details class="gcat"{" data-s=\"w\"" if k == "Winter lights" else ""}><summary><h3>{k}<small>{len(v)}</small></h3></summary><ul>' + ''.join(f'<li{" data-s=\"m\"" if x == "Brooklyn Botanical Garden" and slug_h == "nomad" else ""}>{esc(x)}</li>' for x in v) + '</ul></details>' for k, v in _g.items() if v) + '</div>'
     _fl = [('a','c1','g0',2,'4/5',.04),('b','c2','g1',-2,'1/1',-.03),('c','c3','g2',1,'3/4',.02)]
     floats = ''.join(f'<figure class="cut float {a} {c} {gg}" style="--r:{r}deg" data-speed="{sp}"><div class="img" style="--ar:{ar}"><span class="ph"></span><img src="{CDN}{slug_h}/cover-{n+1}.jpg" alt="" onerror="this.remove()"></div></figure>' for n, (a, c, gg, r, ar, sp) in enumerate(_fl) if os.path.exists(os.path.join(ROOT, 'media', 'pitches', slug_h, f'cover-{n+1}.jpg')))
     hotel_line = ''
@@ -1725,7 +1726,7 @@ def render(h):
         _first = bool(_day) and _day not in _seen
         if _day: _seen.add(_day)
         _full = _m.group(2) if _m else _kk
-        rail_h += f'<a href="#{_tid}"{" data-s=\"w\"" if (slug_h == "nomad" and _kk in WINTER_ONLY) else ""} class="{"day" if _first else ""}" data-t="{_tid}"><span class="s">{esc(_day) if _first else ""}</span><span class="f">{esc((_day + " · " if _day else "") + _full)}</span><i></i></a>'
+        rail_h += f'<a href="#{_tid}"{" data-s=\"w\"" if (slug_h == "nomad" and _kk in WINTER_ONLY) else (" data-s=\"m\"" if (slug_h == "nomad" and _kk in WARM_ONLY) else "")} class="{"day" if _first else ""}" data-t="{_tid}"><span class="s">{esc(_day) if _first else ""}</span><span class="f">{esc((_day + " · " if _day else "") + _full)}</span><i></i></a>'
     opener = f'''<section class="bopen" aria-label="Pitch binder"><div class="bstage live"><div class="bd-book" style="--lea:#9a6b47;--lea2:#6d4529;--deb:rgba(38,20,8,.62);--debs:0 1px 0 rgba(255,228,196,.3), 0 -1px 1px rgba(0,0,0,.32)">
       <div class="bd-page">
         <div class="bd-kick bk-kick">Travel &middot; Pitch {h['no']} &middot; {esc(h['city'])}</div>
