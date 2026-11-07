@@ -14,8 +14,9 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/bazaar-meat-by-jos-andr-s.jpg`: Bazaar Meat by José Andrés
 - `nomad/nubeluz-50th-floor.jpg`: Nubeluz, 50th floor
 - `nomad/fitness-center.jpg`: Fitness center
-- `nomad/lobby-lounge-coffee.jpg`: Lobby Lounge coffee
 - `nomad/madison-square-park-and-flatiron.jpg`: Madison Square Park and Flatiron
+- `nomad/cha-cha-matcha-nomad.jpg`: Cha Cha Matcha, NoMad
+- `nomad/matchaful-flatiron.jpg`: Matchaful, Flatiron
 - `nomad/cj-hendry-flower-market.jpg`: CJ Hendry Flower Market
 - `nomad/gentle-monster-soho.jpg`: Gentle Monster, SoHo
 - `nomad/kith-soho.jpg`: Kith, SoHo
@@ -33,6 +34,7 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/printemps-one-wall-street.jpg`: Printemps, One Wall Street
 - `nomad/aura-reading-at-magic-jewelry.jpg`: Aura reading at Magic Jewelry
 - `nomad/hudson-river-greenway.jpg`: Hudson River Greenway
+- `nomad/matchaful-manhattan-west.jpg`: Matchaful, Manhattan West
 - `nomad/dumbo-ice-cream-and-bridge-shot.jpg`: Dumbo ice cream and bridge shot
 - `nomad/nobu-downtown-dinner.jpg`: Nobu Downtown dinner
 - `nomad/last-look-and-checkout.jpg`: Last look and checkout

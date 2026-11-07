@@ -52,10 +52,10 @@ STORY = {
     [('The bed and the quiet','here','Oversize windows, high above the street. Nap time and bedtime, on the clock. Ask about the bedding and a crib.',True),('Bath time, mom and baby','here','Diptyque bath products and a separate rain shower, with a deep soaking tub in select rooms. Request a tub room: a warm bath for baby, then a long one for me.',True),('Family perks','here','Ritz Kids activities are listed on the hotel site, and adjoining rooms may be possible. Ask what is offered for babies and toddlers.',True),('Dogs welcome','here','Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.',True)]),
    ('Day 1 · Nightfall','Fifty floors up',"Dinner at the hotel turns into a nightcap, and the nightcap turns into the best view of the trip. Blue hour, every light in Midtown below.",
     [('Bazaar Meat by José Andrés','here','Velvet booths, feather chandeliers, dinner at the hotel.',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
-   ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, I slip down to the fitness center. It is open around the clock, with Peloton bikes, right next to the spa. Then coffee from the Lobby Lounge, ready for the morning stroll.",
-    [('Fitness center','here','Open 24 hours, with Peloton bikes. Confirm hours and any age rules.',True),('Lobby Lounge coffee','here','Pastries, coffee and tea in the morning.',False)]),
+   ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, I slip down to the fitness center. It is open around the clock, with Peloton bikes, right next to the spa. Then a matcha to go, and out for the morning stroll.",
+    [('Fitness center','here','Open 24 hours, with Peloton bikes. Confirm hours and any age rules.',True)]),
    ('Day 2 · Morning','Madison Square Park, at stroller pace',"First morning, nice and easy: a few blocks from the lobby to Madison Square Park with baby in the stroller and the pup on a leash. Coffee in hand, one slow loop of the lawn, the Flatiron in the frame.",
-    [('Madison Square Park and Flatiron','walk','A short, flat stroll with baby and pup. Leashed dogs only; the park also has a dog run. Confirm rules and hours.',True)]),
+    [('Madison Square Park and Flatiron','walk','A short, flat stroll with baby and pup. Leashed dogs only; the park also has a dog run. Confirm rules and hours.',True),('Cha Cha Matcha, NoMad','walk','1158 Broadway, about two blocks from the lobby: a matcha to go before the park. Cash is not accepted. Confirm hours.',True),('Matchaful, Flatiron','walk','337 Park Ave South, on the far side of the park. A newer cafe with Japanese matcha. Confirm hours.',True)]),
    ('Day 2 · Afternoon','Petals and frames',"SoHo, but make it dreamy, and doable with a stroller: the trendy shops and pop-ups I usually skip, with an easy ride back for naps. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that's gone by Monday, and a pop-up only the locals know about.",
     [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Installation-style retail.',True),('Kith, SoHo','ride','The all-white sneaker wall and a tiled flagship. Confirm which store and hours.',True),('Sample-sale hunt','ride','Check the 260 Sample Sale list the week you go.',True),('Pop-up of the week','ride','Pop-ups rotate weekly. The kind I usually miss with a baby in tow. Pick one for the feed.',True)]),
    ('Day 2 · The matcha crawl','Three cups, three moods',"A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.",
@@ -64,14 +64,14 @@ STORY = {
     [('Nap and soak','here','The room at its calmest, afternoon light across the skyline.',False),('Spa and steam room','here','A 6,800 sq ft spa with a sauna and steam room. Confirm treatments and age rules.',True)]),
    ('Day 2 · Evening','A bowl worth the ride',"Steam, noodles, a counter seat. Ramen is the cozy beat between the shopping and the next day.",
     [('Ippudo','ride','Hakata-style ramen under a canopy of bamboo. Confirm which location (the storefront photo is #24) and wait times.',True)]),
-   ('Day 3 · Early morning','Chelsea gallery streets, pup in tow',"Second morning, west side: the tree-lined blocks of the Chelsea galleries, all at street level so baby and the pup can both come. The High Line runs overhead, and we'll admire it from below (dogs aren't allowed up there, except service dogs).",
+   ('Day 3 · Early morning','Chelsea gallery streets, pup in tow',"Second morning, west side: the tree-lined blocks of the Chelsea galleries, all at street level so baby and the pup can both come. The High Line runs overhead, and we'll admire it from below (dogs aren't allowed up there, except service dogs). Grab a matcha at Cha Cha Matcha (1158 Broadway) on the way out.",
     [('Chelsea gallery streets','walk','Window-shop the galleries on the W 20s blocks, leashed pup and stroller along. Many galleries may not allow dogs inside, so confirm before going in.',True)]),
    ('Day 3 · Morning','The secret garden',"The city drops away: cherry blossoms in spring, a Japanese hill-and-pond garden, and roses in early summer. This is the quiet chapter.",
     [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. Cherry blossoms in spring, roses in early summer, the Japanese garden and the conservatory year-round. Confirm hours and tickets.',True)]),
    ('Day 3 · Afternoon','Downtown, in one sweep',"Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.",
     [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False)]),
    ('Day 4 · Early morning','Along the Hudson, one last stroll',"Last morning, flat and unhurried: the riverside greenway on the west edge of the city. Water on one side, the stroller rolls easily, and leashed pups are generally welcome in Hudson River Park.",
-    [('Hudson River Greenway','walk','A flat, car-free waterfront path. Confirm dog rules and any dog run hours.',True)]),
+    [('Hudson River Greenway','walk','A flat, car-free waterfront path. Confirm dog rules and any dog run hours.',True),('Matchaful, Manhattan West','walk','450 W 33rd St, inside Whole Foods (entrance on 10th Ave). Open 8 am to 7 pm per the building site. A matcha stop on the way toward the river.',True)]),
    ('Day 4 · Across the bridge','Brooklyn, then the big dinner',"A scoop of ice cream, the bridge in the frame, and one last dinner that earns its place in the story.",
     [('Dumbo ice cream and bridge shot','trip','Van Leeuwen or similar, then the bridge frame.',True),('Nobu Downtown dinner','trip','The big dinner moment.',True)]),
    ('Day 4 · Goodbye','One last look',"Back to the window for a final look, because you'll want to come back.",
@@ -812,6 +812,7 @@ CSS = r"""
   .smap .sinfo .stm { font-family:var(--head); font-style:italic; font-size:18px; line-height:1.3; margin:8px 0 12px; }
   .smap ol { margin:0 0 12px; padding-left:20px; font-size:15px; line-height:1.5; opacity:.88; }
   .smap ol li { padding:2px 0; }
+  .smap .smatcha { font-family:var(--head); font-style:italic; font-size:16px; margin:0 0 10px; opacity:.92; }
   .smap .spup { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
   @media (max-width:640px) { .smap { grid-template-columns:1fr; gap:20px; padding:22px 20px; } .smap svg { max-width:190px; margin:0 auto; } }
   @media (prefers-reduced-motion:reduce) { .smap .sline { stroke-dashoffset:0; animation:none !important; } .smap .sdest { opacity:.9; animation:none !important; } .smap .sdot { display:none; } }
@@ -1266,18 +1267,21 @@ STROLLS = {
    path='M 104 78 L 126 78 L 126 112 L 176 112 L 176 190 L 126 190 L 126 112',
    dest=(151, 150), dlabel='Madison Square Park',
    steps=['Out the lobby and east on W 28th St toward Fifth Ave.','South on Fifth Ave, about three blocks.','Enter at the Fifth Ave and 26th St corner, then loop the lawn.'],
+   matcha='Matcha: Cha Cha Matcha, 1158 Broadway, on the way.',
    pup='Leashed pup welcome. Confirm park rules.'),
  'Chelsea gallery streets, pup in tow': dict(
    mode='ride', time='A short cab or subway ride west (est. 15 min)',
    path='M 104 78 L 44 78 L 44 175 L 30 175',
    dest=(30, 175), dlabel='Chelsea gallery streets',
    steps=['Ride or cab west to W 22nd St and 10th Ave.','Stroll the gallery blocks on the W 20s, between 10th and 11th Ave.','Look up: the High Line runs overhead. Peek from below, no dogs up top.'],
+   matcha='Matcha: Cha Cha Matcha, 1158 Broadway, before you ride.',
    pup='All street level, leashed pup welcome.'),
  'Along the Hudson, one last stroll': dict(
    mode='walk', time='About 25 minutes on foot, or a short ride (est.)',
    path='M 104 78 L 18 78 L 8 78 L 8 248',
    dest=(8, 248), dlabel='Hudson River Greenway',
    steps=['West on W 28th St all the way to the river.','Join the greenway along 11th/12th Ave.','Stroll south with the water on your right.'],
+   matcha='Matcha: Matchaful, 450 W 33rd St, a detour toward the river.',
    pup='Leashed pup welcome. Confirm rules.'),
 }
 
@@ -1301,7 +1305,7 @@ def stroll_html(title):
           <circle class="sdest" cx="{dx}" cy="{dy}" r="5"/>
           <circle class="sdot" r="3" style="offset-path:path('{d['path']}')"/>
         </svg>
-        <div class="sinfo"><div class="kick">How to get there</div><div class="stm">{esc(d['time'])}</div><ol>{steps}</ol><div class="spup">{esc(d['pup'])}</div></div>
+        <div class="sinfo"><div class="kick">How to get there</div><div class="stm">{esc(d['time'])}</div><ol>{steps}</ol><div class="smatcha">{esc(d['matcha'])}</div><div class="spup">{esc(d['pup'])}</div></div>
       </div>'''
 
 def render(h):
