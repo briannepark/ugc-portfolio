@@ -26,7 +26,7 @@ TAGS = gp.TAGS
 def slug(t): return re.sub(r'[^a-z0-9]+', '-', t.lower()).strip('-')
 
 TIMES = {
- 'nomad': ['4:00 pm','5:30 pm','8:30 pm','7:00 am','9:30 am','12:00 pm','2:30 pm','4:30 pm','7:00 pm','8:30 pm','8:00 am','10:00 am','1:30 pm','6:00 pm','8:00 am','1:00 pm','6:30 pm'],
+ 'nomad': ['4:00 pm','5:30 pm','7:00 pm','8:30 pm','7:00 am','9:30 am','12:00 pm','2:30 pm','4:30 pm','7:00 pm','8:30 pm','8:00 am','10:00 am','1:30 pm','6:00 pm','8:00 am','1:00 pm','6:30 pm'],
  'brooklyn': ['8:00 am','10:30 am','2:00 pm','12:30 pm','1:00 pm','6:00 pm','10:00 am','1:30 pm'],
  'maui': ['12:30 pm','6:00 pm','9:30 am','1:30 pm','3:00 pm','9:30 am','11:30 am'],
  'proper': ['5:00 pm','7:00 pm','10:30 am','2:00 pm','11:00 am'],
@@ -49,7 +49,9 @@ STORY = {
   intro="Picture a trip that feels like yours again: a skyline room, a spa afternoon, the pop-ups you usually miss, and everything baby and the dog need handled, comfortably. This is the long weekend I'd take other moms on, one stop at a time.",
   chapters=[
    ('Day 1 · Settle in','Sleep like you mean it',"I travel with my baby and my dog, so the hotel has to work for all three of us. This is the part of the trip I'd film first: a quiet room, a long nap while the city hums far below, and a soak at the end of the day.",
-    [('The bed and the quiet','here','Oversize windows, high above the street. Nap time and bedtime, on the clock. Ask about the bedding and a crib.',True),('Bath time, mom and baby','here','Diptyque bath products and a separate rain shower, with a deep soaking tub in select rooms. Request a tub room: a warm bath for baby, then a long one for me.',True),('Family perks','here','Ritz Kids activities are listed on the hotel site, and adjoining rooms may be possible. Ask what is offered for babies and toddlers.',True),('Dogs welcome','here','Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.',True)]),
+    [('The bed and the quiet','here','Oversize windows, high above the street. Nap time and bedtime, on the clock. Ask about the bedding and a crib.',True),('Family perks','here','Ritz Kids activities are listed on the hotel site, and adjoining rooms may be possible. Ask what is offered for babies and toddlers.',True),('Dogs welcome','here','Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.',True)]),
+   ('Day 1 · Bath time','Bath time, for mom and baby',"Bath time is the golden hour of the day: warm water for baby first, then a long, quiet soak for me while the skyline lights up outside the window. Candles on the ledge, bubbles on the water, and a rubber ducky invited.",
+    [('Bath time, mom and baby','here','Diptyque bath products and a separate rain shower, with a deep soaking tub in select rooms. Request a tub room: a warm bath for baby, then a long one for me.',True)]),
    ('Day 1 · Nightfall','Fifty floors up',"Dinner at the hotel turns into a nightcap, and the nightcap turns into the best view of the trip. Blue hour, every light in Midtown below.",
     [('Bazaar Meat by José Andrés','here','Velvet booths, feather chandeliers, dinner at the hotel.',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
    ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, I slip down to the fitness center. It is open around the clock, with Peloton bikes, right next to the spa. Then a matcha to go, and out for the morning stroll.",
@@ -841,11 +843,16 @@ CSS = r"""
   .bscene .print.dusk { right:3%; top:0%; width:42%; --r:2.4deg; z-index:2; }
   .bscene .tub { left:19%; bottom:3%; width:62%; --r:-1deg; z-index:4; filter:drop-shadow(0 16px 20px rgba(0,0,0,.5)); }
   .bscene svg.lyr { overflow:visible; }
-  .bscene .bubbles { left:31%; bottom:21%; width:30%; z-index:5; filter:none; animation:bfloat 6s ease-in-out infinite; }
+  .bscene .bubbles { left:30%; bottom:19%; width:36%; z-index:5; filter:none; mix-blend-mode:screen; animation:bfloat 6s ease-in-out infinite; }
+  .bscene .bubbles.b2 { left:57%; bottom:23%; width:24%; z-index:7; transform:scaleX(-1); animation-duration:7.500s; }
+  .bscene .scrub { right:3%; bottom:3%; width:11%; --r:3deg; z-index:6; }
   .bscene .duck { left:57%; bottom:27%; width:9.500%; --r:-4deg; z-index:6; animation:bbob 4.500s ease-in-out infinite; }
   .bscene .candles { z-index:6; filter:drop-shadow(0 6px 8px rgba(0,0,0,.4)); }
-  .bscene .candles.cl { left:2%; bottom:1%; width:21%; }
-  .bscene .candles.cr { right:3%; bottom:3%; width:17%; }
+  .bscene svg.candles { overflow:visible; }
+  .bscene .bglow { left:12%; bottom:-4%; width:76%; height:46%; z-index:0; background:radial-gradient(ellipse at 50% 60%, rgba(255,206,130,.26), rgba(255,206,130,0) 66%); filter:none; mix-blend-mode:screen; }
+  .bscene .dd { filter:none; z-index:7; } .bscene .dd.a1 { left:13%; top:57%; width:10%; --r:6deg; } .bscene .dd.u1 { right:3.500%; top:60.500%; width:20%; }
+  .bscene .candles.cl { left:2%; bottom:2%; width:19%; }
+  .bscene .candles.cr { right:15%; bottom:3%; width:12%; }
   .bscene .flame { transform-origin:50% 90%; transform-box:fill-box; animation:bflick 1.400s ease-in-out infinite alternate; }
   .bscene .candles.cr .flame { animation-duration:1.900s; }
   .bscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
@@ -861,8 +868,9 @@ CSS = r"""
     .bscene .tub { left:-4%; bottom:12%; width:108%; }
     .bscene .bubbles { left:20%; bottom:20%; width:46%; }
     .bscene .duck { left:62%; bottom:24%; width:16%; }
-    .bscene .candles.cl { left:2%; bottom:0%; width:36%; }
-    .bscene .candles.cr { right:2%; bottom:1%; width:30%; }
+    .bscene .candles.cl { left:2%; bottom:1%; width:34%; }
+    .bscene .dd { display:none; }
+    .bscene .candles.cr { right:30%; bottom:2%; width:22%; }
     .bscene .msg { font-size:15px; }
     .bscene .msg.b1 { left:4%; top:52.500%; }
     .bscene .msg.b2 { right:4%; top:47.500%; }
@@ -1293,20 +1301,39 @@ def madison_scene(slug_h, cap_html):
 
 def bath_scene(slug_h, cap_html):
     M = CDN + slug_h + '/bath/'
-    bub = ''.join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="url(#bg)" stroke="rgba(255,255,255,.75)" stroke-width=".8"/><circle cx="{x - r*.35:.1f}" cy="{y - r*.35:.1f}" r="{r*.22:.1f}" fill="#fff" opacity=".85"/>' for x, y, r in [(30,70,22),(62,60,26),(98,66,20),(130,72,16),(50,40,15),(84,36,17),(112,44,12),(20,48,10),(70,18,9),(142,52,8)])
-    candle = lambda x, h: f'<g transform="translate({x},0)"><rect x="0" y="{86-h}" width="22" height="{h}" rx="3" fill="#f3ead6"/><rect x="0" y="{86-h}" width="22" height="7" rx="3" fill="#fffaf0"/><rect x="10.200" y="{74-h}" width="1.600" height="8" fill="#3a2a1a"/><g class="flame"><ellipse cx="11" cy="{66-h}" rx="9" ry="13" fill="url(#fg)" opacity=".5"/><path d="M11 {52-h} C 17 {62-h}, 16 {70-h}, 11 {74-h} C 6 {70-h}, 5 {62-h}, 11 {52-h} Z" fill="#ffd36b"/><path d="M11 {60-h} C 14 {66-h}, 13 {70-h}, 11 {73-h} C 9 {70-h}, 8 {66-h}, 11 {60-h} Z" fill="#fff4cf"/></g></g>'
+    bub = ''  # (photographic bubbles now)
+    _unused = ''.join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="url(#bg)" stroke="rgba(255,255,255,.75)" stroke-width=".8"/><circle cx="{x - r*.35:.1f}" cy="{y - r*.35:.1f}" r="{r*.22:.1f}" fill="#fff" opacity=".85"/>' for x, y, r in [(30,70,22),(62,60,26),(98,66,20),(130,72,16),(50,40,15),(84,36,17),(112,44,12),(20,48,10),(70,18,9),(142,52,8)])
+    def candle(x, jh):
+        y = 74
+        return (f'<g transform="translate({x},0)">'
+          f'<ellipse cx="30" cy="{y+jh+2}" rx="30" ry="5" fill="rgba(0,0,0,.28)"/>'
+          f'<rect x="4" y="{y}" width="52" height="{jh}" rx="9" fill="url(#jarg)" stroke="rgba(255,238,205,.55)" stroke-width=".8"/>'
+          f'<rect x="4" y="{y}" width="52" height="{jh}" rx="9" fill="url(#jarw)"/>'
+          f'<rect x="9" y="{y+6}" width="5" height="{jh-14}" rx="2.500" fill="rgba(255,255,255,.45)"/>'
+          f'<ellipse cx="30" cy="{y+4}" rx="23" ry="5" fill="#f7eed9"/>'
+          f'<rect x="3" y="{y-3}" width="54" height="6" rx="3" fill="url(#gold)"/>'
+          f'<rect x="29.200" y="{y-14}" width="1.600" height="12" rx=".8" fill="#2e2216"/>'
+          f'<g class="flame"><ellipse cx="30" cy="{y-26}" rx="20" ry="26" fill="url(#fg)" opacity=".55"/>'
+          f'<path d="M30 {y-46} C 37 {y-34}, 36 {y-22}, 30 {y-14} C 24 {y-22}, 23 {y-34}, 30 {y-46} Z" fill="#ffd98a"/>'
+          f'<path d="M30 {y-34} C 33 {y-27}, 32.500 {y-19}, 30 {y-15} C 27.500 {y-19}, 27 {y-27}, 30 {y-34} Z" fill="#fff6dc"/></g></g>')
+    defs = '<defs><linearGradient id="jarg" x1="0" x2="1"><stop offset="0" stop-color="#e9d3a8"/><stop offset=".5" stop-color="#f6e8c8"/><stop offset="1" stop-color="#cfae78"/></linearGradient><linearGradient id="jarw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9b0" stop-opacity=".55"/><stop offset="1" stop-color="#c8955a" stop-opacity=".25"/></linearGradient><linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#b98f4a"/><stop offset=".5" stop-color="#f1d58f"/><stop offset="1" stop-color="#a77c3a"/></linearGradient><radialGradient id="fg"><stop offset="0" stop-color="#ffe6a3"/><stop offset="1" stop-color="#ffe6a3" stop-opacity="0"/></radialGradient></defs>'
     return f'''
         <div class="scene-col">
           <div class="bscene reveal">
             <figure class="lyr print day" data-speed="0.015"><div class="tape"></div><img src="{M}day.jpg" alt="The soaking tub by day, skyline through the window" loading="lazy"><figcaption class="hand">by day</figcaption></figure>
             <figure class="lyr print dusk" data-speed="-0.025"><div class="tape"></div><img src="{M}dusk.jpg" alt="The soaking tub at dusk" loading="lazy"><figcaption class="hand">at dusk</figcaption></figure>
             <img class="lyr tub" data-speed="0.04" src="{M}cut-tub.png" alt="The soaking tub" loading="lazy">
-            <svg class="lyr bubbles" viewBox="0 0 160 90" data-speed="0.05" aria-hidden="true"><defs><radialGradient id="bg" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".6" stop-color="#e8f4ff" stop-opacity=".55"/><stop offset="1" stop-color="#bfe0ff" stop-opacity=".35"/></radialGradient></defs>{bub}</svg>
-            <svg class="lyr duck" viewBox="0 0 80 70" data-speed="0.06" aria-label="A rubber ducky"><ellipse cx="38" cy="48" rx="28" ry="16" fill="#ffd23f"/><path d="M60 44 C 72 40, 76 30, 66 28 C 62 34, 58 38, 52 40 Z" fill="#ffd23f"/><circle cx="52" cy="28" r="14" fill="#ffd23f"/><path d="M64 28 L 77 31 L 64 36 Z" fill="#ff8a2a"/><circle cx="56" cy="24" r="2.200" fill="#2a2118"/><ellipse cx="34" cy="50" rx="13" ry="8" fill="#f2b81f"/><path d="M14 40 C 10 36, 14 30, 18 34" stroke="#f2b81f" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
-            <svg class="lyr candles cl" viewBox="0 0 120 90" data-speed="0.03" aria-hidden="true"><defs><radialGradient id="fg"><stop offset="0" stop-color="#ffe6a3"/><stop offset="1" stop-color="#ffe6a3" stop-opacity="0"/></radialGradient></defs>{candle(8,40)}{candle(44,58)}{candle(82,30)}</svg>
-            <svg class="lyr candles cr" viewBox="0 0 120 90" data-speed="0.035" aria-hidden="true">{candle(18,34)}{candle(64,50)}</svg>
+            <img class="lyr bubbles" data-speed="0.05" src="{M}cut-bubbles.png" alt="" loading="lazy">
+            <img class="lyr bubbles b2" data-speed="-0.03" src="{M}cut-bubbles.png" alt="" loading="lazy">
+            <img class="lyr duck" data-speed="0.06" src="{M}cut-duck.png" alt="A rubber ducky" loading="lazy">
+            <img class="lyr scrub" data-speed="0.04" src="{M}cut-scrub.png" alt="OSEA Salts of the Earth body scrub" loading="lazy">
+            <svg class="lyr candles cl" viewBox="0 0 190 130" data-speed="0.03" aria-hidden="true">{defs}{candle(0,44)}{candle(62,34)}{candle(124,24)}</svg>
+            <svg class="lyr candles cr" viewBox="0 0 130 130" data-speed="0.035" aria-hidden="true">{candle(0,38)}{candle(66,28)}</svg>
+            <div class="lyr bglow" aria-hidden="true"></div>
             <div class="lyr msg b1 hand" data-speed="0.01">a soak with<br>the whole skyline</div>
-            <div class="lyr msg b2 hand" data-speed="0.02">bubbles, candles,<br>and a little duck</div>
+            <div class="lyr msg b2 hand" data-speed="0.02">bubbles, candles,<br>a little duck &amp; a scrub</div>
+            <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
+            <svg class="lyr dd u1" viewBox="0 0 300 14" data-speed="0"><use href="#d-under"/></svg>
           </div>
           {cap_html}
         </div>'''
