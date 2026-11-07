@@ -677,6 +677,16 @@
   .smap .spup { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
   @media (max-width:640px) { .smap { grid-template-columns:1fr; gap:20px; padding:22px 20px; } .smap svg { max-width:190px; margin:0 auto; } }
   @media (prefers-reduced-motion:reduce) { .smap .sline { stroke-dashoffset:0; animation:none !important; } .smap .sdest { opacity:.9; animation:none !important; } .smap .sdot { display:none; } }
+  .nightfx { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+  .chapter > .wrap { position:relative; z-index:1; }
+  .nightfx i { position:absolute; border-radius:50%; width:var(--s); height:var(--s); }
+  .nightfx i.t { background:radial-gradient(circle, #fff6d6 0%, #f6d98a 40%, rgba(246,217,138,0) 72%); box-shadow:0 0 calc(var(--s) * 2.4) rgba(246,217,138,.55); opacity:.08; animation:nfxtw var(--d) ease-in-out var(--l) infinite; }
+  .nightfx i.f { top:-14px; background:#fff; opacity:var(--o); filter:blur(var(--b)); animation:nfxfall var(--d) linear var(--l) infinite; }
+  .nightfx:not(.on) i { animation-play-state:paused; }
+  @keyframes nfxtw { 0%,100% { opacity:.06; transform:scale(.55); } 50% { opacity:.95; transform:scale(1.25); } }
+  @keyframes nfxfall { 0% { transform:translate3d(0,-20px,0); } 100% { transform:translate3d(var(--x),1500px,0); } }
+  html[data-season="warm"] .nightfx { display:none; }
+  @media (prefers-reduced-motion:reduce) { .nightfx i.f { display:none; } .nightfx i.t { animation:none; opacity:.5; } }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -796,6 +806,7 @@
 <div class="index"><div class="kick">In this guide</div><div class="gcats"><details class="gcat"><summary><h3>Hotel<small>2</small></h3></summary><ul><li>Ocean-view room and balcony</li><li>Beach path walk</li></ul></details><details class="gcat"><summary><h3>Matcha<small>2</small></h3></summary><ul><li>Shuhari Matcha Café, Venice</li><li>Rok Matcha, Koreatown</li></ul></details><details class="gcat"><summary><h3>Food<small>1</small></h3></summary><ul><li>Nobu Malibu</li></ul></details><details class="gcat"><summary><h3>Shops<small>1</small></h3></summary><ul><li>Gentle Monster flagship, Broadway</li></ul></details><details class="gcat"><summary><h3>Activities<small>8</small></h3></summary><ul><li>Santa Monica Pier</li><li>Venice Canals</li><li>Abbot Kinney Boulevard</li><li>Erewhon smoothie</li><li>Tartine Bakery</li><li>Malibu Farm on the pier</li><li>Malibu Country Mart</li><li>Goodies LA</li></ul></details></div></div>
 
   <section class="chapter " id="ch1" data-label="Day 1 · Morning">
+    
     <div class="wrap">
       <div class="num">8:00 am</div>
       <div class="ch-head">
@@ -819,6 +830,7 @@
     </div>
   </section>
   <section class="chapter L-side" id="ch2" data-label="Day 1 · Afternoon">
+    
     <div class="wrap">
       <div class="num">1:00 pm</div>
       <div class="ch-head">
@@ -842,6 +854,7 @@
     </div>
   </section>
   <section class="chapter L-center" id="ch3" data-label="Day 2 · Venice">
+    
     <div class="wrap">
       <div class="num">10:30 am</div>
       <div class="ch-head">
@@ -875,6 +888,7 @@
     </div>
   </section>
   <section class="chapter L-hero" id="ch4" data-label="Day 3 · Malibu">
+    
     <div class="wrap">
       <div class="num">11:00 am</div>
       <div class="ch-head">
@@ -903,6 +917,7 @@
     </div>
   </section>
   <section class="chapter L-mason" id="ch5" data-label="Day 3 · Downtown">
+    
     <div class="wrap">
       <div class="num">4:30 pm</div>
       <div class="ch-head">
@@ -987,6 +1002,9 @@
     var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: .12 });
     els.forEach(function (e) { io.observe(e); });
   }
+  var fxs = document.querySelectorAll('.nightfx');
+  if (!('IntersectionObserver' in window)) { Array.prototype.forEach.call(fxs, function (e) { e.classList.add('on'); }); }
+  else { var fio = new IntersectionObserver(function (en) { en.forEach(function (x) { x.target.classList.toggle('on', x.isIntersecting); }); }); Array.prototype.forEach.call(fxs, function (e) { fio.observe(e); }); }
   var seasonKey = 'pitch-season';
   function setSeason(v, save) {
     document.documentElement.setAttribute('data-season', v);

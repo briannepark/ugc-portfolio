@@ -28,11 +28,17 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/nap-and-soak.jpg`: Nap and soak
 - `nomad/spa-and-steam-room.jpg`: Spa and steam room
 - `nomad/ippudo.jpg`: Ippudo
+- `nomad/saks-fifth-avenue-light-show.jpg`: Saks Fifth Avenue light show
+- `nomad/rockefeller-center-tree.jpg`: Rockefeller Center tree
+- `nomad/macy-s-and-fifth-ave-windows.jpg`: Macy's and Fifth Ave windows
+- `nomad/grand-central-holiday-train-show.jpg`: Grand Central Holiday Train Show
 - `nomad/chelsea-gallery-streets.jpg`: Chelsea gallery streets
 - `nomad/brooklyn-botanical-garden.jpg`: Brooklyn Botanical Garden
 - `nomad/mercer-labs.jpg`: Mercer Labs
 - `nomad/printemps-one-wall-street.jpg`: Printemps, One Wall Street
 - `nomad/aura-reading-at-magic-jewelry.jpg`: Aura reading at Magic Jewelry
+- `nomad/lightscape-at-brooklyn-botanic-garden.jpg`: Lightscape at Brooklyn Botanic Garden
+- `nomad/dyker-heights-christmas-lights.jpg`: Dyker Heights Christmas lights
 - `nomad/in-room-breakfast.jpg`: In-room breakfast
 - `nomad/hudson-river-greenway.jpg`: Hudson River Greenway
 - `nomad/matchaful-manhattan-west.jpg`: Matchaful, Manhattan West

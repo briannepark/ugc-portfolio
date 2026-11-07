@@ -677,6 +677,16 @@
   .smap .spup { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
   @media (max-width:640px) { .smap { grid-template-columns:1fr; gap:20px; padding:22px 20px; } .smap svg { max-width:190px; margin:0 auto; } }
   @media (prefers-reduced-motion:reduce) { .smap .sline { stroke-dashoffset:0; animation:none !important; } .smap .sdest { opacity:.9; animation:none !important; } .smap .sdot { display:none; } }
+  .nightfx { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+  .chapter > .wrap { position:relative; z-index:1; }
+  .nightfx i { position:absolute; border-radius:50%; width:var(--s); height:var(--s); }
+  .nightfx i.t { background:radial-gradient(circle, #fff6d6 0%, #f6d98a 40%, rgba(246,217,138,0) 72%); box-shadow:0 0 calc(var(--s) * 2.4) rgba(246,217,138,.55); opacity:.08; animation:nfxtw var(--d) ease-in-out var(--l) infinite; }
+  .nightfx i.f { top:-14px; background:#fff; opacity:var(--o); filter:blur(var(--b)); animation:nfxfall var(--d) linear var(--l) infinite; }
+  .nightfx:not(.on) i { animation-play-state:paused; }
+  @keyframes nfxtw { 0%,100% { opacity:.06; transform:scale(.55); } 50% { opacity:.95; transform:scale(1.25); } }
+  @keyframes nfxfall { 0% { transform:translate3d(0,-20px,0); } 100% { transform:translate3d(var(--x),1500px,0); } }
+  html[data-season="warm"] .nightfx { display:none; }
+  @media (prefers-reduced-motion:reduce) { .nightfx i.f { display:none; } .nightfx i.t { animation:none; opacity:.5; } }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -796,6 +806,7 @@
 <div class="index"><div class="kick">In this guide</div><div class="gcats"><details class="gcat"><summary><h3>Hotel<small>4</small></h3></summary><ul><li>Keiki Pool</li><li>Lobby Lounge sunset hula</li><li>The quiet room</li><li>Pack for the summit</li></ul></details><details class="gcat"><summary><h3>Food<small>5</small></h3></summary><ul><li>Poi By The Pound, Kahului</li><li>South Maui Fish Co, Kihei</li><li>Aloha Mixed Plate, Lahaina</li><li>Star Noodle, Lahaina</li><li>Only Fresh Poke, Olowalu</li></ul></details><details class="gcat"><summary><h3>Shops<small>4</small></h3></summary><ul><li>Native Intelligence, Wailuku</li><li>Holoholo Surf and Kūlua, Makawao</li><li>Makawao town</li><li>ʻUlu o Lele Marketplace</li></ul></details><details class="gcat"><summary><h3>Activities<small>6</small></h3></summary><ul><li>Wailea Beach</li><li>Hui Noʻeau Visual Arts Center</li><li>Haleakalā sunset</li><li>Haleakalā Visitor Center</li><li>Front Street, Lahaina</li><li>Fishing with a local captain</li></ul></details></div></div>
 
   <section class="chapter " id="ch1" data-label="Day 1 · Arrival">
+    
     <div class="wrap">
       <div class="num">12:30 pm</div>
       <div class="ch-head">
@@ -829,6 +840,7 @@
     </div>
   </section>
   <section class="chapter L-side" id="ch2" data-label="Day 1 · Evening">
+    
     <div class="wrap">
       <div class="num">6:00 pm</div>
       <div class="ch-head">
@@ -852,6 +864,7 @@
     </div>
   </section>
   <section class="chapter L-center" id="ch3" data-label="Day 2 · Morning">
+    
     <div class="wrap">
       <div class="num">9:30 am</div>
       <div class="ch-head">
@@ -880,6 +893,7 @@
     </div>
   </section>
   <section class="chapter L-hero" id="ch4" data-label="Day 2 · Rest hour">
+    
     <div class="wrap">
       <div class="num">1:30 pm</div>
       <div class="ch-head">
@@ -903,6 +917,7 @@
     </div>
   </section>
   <section class="chapter L-mason" id="ch5" data-label="Day 2 · Sunset">
+    
     <div class="wrap">
       <div class="num">3:00 pm</div>
       <div class="ch-head">
@@ -926,6 +941,7 @@
     </div>
   </section>
   <section class="chapter " id="ch6" data-label="Day 3 · Lahaina">
+    
     <div class="wrap">
       <div class="num">9:30 am</div>
       <div class="ch-head">
@@ -959,6 +975,7 @@
     </div>
   </section>
   <section class="chapter L-side" id="ch7" data-label="Day 3 · Boat to bowl">
+    
     <div class="wrap">
       <div class="num">11:30 am</div>
       <div class="ch-head">
@@ -1032,6 +1049,9 @@
     var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: .12 });
     els.forEach(function (e) { io.observe(e); });
   }
+  var fxs = document.querySelectorAll('.nightfx');
+  if (!('IntersectionObserver' in window)) { Array.prototype.forEach.call(fxs, function (e) { e.classList.add('on'); }); }
+  else { var fio = new IntersectionObserver(function (en) { en.forEach(function (x) { x.target.classList.toggle('on', x.isIntersecting); }); }); Array.prototype.forEach.call(fxs, function (e) { fio.observe(e); }); }
   var seasonKey = 'pitch-season';
   function setSeason(v, save) {
     document.documentElement.setAttribute('data-season', v);
