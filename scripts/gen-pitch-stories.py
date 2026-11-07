@@ -916,6 +916,29 @@ CSS = r"""
     .bedscene .msg.d2 { left:4%; bottom:2%; }
     .bedscene .dd { display:none; }
   }
+  .lightscene { position:relative; width:min(1180px,100%); aspect-ratio:16/11.5; margin:30px auto 20px; }
+  .lightscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); filter:drop-shadow(0 10px 14px rgba(0,0,0,.4)); will-change:transform; }
+  .lightscene .print { background:#f4efe3; padding:10px 10px 36px; filter:drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
+  .lightscene .print img { display:block; width:100%; height:auto; }
+  .lightscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .lightscene .print.tun { left:3%; top:1%; width:56%; --r:-1.600deg; z-index:2; }
+  .lightscene .print.pth { right:3%; top:8%; width:36%; --r:2.800deg; z-index:3; }
+  .lightscene .print.fld { right:12%; bottom:2%; width:40%; --r:-2.200deg; z-index:4; }
+  .lightscene .tape { z-index:5; }
+  .lightscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
+  .lightscene .msg.l1 { left:6%; bottom:24%; --r:-4deg; }
+  .lightscene .msg.l2 { left:8%; bottom:6%; --r:3deg; }
+  .lightscene .dd { filter:none; z-index:7; } .lightscene .dd.a1 { left:21%; bottom:17%; width:10%; --r:-6deg; } .lightscene .dd.u1 { left:6%; bottom:2%; width:16%; display:none; }
+  @media (max-width:760px) {
+    .lightscene { aspect-ratio:3/6; }
+    .lightscene .print.tun { left:3%; top:1%; width:92%; }
+    .lightscene .print.pth { right:3%; top:30%; width:72%; }
+    .lightscene .print.fld { left:3%; right:auto; bottom:11%; width:76%; }
+    .lightscene .msg { font-size:15px; }
+    .lightscene .msg.l1 { display:none; }
+    .lightscene .msg.l2 { right:4%; left:auto; bottom:3%; text-align:right; }
+    .lightscene .dd { display:none; }
+  }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1393,6 +1416,22 @@ def bed_scene(slug_h, cap_html):
           {cap_html}
         </div>'''
 
+def light_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/lightscape/'
+    return f'''
+        <div class="scene-col">
+          <div class="lightscene reveal">
+            <figure class="lyr print tun" data-speed="0.015"><div class="tape"></div><img src="{M}tunnel.jpg" alt="The glowing light tunnel" loading="lazy"><figcaption class="hand">the tunnel of lights</figcaption></figure>
+            <figure class="lyr print pth" data-speed="-0.025"><div class="tape"></div><img src="{M}path.jpg" alt="A path painted in color" loading="lazy"><figcaption class="hand">a path painted in color</figcaption></figure>
+            <figure class="lyr print fld" data-speed="0.03"><div class="tape"></div><img src="{M}field.jpg" alt="Swirls of light across the lawn" loading="lazy"><figcaption class="hand">swirls across the lawn</figcaption></figure>
+            <div class="lyr msg l1 hand" data-speed="0.01">a whole garden<br>after dark</div>
+            <div class="lyr msg l2 hand" data-speed="0.02">bundle up,<br>wear baby</div>
+            <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
+            <svg class="lyr dd u1" viewBox="0 0 140 24" data-speed="0.01"><use href="#d-under"/></svg>
+          </div>
+          {cap_html}
+        </div>'''
+
 def fit_scene(slug_h, cap_html):
     M = CDN + slug_h + '/fitness/'
     return f'''
@@ -1586,6 +1625,9 @@ def render(h):
             if slug_h == 'nomad' and key == 'the-bed-and-the-quiet':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + bed_scene(slug_h, cap)
+            if slug_h == 'nomad' and key == 'lightscape-at-brooklyn-botanic-garden':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + light_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'fitness-center':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + fit_scene(slug_h, cap)
