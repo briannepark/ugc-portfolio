@@ -70,8 +70,8 @@ STORY = {
     [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. Cherry blossoms in spring, roses in early summer, the Japanese garden and the conservatory year-round. Confirm hours and tickets.',True)]),
    ('Day 3 · Afternoon','Downtown, in one sweep',"Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.",
     [('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False)]),
-   ('Day 4 · Early morning','Along the Hudson, one last stroll',"Last morning, flat and unhurried: the riverside greenway on the west edge of the city. Water on one side, the stroller rolls easily, and leashed pups are generally welcome in Hudson River Park.",
-    [('Hudson River Greenway','walk','A flat, car-free waterfront path. Confirm dog rules and any dog run hours.',True),('Matchaful, Manhattan West','walk','450 W 33rd St, inside Whole Foods (entrance on 10th Ave). Open 8 am to 7 pm per the building site. A matcha stop on the way toward the river.',True)]),
+   ('Day 4 · Early morning','Breakfast in bed, last morning',"We've explored the city the other days, so the last morning is slow. Breakfast in bed, baby and pup curled up beside me, and the skyline doing its thing out the window. Then we pack up and head across the bridge.",
+    [('In-room breakfast','here','Ritz-Carlton in-room dining, delivered to the room. Confirm the menu, hours and whether they can do matcha.',True)]),
    ('Day 4 · Across the bridge','Brooklyn, then the big dinner',"A scoop of ice cream, the bridge in the frame, and one last dinner that earns its place in the story.",
     [('Dumbo ice cream and bridge shot','trip','Van Leeuwen or similar, then the bridge frame.',True),('Nobu Downtown dinner','trip','The big dinner moment.',True)]),
    ('Day 4 · Goodbye','One last look',"Back to the window for a final look, because you'll want to come back.",
@@ -1276,13 +1276,6 @@ STROLLS = {
    steps=['Ride or cab west to W 22nd St and 10th Ave.','Stroll the gallery blocks on the W 20s, between 10th and 11th Ave.','Look up: the High Line runs overhead. Peek from below, no dogs up top.'],
    matcha='Matcha: Cha Cha Matcha, 1158 Broadway, before you ride.',
    pup='All street level, leashed pup welcome.'),
- 'Along the Hudson, one last stroll': dict(
-   mode='walk', time='About 25 minutes on foot, or a short ride (est.)',
-   path='M 104 78 L 18 78 L 8 78 L 8 248',
-   dest=(8, 248), dlabel='Hudson River Greenway',
-   steps=['West on W 28th St all the way to the river.','Join the greenway along 11th/12th Ave.','Stroll south with the water on your right.'],
-   matcha='Matcha: Matchaful, 450 W 33rd St, a detour toward the river.',
-   pup='Leashed pup welcome. Confirm rules.'),
 }
 
 def stroll_html(title):
@@ -1435,7 +1428,7 @@ def render(h):
         return 'Activities'
     _order = ['Hotel', 'Matcha', 'Food', 'Shops', 'Activities', 'Sample sale', 'Pop-ups']
     _g = {k: [] for k in _order}
-    _skip = {'lobby and lounge','room view at dusk','the bed and the quiet','bath time, mom and baby','family perks','dogs welcome','fitness center','nap and soak','spa and steam room','last look and checkout'}
+    _skip = {'lobby and lounge','room view at dusk','the bed and the quiet','bath time, mom and baby','family perks','dogs welcome','fitness center','nap and soak','spa and steam room','last look and checkout','in-room breakfast'}
     for _s in allstops:
         if _s[0].lower() in _skip: continue
         _g[_cat(_s[0], _s[1])].append(_s[0])
