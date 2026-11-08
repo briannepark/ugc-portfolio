@@ -43,9 +43,9 @@ STORY = {
   walk=dict(kick='Day 1 · Arrival', title='Through the doors',
     story="Walk in with me. Past the sheer curtains, toward the glow of the bar, and then up to a window with the whole city lit below. This is how I'd open the trip: moving through the hotel, one room at a time.",
     scenes=[
-      ('Lobby','Step through the doors.','Sheer curtains, floor-to-ceiling windows, and a sculptural chandelier over the lounge.'),
-      ('Lounge','Past the lounge, toward the bar.','Green velvet, brass, and a wall of hanging greenery behind the bottles.'),
-      ('Room','Then up, to the view.','Dusk over the downtown skyline, with every light just switching on.')]),
+      ('Entrance','Step through the doors.','Bronze doors, brass handles, and a garden of green waiting just inside.'),
+      ('Lobby','Past the sheer curtains, to check in.','Veined stone desks, sculptural chandeliers, and floor-to-ceiling windows behind the lounge chairs.'),
+      ('Lounge','Then toward the bar.','Green velvet, brass, and a wall of hanging greenery behind the bottles.')]),
   intro="Picture a trip that feels like yours again: a skyline room, a spa afternoon, the pop-ups you usually miss, and everything baby and the dog need handled, comfortably. This is the long weekend I'd take other moms on, one stop at a time.",
   chapters=[
    ('Day 1 · Settle in','Sleep like you mean it',"I travel with my baby and my dog, so the hotel has to work for all three of us. This is the part of the trip I'd film first: a quiet room, a long nap while the city hums far below, and a soak at the end of the day.",
@@ -247,6 +247,12 @@ CSS = r"""
   .walkthru .s1 img { width:100%; height:100%; object-fit:cover; object-position:50% 40%; transform-origin:50% 38%; }
   .walkthru .s2 .blur { position:absolute; inset:-30px; background-size:cover; background-position:center; filter:blur(28px) brightness(.55); }
   .walkthru .s2 img { position:absolute; left:50%; top:50%; height:min(100vh,120vw*1.78); max-width:100%; transform:translate(-50%,-50%); object-fit:cover; box-shadow:0 30px 80px rgba(0,0,0,.6); aspect-ratio:9/16; }
+  .walkthru .s0 { perspective:1400px; background:#06080f; overflow:hidden; opacity:1; }
+  .walkthru .s0 .open { position:absolute; inset:0; overflow:hidden; } .walkthru .s0 .open img { width:100%; height:100%; object-fit:cover; transform-origin:50% 55%; }
+  .walkthru .s0 .door { position:absolute; top:0; bottom:0; width:50%; overflow:hidden; will-change:transform; backface-visibility:hidden; }
+  .walkthru .s0 .dl { left:0; transform-origin:0 50%; } .walkthru .s0 .dr { right:0; transform-origin:100% 50%; }
+  .walkthru .s0 .door img { position:absolute; top:0; width:200%; height:100%; object-fit:cover; object-position:50% 55%; }
+  .walkthru .s0 .dl img { left:0; } .walkthru .s0 .dr img { left:-100%; }
   .walkthru .s3 { background:radial-gradient(ellipse at 50% 60%,#1b2347,#05070d 70%); display:flex; align-items:center; justify-content:center; }
   .walkthru .s3 .frame { margin-top:-12vh; width:min(86vw,1040px); aspect-ratio:3/2; overflow:hidden; border:8px solid rgba(255,255,255,.9); box-shadow:0 30px 90px rgba(0,0,0,.7); border-radius:4px; }
   .walkthru .s3 img { width:100%; height:100%; object-fit:cover; transform-origin:50% 55%; }
@@ -805,13 +811,13 @@ CSS = r"""
   .bk-pol .ph { display:block; aspect-ratio:4/5; background:linear-gradient(150deg,var(--accent2),var(--accent)); position:relative; overflow:hidden; }
   .bk-pol img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   .bk-pol .bd-clip { left:50%; margin-left:-13px; top:-42px; }
-  .bstage .bd-page { overflow:visible; padding-top:0; } .bstage .bk-kick { margin-top:96px; }
+  .bstage .bd-page { overflow:visible; padding-top:0; display:flex; flex-direction:column; padding-bottom:84px; } .bstage .bk-kick { margin-top:auto; }
   .bk-pol figcaption { position:absolute; left:0; right:0; bottom:8px; white-space:nowrap; text-align:center; font-family:var(--hand); font-size:18px; color:#4a3d2c; }
   .bk-cue { position:absolute; left:42px; bottom:30px; font-family:var(--hand); font-size:clamp(20px,2.2vw,26px); color:#7a6850; animation:bob 2s ease-in-out infinite; }
   .bstage .bd-tabs { gap:6px; }
   .bstage .bd-tab { flex:1 1 0; min-height:0; max-height:128px; font-size:17px; }
   @media (max-width:640px) {
-    .bstage .bd-page { display:flex; flex-direction:column; } .bk-pol figcaption { font-size:15px; } .bk-pol { position:relative; right:auto; top:auto; order:-1; align-self:center; width:52%; margin:0 0 26px; padding:7px 7px 28px; } .bk-pol .bd-clip { top:-34px; transform:scale(.8); } .bstage .bk-kick { margin-top:0; }
+    .bstage .bd-page { display:flex; flex-direction:column; } .bk-pol figcaption { font-size:15px; } .bk-pol { position:relative; right:auto; top:auto; order:-1; align-self:center; width:52%; margin:0 0 26px; padding:7px 7px 28px; } .bk-pol .bd-clip { top:-34px; transform:scale(.8); } .bstage .bk-kick { margin-top:auto; }
     .bstage .bd-page > :not(.bk-pol):not(.bk-cue) { max-width:100%; } .bk-name { font-size:32px; } .bk-tag { max-width:24ch; } .bk-cue { left:22px; bottom:20px; font-size:20px; } .bstage .bd-tab { font-size:14px; }
   }
   .bk-cue { text-decoration:none; cursor:pointer; }
@@ -1052,25 +1058,28 @@ JS = r"""
   var cur = document.querySelector('.hud .cur'), bar = document.querySelector('.hud .bar');
   var chs = document.querySelectorAll('.chapter,.walkthru');
   var cuts = Array.prototype.slice.call(document.querySelectorAll('.cut[data-speed],.lyr[data-speed]'));
-  var walk = document.querySelector('.walkthru'), ticking = false, s1, s2, s3, wcaps = [], floors = [];
-  if (walk) { s1 = walk.querySelector('.s1'); s2 = walk.querySelector('.s2'); s3 = walk.querySelector('.s3');
+  var walk = document.querySelector('.walkthru'), ticking = false, s0, s1, s2, wcaps = [], floors = [];
+  if (walk) { s0 = walk.querySelector('.s0'); s1 = walk.querySelector('.s1'); s2 = walk.querySelector('.s2');
     wcaps = Array.prototype.slice.call(walk.querySelectorAll('.wcap')); floors = Array.prototype.slice.call(walk.querySelectorAll('.floors .f')); }
   function frame() {
     ticking = false;
     var h = document.documentElement, st = window.pageYOffset || h.scrollTop, max = h.scrollHeight - window.innerHeight;
     if (bar && max > 0) bar.style.width = Math.min(100, st / max * 100) + '%';
     var vh = window.innerHeight, label = 'Intro';
-    chs.forEach(function (c) { var r = c.getBoundingClientRect(); if (r.top < vh * .5) label = c.getAttribute('data-label'); });
+    chs.forEach(function (c) { if (!c.offsetHeight) return; var r = c.getBoundingClientRect(); if (r.top < vh * .5) label = c.getAttribute('data-label'); });
     if (cur && cur.textContent !== label) cur.textContent = label;
     if (walk && !reduce) {
       var wr = walk.getBoundingClientRect(), p = Math.max(0, Math.min(1, -wr.top / (wr.height - vh)));
       var ramp = function (a, b, x) { return Math.max(0, Math.min(1, (x - a) / (b - a))); };
-      var o1 = 1 - ramp(.28, .40, p), o2 = ramp(.28, .40, p) * (1 - ramp(.62, .74, p)), o3 = ramp(.62, .74, p);
-      s1.style.opacity = o1; s2.style.opacity = o2; s3.style.opacity = o3;
-      s1.firstElementChild.style.transform = 'scale(' + (1 + .55 * ramp(0, .4, p)).toFixed(3) + ')';
-      s2.querySelector('img').style.transform = 'translate(-50%,-50%) scale(' + (1.02 + .14 * ramp(.3, .72, p)).toFixed(3) + ')';
-      s3.querySelector('img').style.transform = 'scale(' + (1 + .12 * ramp(.62, 1, p)).toFixed(3) + ')';
-      var step = p < .34 ? 0 : (p < .68 ? 1 : 2);
+      var o0 = 1 - ramp(.27, .36, p), o1 = ramp(.27, .36, p) * (1 - ramp(.62, .72, p)), o2 = ramp(.62, .72, p);
+      s0.style.opacity = o0; s1.style.opacity = o1; s2.style.opacity = o2;
+      var da = 98 * ramp(.03, .22, p);
+      s0.querySelector('.dl').style.transform = 'rotateY(' + da.toFixed(1) + 'deg)';
+      s0.querySelector('.dr').style.transform = 'rotateY(' + (-da).toFixed(1) + 'deg)';
+      s0.querySelector('.open img').style.transform = 'scale(' + (1.02 + .3 * ramp(.1, .36, p)).toFixed(3) + ')';
+      s1.firstElementChild.style.transform = 'scale(' + (1 + .25 * ramp(.27, .66, p)).toFixed(3) + ')';
+      s2.querySelector('img').style.transform = 'translate(-50%,-50%) scale(' + (1.02 + .14 * ramp(.62, 1, p)).toFixed(3) + ')';
+      var step = p < .3 ? 0 : (p < .66 ? 1 : 2);
       wcaps.forEach(function (c, i) { c.classList.toggle('on', i === step); });
       floors.forEach(function (f, i) { f.classList.toggle('on', i === step); });
     }
@@ -1094,7 +1103,7 @@ JS = r"""
     if (!rail) return;
     var vh = window.innerHeight, st = window.pageYOffset || document.documentElement.scrollTop, act = null;
     rail.classList.toggle('on', st > vh * .55);
-    Array.prototype.forEach.call(document.querySelectorAll('.chapter[id]'), function (c) { if (c.getBoundingClientRect().top < vh * .5) act = c.id; });
+    Array.prototype.forEach.call(document.querySelectorAll('.chapter[id]'), function (c) { if (c.offsetHeight && c.getBoundingClientRect().top < vh * .5) act = c.id; });
     rlinks.forEach(function (a) { a.classList.toggle('act', a.getAttribute('data-t') === act); });
   }
   document.addEventListener('click', function (e) {
@@ -1574,9 +1583,9 @@ def render(h):
   </section>
   <section class="walkthru" data-label="{esc(W['kick'])}">
     <div class="stick">
-      <div class="scene s1"><img src="{CDN}{slug_h}/walk-lobby.jpg" alt="The lobby lounge"></div>
+      <div class="scene s0"><div class="open"><img src="{CDN}{slug_h}/walk-doors-open.jpg" alt="Inside the entrance"></div><div class="door dl"><img src="{CDN}{slug_h}/walk-doors-closed.jpg" alt="The entrance doors"></div><div class="door dr"><img src="{CDN}{slug_h}/walk-doors-closed.jpg" alt=""></div></div>
+      <div class="scene s1"><img src="{CDN}{slug_h}/walk-desk.jpg" alt="The check-in desk"></div>
       <div class="scene s2"><div class="blur" style="background-image:url({CDN}{slug_h}/walk-bar.jpg)"></div><img src="{CDN}{slug_h}/walk-bar.jpg" alt="The bar"></div>
-      <div class="scene s3"><div class="frame"><img src="{CDN}{slug_h}/walk-room.jpg" alt="The room view at dusk"></div></div>
       <div class="vig"></div>
       <div class="wcaps">
         <div class="wcap w1"><span class="hand">{esc(sc[0][1])}</span><p>{esc(sc[0][2])}</p></div>
@@ -1586,7 +1595,7 @@ def render(h):
       <div class="floors"><span class="f f1">{esc(sc[0][0])}</span><span class="f f2">{esc(sc[1][0])}</span><span class="f f3">{esc(sc[2][0])}</span><i></i></div>
     </div>
   </section>'''
-        allstops += [('Lobby and lounge','here','',False,'walk-lobby'),('The bar','here','',False,'walk-bar'),('Room view at dusk','here','',False,'walk-room')]
+        allstops += [('Lobby and lounge','here','',False,'walk-desk'),('The bar','here','',False,'walk-bar')]
     for i, (kick, title, story, stops) in enumerate(S['chapters']):
         n = len(stops)
         frames = ''
@@ -1752,10 +1761,9 @@ def render(h):
         <div class="bd-kick bk-kick">Travel &middot; Pitch {h['no']} &middot; {esc(h['city'])}</div>
         <img class="bk-logo" src="{CDN}{slug_h}/logo.png" alt="{esc(h['short'])} logo" onerror="this.remove()">
         <h1 class="bk-name">{esc(h['name'])}</h1>
-        <div class="bk-tag">{esc(h['tagline'])}</div>
-        <div class="bk-hand">&mdash; {esc(h['hand'])}</div>
+        {'' if slug_h == 'nomad' else f'<div class="bk-tag">{esc(h["tagline"])}</div><div class="bk-hand">&mdash; {esc(h["hand"])}</div>'}
         <div class="bk-addr">{hotel_line}</div>
-        <figure class="bk-pol">{gp.CLIP}<span class="ph"><img src="{CDN}{slug_h}/walk-room.jpg" alt="" onerror="this.remove()"></span><figcaption>a pitch by Brianne</figcaption></figure>
+        <figure class="bk-pol">{gp.CLIP}<span class="ph"><img src="{CDN}{slug_h}/{'walk-building' if slug_h == 'nomad' else 'walk-room'}.jpg" alt="" onerror="this.remove()"></span><figcaption>a pitch by Brianne</figcaption></figure>
         <a class="bk-cue" href="#{tabs_l[0][0] if tabs_l else 'ch1'}">scroll to open the itinerary &darr;</a>
       </div>
       <nav class="bd-tabs">{tabs_h}</nav>
