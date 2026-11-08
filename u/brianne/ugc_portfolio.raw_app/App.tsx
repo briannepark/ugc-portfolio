@@ -33,7 +33,21 @@ function toPage(p: unknown): Page {
 
 function getInitialState(): { page: Page; hash: string } {
   if (typeof window === 'undefined') return { page: 'home', hash: '' };
-  const params = new URLSearchParams(window.location.search);
+  // Windmill's public runtime runs this bundle from a blob: document, whose own
+  // location has no query string. Fall back to the embedding page's address.
+  let search = window.location.search;
+  let hashStr = window.location.hash || '';
+  if (!search) {
+    const cands: Array<() => Location | string> = [() => window.parent.location, () => window.top!.location, () => document.referrer];
+    for (const c of cands) {
+      try {
+        const v = c();
+        const u = new URL(typeof v === 'string' ? v : v.href);
+        if (u.search) { search = u.search; if (!hashStr) hashStr = u.hash; break; }
+      } catch (_e) { /* cross-origin or empty */ }
+    }
+  }
+  const params = new URLSearchParams(search);
   const p = params.get('page');
   // "brands" is the private brand-outreach dashboard — reached directly via
   // ?page=brands, never linked from the public nav.
@@ -47,7 +61,7 @@ function getInitialState(): { page: Page; hash: string } {
   }
   if (binder && /^[a-z]+$/.test(binder)) return { page: 'pitches', hash: '#' + binder };
   const page: Page = toPage(p);
-  return { page, hash: window.location.hash || '' };
+  return { page, hash: hashStr };
 }
 
 export default function App() {
