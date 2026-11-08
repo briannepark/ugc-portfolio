@@ -149,6 +149,19 @@
   .scroll { animation:none; }
   .wcap .hand { font-family:var(--head); font-style:italic; font-size:clamp(30px,4.4vw,58px); line-height:1.05; }
   .cover .hand, .end .hand { font-family:var(--head); font-style:italic; }
+  .guide .gcats { align-items:start; }
+  .guide .gcat summary { cursor:pointer; list-style:none; }
+  .guide .gcat summary::-webkit-details-marker { display:none; }
+  .guide .gcat h3 { display:flex; align-items:baseline; margin:0 0 4px; }
+  .guide .gcat h3 small { margin-left:auto; font:500 12px var(--body); color:var(--ink); opacity:.5; }
+  .guide .gcat > summary { padding:6px 30px 6px 0; font-weight:400; }
+  .guide .gcat > summary::after { top:12px; }
+  .guide .gcat[open] > summary::after { content:'\2212'; transform:none; }
+  .guide .gcat ul { margin-top:8px; }
+  .guide .gcat li { display:flex; justify-content:space-between; gap:12px; align-items:baseline; padding:9px 0; font-size:15px; line-height:1.35; font-weight:500; }
+  .guide .gn { flex:1; }
+  .guide .gw { flex:none; font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:2px 7px; border-radius:99px; border:1px solid currentColor; opacity:.75; }
+  .guide .gw.y { color:#4f7a58; } .guide .gw.n { color:#9a6b3f; }
   .index .gcats { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:34px 40px; text-align:left; margin-top:30px; }
   .index .gcat { align-self:start; }
   .index .gcat summary { list-style:none; cursor:pointer; }
@@ -912,7 +925,6 @@
     </div></div></section>
 
 <section class="intro rise"><div class="kick">The trip</div><p>Picture a hotel that opens right onto the beach: ocean from the balcony, a path along the sand, Venice down the shore. This is Los Angeles at its easiest.</p></section>
-<div class="index"><div class="kick">In this guide</div><div class="gcats"><details class="gcat"><summary><h3>Hotel<small>2</small></h3></summary><ul><li>Ocean-view room and balcony</li><li>Beach path walk</li></ul></details><details class="gcat"><summary><h3>Matcha<small>2</small></h3></summary><ul><li>Shuhari Matcha Café, Venice</li><li>Rok Matcha, Koreatown</li></ul></details><details class="gcat"><summary><h3>Food<small>1</small></h3></summary><ul><li>Nobu Malibu</li></ul></details><details class="gcat"><summary><h3>Shops<small>1</small></h3></summary><ul><li>Gentle Monster flagship, Broadway</li></ul></details><details class="gcat"><summary><h3>Activities<small>8</small></h3></summary><ul><li>Santa Monica Pier</li><li>Venice Canals</li><li>Abbot Kinney Boulevard</li><li>Erewhon smoothie</li><li>Tartine Bakery</li><li>Malibu Farm on the pier</li><li>Malibu Country Mart</li><li>Goodies LA</li></ul></details></div></div>
 
   <section class="chapter " id="ch1" data-label="Day 1 · Morning">
     
@@ -1066,10 +1078,7 @@
   <div class="rise"><div class="kick">Why this stay</div><h2>The feeling I&#x27;d film</h2><p>The easy, breezy beach option. It is the slow-morning stay: ocean light, a beach path, and an easy ride to Venice.</p><div class="chips"><span class="chip"><i></i>Sea-glass</span><span class="chip"><i></i>Navy</span><span class="chip"><i></i>White linen</span></div></div>
   <div class="rise"><div class="kick">Highlights</div><ul class="clean"><li>Upscale beachfront retreat in Santa Monica with ocean views.</li><li>Beach path access toward Venice (confirm walking time).</li><li>Near the Santa Monica Pier.</li></ul></div>
 </section>
-<section class="lists">
-  <div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean"><li>Ocean-view room and balcony</li><li>Beach path walk <em>(confirm)</em></li><li>Santa Monica Pier <em>(confirm)</em></li></ul></div>
-  <div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean"><li>Venice Canals</li><li>Shuhari Matcha Café, Venice</li><li>Abbot Kinney Boulevard</li><li>Erewhon smoothie</li><li>Tartine Bakery</li><li>Malibu Farm on the pier</li><li>Malibu Country Mart</li><li>Nobu Malibu <em>(confirm)</em></li><li>Rok Matcha, Koreatown</li><li>Gentle Monster flagship, Broadway</li><li>Goodies LA <em>(confirm)</em></li></ul></div>
-</section>
+<section class="hl guide rise"><div class="kick">In this guide</div><h2>Everything on the list</h2><p class="lede">Tap a card to open it. Each place says whether it is walkable from the hotel or needs a ride (distances are estimates; confirm on the day).</p><div class="cards gcats"><details class="card gcat"><summary><h3>Hotel<small>2</small></h3></summary><ul><li><span class="gn">Ocean-view room and balcony</span><span class="gw y">in the hotel</span></li><li><span class="gn">Beach path walk</span><span class="gw y">in the hotel</span></li></ul></details><details class="card gcat"><summary><h3>Matcha<small>2</small></h3></summary><ul><li><span class="gn">Shuhari Matcha Café, Venice</span><span class="gw n">short ride</span></li><li><span class="gn">Rok Matcha, Koreatown</span><span class="gw n">day trip</span></li></ul></details><details class="card gcat"><summary><h3>Food<small>1</small></h3></summary><ul><li><span class="gn">Nobu Malibu</span><span class="gw n">day trip</span></li></ul></details><details class="card gcat"><summary><h3>Shops<small>1</small></h3></summary><ul><li><span class="gn">Gentle Monster flagship, Broadway</span><span class="gw n">day trip</span></li></ul></details><details class="card gcat"><summary><h3>Activities<small>8</small></h3></summary><ul><li><span class="gn">Santa Monica Pier</span><span class="gw y">walkable</span></li><li><span class="gn">Venice Canals</span><span class="gw n">short ride</span></li><li><span class="gn">Abbot Kinney Boulevard</span><span class="gw n">short ride</span></li><li><span class="gn">Erewhon smoothie</span><span class="gw n">short ride</span></li><li><span class="gn">Tartine Bakery</span><span class="gw n">short ride</span></li><li><span class="gn">Malibu Farm on the pier</span><span class="gw n">day trip</span></li><li><span class="gn">Malibu Country Mart</span><span class="gw n">day trip</span></li><li><span class="gn">Goodies LA</span><span class="gw n">day trip</span></li></ul></details></div></section>
 
 <section class="end">
   <div class="kick">Let's make it real</div>

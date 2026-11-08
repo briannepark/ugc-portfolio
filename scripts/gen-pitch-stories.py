@@ -294,6 +294,19 @@ CSS = r"""
   .scroll { animation:none; }
   .wcap .hand { font-family:var(--head); font-style:italic; font-size:clamp(30px,4.4vw,58px); line-height:1.05; }
   .cover .hand, .end .hand { font-family:var(--head); font-style:italic; }
+  .guide .gcats { align-items:start; }
+  .guide .gcat summary { cursor:pointer; list-style:none; }
+  .guide .gcat summary::-webkit-details-marker { display:none; }
+  .guide .gcat h3 { display:flex; align-items:baseline; margin:0 0 4px; }
+  .guide .gcat h3 small { margin-left:auto; font:500 12px var(--body); color:var(--ink); opacity:.5; }
+  .guide .gcat > summary { padding:6px 30px 6px 0; font-weight:400; }
+  .guide .gcat > summary::after { top:12px; }
+  .guide .gcat[open] > summary::after { content:'\2212'; transform:none; }
+  .guide .gcat ul { margin-top:8px; }
+  .guide .gcat li { display:flex; justify-content:space-between; gap:12px; align-items:baseline; padding:9px 0; font-size:15px; line-height:1.35; font-weight:500; }
+  .guide .gn { flex:1; }
+  .guide .gw { flex:none; font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:2px 7px; border-radius:99px; border:1px solid currentColor; opacity:.75; }
+  .guide .gw.y { color:#4f7a58; } .guide .gw.n { color:#9a6b3f; }
   .index .gcats { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:34px 40px; text-align:left; margin-top:30px; }
   .index .gcat { align-self:start; }
   .index .gcat summary { list-style:none; cursor:pointer; }
@@ -1677,8 +1690,15 @@ def render(h):
     _skip = {'lobby and lounge','room view at dusk','the bed and the quiet','bath time, mom and baby','family perks','dogs welcome','fitness center','nap and soak','spa and steam room','last look and checkout','in-room breakfast'}
     for _s in allstops:
         if _s[0].lower() in _skip: continue
-        _g[_cat(_s[0], _s[1])].append(_s[0])
-    ticker = '<div class="gcats">' + ''.join(f'<details class="gcat"{" data-s=\"w\"" if k == "Winter lights" else ""}><summary><h3>{k}<small>{len(v)}</small></h3></summary><ul>' + ''.join(f'<li{" data-s=\"m\"" if x == "Brooklyn Botanical Garden" and slug_h == "nomad" else ""}>{esc(x)}</li>' for x in v) + '</ul></details>' for k, v in _g.items() if v) + '</div>'
+        _g[_cat(_s[0], _s[1])].append((_s[0], _s[1]))
+    lists_sec = f'''<section class="lists"><div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean">{li(walk)}</ul></div><div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean">{li(far)}</ul></div></section>'''
+    _nt = {'here': ('in the hotel', 'y'), 'walk': ('walkable', 'y'), 'ride': ('short ride', 'n'), 'trip': ('day trip', 'n')}
+    def _gli(x, t):
+        a = ' data-s="m"' if x == "Brooklyn Botanical Garden" and slug_h == "nomad" else ''
+        n, w = _nt.get(t, ('', 'n'))
+        return f'<li{a}><span class="gn">{esc(x)}</span><span class="gw {w}">{n}</span></li>'
+    ticker = '<div class="cards gcats">' + ''.join(f'<details class="card gcat"{" data-s=\"w\"" if k == "Winter lights" else ""}><summary><h3>{k}<small>{len(v)}</small></h3></summary><ul>' + ''.join(_gli(x, t) for x, t in v) + '</ul></details>' for k, v in _g.items() if v) + '</div>'
+    guide_sec = f'<section class="hl guide rise"><div class="kick">In this guide</div><h2>Everything on the list</h2><p class="lede">Tap a card to open it. Each place says whether it is walkable from the hotel or needs a ride (distances are estimates; confirm on the day).</p>{ticker}</section>'
     _fl = [('a','c1','g0',2,'4/5',.04),('b','c2','g1',-2,'1/1',-.03),('c','c3','g2',1,'3/4',.02)]
     floats = ''.join(f'<figure class="cut float {a} {c} {gg}" style="--r:{r}deg" data-speed="{sp}"><div class="img" style="--ar:{ar}"><span class="ph"></span><img src="{CDN}{slug_h}/cover-{n+1}.jpg" alt="" onerror="this.remove()"></div></figure>' for n, (a, c, gg, r, ar, sp) in enumerate(_fl) if os.path.exists(os.path.join(ROOT, 'media', 'pitches', slug_h, f'cover-{n+1}.jpg')))
     hotel_line = ''
@@ -1760,7 +1780,6 @@ def render(h):
 {opener}
 {lobby}
 {intro_h}
-<div class="index"><div class="kick">In this guide</div>{ticker}</div>
 {chapters}
 {hlsec}
 
@@ -1768,10 +1787,7 @@ def render(h):
   <div class="rise"><div class="kick">Why this stay</div><h2>{esc(h.get('why_title', "The feeling I'd film"))}</h2><p>{esc(h['why'])}</p><div class="chips">{chips}</div></div>
   {'' if h.get('hl') else f'<div class="rise"><div class="kick">Highlights</div><ul class="clean">{facts}</ul></div>'}
 </section>
-<section class="lists">
-  <div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean">{li(walk)}</ul></div>
-  <div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean">{li(far)}</ul></div>
-</section>
+{guide_sec}
 
 <section class="end">
   <div class="kick">Let's make it real</div>

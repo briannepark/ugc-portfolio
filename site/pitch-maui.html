@@ -149,6 +149,19 @@
   .scroll { animation:none; }
   .wcap .hand { font-family:var(--head); font-style:italic; font-size:clamp(30px,4.4vw,58px); line-height:1.05; }
   .cover .hand, .end .hand { font-family:var(--head); font-style:italic; }
+  .guide .gcats { align-items:start; }
+  .guide .gcat summary { cursor:pointer; list-style:none; }
+  .guide .gcat summary::-webkit-details-marker { display:none; }
+  .guide .gcat h3 { display:flex; align-items:baseline; margin:0 0 4px; }
+  .guide .gcat h3 small { margin-left:auto; font:500 12px var(--body); color:var(--ink); opacity:.5; }
+  .guide .gcat > summary { padding:6px 30px 6px 0; font-weight:400; }
+  .guide .gcat > summary::after { top:12px; }
+  .guide .gcat[open] > summary::after { content:'\2212'; transform:none; }
+  .guide .gcat ul { margin-top:8px; }
+  .guide .gcat li { display:flex; justify-content:space-between; gap:12px; align-items:baseline; padding:9px 0; font-size:15px; line-height:1.35; font-weight:500; }
+  .guide .gn { flex:1; }
+  .guide .gw { flex:none; font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:2px 7px; border-radius:99px; border:1px solid currentColor; opacity:.75; }
+  .guide .gw.y { color:#4f7a58; } .guide .gw.n { color:#9a6b3f; }
   .index .gcats { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:34px 40px; text-align:left; margin-top:30px; }
   .index .gcat { align-self:start; }
   .index .gcat summary { list-style:none; cursor:pointer; }
@@ -912,7 +925,6 @@
     </div></div></section>
 
 <section class="intro rise"><div class="kick">The trip</div><p>This is a quick staycation, kept small and kept local. Two nights, a quiet hotel by the water, sunset on Haleakalā, a day in Lahaina as it rebuilds, and good food from the people who live here. Many in Hawaiʻi are weary of tourism that takes more than it gives, so the plan is to take little and spend close to home.</p></section>
-<div class="index"><div class="kick">In this guide</div><div class="gcats"><details class="gcat"><summary><h3>Hotel<small>4</small></h3></summary><ul><li>Keiki Pool</li><li>Lobby Lounge sunset hula</li><li>The quiet room</li><li>Pack for the summit</li></ul></details><details class="gcat"><summary><h3>Food<small>5</small></h3></summary><ul><li>Poi By The Pound, Kahului</li><li>South Maui Fish Co, Kihei</li><li>Aloha Mixed Plate, Lahaina</li><li>Star Noodle, Lahaina</li><li>Only Fresh Poke, Olowalu</li></ul></details><details class="gcat"><summary><h3>Shops<small>4</small></h3></summary><ul><li>Native Intelligence, Wailuku</li><li>Holoholo Surf and Kūlua, Makawao</li><li>Makawao town</li><li>ʻUlu o Lele Marketplace</li></ul></details><details class="gcat"><summary><h3>Activities<small>6</small></h3></summary><ul><li>Wailea Beach</li><li>Hui Noʻeau Visual Arts Center</li><li>Haleakalā sunset</li><li>Haleakalā Visitor Center</li><li>Front Street, Lahaina</li><li>Fishing with a local captain</li></ul></details></div></div>
 
   <section class="chapter " id="ch1" data-label="Day 1 · Arrival">
     
@@ -1113,10 +1125,7 @@
   <div class="rise"><div class="kick">Why this stay</div><h2>Why a staycation</h2><p>I want to show other moms what a short trip can be: slow, local, and good for the place you are visiting. Two nights is plenty. The hotel is the quiet base, the sunset on Haleakalā is the reason for coming, and the rest of the time goes to people who live and work here, and to fish that came out of the water that morning.</p><div class="chips"><span class="chip"><i></i>Deep ocean teal</span><span class="chip"><i></i>Sunset coral</span><span class="chip"><i></i>Warm sand</span></div></div>
   
 </section>
-<section class="lists">
-  <div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean"><li>Wailea Beach</li><li>Keiki Pool</li><li>Lobby Lounge sunset hula <em>(confirm)</em></li><li>The quiet room <em>(confirm)</em></li><li>Pack for the summit</li></ul></div>
-  <div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean"><li>Poi By The Pound, Kahului <em>(confirm)</em></li><li>Native Intelligence, Wailuku <em>(confirm)</em></li><li>South Maui Fish Co, Kihei <em>(confirm)</em></li><li>Hui Noʻeau Visual Arts Center <em>(confirm)</em></li><li>Holoholo Surf and Kūlua, Makawao <em>(confirm)</em></li><li>Makawao town <em>(confirm)</em></li><li>Haleakalā sunset <em>(confirm)</em></li><li>Haleakalā Visitor Center <em>(confirm)</em></li><li>Front Street, Lahaina <em>(confirm)</em></li><li>ʻUlu o Lele Marketplace <em>(confirm)</em></li><li>Aloha Mixed Plate, Lahaina <em>(confirm)</em></li><li>Star Noodle, Lahaina <em>(confirm)</em></li><li>Fishing with a local captain <em>(confirm)</em></li><li>Only Fresh Poke, Olowalu <em>(confirm)</em></li></ul></div>
-</section>
+<section class="hl guide rise"><div class="kick">In this guide</div><h2>Everything on the list</h2><p class="lede">Tap a card to open it. Each place says whether it is walkable from the hotel or needs a ride (distances are estimates; confirm on the day).</p><div class="cards gcats"><details class="card gcat"><summary><h3>Hotel<small>4</small></h3></summary><ul><li><span class="gn">Keiki Pool</span><span class="gw y">in the hotel</span></li><li><span class="gn">Lobby Lounge sunset hula</span><span class="gw y">in the hotel</span></li><li><span class="gn">The quiet room</span><span class="gw y">in the hotel</span></li><li><span class="gn">Pack for the summit</span><span class="gw y">in the hotel</span></li></ul></details><details class="card gcat"><summary><h3>Food<small>5</small></h3></summary><ul><li><span class="gn">Poi By The Pound, Kahului</span><span class="gw n">short ride</span></li><li><span class="gn">South Maui Fish Co, Kihei</span><span class="gw n">short ride</span></li><li><span class="gn">Aloha Mixed Plate, Lahaina</span><span class="gw n">day trip</span></li><li><span class="gn">Star Noodle, Lahaina</span><span class="gw n">day trip</span></li><li><span class="gn">Only Fresh Poke, Olowalu</span><span class="gw n">day trip</span></li></ul></details><details class="card gcat"><summary><h3>Shops<small>4</small></h3></summary><ul><li><span class="gn">Native Intelligence, Wailuku</span><span class="gw n">short ride</span></li><li><span class="gn">Holoholo Surf and Kūlua, Makawao</span><span class="gw n">short ride</span></li><li><span class="gn">Makawao town</span><span class="gw n">short ride</span></li><li><span class="gn">ʻUlu o Lele Marketplace</span><span class="gw n">day trip</span></li></ul></details><details class="card gcat"><summary><h3>Activities<small>6</small></h3></summary><ul><li><span class="gn">Wailea Beach</span><span class="gw y">walkable</span></li><li><span class="gn">Hui Noʻeau Visual Arts Center</span><span class="gw n">short ride</span></li><li><span class="gn">Haleakalā sunset</span><span class="gw n">day trip</span></li><li><span class="gn">Haleakalā Visitor Center</span><span class="gw n">day trip</span></li><li><span class="gn">Front Street, Lahaina</span><span class="gw n">day trip</span></li><li><span class="gn">Fishing with a local captain</span><span class="gw n">day trip</span></li></ul></details></div></section>
 
 <section class="end">
   <div class="kick">Let's make it real</div>

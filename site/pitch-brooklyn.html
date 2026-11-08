@@ -149,6 +149,19 @@
   .scroll { animation:none; }
   .wcap .hand { font-family:var(--head); font-style:italic; font-size:clamp(30px,4.4vw,58px); line-height:1.05; }
   .cover .hand, .end .hand { font-family:var(--head); font-style:italic; }
+  .guide .gcats { align-items:start; }
+  .guide .gcat summary { cursor:pointer; list-style:none; }
+  .guide .gcat summary::-webkit-details-marker { display:none; }
+  .guide .gcat h3 { display:flex; align-items:baseline; margin:0 0 4px; }
+  .guide .gcat h3 small { margin-left:auto; font:500 12px var(--body); color:var(--ink); opacity:.5; }
+  .guide .gcat > summary { padding:6px 30px 6px 0; font-weight:400; }
+  .guide .gcat > summary::after { top:12px; }
+  .guide .gcat[open] > summary::after { content:'\2212'; transform:none; }
+  .guide .gcat ul { margin-top:8px; }
+  .guide .gcat li { display:flex; justify-content:space-between; gap:12px; align-items:baseline; padding:9px 0; font-size:15px; line-height:1.35; font-weight:500; }
+  .guide .gn { flex:1; }
+  .guide .gw { flex:none; font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:2px 7px; border-radius:99px; border:1px solid currentColor; opacity:.75; }
+  .guide .gw.y { color:#4f7a58; } .guide .gw.n { color:#9a6b3f; }
   .index .gcats { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:34px 40px; text-align:left; margin-top:30px; }
   .index .gcat { align-self:start; }
   .index .gcat summary { list-style:none; cursor:pointer; }
@@ -912,7 +925,6 @@
     </div></div></section>
 
 <section class="intro rise"><div class="kick">The trip</div><p><span data-s="w">Picture a slower New York. The skyline is right across the water, the bridge is outside your window, and the city glitters in the cold. This is the stay for people who want the city without the rush.</span><span data-s="m">Picture a slower New York. The skyline is right across the water, the bridge is outside your window, and there&#x27;s a rooftop pool above it all. This is the stay for people who want the city without the rush.</span></p></section>
-<div class="index"><div class="kick">In this guide</div><div class="gcats"><details class="gcat"><summary><h3>Hotel<small>3</small></h3></summary><ul><li>Room and skyline view</li><li>Rooftop pool deck</li><li>Bamford Wellness Spa</li></ul></details><details class="gcat"><summary><h3>Matcha<small>3</small></h3></summary><ul><li>12 Matcha</li><li>Rhythm Zero</li><li>Rok Matcha</li></ul></details><details class="gcat"><summary><h3>Food<small>3</small></h3></summary><ul><li>Ippudo</li><li>Ice cream by the water</li><li>Printemps, One Wall Street</li></ul></details><details class="gcat"><summary><h3>Shops<small>2</small></h3></summary><ul><li>Gentle Monster, SoHo</li><li>Kith, SoHo</li></ul></details><details class="gcat"><summary><h3>Activities<small>8</small></h3></summary><ul><li>Brooklyn Bridge Park walk</li><li>Washington Street bridge shot</li><li>Jane&#x27;s Carousel</li><li>Time Out Market</li><li>Dumbo gallery stop</li><li>Brooklyn Botanical Garden</li><li>Mercer Labs</li><li>Aura reading at Magic Jewelry</li></ul></details><details class="gcat"><summary><h3>Pop-ups<small>1</small></h3></summary><ul><li>CJ Hendry Flower Market</li></ul></details></div></div>
 
   <section class="chapter " id="ch1" data-label="Day 1 · Morning">
     
@@ -1199,10 +1211,7 @@
   <div class="rise"><div class="kick">Why this stay</div><h2>The feeling I&#x27;d film</h2><p>The calmer, greener pick. It suits your own values (sustainable, ingredient-conscious) and lets you tell a skincare-and-spa story, like your Alastin journey, inside a luxury stay.</p><div class="chips"><span class="chip"><i></i>Moss green</span><span class="chip"><i></i>Kraft paper</span><span class="chip"><i></i>Warm timber</span></div></div>
   <div class="rise"><div class="kick">Highlights</div><ul class="clean"><li>Anchors the Dumbo waterfront with views of the Lower Manhattan skyline.</li><li>Rooftop pool deck.</li><li>Bamford Wellness Spa.</li></ul></div>
 </section>
-<section class="lists">
-  <div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean"><li>Room and skyline view</li><li>Rooftop pool deck</li><li>Bamford Wellness Spa</li><li>Brooklyn Bridge Park walk <em>(confirm)</em></li><li>Washington Street bridge shot <em>(confirm)</em></li><li>Jane&#x27;s Carousel <em>(confirm)</em></li><li>Time Out Market <em>(confirm)</em></li><li>Dumbo gallery stop <em>(confirm)</em></li></ul></div>
-  <div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean"><li>CJ Hendry Flower Market</li><li>Gentle Monster, SoHo <em>(confirm)</em></li><li>Kith, SoHo <em>(confirm)</em></li><li>12 Matcha</li><li>Rhythm Zero</li><li>Rok Matcha <em>(confirm)</em></li><li>Ippudo <em>(confirm)</em></li><li>Ice cream by the water <em>(confirm)</em></li><li>Brooklyn Botanical Garden <em>(confirm)</em></li><li>Mercer Labs</li><li>Printemps, One Wall Street</li><li>Aura reading at Magic Jewelry</li></ul></div>
-</section>
+<section class="hl guide rise"><div class="kick">In this guide</div><h2>Everything on the list</h2><p class="lede">Tap a card to open it. Each place says whether it is walkable from the hotel or needs a ride (distances are estimates; confirm on the day).</p><div class="cards gcats"><details class="card gcat"><summary><h3>Hotel<small>3</small></h3></summary><ul><li><span class="gn">Room and skyline view</span><span class="gw y">in the hotel</span></li><li><span class="gn">Rooftop pool deck</span><span class="gw y">in the hotel</span></li><li><span class="gn">Bamford Wellness Spa</span><span class="gw y">in the hotel</span></li></ul></details><details class="card gcat"><summary><h3>Matcha<small>3</small></h3></summary><ul><li><span class="gn">12 Matcha</span><span class="gw n">short ride</span></li><li><span class="gn">Rhythm Zero</span><span class="gw n">short ride</span></li><li><span class="gn">Rok Matcha</span><span class="gw n">short ride</span></li></ul></details><details class="card gcat"><summary><h3>Food<small>3</small></h3></summary><ul><li><span class="gn">Ippudo</span><span class="gw n">short ride</span></li><li><span class="gn">Ice cream by the water</span><span class="gw n">short ride</span></li><li><span class="gn">Printemps, One Wall Street</span><span class="gw n">short ride</span></li></ul></details><details class="card gcat"><summary><h3>Shops<small>2</small></h3></summary><ul><li><span class="gn">Gentle Monster, SoHo</span><span class="gw n">short ride</span></li><li><span class="gn">Kith, SoHo</span><span class="gw n">short ride</span></li></ul></details><details class="card gcat"><summary><h3>Activities<small>8</small></h3></summary><ul><li><span class="gn">Brooklyn Bridge Park walk</span><span class="gw y">walkable</span></li><li><span class="gn">Washington Street bridge shot</span><span class="gw y">walkable</span></li><li><span class="gn">Jane&#x27;s Carousel</span><span class="gw y">walkable</span></li><li><span class="gn">Time Out Market</span><span class="gw y">walkable</span></li><li><span class="gn">Dumbo gallery stop</span><span class="gw y">walkable</span></li><li><span class="gn">Brooklyn Botanical Garden</span><span class="gw n">short ride</span></li><li><span class="gn">Mercer Labs</span><span class="gw n">short ride</span></li><li><span class="gn">Aura reading at Magic Jewelry</span><span class="gw n">short ride</span></li></ul></details><details class="card gcat"><summary><h3>Pop-ups<small>1</small></h3></summary><ul><li><span class="gn">CJ Hendry Flower Market</span><span class="gw n">short ride</span></li></ul></details></div></section>
 
 <section class="end">
   <div class="kick">Let's make it real</div>
