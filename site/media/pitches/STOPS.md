@@ -32,6 +32,7 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/din-tai-fung.jpg`: Din Tai Fung
 - `nomad/saks-fifth-avenue-light-show.jpg`: Saks Fifth Avenue light show
 - `nomad/rockefeller-center-christmas-tree.jpg`: Rockefeller Center Christmas tree
+- `nomad/fao-schwarz-rockefeller-center.jpg`: FAO Schwarz, Rockefeller Center
 - `nomad/macy-s-santaland-and-fifth-ave-windows.jpg`: Macy's Santaland and Fifth Ave windows
 - `nomad/grand-central-holiday-train-show.jpg`: Grand Central Holiday Train Show
 - `nomad/breakfast-at-chelsea-market.jpg`: Breakfast at Chelsea Market
