@@ -14,9 +14,11 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/bazaar-meat-by-jos-andr-s.jpg`: Bazaar Meat by José Andrés
 - `nomad/nubeluz-50th-floor.jpg`: Nubeluz, 50th floor
 - `nomad/fitness-center.jpg`: Fitness center
+- `nomad/brunch-at-eataly-flatiron.jpg`: Brunch at Eataly Flatiron
 - `nomad/madison-square-park-and-flatiron.jpg`: Madison Square Park and Flatiron
 - `nomad/cha-cha-matcha-nomad.jpg`: Cha Cha Matcha, NoMad
 - `nomad/matchaful-flatiron.jpg`: Matchaful, Flatiron
+- `nomad/lunch-at-balthazar.jpg`: Lunch at Balthazar
 - `nomad/cj-hendry-flower-market.jpg`: CJ Hendry Flower Market
 - `nomad/gentle-monster-soho.jpg`: Gentle Monster, SoHo
 - `nomad/kith-soho.jpg`: Kith, SoHo
@@ -27,22 +29,26 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/rok-matcha.jpg`: Rok Matcha
 - `nomad/nap-and-soak.jpg`: Nap and soak
 - `nomad/spa-and-steam-room.jpg`: Spa and steam room
-- `nomad/ippudo.jpg`: Ippudo
+- `nomad/din-tai-fung.jpg`: Din Tai Fung
 - `nomad/saks-fifth-avenue-light-show.jpg`: Saks Fifth Avenue light show
 - `nomad/rockefeller-center-christmas-tree.jpg`: Rockefeller Center Christmas tree
 - `nomad/macy-s-santaland-and-fifth-ave-windows.jpg`: Macy's Santaland and Fifth Ave windows
 - `nomad/grand-central-holiday-train-show.jpg`: Grand Central Holiday Train Show
+- `nomad/breakfast-at-chelsea-market.jpg`: Breakfast at Chelsea Market
 - `nomad/chelsea-gallery-streets.jpg`: Chelsea gallery streets
 - `nomad/brooklyn-botanical-garden.jpg`: Brooklyn Botanical Garden
+- `nomad/lunch-at-ippudo.jpg`: Lunch at Ippudo
 - `nomad/mercer-labs.jpg`: Mercer Labs
 - `nomad/printemps-one-wall-street.jpg`: Printemps, One Wall Street
 - `nomad/aura-reading-at-magic-jewelry.jpg`: Aura reading at Magic Jewelry
+- `nomad/dinner-at-nom-wah-tea-parlor.jpg`: Dinner at Nom Wah Tea Parlor
 - `nomad/glace-upper-east-side.jpg`: Glace, Upper East Side
 - `nomad/lightscape-at-brooklyn-botanic-garden.jpg`: Lightscape at Brooklyn Botanic Garden
 - `nomad/dyker-heights-christmas-lights.jpg`: Dyker Heights Christmas lights
 - `nomad/in-room-breakfast.jpg`: In-room breakfast
 - `nomad/hudson-river-greenway.jpg`: Hudson River Greenway
 - `nomad/matchaful-manhattan-west.jpg`: Matchaful, Manhattan West
+- `nomad/lunch-at-juliana-s-pizza.jpg`: Lunch at Juliana's Pizza
 - `nomad/dumbo-ice-cream-and-bridge-shot.jpg`: Dumbo ice cream and bridge shot
 - `nomad/domino-park-williamsburg.jpg`: Domino Park, Williamsburg
 - `nomad/nobu-downtown-dinner.jpg`: Nobu Downtown dinner
