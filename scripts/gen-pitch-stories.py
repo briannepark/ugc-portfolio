@@ -45,7 +45,7 @@ STORY = {
     scenes=[
       ('Entrance','Step through the doors.','Bronze doors, brass handles, and a garden of green waiting just inside.'),
       ('Lobby','Past the sheer curtains, to check in.','Veined stone desks, sculptural chandeliers, and floor-to-ceiling windows behind the lounge chairs.'),
-      ('Lounge','Then toward the bar.','Green velvet, brass, and a wall of hanging greenery behind the bottles.')]),
+      ]),
   intro="Picture a trip that feels like yours again: a skyline room, a spa afternoon, the pop-ups you usually miss, and everything baby and the dog need handled, comfortably. This is the long weekend I'd take other moms on, one stop at a time.",
   chapters=[
    ('Day 1 · Settle in','Sleep like you mean it',"I travel with my baby and my dog, so the hotel has to work for all three of us. This is the part of the trip I'd film first: a quiet room, a long nap while the city hums far below, and a soak at the end of the day.",
@@ -241,7 +241,7 @@ CSS = r"""
 
 
   /* walk-through */
-  .walkthru { position:relative; height:440vh; }
+  .walkthru { position:relative; height:320vh; }
   .walkthru .stick { position:sticky; top:0; height:100vh; overflow:hidden; background:#06080f; }
   .walkthru .scene { position:absolute; inset:0; opacity:0; will-change:transform,opacity; }
   .walkthru .s1 img { width:100%; height:100%; object-fit:cover; object-position:50% 40%; transform-origin:50% 38%; }
@@ -1058,8 +1058,8 @@ JS = r"""
   var cur = document.querySelector('.hud .cur'), bar = document.querySelector('.hud .bar');
   var chs = document.querySelectorAll('.chapter,.walkthru');
   var cuts = Array.prototype.slice.call(document.querySelectorAll('.cut[data-speed],.lyr[data-speed]'));
-  var walk = document.querySelector('.walkthru'), ticking = false, s0, s1, s2, wcaps = [], floors = [];
-  if (walk) { s0 = walk.querySelector('.s0'); s1 = walk.querySelector('.s1'); s2 = walk.querySelector('.s2');
+  var walk = document.querySelector('.walkthru'), ticking = false, s0, s1, wcaps = [], floors = [];
+  if (walk) { s0 = walk.querySelector('.s0'); s1 = walk.querySelector('.s1');
     wcaps = Array.prototype.slice.call(walk.querySelectorAll('.wcap')); floors = Array.prototype.slice.call(walk.querySelectorAll('.floors .f')); }
   function frame() {
     ticking = false;
@@ -1071,15 +1071,14 @@ JS = r"""
     if (walk && !reduce) {
       var wr = walk.getBoundingClientRect(), p = Math.max(0, Math.min(1, -wr.top / (wr.height - vh)));
       var ramp = function (a, b, x) { return Math.max(0, Math.min(1, (x - a) / (b - a))); };
-      var o0 = 1 - ramp(.27, .36, p), o1 = ramp(.27, .36, p) * (1 - ramp(.62, .72, p)), o2 = ramp(.62, .72, p);
-      s0.style.opacity = o0; s1.style.opacity = o1; s2.style.opacity = o2;
-      var da = 98 * ramp(.03, .22, p);
+      var o0 = 1 - ramp(.40, .52, p), o1 = ramp(.40, .52, p);
+      s0.style.opacity = o0; s1.style.opacity = o1;
+      var da = 98 * ramp(.03, .30, p);
       s0.querySelector('.dl').style.transform = 'rotateY(' + da.toFixed(1) + 'deg)';
       s0.querySelector('.dr').style.transform = 'rotateY(' + (-da).toFixed(1) + 'deg)';
-      s0.querySelector('.open img').style.transform = 'scale(' + (1.02 + .3 * ramp(.1, .36, p)).toFixed(3) + ')';
-      s1.firstElementChild.style.transform = 'scale(' + (1 + .25 * ramp(.27, .66, p)).toFixed(3) + ')';
-      s2.querySelector('img').style.transform = 'translate(-50%,-50%) scale(' + (1.02 + .14 * ramp(.62, 1, p)).toFixed(3) + ')';
-      var step = p < .3 ? 0 : (p < .66 ? 1 : 2);
+      s0.querySelector('.open img').style.transform = 'scale(' + (1.02 + .3 * ramp(.12, .52, p)).toFixed(3) + ')';
+      s1.firstElementChild.style.transform = 'scale(' + (1 + .25 * ramp(.4, 1, p)).toFixed(3) + ')';
+      var step = p < .46 ? 0 : 1;
       wcaps.forEach(function (c, i) { c.classList.toggle('on', i === step); });
       floors.forEach(function (f, i) { f.classList.toggle('on', i === step); });
     }
@@ -1585,17 +1584,15 @@ def render(h):
     <div class="stick">
       <div class="scene s0"><div class="open"><img src="{CDN}{slug_h}/walk-doors-open.jpg" alt="Inside the entrance"></div><div class="door dl"><img src="{CDN}{slug_h}/walk-doors-closed.jpg" alt="The entrance doors"></div><div class="door dr"><img src="{CDN}{slug_h}/walk-doors-closed.jpg" alt=""></div></div>
       <div class="scene s1"><img src="{CDN}{slug_h}/walk-desk.jpg" alt="The check-in desk"></div>
-      <div class="scene s2"><div class="blur" style="background-image:url({CDN}{slug_h}/walk-bar.jpg)"></div><img src="{CDN}{slug_h}/walk-bar.jpg" alt="The bar"></div>
       <div class="vig"></div>
       <div class="wcaps">
         <div class="wcap w1"><span class="hand">{esc(sc[0][1])}</span><p>{esc(sc[0][2])}</p></div>
         <div class="wcap w2"><span class="hand">{esc(sc[1][1])}</span><p>{esc(sc[1][2])}</p></div>
-        <div class="wcap w3"><span class="hand">{esc(sc[2][1])}</span><p>{esc(sc[2][2])}</p></div>
       </div>
-      <div class="floors"><span class="f f1">{esc(sc[0][0])}</span><span class="f f2">{esc(sc[1][0])}</span><span class="f f3">{esc(sc[2][0])}</span><i></i></div>
+      <div class="floors"><span class="f f1">{esc(sc[0][0])}</span><span class="f f2">{esc(sc[1][0])}</span><i></i></div>
     </div>
   </section>'''
-        allstops += [('Lobby and lounge','here','',False,'walk-desk'),('The bar','here','',False,'walk-bar')]
+        allstops += [('Lobby and lounge','here','',False,'walk-desk')]
     for i, (kick, title, story, stops) in enumerate(S['chapters']):
         n = len(stops)
         frames = ''

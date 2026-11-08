@@ -96,7 +96,7 @@
 
 
   /* walk-through */
-  .walkthru { position:relative; height:440vh; }
+  .walkthru { position:relative; height:320vh; }
   .walkthru .stick { position:sticky; top:0; height:100vh; overflow:hidden; background:#06080f; }
   .walkthru .scene { position:absolute; inset:0; opacity:0; will-change:transform,opacity; }
   .walkthru .s1 img { width:100%; height:100%; object-fit:cover; object-position:50% 40%; transform-origin:50% 38%; }
@@ -1151,8 +1151,8 @@
   var cur = document.querySelector('.hud .cur'), bar = document.querySelector('.hud .bar');
   var chs = document.querySelectorAll('.chapter,.walkthru');
   var cuts = Array.prototype.slice.call(document.querySelectorAll('.cut[data-speed],.lyr[data-speed]'));
-  var walk = document.querySelector('.walkthru'), ticking = false, s0, s1, s2, wcaps = [], floors = [];
-  if (walk) { s0 = walk.querySelector('.s0'); s1 = walk.querySelector('.s1'); s2 = walk.querySelector('.s2');
+  var walk = document.querySelector('.walkthru'), ticking = false, s0, s1, wcaps = [], floors = [];
+  if (walk) { s0 = walk.querySelector('.s0'); s1 = walk.querySelector('.s1');
     wcaps = Array.prototype.slice.call(walk.querySelectorAll('.wcap')); floors = Array.prototype.slice.call(walk.querySelectorAll('.floors .f')); }
   function frame() {
     ticking = false;
@@ -1164,15 +1164,14 @@
     if (walk && !reduce) {
       var wr = walk.getBoundingClientRect(), p = Math.max(0, Math.min(1, -wr.top / (wr.height - vh)));
       var ramp = function (a, b, x) { return Math.max(0, Math.min(1, (x - a) / (b - a))); };
-      var o0 = 1 - ramp(.27, .36, p), o1 = ramp(.27, .36, p) * (1 - ramp(.62, .72, p)), o2 = ramp(.62, .72, p);
-      s0.style.opacity = o0; s1.style.opacity = o1; s2.style.opacity = o2;
-      var da = 98 * ramp(.03, .22, p);
+      var o0 = 1 - ramp(.40, .52, p), o1 = ramp(.40, .52, p);
+      s0.style.opacity = o0; s1.style.opacity = o1;
+      var da = 98 * ramp(.03, .30, p);
       s0.querySelector('.dl').style.transform = 'rotateY(' + da.toFixed(1) + 'deg)';
       s0.querySelector('.dr').style.transform = 'rotateY(' + (-da).toFixed(1) + 'deg)';
-      s0.querySelector('.open img').style.transform = 'scale(' + (1.02 + .3 * ramp(.1, .36, p)).toFixed(3) + ')';
-      s1.firstElementChild.style.transform = 'scale(' + (1 + .25 * ramp(.27, .66, p)).toFixed(3) + ')';
-      s2.querySelector('img').style.transform = 'translate(-50%,-50%) scale(' + (1.02 + .14 * ramp(.62, 1, p)).toFixed(3) + ')';
-      var step = p < .3 ? 0 : (p < .66 ? 1 : 2);
+      s0.querySelector('.open img').style.transform = 'scale(' + (1.02 + .3 * ramp(.12, .52, p)).toFixed(3) + ')';
+      s1.firstElementChild.style.transform = 'scale(' + (1 + .25 * ramp(.4, 1, p)).toFixed(3) + ')';
+      var step = p < .46 ? 0 : 1;
       wcaps.forEach(function (c, i) { c.classList.toggle('on', i === step); });
       floors.forEach(function (f, i) { f.classList.toggle('on', i === step); });
     }
