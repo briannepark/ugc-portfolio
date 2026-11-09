@@ -773,6 +773,9 @@
   .bedscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(14px,1.7vw,22px); color:#2a2a2a; }
   .bedscene .print.bed { left:4%; top:2%; width:60%; --r:-1.800deg; z-index:2; }
   .bedscene .print.dusk { right:4%; bottom:4%; width:40%; --r:2.800deg; z-index:3; }
+  .napscene img.tubc { left:30%; bottom:-2%; width:44%; height:auto; max-width:none; z-index:4; filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
+  .napscene .msg.d1 { right:6%; top:auto; bottom:12%; } .napscene .print.bed { width:50%; } .napscene .print.dusk { right:3%; bottom:auto; top:4%; width:34%; }
+  @media (max-width:760px) { .napscene { aspect-ratio:3/4.6; } .napscene .print.bed { width:90%; } .napscene .print.dusk { top:36%; width:50%; } .napscene img.tubc { left:8%; bottom:0; width:84%; } .napscene .msg { display:none; } }
   .bedscene .tape { z-index:5; }
   .bedscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
   .bedscene .msg.d1 { right:5%; top:10%; --r:3deg; text-align:right; }

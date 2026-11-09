@@ -920,6 +920,9 @@ CSS = r"""
   .bedscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(14px,1.7vw,22px); color:#2a2a2a; }
   .bedscene .print.bed { left:4%; top:2%; width:60%; --r:-1.800deg; z-index:2; }
   .bedscene .print.dusk { right:4%; bottom:4%; width:40%; --r:2.800deg; z-index:3; }
+  .napscene img.tubc { left:30%; bottom:-2%; width:44%; height:auto; max-width:none; z-index:4; filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
+  .napscene .msg.d1 { right:6%; top:auto; bottom:12%; } .napscene .print.bed { width:50%; } .napscene .print.dusk { right:3%; bottom:auto; top:4%; width:34%; }
+  @media (max-width:760px) { .napscene { aspect-ratio:3/4.6; } .napscene .print.bed { width:90%; } .napscene .print.dusk { top:36%; width:50%; } .napscene img.tubc { left:8%; bottom:0; width:84%; } .napscene .msg { display:none; } }
   .bedscene .tape { z-index:5; }
   .bedscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
   .bedscene .msg.d1 { right:5%; top:10%; --r:3deg; text-align:right; }
@@ -1189,7 +1192,7 @@ def dtf_scene(slug_h, cap_html):
         <div class="scene-col">
           <div class="dscene reveal">
             <figure class="lyr print shopf" data-speed="0.015"><div class="tape"></div><img src="{M}din-tai-fung.jpg" alt="Din Tai Fung at night" loading="lazy"><figcaption class="hand">Din Tai Fung, W 50th</figcaption></figure>
-            {c('xlb','d1',0.04)}{c('pot','d2',-0.03)}{c('green','d3',0.035)}{c('soup','d4',-0.04)}{c('bao','d5',0.03)}{c('shrimp','d6',-0.035)}{c('mini','d7',0.045)}
+            {c('xlb','d1',0.04)}{c('pot','d2',-0.03)}{c('green','d3',0.035)}{c('bao','d5',0.03)}{c('shrimp','d6',-0.035)}{c('mini','d7',0.045)}
             <div class="lyr msg d1m hand" data-speed="0.02">xiao long bao,<br>obviously</div>
             <div class="lyr msg d2m hand" data-speed="-0.015">every basket<br>a little different</div>
           </div>
@@ -1481,6 +1484,19 @@ def bath_scene(slug_h, cap_html):
           {cap_html}
         </div>'''
 
+def nap_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/'
+    return f'''
+        <div class="scene-col">
+          <div class="bedscene napscene reveal">
+            <figure class="lyr print bed" data-speed="0.015"><div class="tape"></div><img src="{M}bed/bed.jpg" alt="The bed" loading="lazy"><figcaption class="hand">a nap first</figcaption></figure>
+            <figure class="lyr print dusk" data-speed="-0.025"><div class="tape"></div><img src="{M}bed/dusk.jpg" alt="The room at dusk" loading="lazy"><figcaption class="hand">then dusk</figcaption></figure>
+            <img class="lyr tubc" data-speed="0.04" src="{CDN}{slug_h}/bath/cut-tub-full.png" alt="The soaking tub" loading="lazy">
+            <div class="lyr msg d1 hand" data-speed="0.01">nap, then<br>a long soak</div>
+          </div>
+          {cap_html}
+        </div>'''
+
 def bed_scene(slug_h, cap_html):
     M = CDN + slug_h + '/bed/'
     return f'''
@@ -1701,6 +1717,9 @@ def render(h):
             if slug_h == 'nomad' and key == 'chelsea-gallery-streets':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + chelsea_scene(slug_h, cap)
+            if slug_h == 'nomad' and key == 'nap-and-soak':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + nap_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'the-bed-and-the-quiet':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + bed_scene(slug_h, cap)
