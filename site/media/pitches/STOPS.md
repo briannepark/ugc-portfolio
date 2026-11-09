@@ -44,7 +44,6 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/dinner-at-nom-wah-tea-parlor.jpg`: Dinner at Nom Wah Tea Parlor
 - `nomad/glace-upper-east-side.jpg`: Glace, Upper East Side
 - `nomad/lightscape-at-brooklyn-botanic-garden.jpg`: Lightscape at Brooklyn Botanic Garden
-- `nomad/dyker-heights-christmas-lights.jpg`: Dyker Heights Christmas lights
 - `nomad/in-room-breakfast.jpg`: In-room breakfast
 - `nomad/hudson-river-greenway.jpg`: Hudson River Greenway
 - `nomad/matchaful-manhattan-west.jpg`: Matchaful, Manhattan West

@@ -76,8 +76,8 @@ STORY = {
     [('Brooklyn Botanical Garden','ride','990 Washington Ave, Prospect Heights. Cherry blossoms in spring, roses in early summer, the Japanese garden and the conservatory year-round. Confirm hours and tickets.',True)]),
    ('Day 3 · Afternoon','Downtown, in one sweep',"Three very different worlds within reach of each other: an immersive art museum, a Parisian department store inside a landmark, and a Chinatown shop where you can get your aura photographed.",
     [('Lunch at Ippudo','ride','65 Fourth Ave, East Village: Hakata-style ramen under a canopy of bamboo, on the way downtown. Confirm which location and wait times.',True),('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False),('Dinner at Nom Wah Tea Parlor','ride','13 Doyers St, Chinatown: classic dim sum in the oldest dim sum parlor in the city. Confirm hours and wait times.',True),('Glace, Upper East Side','ride','1266 Madison Ave. Famous frozen hot chocolate and small-batch ice cream. Mostly takeout with outdoor seating only, and lines can pass 30 minutes at peak. Uptown, so pair it with the car. Daily noon to 8 pm. Confirm hours.',True)]),
-   ('Day 3 · Winter lights','A million lights, after dark',"One big light night, your pick: a ticketed trail through the Botanic Garden, or the over-the-top house displays of Dyker Heights. Either way, it's the evening everyone ends up talking about.",
-    [('Lightscape at Brooklyn Botanic Garden','trip','A ticketed light trail, about Nov 20 to Jan 3 (adults $39 to $44, ages 3 to 11 $22 to $28). Confirm dates, tickets and stroller rules.',True),('Dyker Heights Christmas lights','trip','Free neighborhood displays in Brooklyn, 83rd to 86th Sts between 11th and 13th Aves. Best on a mid-December weeknight around 5 to 6 pm. Confirm dog rules.',True)]),
+   ('Day 3 · Winter lights','A million lights, after dark',"One big light night: a ticketed trail through the Botanic Garden, the evening everyone ends up talking about.",
+    [('Lightscape at Brooklyn Botanic Garden','trip','A ticketed light trail, about Nov 20 to Jan 3 (adults $39 to $44, ages 3 to 11 $22 to $28). Confirm dates, tickets and stroller rules.',True)]),
    ('Day 4 · Early morning','Breakfast in bed, then the river',"We've explored the city the other days, so the last morning starts slow: breakfast in bed, baby and pup curled up beside me. Then one last flat, easy stroll along the Hudson, water on one side and the stroller rolling smoothly.",
     [('In-room breakfast','here','Ritz-Carlton in-room dining, delivered to the room. Confirm the menu, hours and whether they can do matcha.',True),('Hudson River Greenway','walk','A flat, car-free waterfront path. Leashed dogs are generally welcome in Hudson River Park. Confirm dog rules and any dog run hours.',True),('Matchaful, Manhattan West','walk','450 W 33rd St, inside Whole Foods (entrance on 10th Ave). Open 8 am to 7 pm per the building site. A matcha stop on the way toward the river.',True)]),
    ('Day 4 · Across the bridge','Brooklyn, then the big dinner',"A scoop of ice cream, the bridge in the frame, a slow walk along the Williamsburg waterfront at Domino Park, and one last dinner that earns its place in the story.",
@@ -1799,18 +1799,18 @@ def render(h):
         if has('gentle monster', 'kith', 'intelligence', 'marketplace', 'holoholo', 'kūlua', 'makawao town', 'shops at', 'paʻia town'): return 'Shops'
         if tag == 'here': return 'Hotel'
         return 'Activities'
-    _extra = [('Grand Central Holiday Train Show (no strollers in the gallery)', 'ride')] if slug_h == 'nomad' else []
+    _extra = [('Grand Central Holiday Train Show (no strollers in the gallery)', 'ride'), ('Dyker Heights Christmas lights (free, Brooklyn)', 'trip')] if slug_h == 'nomad' else []
     _order = ['Hotel', 'Matcha', 'Food', 'Shops', 'Activities', 'Sample sale', 'Pop-ups', 'Winter lights']
     _g = {k: [] for k in _order}
     _skip = {'lobby and lounge','room view at dusk','the bed and the quiet','bath time, mom and baby','family perks','dogs welcome','fitness center','nap and soak','spa and steam room','last look and checkout','in-room breakfast'}
     for _s in allstops:
         if _s[0].lower() in _skip: continue
         _g[_cat(_s[0], _s[1])].append((_s[0], _s[1]))
-    for _x in _extra: _g['Activities'].append(_x)
+    for _x in _extra: _g['Winter lights' if _x[0].startswith('Dyker') else 'Activities'].append(_x)
     lists_sec = f'''<section class="lists"><div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean">{li(walk)}</ul></div><div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean">{li(far)}</ul></div></section>'''
     _nt = {'here': ('in the hotel', 'y'), 'walk': ('walkable', 'y'), 'ride': ('short ride', 'n'), 'trip': ('day trip', 'n')}
     def _gli(x, t):
-        a = ' data-s="m"' if x == "Brooklyn Botanical Garden" and slug_h == "nomad" else (' data-s="w"' if x.startswith('Grand Central') else '')
+        a = ' data-s="m"' if x == "Brooklyn Botanical Garden" and slug_h == "nomad" else (' data-s="w"' if x.startswith(('Grand Central','Dyker')) else '')
         n, w = _nt.get(t, ('', 'n'))
         return f'<li{a}><span class="gn">{esc(x)}</span><span class="gw {w}">{n}</span></li>'
     ticker = '<div class="gcats">' + ''.join(f'<details class="gcat"{" data-s=\"w\"" if k == "Winter lights" else ""}><summary><h3>{k}<small>{len(v)}</small></h3></summary><ul>' + ''.join(_gli(x, t) for x, t in v) + '</ul></details>' for k, v in _g.items() if v) + '</div>'
