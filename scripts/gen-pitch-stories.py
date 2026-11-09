@@ -33,6 +33,8 @@ TIMES = {
  'shutters': ['8:00 am','1:00 pm','10:30 am','11:00 am','4:30 pm'],
 }
 
+NOPIC = {'Family perks', 'Dogs welcome'}
+
 def tm(slug_h, n):
     t = TIMES[slug_h][n]
     return t.replace(' ', '<small>', 1) + '</small>' if False else t
@@ -48,7 +50,7 @@ STORY = {
       ]),
   intro="Picture a trip that feels like yours again: a skyline room, a spa afternoon, the pop-ups you usually miss, and everything baby and the dog need handled, comfortably. This is the long weekend I'd take other moms on, one stop at a time.",
   chapters=[
-   ('Day 1 · Settle in','Sleep like you mean it',"I travel with my baby and my dog, so the hotel has to work for all three of us. This is the part of the trip I'd film first: a quiet room, a long nap while the city hums far below, and a soak at the end of the day.",
+   ('Day 1 · Settle in','Unwind after a busy travel day',"I travel with my baby and my dog, so the hotel has to work for all three of us. This is the part of the trip I'd film first: a quiet room, a long nap while the city hums far below, and a soak at the end of the day.",
     [('The bed and the quiet','here','Oversize windows, high above the street. Nap time and bedtime, on the clock. Ask about the bedding and a crib.',True),('Family perks','here','Ritz Kids activities are listed on the hotel site, and adjoining rooms may be possible. Ask what is offered for babies and toddlers.',True),('Dogs welcome','here','Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.',True)]),
    ('Day 1 · Bath time','Bath time, for mom and baby',"Bath time is the golden hour of the day: warm water for baby first, then a long, quiet soak for me while the skyline lights up outside the window. Bubbles on the water and a rubber ducky invited.",
     [('Bath time, mom and baby','here','Diptyque bath products and a separate rain shower, with a deep soaking tub in select rooms. Request a tub room: a warm bath for baby, then a long one for me.',True)]),
@@ -209,8 +211,10 @@ CSS = r"""
   /* intro + marquee */
   .intro { max-width:760px; margin:0 auto; padding:110px 24px 70px; text-align:center; }
   .intro.short { padding:120px 24px 230px; }
-  .walkintro .num { left:0; right:0; text-align:center; }
+  .walkintro .num { left:10px; right:10px; text-align:left; } .walkintro .num small { text-align:center; padding-right:0; }
   .walkintro .ch-head { padding-top:170px !important; } @media (max-width:820px) { .walkintro .ch-head { padding-top:150px !important; } }
+  .collage .cut.nopic, .L-side .collage .cut.nopic, .L-center .collage .cut.nopic { margin:0 0 20px 0 !important; }
+  .cut.nopic { margin-left:0 !important; margin-right:0 !important; left:0 !important; right:auto !important; width:auto !important; max-width:none !important; }
   .num small { display:block; font-family:var(--body); font-size:clamp(17px,2.2vw,24px); font-weight:500; letter-spacing:.4em; text-transform:uppercase; color:var(--accent); -webkit-text-stroke:0; margin-bottom:14px; padding-left:.4em; }
   .intro.short h2 { font-family:var(--head); font-weight:400; font-style:italic; font-size:clamp(44px,7vw,84px); line-height:1.05; margin:0 0 28px; }
   .tagpill { display:inline-flex; align-items:center; gap:12px; padding:10px 24px; border:1.5px solid var(--accent); border-radius:999px; font-size:clamp(11px,1.4vw,14px); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); font-weight:500; }
@@ -1593,9 +1597,9 @@ def render(h):
             speed = [0.025, -0.02, 0.03, -0.025][(i + j) % 4]
             _before = len(frames)
             frames += f'''
-        <figure class="cut reveal {clips[(i + j) % 4]} g{(i + j) % 4}" style="--r:{rot}deg" data-speed="{speed}">
-          <div class="tape"></div>
-          <div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>
+        <figure class="cut reveal {clips[(i + j) % 4]} g{(i + j) % 4}{" nopic" if name in NOPIC else ""}" style="--r:{rot}deg" data-speed="{speed}">
+          {'' if name in NOPIC else '<div class="tape"></div>'}
+          {'' if name in NOPIC else f'<div class="img"><span class="ph">{esc(name)}</span><img src="{CDN}{slug_h}/{key}.jpg" alt="{esc(name)}" loading="lazy" onerror="this.remove()"></div>'}
           <figcaption class="cap"><span class="nm">{sv(name, WINTER_STOP.get(name, (None, None))[0])}</span><span class="row"><span class="tg {cls}">{label}</span>{stamp}</span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>{sv(note, WINTER_STOP.get(name, (None, None))[1])}</span>{pin(h, name, key, tag)}</figcaption>{snaps(slug_h, key)}
         </figure>'''
             if key == 'aura-reading-at-magic-jewelry':
