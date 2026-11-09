@@ -1005,6 +1005,7 @@ CSS = r"""
   .cmscene .tape { z-index:5; } .cmscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; right:4%; bottom:18%; --r:3deg; text-align:right; }
   @media (max-width:760px) { .cmscene { aspect-ratio:3/7; } .cmscene .c-hall { left:4%; top:1%; width:56%; } .cmscene .c-ent { left:auto; right:4%; top:17%; width:56%; } .cmscene .c-pan { right:auto; left:4%; top:36%; width:52%; }
     .cmscene .c-bag { left:auto; right:4%; top:55%; width:50%; bottom:auto; } .cmscene .c-toast { left:4%; top:76%; width:72%; bottom:auto; } .cmscene .msg { display:none; } }
+  .snap.cutsnap { background:none !important; box-shadow:none !important; padding:0 !important; filter:drop-shadow(0 12px 14px rgba(0,0,0,.45)); } .snap.cutsnap .tape { display:none; } .snap.cutsnap img { border:0 !important; }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1189,12 +1190,12 @@ def pin(h, name, key, tag):
     return f'<a class="pin" href="{href}" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>{label}</a>'
 
 
-SNAPS = {('nomad', 'matchaful-manhattan-west'): [('matchaful-cup', 'the iced matcha', 's1')], ('nomad', 'spa-and-steam-room'): [('spa-hall', 'the spa hall', 's1')], ('nomad', 'fao-schwarz-rockefeller-center'): [('fao-schwarz-jellycat', 'the Jellycat diner', 's1'), ('fao-schwarz-piano', 'the giant piano', 's2')], ('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
+SNAPS = {('nomad', 'matchaful-manhattan-west'): [('matchaful-cup-cut', 'the iced matcha', 's1 cutsnap')], ('nomad', 'spa-and-steam-room'): [('spa-hall', 'the spa hall', 's1')], ('nomad', 'fao-schwarz-rockefeller-center'): [('fao-schwarz-jellycat', 'the Jellycat diner', 's1'), ('fao-schwarz-piano', 'the giant piano', 's2')], ('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
 
 def snaps(slug_h, key):
     out = ''
     for n, (img, label, cls) in enumerate(SNAPS.get((slug_h, key), [])):
-        out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.jpg" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
+        out += f'<span class="snap {cls}"><span class="tape"></span><img src="{CDN}{slug_h}/{img}.{'png' if 'cut' in img else 'jpg'}" alt="{label}" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">{label}</em></span>'
     return out
 
 def dtf_scene(slug_h, cap_html):
@@ -1699,6 +1700,7 @@ def render(h):
             rot = [-.7, .5, -.3, .8][(i + j) % 4]
             speed = [0.025, -0.02, 0.03, -0.025][(i + j) % 4]
             _before = len(frames)
+            if j == 1: _split = _before
             frames += f'''
         <figure class="cut reveal {clips[(i + j) % 4]} g{(i + j) % 4}{" nopic" if name in NOPIC else ""}" style="--r:{rot}deg" data-speed="{speed}">
           {'' if name in NOPIC else '<div class="tape"></div>'}
@@ -1768,6 +1770,10 @@ def render(h):
             if slug_h == 'nomad' and key == 'madison-square-park-and-flatiron':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + madison_scene(slug_h, cap)
+        if slug_h == 'nomad' and title.startswith('Breakfast in bed') and n > 1:
+            collage_h = f'<div class="collage n1">{frames[:_split]}</div>' + stroll_html(title) + f'<div class="collage n{min(n-1,4)}">{frames[_split:]}</div>'
+        else:
+            collage_h = f'<div class="collage n{min(n,4)} {"rev" if i % 2 else ""}">{frames}</div>'
         k += 1
         chapters += f'''
   <section class="chapter {LAYOUTS[(i + off) % 5]}" id="ch{i+1+off}" data-label="{esc(kick)}"{' data-s="w"' if slug_h == 'nomad' and kick in WINTER_ONLY else (' data-s="m"' if slug_h == 'nomad' and kick in WARM_ONLY else '')}>
@@ -1779,9 +1785,8 @@ def render(h):
         <div class="note rise"><div class="tape"></div>{sv(story)}<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       {stroll_html(title) if slug_h == 'nomad' and title.startswith(('Madison Square Park', 'Chelsea gallery')) else ''}
-      <div class="collage n{min(n,4)} {'rev' if i % 2 else ''}">{frames}
-      </div>
-      {stroll_html(title) if slug_h == 'nomad' and not title.startswith(('Madison Square Park', 'Chelsea gallery')) else ''}
+      {collage_h}
+      {stroll_html(title) if slug_h == 'nomad' and not title.startswith(('Madison Square Park', 'Chelsea gallery', 'Breakfast in bed')) else ''}
       <img class="cutout" src="{CDN}{slug_h}/ch{i+1+off}-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>'''
