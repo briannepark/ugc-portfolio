@@ -1397,7 +1397,7 @@ def bath_scene(slug_h, cap_html):
           <div class="bscene reveal">
             <figure class="lyr print day" data-speed="0.015"><div class="tape"></div><img src="{M}day.jpg" alt="The soaking tub by day, skyline through the window" loading="lazy"><figcaption class="hand">by day</figcaption></figure>
             <figure class="lyr print dusk" data-speed="-0.025"><div class="tape"></div><img src="{M}dusk.jpg" alt="The soaking tub at dusk" loading="lazy"><figcaption class="hand">at dusk</figcaption></figure>
-            <img class="lyr tub" data-speed="0.04" src="{M}cut-tub.png" alt="The soaking tub" loading="lazy">
+            <img class="lyr tub" data-speed="0.04" src="{M}cut-tub-full.png" alt="The soaking tub" loading="lazy">
             <img class="lyr bubbles" data-speed="0.05" src="{M}cut-bubbles.png" alt="" loading="lazy">
             <img class="lyr bubbles b2" data-speed="-0.03" src="{M}cut-bubbles.png" alt="" loading="lazy">
             <img class="lyr bubbles b3" data-speed="0.08" src="{M}cut-bubbles.png" alt="" loading="lazy">
