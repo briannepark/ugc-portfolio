@@ -994,6 +994,17 @@ CSS = r"""
   @media (max-width:760px) { .escene { aspect-ratio:3/5.2; } .escene img.canopy, .escene img.lamps { top:0; width:150%; left:-25%; }
     .escene .e-bake { left:4%; top:24%; width:80%; } .escene .e-deli { right:4%; top:50%; width:80%; } .escene .e-front { left:8%; top:80%; width:46%; } .escene .msg { left:auto; right:6%; top:84%; font-size:15px; } }
   .smap { margin-bottom:70px !important; }
+  .cmscene { position:relative; width:min(1180px,100%); aspect-ratio:16/10.6; margin:30px auto 20px; }
+  .cmscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); will-change:transform; }
+  .cmscene .print { background:#f4efe3; padding:9px 9px 34px; filter:drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
+  .cmscene .print img { display:block; width:100%; height:auto; }
+  .cmscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(13px,1.5vw,19px); color:#2a2a2a; }
+  .cmscene .c-hall { left:3%; top:2%; width:27%; --r:-2deg; z-index:2; } .cmscene .c-ent { left:33%; top:12%; width:27%; --r:2deg; z-index:3; }
+  .cmscene .c-pan { right:4%; top:2%; width:25%; --r:3deg; z-index:2; } .cmscene .c-bag { left:8%; bottom:2%; width:24%; --r:-3deg; z-index:3; }
+  .cmscene .c-toast { left:40%; bottom:3%; width:33%; --r:1.5deg; z-index:3; }
+  .cmscene .tape { z-index:5; } .cmscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; right:4%; bottom:18%; --r:3deg; text-align:right; }
+  @media (max-width:760px) { .cmscene { aspect-ratio:3/7; } .cmscene .c-hall { left:4%; top:1%; width:56%; } .cmscene .c-ent { left:auto; right:4%; top:17%; width:56%; } .cmscene .c-pan { right:auto; left:4%; top:36%; width:52%; }
+    .cmscene .c-bag { left:auto; right:4%; top:55%; width:50%; bottom:auto; } .cmscene .c-toast { left:4%; top:76%; width:72%; bottom:auto; } .cmscene .msg { display:none; } }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1210,6 +1221,18 @@ def eataly_scene(slug_h, cap_html):
             <img class="lyr canopy" data-speed="0.012" src="{M}canopy.webp" alt="" loading="lazy">
             <img class="lyr lamps" data-speed="0.05" src="{M}lamps.webp" alt="" loading="lazy">
             <div class="lyr msg e1 hand" data-speed="0.02">brunch under<br>the blossoms</div>
+          </div>
+          {cap_html}
+        </div>'''
+
+def cm_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/cmarket/'
+    P = lambda k, cls, cap, sp: f'<figure class="lyr print {cls}" data-speed="{sp}"><div class="tape"></div><img src="{M}{k}.jpg" alt="{cap}" loading="lazy"><figcaption class="hand">{cap}</figcaption></figure>'
+    return f'''
+        <div class="scene-col">
+          <div class="cmscene reveal">
+            {P('hall','c-hall','inside the market',0.015)}{P('entrance','c-ent','75 Ninth Ave',-0.02)}{P('pancakes','c-pan','pancakes',0.03)}{P('bagel','c-bag','a bagel &amp; iced coffee',-0.025)}{P('toast','c-toast','toast with an egg',0.02)}
+            <div class="lyr msg c1 hand" data-speed="0.02">pick a bite,<br>wander the halls</div>
           </div>
           {cap_html}
         </div>'''
@@ -1732,6 +1755,9 @@ def render(h):
             if slug_h == 'nomad' and key == 'brunch-at-eataly-flatiron':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + eataly_scene(slug_h, cap)
+            if slug_h == 'nomad' and key == 'breakfast-at-chelsea-market':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + cm_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'fitness-center':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + fit_scene(slug_h, cap)
