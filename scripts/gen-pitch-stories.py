@@ -68,8 +68,8 @@ STORY = {
     [('Nap and soak','here','The room at its calmest, afternoon light across the skyline.',False),('Spa and steam room','here','A 6,800 sq ft spa with a sauna and steam room. Confirm treatments and age rules.',True)]),
    ('Day 2 · Evening','Dumplings before the lights',"Soup dumplings, a steamer basket at a time. Din Tai Fung is a short walk from Rockefeller Center, so dinner leads right into the winter-lights stroll (and in warm months, an easy night in Midtown).",
     [('Din Tai Fung','ride','1633 Broadway at W 50th, Midtown: the famous Taiwanese soup dumplings. Reservations are strongly recommended; confirm hours and stroller seating.',True)]),
-   ('Day 2 · Winter lights','Lights up on Fifth Avenue',"After dinner, the city's best winter trick: walk the lights. A facade that plays a light show, a tree the size of a building, windows that tell stories, and a tiny train village inside Grand Central. Bundle up, wear baby, and do as much or as little as the night allows.",
-    [('Saks Fifth Avenue light show','ride','Free facade light show and animated windows after sunset, from about Nov 23. The best free view is from the Channel Gardens at Rockefeller Center. Confirm dates.',True),('Rockefeller Center Christmas tree','ride','The tree lights on Dec 2. Come in through the Channel Gardens from Fifth Ave. Expect crowds. Confirm dates.',True),('FAO Schwarz, Rockefeller Center','ride','30 Rockefeller Plaza, steps from the tree: the giant toy store, with the walk-on piano and the candy wall. Fun to peek into with baby after the tree. Confirm hours and that it is open.',True),("Macy's Santaland and Fifth Ave windows",'ride',"Macy's Herald Square windows run about Nov 19 to Jan 4, with Santaland inside the store. Bergdorf Goodman's avenue decorations start about Nov 20. Confirm Santaland hours, reservations and dates.",True),('Grand Central Holiday Train Show','ride','Free, about Nov 13 to Feb 21. Strollers are not allowed in the train gallery, so wear baby. Confirm dates.',True)]),
+   ('Day 2 · Winter lights','Lights up on Fifth Avenue',"After dinner, the city's best winter trick: walk the lights. A facade that plays a light show, a tree the size of a building, windows that tell stories. Bundle up, wear baby, and do as much or as little as the night allows.",
+    [('Saks Fifth Avenue light show','ride','Free facade light show and animated windows after sunset, from about Nov 23. The best free view is from the Channel Gardens at Rockefeller Center. Confirm dates.',True),('Rockefeller Center Christmas tree','ride','The tree lights on Dec 2. Come in through the Channel Gardens from Fifth Ave. Expect crowds. Confirm dates.',True),('FAO Schwarz, Rockefeller Center','ride','30 Rockefeller Plaza, steps from the tree: the giant toy store, with the walk-on piano and the candy wall. Fun to peek into with baby after the tree. Confirm hours and that it is open.',True),("Macy's Santaland and Fifth Ave windows",'ride',"Macy's Herald Square windows run about Nov 19 to Jan 4, with Santaland inside the store. Bergdorf Goodman's avenue decorations start about Nov 20. Confirm Santaland hours, reservations and dates.",True)]),
    ('Day 3 · Early morning','Chelsea gallery streets, pup in tow',"Second morning, west side: the tree-lined blocks of the Chelsea galleries, all at street level so baby and the pup can both come. The High Line runs overhead, and we'll admire it from below (dogs aren't allowed up there, except service dogs). Grab a matcha at Cha Cha Matcha (1158 Broadway) on the way out.",
     [('Breakfast at Chelsea Market','walk','75 Ninth Ave, a few blocks from the galleries: order pastries or a bagel to go and eat outside with the pup. Dogs are generally not allowed inside; confirm hours and rules.',True),('Chelsea gallery streets','walk','Window-shop the galleries on the W 20s blocks, leashed pup and stroller along. Many galleries may not allow dogs inside, so confirm before going in.',True)]),
    ('Day 3 · Morning','The secret garden',"The city drops away: cherry blossoms in spring, a Japanese hill-and-pond garden, and roses in early summer. This is the quiet chapter.",
@@ -1713,7 +1713,7 @@ def render(h):
     def _cat(name, tag):
         lo = name.lower()
         has = lambda *ks: any(k in lo for k in ks)
-        if has('light show', 'rockefeller center christmas tree', 'windows', 'train show', 'lightscape', 'dyker'): return 'Winter lights'
+        if has('light show', 'rockefeller center christmas tree', 'windows', 'lightscape', 'dyker'): return 'Winter lights'
         if has('bazaar', 'nubeluz', 'lobby lounge'): return 'Hotel'
         if has('matcha', 'rhythm zero'): return 'Matcha'
         if has('sample'): return 'Sample sale'
@@ -1722,16 +1722,18 @@ def render(h):
         if has('gentle monster', 'kith', 'intelligence', 'marketplace', 'holoholo', 'kūlua', 'makawao town', 'shops at', 'paʻia town'): return 'Shops'
         if tag == 'here': return 'Hotel'
         return 'Activities'
+    _extra = [('Grand Central Holiday Train Show (no strollers in the gallery)', 'ride')] if slug_h == 'nomad' else []
     _order = ['Hotel', 'Matcha', 'Food', 'Shops', 'Activities', 'Sample sale', 'Pop-ups', 'Winter lights']
     _g = {k: [] for k in _order}
     _skip = {'lobby and lounge','room view at dusk','the bed and the quiet','bath time, mom and baby','family perks','dogs welcome','fitness center','nap and soak','spa and steam room','last look and checkout','in-room breakfast'}
     for _s in allstops:
         if _s[0].lower() in _skip: continue
         _g[_cat(_s[0], _s[1])].append((_s[0], _s[1]))
+    for _x in _extra: _g['Activities'].append(_x)
     lists_sec = f'''<section class="lists"><div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean">{li(walk)}</ul></div><div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean">{li(far)}</ul></div></section>'''
     _nt = {'here': ('in the hotel', 'y'), 'walk': ('walkable', 'y'), 'ride': ('short ride', 'n'), 'trip': ('day trip', 'n')}
     def _gli(x, t):
-        a = ' data-s="m"' if x == "Brooklyn Botanical Garden" and slug_h == "nomad" else ''
+        a = ' data-s="m"' if x == "Brooklyn Botanical Garden" and slug_h == "nomad" else (' data-s="w"' if x.startswith('Grand Central') else '')
         n, w = _nt.get(t, ('', 'n'))
         return f'<li{a}><span class="gn">{esc(x)}</span><span class="gw {w}">{n}</span></li>'
     ticker = '<div class="gcats">' + ''.join(f'<details class="gcat"{" data-s=\"w\"" if k == "Winter lights" else ""}><summary><h3>{k}<small>{len(v)}</small></h3></summary><ul>' + ''.join(_gli(x, t) for x, t in v) + '</ul></details>' for k, v in _g.items() if v) + '</div>'
