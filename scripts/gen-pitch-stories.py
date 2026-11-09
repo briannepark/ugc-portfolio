@@ -1063,6 +1063,7 @@ CSS = r"""
   .hl details[open] > summary::after { transform:rotate(45deg); }
   .hl details p { margin:0 0 12px; font-size:14px; line-height:1.65; opacity:.82; }
   .about.solo { grid-template-columns:1fr; }
+  .hl .kick2.cw { margin-top:30px; }
   .hl .kick2 { font-size:11px; letter-spacing:.3em; text-transform:uppercase; opacity:.7; margin:6px 0 18px; }
   @media (max-width:760px) { .hl { padding-top:60px; } .hl .cards { grid-template-columns:1fr; } }
 """
@@ -1845,8 +1846,8 @@ def render(h):
         walks_h = ''.join(f'<a class="walk pin" href="https://www.google.com/maps/search/?api=1&query={_up.quote(q_)}" target="_blank" rel="noopener" style="margin:0;text-decoration:none"><span class="m">{m_}<small>min</small></span><span>{esc(nm_)}{"<span class=cf>est.</span>" if est_ else ""}</span></a>' for m_, nm_, q_, est_ in H['walks'])
         care_h = ('<div class="care"><div class="kick2">' + esc(H['care_title']) + '</div><div class="cards">' + _card('A short stay', H['care']) + '</div></div>') if H.get('care') else ''
         hlsec = (f'<section class="hl rise"><div class="kick">Highlights</div><h2>{esc(H["title"])}</h2><p class="lede">{esc(H["lede"])}</p>'
-                 f'<div class="walks">{walks_h}</div><p class="wn">{esc(H["walknote"])}</p>{care_h}'
-                 f'<div class="cards">{_card("For baby", H["baby"])}{_card("For the dog", H["dog"])}{_card("For mom", H["mom"])}{_card("At the hotel", [(a_, b_, c_) for a_, b_, c_ in H["given"]])}</div></section>')
+                 f'<div class="cards">{_card("For baby", H["baby"])}{_card("For the dog", H["dog"])}{_card("For mom", H["mom"])}</div>{care_h}'
+                 f'<div class="kick2 cw">Close walks</div><div class="walks">{walks_h}</div><p class="wn">{esc(H["walknote"])}</p></section>')
     intro_h = ('<section class="intro short rise"><h2>for moms&hellip;</h2><span class="tagpill">a guide to vacation with baby + puppy</span></section>' if slug_h == 'nomad' else f'<section class="intro rise"><div class="kick">The trip</div><p>{sv(S["intro"])}</p></section>')
     lobby = ('''<section class="lobby rise"><div class="pad"><div class="sheet"><div class="lh">The Ritz-Carlton<small>NoMad</small></div><div class="msg">meet you in the lobby at 4PM?</div></div><span class="pen"></span></div><div class="cap2">scroll for the guide &darr;</div></section>''' if slug_h == 'nomad' else '')
     tabs_raw = ([('ch1', S['walk']['kick'])] if 'walk' in S else []) + [(f'ch{i+1+off}', c[0]) for i, c in enumerate(S['chapters'])]
