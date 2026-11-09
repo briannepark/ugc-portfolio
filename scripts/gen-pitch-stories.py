@@ -901,7 +901,7 @@ CSS = r"""
   .gymscene .rack { right:6%; bottom:2%; width:22%; --r:2deg; z-index:4; filter:drop-shadow(0 16px 20px rgba(0,0,0,.5)); }
   .gymscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
   .gymscene .msg.f1 { left:8%; top:72%; --r:-4deg; white-space:nowrap; }
-  .gymscene .msg.f2 { right:31%; top:61%; --r:3deg; text-align:right; }
+  .gymscene .msg.f2 { right:30%; top:72%; --r:3deg; text-align:right; }
   .gymscene .dd { filter:none; z-index:7; } .gymscene .dd.a1 { left:27%; top:62%; width:10%; --r:8deg; }
   @media (max-width:760px) {
     .gymscene { aspect-ratio:3/5.8; }
