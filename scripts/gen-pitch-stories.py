@@ -1215,9 +1215,9 @@ def eataly_scene(slug_h, cap_html):
     return f'''
         <div class="scene-col">
           <div class="escene reveal">
-            <figure class="lyr print e-bake" data-speed="0.015"><div class="tape"></div><img src="{M}bakery.jpg" alt="La Panetteria bakery at Eataly" loading="lazy"><figcaption class="hand">the bakery</figcaption></figure>
+            <figure class="lyr print e-bake" data-speed="0.015"><div class="tape"></div><img src="{M}la-panetteria.jpg" alt="La Panetteria bakery at Eataly" loading="lazy"><figcaption class="hand">the bakery</figcaption></figure>
             <figure class="lyr print e-deli" data-speed="-0.02"><div class="tape"></div><img src="{M}deli.jpg" alt="Cured meats and cheese counter" loading="lazy"><figcaption class="hand">cheese &amp; salumi</figcaption></figure>
-            <figure class="lyr print e-front" data-speed="0.025"><div class="tape"></div><img src="{M}front.jpg" alt="Eataly Flatiron storefront" loading="lazy"><figcaption class="hand">200 Fifth Ave</figcaption></figure>
+            <figure class="lyr print e-front" data-speed="0.025"><div class="tape"></div><img src="{M}storefront-fifth-ave.jpg" alt="Eataly Flatiron storefront" loading="lazy"><figcaption class="hand">200 Fifth Ave</figcaption></figure>
             <img class="lyr canopy" data-speed="0.012" src="{M}canopy.webp" alt="" loading="lazy">
             <img class="lyr lamps" data-speed="0.05" src="{M}lamps.webp" alt="" loading="lazy">
             <div class="lyr msg e1 hand" data-speed="0.02">brunch under<br>the blossoms</div>
