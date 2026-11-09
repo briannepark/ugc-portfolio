@@ -977,6 +977,20 @@ CSS = r"""
     .dscene .d4 { right:6%; top:55%; width:30%; } .dscene .d5 { left:30%; top:68%; width:36%; } .dscene .d6 { right:5%; bottom:3%; width:36%; } .dscene .d7 { left:4%; bottom:5%; width:30%; }
     .dscene .msg { display:none; }
   }
+  .escene { position:relative; width:min(1180px,100%); aspect-ratio:16/10.5; margin:30px auto 20px; overflow:visible; }
+  .escene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); will-change:transform; }
+  .escene img.canopy, .escene img.lamps { left:0; top:-4%; width:100%; height:auto; max-width:none; pointer-events:none; }
+  .escene img.canopy { z-index:6; -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 8%); -webkit-mask-composite:source-in; mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 8%); mask-composite:intersect; } .escene img.lamps { z-index:7; filter:drop-shadow(0 18px 18px rgba(0,0,0,.4)); }
+  .escene .print { background:#f4efe3; padding:10px 10px 34px; filter:drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
+  .escene .print img { display:block; width:100%; height:auto; }
+  .escene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(13px,1.6vw,20px); color:#2a2a2a; }
+  .escene .e-bake { left:4%; top:30%; width:40%; --r:-2deg; z-index:2; } .escene .e-deli { right:4%; top:27%; width:40%; --r:2deg; z-index:3; }
+  .escene .e-front { left:38%; top:56%; width:24%; --r:-1.5deg; z-index:4; }
+  .escene .tape { z-index:5; }
+  .escene .msg { z-index:8; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; left:6%; top:76%; --r:-4deg; }
+  @media (max-width:760px) { .escene { aspect-ratio:3/5.2; } .escene img.canopy, .escene img.lamps { top:0; width:150%; left:-25%; }
+    .escene .e-bake { left:4%; top:24%; width:80%; } .escene .e-deli { right:4%; top:50%; width:80%; } .escene .e-front { left:8%; top:80%; width:46%; } .escene .msg { left:auto; right:6%; top:84%; font-size:15px; } }
+  .smap { margin-bottom:70px !important; }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1160,7 +1174,7 @@ def pin(h, name, key, tag):
     return f'<a class="pin" href="{href}" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>{label}</a>'
 
 
-SNAPS = {('nomad', 'fao-schwarz-rockefeller-center'): [('fao-schwarz-jellycat', 'the Jellycat diner', 's1'), ('fao-schwarz-piano', 'the giant piano', 's2')], ('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
+SNAPS = {('nomad', 'spa-and-steam-room'): [('spa-hall', 'the spa hall', 's1')], ('nomad', 'fao-schwarz-rockefeller-center'): [('fao-schwarz-jellycat', 'the Jellycat diner', 's1'), ('fao-schwarz-piano', 'the giant piano', 's2')], ('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
 
 def snaps(slug_h, key):
     out = ''
@@ -1178,6 +1192,21 @@ def dtf_scene(slug_h, cap_html):
             {c('xlb','d1',0.04)}{c('pot','d2',-0.03)}{c('green','d3',0.035)}{c('soup','d4',-0.04)}{c('bao','d5',0.03)}{c('shrimp','d6',-0.035)}{c('mini','d7',0.045)}
             <div class="lyr msg d1m hand" data-speed="0.02">xiao long bao,<br>obviously</div>
             <div class="lyr msg d2m hand" data-speed="-0.015">every basket<br>a little different</div>
+          </div>
+          {cap_html}
+        </div>'''
+
+def eataly_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/eataly/'
+    return f'''
+        <div class="scene-col">
+          <div class="escene reveal">
+            <figure class="lyr print e-bake" data-speed="0.015"><div class="tape"></div><img src="{M}bakery.jpg" alt="La Panetteria bakery at Eataly" loading="lazy"><figcaption class="hand">the bakery</figcaption></figure>
+            <figure class="lyr print e-deli" data-speed="-0.02"><div class="tape"></div><img src="{M}deli.jpg" alt="Cured meats and cheese counter" loading="lazy"><figcaption class="hand">cheese &amp; salumi</figcaption></figure>
+            <figure class="lyr print e-front" data-speed="0.025"><div class="tape"></div><img src="{M}front.jpg" alt="Eataly Flatiron storefront" loading="lazy"><figcaption class="hand">200 Fifth Ave</figcaption></figure>
+            <img class="lyr canopy" data-speed="0.012" src="{M}canopy.webp" alt="" loading="lazy">
+            <img class="lyr lamps" data-speed="0.05" src="{M}lamps.webp" alt="" loading="lazy">
+            <div class="lyr msg e1 hand" data-speed="0.02">brunch under<br>the blossoms</div>
           </div>
           {cap_html}
         </div>'''
@@ -1681,6 +1710,9 @@ def render(h):
             if slug_h == 'nomad' and key == 'din-tai-fung':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + dtf_scene(slug_h, cap)
+            if slug_h == 'nomad' and key == 'brunch-at-eataly-flatiron':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + eataly_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'fitness-center':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + fit_scene(slug_h, cap)
