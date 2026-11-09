@@ -59,7 +59,7 @@ STORY = {
    ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, I slip down to the fitness center. It is open around the clock, with Peloton bikes, right next to the spa. Then a matcha to go, and out for the morning stroll.",
     [('Fitness center','here','Open 24 hours, with Peloton bikes. Confirm hours and any age rules.',True)]),
    ('Day 2 · Morning','Madison Square Park, at stroller pace',"First morning, nice and easy: a few blocks from the lobby to Madison Square Park with baby in the stroller and the pup on a leash. Coffee in hand, one slow loop of the lawn, the Flatiron in the frame.",
-    [('Brunch at Eataly Flatiron','walk','200 Fifth Ave, right across from the park: pastries, a sit-down brunch or a quick bite, with room for the stroller. Confirm hours and the brunch menu.',True),('Madison Square Park and Flatiron','walk','A short, flat stroll with baby and pup. Leashed dogs only; the park also has a dog run. Confirm rules and hours.',True),('Cha Cha Matcha, NoMad','walk','1158 Broadway, about two blocks from the lobby: a matcha to go before the park. Cash is not accepted. Confirm hours.',True),('Matchaful, Flatiron','walk','337 Park Ave South, on the far side of the park. A newer cafe with Japanese matcha. Confirm hours.',True)]),
+    [('Cha Cha Matcha, NoMad','walk','1158 Broadway, about two blocks from the lobby: a matcha to go before the park. Cash is not accepted. Confirm hours.',True),('Madison Square Park and Flatiron','walk','A short, flat stroll with baby and pup. Leashed dogs only; the park also has a dog run. Confirm rules and hours.',True),('Brunch at Eataly Flatiron','walk','200 Fifth Ave, right across from the park: pastries, a sit-down brunch or a quick bite, with room for the stroller. Confirm hours and the brunch menu.',True),('Matchaful, Flatiron','walk','337 Park Ave South, on the far side of the park. A newer cafe with Japanese matcha. Confirm hours.',True)]),
    ('Day 2 · Afternoon','Petals and frames',"SoHo, but make it dreamy, and doable with a stroller: the trendy shops and pop-ups I usually skip, with an easy ride back for naps. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that's gone by Monday, and a pop-up only the locals know about.",
     [('Lunch at Balthazar','ride','80 Spring St, SoHo: the classic French brasserie, a good midday stop before the shops. Reservations help; confirm stroller space and hours.',True),('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Installation-style retail.',True),('Kith, SoHo','ride','The all-white sneaker wall and a tiled flagship. Confirm which store and hours.',True),('Sample-sale hunt','ride','Check the 260 Sample Sale list the week you go.',True),('Pop-up of the week','ride','Pop-ups rotate weekly. The kind I usually miss with a baby in tow. Pick one for the feed.',True)]),
    ('Day 2 · The matcha crawl','Three cups, three moods',"A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.",
@@ -1663,9 +1663,10 @@ def render(h):
         <div class="rise"><div class="kick">{esc(kick)}</div><h2>{sv(title)}</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
         <div class="note rise"><div class="tape"></div>{sv(story)}<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
+      {stroll_html(title) if slug_h == 'nomad' and title.startswith('Madison Square Park') else ''}
       <div class="collage n{min(n,4)} {'rev' if i % 2 else ''}">{frames}
       </div>
-      {stroll_html(title) if slug_h == 'nomad' else ''}
+      {stroll_html(title) if slug_h == 'nomad' and not title.startswith('Madison Square Park') else ''}
       <img class="cutout" src="{CDN}{slug_h}/ch{i+1+off}-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>'''
