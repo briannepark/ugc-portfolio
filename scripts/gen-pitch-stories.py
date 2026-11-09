@@ -41,7 +41,7 @@ def tm(slug_h, n):
 STORY = {
 'nomad': dict(
   walk=dict(kick='Day 1 · Arrival', title='Through the doors',
-    story="Walk in with me. Past the sheer curtains, toward the glow of the bar, and then up to a window with the whole city lit below. This is how I'd open the trip: moving through the hotel, one room at a time.",
+    story="Walk in with me. Past the sheer curtains and up to the check-in desk. This is how I'd open the trip: moving through the hotel, one room at a time.",
     scenes=[
       ('Entrance','Step through the doors.','Bronze doors, brass handles, and a garden of green waiting just inside.'),
       ('Lobby','Past the sheer curtains, to check in.','Veined stone desks, sculptural chandeliers, and floor-to-ceiling windows behind the lounge chairs.'),
@@ -208,7 +208,9 @@ CSS = r"""
 
   /* intro + marquee */
   .intro { max-width:760px; margin:0 auto; padding:110px 24px 70px; text-align:center; }
-  .intro.short { padding:120px 24px 90px; }
+  .intro.short { padding:120px 24px 230px; }
+  .walkintro .ch-head { margin-top:34px; } @media (max-width:820px) { .walkintro .ch-head { margin-top:56px; } }
+  .num small { display:block; font-family:var(--body); font-size:12px; font-weight:500; letter-spacing:.32em; text-transform:uppercase; color:var(--accent); -webkit-text-stroke:0; margin-bottom:10px; }
   .intro.short h2 { font-family:var(--head); font-weight:400; font-style:italic; font-size:clamp(44px,7vw,84px); line-height:1.05; margin:0 0 28px; }
   .tagpill { display:inline-flex; align-items:center; gap:12px; padding:10px 24px; border:1.5px solid var(--accent); border-radius:999px; font-size:clamp(11px,1.4vw,14px); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); font-weight:500; }
   .intro p { font-family:var(--head); font-size:clamp(24px,3.4vw,38px); line-height:1.3; margin:18px 0 0; }
@@ -1559,7 +1561,7 @@ def render(h):
         chapters += f'''
   <section class="chapter walkintro" id="ch1" data-label="{esc(W['kick'])}">
     <div class="wrap">
-      <div class="num">{tm(slug_h,0)}</div>
+      <div class="num">{'<small>Check-in</small>' if slug_h == 'nomad' else ''}{tm(slug_h,0)}</div>
       <div class="ch-head">
         <div class="rise"><div class="kick">{esc(W['kick'])}</div><h2>{esc(W['title'])}</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
         <div class="note rise"><div class="tape"></div>{esc(W['story'])}<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
