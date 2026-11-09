@@ -44,12 +44,6 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/glace-upper-east-side.jpg`: Glace, Upper East Side
 - `nomad/lightscape-at-brooklyn-botanic-garden.jpg`: Lightscape at Brooklyn Botanic Garden
 - `nomad/in-room-breakfast.jpg`: In-room breakfast
-- `nomad/hudson-river-greenway.jpg`: Hudson River Greenway
-- `nomad/matchaful-manhattan-west.jpg`: Matchaful, Manhattan West
-- `nomad/lunch-at-juliana-s-pizza.jpg`: Lunch at Juliana's Pizza
-- `nomad/dumbo-ice-cream-and-bridge-shot.jpg`: Dumbo ice cream and bridge shot
-- `nomad/domino-park-williamsburg.jpg`: Domino Park, Williamsburg
-- `nomad/nobu-downtown-dinner.jpg`: Nobu Downtown dinner
 - `nomad/last-look-and-checkout.jpg`: Last look and checkout
 
 ## 1 Hotel Brooklyn Bridge  (`brooklyn`)

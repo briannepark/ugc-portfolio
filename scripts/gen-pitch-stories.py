@@ -26,7 +26,7 @@ TAGS = gp.TAGS
 def slug(t): return re.sub(r'[^a-z0-9]+', '-', t.lower()).strip('-')
 
 TIMES = {
- 'nomad': ['4:00 pm','5:30 pm','7:00 pm','8:30 pm','7:00 am','9:30 am','12:00 pm','2:30 pm','4:30 pm','7:00 pm','8:30 pm','8:00 am','10:00 am','1:30 pm','6:00 pm','8:00 am','1:00 pm','6:30 pm'],
+ 'nomad': ['4:00 pm','5:30 pm','7:00 pm','8:30 pm','7:00 am','9:30 am','12:00 pm','2:30 pm','4:30 pm','7:00 pm','8:30 pm','8:00 am','10:00 am','1:30 pm','6:00 pm','8:00 am','11:00 am'],
  'brooklyn': ['8:00 am','10:30 am','2:00 pm','12:30 pm','1:00 pm','6:00 pm','10:00 am','1:30 pm'],
  'maui': ['12:30 pm','6:00 pm','9:30 am','1:30 pm','3:00 pm','9:30 am','11:30 am'],
  'proper': ['5:00 pm','7:00 pm','10:30 am','2:00 pm','11:00 am'],
@@ -78,12 +78,10 @@ STORY = {
     [('Lunch at Ippudo','ride','65 Fourth Ave, East Village: Hakata-style ramen under a canopy of bamboo, on the way downtown. Confirm which location and wait times.',True),('Mercer Labs','ride','21 Dey St. Fifteen immersive rooms; plan 60 to 90 minutes and book ahead.',False),('Printemps, One Wall Street','ride','Café, cocktail bars, and the landmarked Red Room with its mosaics.',False),('Aura reading at Magic Jewelry','ride','238 Canal St, Chinatown. Aura photographs.',False),('Dinner at Nom Wah Tea Parlor','ride','13 Doyers St, Chinatown: classic dim sum in the oldest dim sum parlor in the city. Confirm hours and wait times.',True),('Glace, Upper East Side','ride','1266 Madison Ave. Famous frozen hot chocolate and small-batch ice cream. Mostly takeout with outdoor seating only, and lines can pass 30 minutes at peak. Uptown, so pair it with the car. Daily noon to 8 pm. Confirm hours.',True)]),
    ('Day 3 · Winter lights','A million lights, after dark',"One big light night: a ticketed trail through the Botanic Garden, the evening everyone ends up talking about.",
     [('Lightscape at Brooklyn Botanic Garden','trip','A ticketed light trail, about Nov 20 to Jan 3 (adults $39 to $44, ages 3 to 11 $22 to $28). Confirm dates, tickets and stroller rules.',True)]),
-   ('Day 4 · Early morning','Breakfast in bed, then the river',"We've explored the city the other days, so the last morning starts slow: breakfast in bed, baby and pup curled up beside me. Then one last flat, easy stroll along the Hudson, water on one side and the stroller rolling smoothly.",
-    [('In-room breakfast','here','Ritz-Carlton in-room dining, delivered to the room. Confirm the menu, hours and whether they can do matcha.',True),('Hudson River Greenway','walk','A flat, car-free waterfront path. Leashed dogs are generally welcome in Hudson River Park. Confirm dog rules and any dog run hours.',True),('Matchaful, Manhattan West','walk','450 W 33rd St, inside Whole Foods (entrance on 10th Ave). Open 8 am to 7 pm per the building site. A matcha stop on the way toward the river.',True)]),
-   ('Day 4 · Across the bridge','Brooklyn, then the big dinner',"A scoop of ice cream, the bridge in the frame, a slow walk along the Williamsburg waterfront at Domino Park, and one last dinner that earns its place in the story.",
-    [("Lunch at Juliana's Pizza",'trip','19 Old Fulton St, Dumbo: coal-oven pies under the bridge. Confirm hours and wait times.',True),('Dumbo ice cream and bridge shot','trip','Van Leeuwen or similar, then the bridge frame.',True),('Domino Park, Williamsburg','trip','Free waterfront park at about 300 Kent Ave, with a long riverside walk and a Manhattan skyline view. About 4 miles from the hotel by car (est.); parking is limited, so plan on a garage. Best on a weekday. Confirm dog rules.',True),('Nobu Downtown dinner','trip','The big dinner moment.',True)]),
-   ('Day 4 · Goodbye','One last look',"Back to the window for a final look, because you'll want to come back.",
-    [('Last look and checkout','here','One last lobby and window moment.',False)]),
+   ('Day 4 · Early morning','Breakfast in bed, then pack up',"We've explored the city the other days, so the last morning starts slow: breakfast in bed, baby and pup curled up beside me. After that it's simply time to pack up and get ready for checkout.",
+    [('In-room breakfast','here','Ritz-Carlton in-room dining, delivered to the room. Confirm the menu, hours and whether they can do matcha.',True)]),
+   ('Day 4 · Goodbye','Checkout at 11',"Bags zipped, one last look out the window, and checkout at 11:00 am. You'll want to come back.",
+    [('Last look and checkout','here','Checkout is at 11:00 am. One last lobby and window moment.',False)]),
   ]),
 'brooklyn': dict(
   intro="Picture a slower New York. The skyline is right across the water, the bridge is outside your window, and there's a rooftop pool above it all. This is the stay for people who want the city without the rush.",
