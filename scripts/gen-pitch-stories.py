@@ -1645,7 +1645,7 @@ def render(h):
             if key == 'printemps-one-wall-street':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + printemps_scene(slug_h, cap)
-            if key == 'ippudo':
+            if key in ('ippudo', 'lunch-at-ippudo'):
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + ippudo_scene(slug_h, cap)
             if key == 'rhythm-zero':
