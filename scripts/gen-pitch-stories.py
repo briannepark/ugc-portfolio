@@ -648,10 +648,10 @@ CSS = r"""
   .iscene .room1 { left:3%; top:3%; width:47%; --r:-1.6deg; z-index:3; }
   .iscene .store { right:4%; top:2%; width:33%; --r:2.4deg; z-index:2; }
   .iscene .room2 { left:6%; top:52%; width:34%; --r:2deg; z-index:3; }
-  .iscene .bowl1 { left:38%; top:33%; width:25%; --r:-6deg; z-index:1; }
-  .iscene .bowl2 { left:31%; top:58%; width:21%; --r:7deg; z-index:1; }
+  .iscene .bowl1 { left:67%; top:29%; width:25%; --r:-6deg; z-index:1; }
+  .iscene .bowl2 { left:32%; top:45%; width:21%; --r:22deg; z-index:1; }
   .iscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
-  .iscene .msg.i1 { left:78%; top:48%; --r:-3deg; width:16%; }
+  .iscene .msg.i1 { left:70%; top:66%; --r:-3deg; width:16%; }
   .iscene .msg.i2 { left:80%; top:78%; --r:-2deg; }
   @media (max-width:820px) {
     .iscene { aspect-ratio:3/6.2; }
@@ -1778,10 +1778,10 @@ def render(h):
         <div class="rise"><div class="kick">{esc(kick)}</div><h2>{sv(title)}</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
         <div class="note rise"><div class="tape"></div>{sv(story)}<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
-      {stroll_html(title) if slug_h == 'nomad' and title.startswith('Madison Square Park') else ''}
+      {stroll_html(title) if slug_h == 'nomad' and title.startswith(('Madison Square Park', 'Chelsea gallery')) else ''}
       <div class="collage n{min(n,4)} {'rev' if i % 2 else ''}">{frames}
       </div>
-      {stroll_html(title) if slug_h == 'nomad' and not title.startswith('Madison Square Park') else ''}
+      {stroll_html(title) if slug_h == 'nomad' and not title.startswith(('Madison Square Park', 'Chelsea gallery')) else ''}
       <img class="cutout" src="{CDN}{slug_h}/ch{i+1+off}-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>'''
