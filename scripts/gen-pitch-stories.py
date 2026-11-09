@@ -1188,7 +1188,7 @@ def pin(h, name, key, tag):
     return f'<a class="pin" href="{href}" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>{label}</a>'
 
 
-SNAPS = {('nomad', 'spa-and-steam-room'): [('spa-hall', 'the spa hall', 's1')], ('nomad', 'fao-schwarz-rockefeller-center'): [('fao-schwarz-jellycat', 'the Jellycat diner', 's1'), ('fao-schwarz-piano', 'the giant piano', 's2')], ('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
+SNAPS = {('nomad', 'matchaful-manhattan-west'): [('matchaful-cup', 'the iced matcha', 's1')], ('nomad', 'spa-and-steam-room'): [('spa-hall', 'the spa hall', 's1')], ('nomad', 'fao-schwarz-rockefeller-center'): [('fao-schwarz-jellycat', 'the Jellycat diner', 's1'), ('fao-schwarz-piano', 'the giant piano', 's2')], ('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
 
 def snaps(slug_h, key):
     out = ''
