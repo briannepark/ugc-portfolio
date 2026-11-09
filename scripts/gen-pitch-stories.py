@@ -59,7 +59,7 @@ STORY = {
    ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, I slip down to the fitness center. It is open around the clock, with Peloton bikes, right next to the spa. Then a matcha to go, and out for the morning stroll.",
     [('Fitness center','here','Open 24 hours, with Peloton bikes. Confirm hours and any age rules.',True)]),
    ('Day 2 · Morning','Madison Square Park, at stroller pace',"First morning, nice and easy: a few blocks from the lobby to Madison Square Park with baby in the stroller and the pup on a leash. Coffee in hand, one slow loop of the lawn, the Flatiron in the frame.",
-    [('Cha Cha Matcha, NoMad','walk','1158 Broadway, about two blocks from the lobby: a matcha to go before the park. Cash is not accepted. Confirm hours.',True),('Madison Square Park and Flatiron','walk','A short, flat stroll with baby and pup. Leashed dogs only; the park also has a dog run. Confirm rules and hours.',True),('Brunch at Eataly Flatiron','walk','200 Fifth Ave, right across from the park: pastries, a sit-down brunch or a quick bite, with room for the stroller. Confirm hours and the brunch menu.',True),('Matchaful, Flatiron','walk','337 Park Ave South, on the far side of the park. A newer cafe with Japanese matcha. Confirm hours.',True)]),
+    [('Cha Cha Matcha, NoMad','walk','1158 Broadway, about two blocks from the lobby: a matcha to go before the park. Cash is not accepted. Confirm hours.',True),('Madison Square Park and Flatiron','walk','A short, flat stroll with baby and pup. Leashed dogs only; the park also has a dog run. Confirm rules and hours.',True),('Brunch at Eataly Flatiron','walk','200 Fifth Ave, right across from the park: pastries, a sit-down brunch or a quick bite, with room for the stroller. Confirm hours and the brunch menu.',True)]),
    ('Day 2 · Afternoon','Petals and frames',"SoHo, but make it dreamy, and doable with a stroller: the trendy shops and pop-ups I usually skip, with an easy ride back for naps. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that's gone by Monday, and a pop-up only the locals know about.",
     [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Installation-style retail.',True),('Kith, SoHo','ride','The all-white sneaker wall and a tiled flagship. Confirm which store and hours.',True),('Sample-sale hunt','ride','Check the 260 Sample Sale list the week you go.',True),('Pop-up of the week','ride','Pop-ups rotate weekly. The kind I usually miss with a baby in tow. Pick one for the feed.',True),('Lunch at Balthazar','ride','80 Spring St, SoHo: the classic French brasserie, a good midday stop after the shops. Reservations help; confirm stroller space and hours.',True)]),
    ('Day 2 · The matcha crawl','Three cups, three moods',"A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.",
@@ -648,8 +648,8 @@ CSS = r"""
   .iscene .room1 { left:3%; top:3%; width:47%; --r:-1.6deg; z-index:3; }
   .iscene .store { right:4%; top:2%; width:33%; --r:2.4deg; z-index:2; }
   .iscene .room2 { left:6%; top:52%; width:34%; --r:2deg; z-index:3; }
-  .iscene .bowl1 { left:67%; top:29%; width:25%; --r:-6deg; z-index:1; }
-  .iscene .bowl2 { left:32%; top:45%; width:21%; --r:22deg; z-index:1; }
+  .iscene .bowl1 { left:67%; top:33%; width:25%; --r:-6deg; z-index:1; }
+  .iscene .bowl2 { left:32%; top:45%; width:21%; --r:36deg; z-index:1; }
   .iscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; filter:none; }
   .iscene .msg.i1 { left:70%; top:66%; --r:-3deg; width:16%; }
   .iscene .msg.i2 { left:80%; top:78%; --r:-2deg; }
@@ -1805,14 +1805,14 @@ def render(h):
         if has('gentle monster', 'kith', 'intelligence', 'marketplace', 'holoholo', 'kūlua', 'makawao town', 'shops at', 'paʻia town'): return 'Shops'
         if tag == 'here': return 'Hotel'
         return 'Activities'
-    _extra = [('Grand Central Holiday Train Show (no strollers in the gallery)', 'ride'), ('Dyker Heights Christmas lights (free, Brooklyn)', 'trip')] if slug_h == 'nomad' else []
+    _extra = [('Grand Central Holiday Train Show (no strollers in the gallery)', 'ride'), ('Dyker Heights Christmas lights (free, Brooklyn)', 'trip'), ('Matchaful, Flatiron', 'walk')] if slug_h == 'nomad' else []
     _order = ['Hotel', 'Matcha', 'Food', 'Shops', 'Activities', 'Sample sale', 'Pop-ups', 'Winter lights']
     _g = {k: [] for k in _order}
     _skip = {'lobby and lounge','room view at dusk','the bed and the quiet','bath time, mom and baby','family perks','dogs welcome','fitness center','nap and soak','spa and steam room','last look and checkout','in-room breakfast'}
     for _s in allstops:
         if _s[0].lower() in _skip: continue
         _g[_cat(_s[0], _s[1])].append((_s[0], _s[1]))
-    for _x in _extra: _g['Winter lights' if _x[0].startswith('Dyker') else 'Activities'].append(_x)
+    for _x in _extra: _g['Winter lights' if _x[0].startswith('Dyker') else ('Matcha' if _x[0].startswith('Matchaful') else 'Activities')].append(_x)
     lists_sec = f'''<section class="lists"><div class="rise"><div class="kick">Walkable from the hotel</div><h3>Out the door</h3><ul class="clean">{li(walk)}</ul></div><div class="rise"><div class="kick">Worth the ride</div><h3>A little farther</h3><ul class="clean">{li(far)}</ul></div></section>'''
     _nt = {'here': ('in the hotel', 'y'), 'walk': ('walkable', 'y'), 'ride': ('short ride', 'n'), 'trip': ('day trip', 'n')}
     def _gli(x, t):
