@@ -40,7 +40,6 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/mercer-labs.jpg`: Mercer Labs
 - `nomad/printemps-one-wall-street.jpg`: Printemps, One Wall Street
 - `nomad/aura-reading-at-magic-jewelry.jpg`: Aura reading at Magic Jewelry
-- `nomad/dim-sum-at-nom-wah-tea-parlor.jpg`: Dim sum at Nom Wah Tea Parlor
 - `nomad/nobu-downtown-dinner.jpg`: Nobu Downtown dinner
 - `nomad/glace-upper-east-side.jpg`: Glace, Upper East Side
 - `nomad/lightscape-at-brooklyn-botanic-garden.jpg`: Lightscape at Brooklyn Botanic Garden
