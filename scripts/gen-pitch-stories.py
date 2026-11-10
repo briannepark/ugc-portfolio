@@ -1015,6 +1015,13 @@ CSS = r"""
   .tbl td.td { font-size:13px; opacity:.8; }
   .tbl .tnote { font-style:italic; opacity:.7; margin:12px 0 0; font-size:14px; }
   @media (max-width:760px){ .tbls { grid-template-columns:1fr; } .tbl:nth-child(2) { grid-column:auto; grid-row:auto; } .tbl td.td { white-space:normal; } }
+  .cosc { aspect-ratio:16/12; }
+  .cosc .print.bed { left:3%; top:2%; width:52%; --r:-2deg; z-index:2; }
+  .cosc .print.dusk { right:4%; bottom:auto; top:6%; width:34%; --r:3deg; z-index:3; }
+  .cosc img.bellc { left:5%; bottom:4%; width:40%; height:auto; max-width:none; z-index:4; filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
+  .cosc img.casec { right:7%; bottom:4%; width:15%; height:auto; max-width:none; z-index:4; filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
+  .cosc .msg.d1 { right:26%; top:auto; bottom:12%; left:auto; z-index:5; text-align:right; }
+  @media (max-width:760px) { .cosc { aspect-ratio:3/5; } .cosc .print.bed { width:90%; } .cosc .print.dusk { right:3%; bottom:auto; top:30%; width:60%; } .cosc img.bellc { left:0; bottom:0; width:70%; } .cosc img.casec { right:3%; bottom:0; width:24%; } .cosc .msg.d1 { right:3%; bottom:33%; } }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1518,6 +1525,20 @@ def bath_scene(slug_h, cap_html):
           {cap_html}
         </div>'''
 
+def checkout_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/'
+    return f'''
+        <div class="scene-col">
+          <div class="bedscene cosc reveal">
+            <figure class="lyr print bed" data-speed="0.015"><div class="tape"></div><img src="{M}bed/dusk.jpg" alt="One last look at the view" loading="lazy"><figcaption class="hand">one last look</figcaption></figure>
+            <figure class="lyr print dusk" data-speed="-0.025"><div class="tape"></div><img src="{M}walk-desk.jpg" alt="The front desk" loading="lazy"><figcaption class="hand">checkout, 11:00 am</figcaption></figure>
+            <img class="lyr bellc" data-speed="0.04" src="{M}checkout/cut-bellhop.png" alt="A bellhop with a luggage cart" loading="lazy">
+            <img class="lyr casec" data-speed="0.05" src="{M}checkout/cut-suitcase.png" alt="A packed suitcase" loading="lazy">
+            <div class="lyr msg d1 hand" data-speed="0.01">bags packed,<br>see you next time</div>
+          </div>
+          {cap_html}
+        </div>'''
+
 def nap_scene(slug_h, cap_html):
     M = CDN + slug_h + '/'
     return f'''
@@ -1760,6 +1781,9 @@ def render(h):
             if slug_h == 'nomad' and key == 'chelsea-gallery-streets':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + chelsea_scene(slug_h, cap)
+            if slug_h == 'nomad' and key == 'last-look-and-checkout':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + checkout_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'nap-and-soak':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + nap_scene(slug_h, cap)
