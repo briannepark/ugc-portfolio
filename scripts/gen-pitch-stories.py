@@ -1022,6 +1022,18 @@ CSS = r"""
   .cosc img.casec { right:7%; bottom:4%; width:15%; height:auto; max-width:none; z-index:4; filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
   .cosc .msg.d1 { right:26%; top:auto; bottom:12%; left:auto; z-index:5; text-align:right; }
   @media (max-width:760px) { .cosc { aspect-ratio:3/5; } .cosc .print.bed { width:90%; } .cosc .print.dusk { right:3%; bottom:auto; top:30%; width:60%; } .cosc img.bellc { left:0; bottom:0; width:70%; } .cosc img.casec { right:3%; bottom:0; width:24%; } .cosc .msg.d1 { right:3%; bottom:33%; } }
+  .bbgscene { position:relative; width:min(1180px,100%); aspect-ratio:16/14.5; margin:30px auto 20px; overflow:visible; }
+  .bbgscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); will-change:transform; }
+  .bbgscene img.bcanopy { left:-2%; top:-6%; width:104%; height:auto; max-width:none; z-index:7; pointer-events:none; filter:drop-shadow(0 10px 14px rgba(0,0,0,.35)); }
+  .bbgscene .print { background:#f4efe3; padding:10px 10px 34px; filter:drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
+  .bbgscene .print img { display:block; width:100%; height:auto; }
+  .bbgscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(13px,1.6vw,20px); color:#2a2a2a; }
+  .bbgscene .tape { z-index:5; }
+  .bbgscene .b-pond { left:4%; top:33%; width:42%; --r:-2deg; z-index:2; } .bbgscene .b-weep { right:5%; top:31%; width:24%; --r:2.5deg; z-index:3; }
+  .bbgscene .b-bridge { left:30%; top:60%; width:34%; --r:1.5deg; z-index:4; } .bbgscene .b-aerial { right:3%; top:64%; width:30%; --r:-2.5deg; z-index:2; }
+  .bbgscene .msg { z-index:8; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; left:5%; top:80%; --r:-4deg; }
+  @media (max-width:760px) { .bbgscene { aspect-ratio:3/6.4; } .bbgscene img.bcanopy { width:150%; left:-25%; top:-3%; }
+    .bbgscene .b-pond { left:4%; top:14%; width:88%; } .bbgscene .b-weep { right:5%; top:36%; width:52%; } .bbgscene .b-bridge { left:4%; top:52%; width:70%; } .bbgscene .b-aerial { right:4%; top:76%; width:68%; } .bbgscene .msg { left:6%; top:46%; font-size:14px; z-index:9; } }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1224,6 +1236,19 @@ def dtf_scene(slug_h, cap_html):
             {c('xlb','d1',0.04)}{c('pot','d2',-0.03)}{c('green','d3',0.035)}{c('bao','d5',0.03)}{c('shrimp','d6',-0.035)}{c('mini','d7',0.045)}
             <div class="lyr msg d1m hand" data-speed="0.02">xiao long bao,<br>obviously</div>
             <div class="lyr msg d2m hand" data-speed="-0.015">every basket<br>a little different</div>
+          </div>
+          {cap_html}
+        </div>'''
+
+def bbg_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/bbg/'
+    P = lambda k, cls, cap, sp: f'<figure class="lyr print {cls}" data-speed="{sp}"><div class="tape"></div><img src="{M}{k}.jpg" alt="{cap}" loading="lazy"><figcaption class="hand">{cap}</figcaption></figure>'
+    return f'''
+        <div class="scene-col">
+          <div class="bbgscene reveal">
+            {P('pond','b-pond','the pond &amp; torii',0.015)}{P('weeping','b-weep','weeping cherry',-0.02)}{P('bridge','b-bridge','the arched bridge',0.025)}{P('aerial','b-aerial','the visitor center',-0.015)}
+            <img class="lyr bcanopy" data-speed="0.012" src="{M}canopy.webp" alt="" loading="lazy">
+            <div class="lyr msg b1 hand" data-speed="0.02">cherry blossoms<br>overhead, roses<br>by early summer</div>
           </div>
           {cap_html}
         </div>'''
@@ -1660,11 +1685,11 @@ def night_fx(seed):
 
 POPUPS = [('Delta x American Express: Claim Your Second','Nov 13 to 14, 2026'),('Cars & Tea @ Gatch','Nov 14, 2026'),('Virgil Abloh: The Codes','Dec 10, 2026 to Jan 18, 2027')]
 MARKETS = [('Bryant Park Winter Village','Oct 25 to Jan 5'),("Macy's Holiday Square",'Nov 1 to Jan 3'),('Grand Central Holiday Fair','Nov 11 to Dec 24'),('Union Square Holiday Market','Nov 14 to Dec 24'),('Grand Holiday Bazaar','Nov 24 to Dec 22, Sundays'),('Columbus Circle Holiday Market','Dec 3 to 31'),('Herald Holiday Market','Dec 6 to Jan 3'),('FAD Holiday Markets, Brooklyn','Dec 7 to 22, weekends')]
-def _tbl(head, rows, note=''):
+def _tbl(head, rows, note='', winter=False):
     r = ''.join(f'<tr><td class="tn">{esc(n)}</td><td class="td">{esc(d)}</td></tr>' for n, d in rows)
-    return f'<div class="tbl rise"><div class="kick2">{esc(head)}</div><table><thead><tr><th>Where</th><th>When</th></tr></thead><tbody>{r}</tbody></table>{note}</div>'
+    return f'<div class="tbl rise"{" data-s=\"w\"" if winter else ""}><div class="kick2">{esc(head)}</div><table><thead><tr><th>Where</th><th>When</th></tr></thead><tbody>{r}</tbody></table>{note}</div>'
 def pop_tables():
-    return '<div class="tbls">' + _tbl('Pop-ups', POPUPS) + _tbl('Christmas holiday markets', MARKETS) + _tbl('Sample sales', [], '<p class="tnote">Still hunting for this season\'s sample sale list. Check back soon.</p>') + '</div>'
+    return '<div class="tbls">' + _tbl('Pop-ups', POPUPS) + _tbl('Christmas holiday markets', MARKETS, winter=True) + _tbl('Sample sales', [], '<p class="tnote">Still hunting for this season\'s sample sale list. Check back soon.</p>') + '</div>'
 
 def stroll_html(title):
     d = STROLLS.get(title)
@@ -1784,6 +1809,9 @@ def render(h):
             if slug_h == 'nomad' and key == 'last-look-and-checkout':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + checkout_scene(slug_h, cap)
+            if slug_h == 'nomad' and key == 'brooklyn-botanical-garden':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + bbg_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'nap-and-soak':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + nap_scene(slug_h, cap)
