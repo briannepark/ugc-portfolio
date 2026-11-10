@@ -20,8 +20,6 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/cj-hendry-flower-market.jpg`: CJ Hendry Flower Market
 - `nomad/gentle-monster-soho.jpg`: Gentle Monster, SoHo
 - `nomad/kith-soho.jpg`: Kith, SoHo
-- `nomad/sample-sale-hunt.jpg`: Sample-sale hunt
-- `nomad/pop-up-of-the-week.jpg`: Pop-up of the week
 - `nomad/lunch-at-balthazar.jpg`: Lunch at Balthazar
 - `nomad/12-matcha.jpg`: 12 Matcha
 - `nomad/rhythm-zero.jpg`: Rhythm Zero

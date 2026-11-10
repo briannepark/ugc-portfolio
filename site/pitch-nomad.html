@@ -859,6 +859,17 @@
   @media (max-width:760px) { .cmscene { aspect-ratio:3/7; } .cmscene .c-hall { left:4%; top:1%; width:56%; } .cmscene .c-ent { left:auto; right:4%; top:17%; width:56%; } .cmscene .c-pan { right:auto; left:4%; top:36%; width:52%; }
     .cmscene .c-bag { left:auto; right:4%; top:55%; width:50%; bottom:auto; } .cmscene .c-toast { left:4%; top:76%; width:72%; bottom:auto; } .cmscene .msg { display:none; } }
   .snap.cutsnap { background:none !important; box-shadow:none !important; padding:0 !important; filter:drop-shadow(0 12px 14px rgba(0,0,0,.45)); } .snap.cutsnap .tape { display:none; } .snap.cutsnap img { border:0 !important; }
+  .tbls { display:grid; grid-template-columns:1fr 1fr; gap:34px 48px; margin:48px auto 10px; width:min(1040px,90vw); box-sizing:border-box; text-align:left; position:relative; z-index:2; }
+  .tbl .kick2 { font-size:11px; letter-spacing:.3em; text-transform:uppercase; opacity:.7; margin:0 0 12px; }
+  .tbl:nth-child(2) { grid-column:2; grid-row:1 / span 2; }
+  .tbl table { width:100%; border-collapse:collapse; table-layout:fixed; }
+  .tbl th:first-child, .tbl td.tn { width:56%; }
+  .tbl th { font-size:10px; letter-spacing:.2em; text-transform:uppercase; font-weight:400; opacity:.55; text-align:left; padding:0 0 8px; border-bottom:1px solid currentColor; }
+  .tbl td { padding:11px 14px 11px 0; border-bottom:1px solid rgba(128,128,128,.28); vertical-align:baseline; }
+  .tbl td.tn { font-family:var(--serif, inherit); font-size:17px; }
+  .tbl td.td { font-size:13px; opacity:.8; }
+  .tbl .tnote { font-style:italic; opacity:.7; margin:12px 0 0; font-size:14px; }
+  @media (max-width:760px){ .tbls { grid-template-columns:1fr; } .tbl:nth-child(2) { grid-column:auto; grid-row:auto; } .tbl td.td { white-space:normal; } }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1025,6 +1036,7 @@
           <figcaption class="cap"><span class="nm">Dogs welcome</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%2C%20NoMad%2C%2025%20W%2028th%20St%2C%20New%20York%2C%20NY%2010001" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>25 W 28th St</a></figcaption>
         </figure></div>
       
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch2-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1058,6 +1070,7 @@
           <figcaption class="cap"><span class="nm">Bath time, mom and baby</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Diptyque bath products and a separate rain shower, with a deep soaking tub in select rooms. Request a tub room: a warm bath for baby, then a long one for me.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%2C%20NoMad%2C%2025%20W%2028th%20St%2C%20New%20York%2C%20NY%2010001" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>25 W 28th St</a></figcaption>
         </div></div>
       
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch3-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1081,6 +1094,7 @@
           <div class="img"><span class="ph">Nubeluz, 50th floor</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/nubeluz-50th-floor.jpg" alt="Nubeluz, 50th floor" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">Nubeluz, 50th floor</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Skyline at blue hour.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%2C%20NoMad%2C%2025%20W%2028th%20St%2C%20New%20York%2C%20NY%2010001" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>25 W 28th St</a></figcaption><span class="snap s1"><span class="tape"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/nubeluz-50th-floor-day.jpg" alt="by day" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">by day</em></span><span class="snap s2"><span class="tape"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/nubeluz-50th-floor-night.jpg" alt="by night" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">by night</em></span>
         </figure></div>
+      
       
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch4-cutout.png" alt="" onerror="this.remove()">
     </div>
@@ -1106,6 +1120,7 @@
           </div>
           <figcaption class="cap"><span class="nm">Fitness center</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Open 24 hours, with Peloton bikes. Confirm hours and any age rules.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%2C%20NoMad%2C%2025%20W%2028th%20St%2C%20New%20York%2C%20NY%2010001" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>25 W 28th St</a></figcaption>
         </div></div>
+      
       
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch5-cutout.png" alt="" onerror="this.remove()">
     </div>
@@ -1167,6 +1182,7 @@
           <figcaption class="cap"><span class="nm">Brunch at Eataly Flatiron</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>200 Fifth Ave, right across from the park: pastries, a sit-down brunch or a quick bite, with room for the stroller. Confirm hours and the brunch menu.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Brunch%20at%20Eataly%20Flatiron%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </div></div>
       
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch6-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1176,7 +1192,7 @@
       <div class="num">12:00 pm</div>
       <div class="ch-head">
         <div class="rise"><div class="kick">Day 2 · Afternoon</div><h2>Petals and frames</h2><svg class="dd under" viewBox="0 0 300 14"><use href="#d-under"/></svg></div>
-        <div class="note rise"><div class="tape"></div>SoHo, but make it dreamy, and doable with a stroller: the trendy shops and pop-ups I usually skip, with an easy ride back for naps. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that&#x27;s gone by Monday, and a pop-up only the locals know about.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
+        <div class="note rise"><div class="tape"></div>SoHo, but make it dreamy, and doable with a stroller: the trendy shops and pop-ups I usually skip, with an easy ride back for naps. A shop of soft, handmade flowers, a pair of Gentle Monster frames, and below, the pop-ups and holiday markets happening while we&#x27;re here.<svg class="dd pt" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
       </div>
       
       <div class="collage n4 rev">
@@ -1219,19 +1235,10 @@
         </div>
         <figure class="cut reveal c1 g0" style="--r:-0.7deg" data-speed="0.025">
           <div class="tape"></div>
-          <div class="img"><span class="ph">Sample-sale hunt</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/sample-sale-hunt.jpg" alt="Sample-sale hunt" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Sample-sale hunt</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Check the 260 Sample Sale list the week you go.</span></figcaption>
-        </figure>
-        <figure class="cut reveal c2 g1" style="--r:0.5deg" data-speed="-0.02">
-          <div class="tape"></div>
-          <div class="img"><span class="ph">Pop-up of the week</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/pop-up-of-the-week.jpg" alt="Pop-up of the week" loading="lazy" onerror="this.remove()"></div>
-          <figcaption class="cap"><span class="nm">Pop-up of the week</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Pop-ups rotate weekly. The kind I usually miss with a baby in tow. Pick one for the feed.</span></figcaption>
-        </figure>
-        <figure class="cut reveal c3 g2" style="--r:-0.3deg" data-speed="0.03">
-          <div class="tape"></div>
           <div class="img"><span class="ph">Lunch at Balthazar</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/lunch-at-balthazar.jpg" alt="Lunch at Balthazar" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">Lunch at Balthazar</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>80 Spring St, SoHo: the classic French brasserie, a good midday stop after the shops. Reservations help; confirm stroller space and hours.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Lunch%20at%20Balthazar%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure></div>
+      <div class="tbls"><div class="tbl rise"><div class="kick2">Pop-ups</div><table><thead><tr><th>Where</th><th>When</th></tr></thead><tbody><tr><td class="tn">Delta x American Express: Claim Your Second</td><td class="td">Nov 13 to 14, 2026</td></tr><tr><td class="tn">Cars &amp; Tea @ Gatch</td><td class="td">Nov 14, 2026</td></tr><tr><td class="tn">Virgil Abloh: The Codes</td><td class="td">Dec 10, 2026 to Jan 18, 2027</td></tr></tbody></table></div><div class="tbl rise"><div class="kick2">Christmas holiday markets</div><table><thead><tr><th>Where</th><th>When</th></tr></thead><tbody><tr><td class="tn">Bryant Park Winter Village</td><td class="td">Oct 25 to Jan 5</td></tr><tr><td class="tn">Macy&#x27;s Holiday Square</td><td class="td">Nov 1 to Jan 3</td></tr><tr><td class="tn">Grand Central Holiday Fair</td><td class="td">Nov 11 to Dec 24</td></tr><tr><td class="tn">Union Square Holiday Market</td><td class="td">Nov 14 to Dec 24</td></tr><tr><td class="tn">Grand Holiday Bazaar</td><td class="td">Nov 24 to Dec 22, Sundays</td></tr><tr><td class="tn">Columbus Circle Holiday Market</td><td class="td">Dec 3 to 31</td></tr><tr><td class="tn">Herald Holiday Market</td><td class="td">Dec 6 to Jan 3</td></tr><tr><td class="tn">FAD Holiday Markets, Brooklyn</td><td class="td">Dec 7 to 22, weekends</td></tr></tbody></table></div><div class="tbl rise"><div class="kick2">Sample sales</div><table><thead><tr><th>Where</th><th>When</th></tr></thead><tbody></tbody></table><p class="tnote">Still hunting for this season's sample sale list. Check back soon.</p></div></div>
       
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch7-cutout.png" alt="" onerror="this.remove()">
     </div>
@@ -1277,6 +1284,7 @@
           <figcaption class="cap"><span class="nm">Rok Matcha</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Rok%20Matcha%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </div></div>
       
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch8-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1305,6 +1313,7 @@
           <figcaption class="cap"><span class="nm">Spa and steam room</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>A 6,800 sq ft spa with a sauna and steam room. Confirm treatments and age rules.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%2C%20NoMad%2C%2025%20W%2028th%20St%2C%20New%20York%2C%20NY%2010001" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>25 W 28th St</a></figcaption><span class="snap s1"><span class="tape"></span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/spa-hall.jpg" alt="the spa hall" loading="lazy" onerror="this.parentNode.remove()"><em class="hand">the spa hall</em></span>
         </figure></div>
       
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch9-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1327,6 +1336,7 @@
           </div>
           <figcaption class="cap"><span class="nm">Din Tai Fung</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>1633 Broadway at W 50th, Midtown: the famous Taiwanese soup dumplings. Reservations are strongly recommended; confirm hours and stroller seating.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Din%20Tai%20Fung%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </div></div>
+      
       
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch10-cutout.png" alt="" onerror="this.remove()">
     </div>
@@ -1361,6 +1371,7 @@
           <div class="img"><span class="ph">Macy&#x27;s Santaland and Fifth Ave windows</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/macy-s-santaland-and-fifth-ave-windows.jpg" alt="Macy&#x27;s Santaland and Fifth Ave windows" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">Macy&#x27;s Santaland and Fifth Ave windows</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Macy&#x27;s Herald Square windows run about Nov 19 to Jan 4, with Santaland inside the store. Bergdorf Goodman&#x27;s avenue decorations start about Nov 20. Confirm Santaland hours, reservations and dates.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Macy%27s%20Santaland%20and%20Fifth%20Ave%20windows%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure></div>
+      
       
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch11-cutout.png" alt="" onerror="this.remove()">
     </div>
@@ -1411,6 +1422,7 @@
           <figcaption class="cap"><span class="nm">Chelsea gallery streets</span><span class="row"><span class="tg walk">Walkable</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Window-shop the galleries on the W 20s blocks, leashed pup and stroller along. Many galleries may not allow dogs inside, so confirm before going in.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Chelsea%20gallery%20streets%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </div></div>
       
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch12-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1429,6 +1441,7 @@
           <div class="img"><span class="ph">Brooklyn Botanical Garden</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/brooklyn-botanical-garden.jpg" alt="Brooklyn Botanical Garden" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">Brooklyn Botanical Garden</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg><span data-s="w">990 Washington Ave, Prospect Heights. The glass conservatory stays green and warm in winter, and the Japanese garden is quiet under frost. Confirm winter hours and tickets.</span><span data-s="m">990 Washington Ave, Prospect Heights. Cherry blossoms in spring, roses in early summer, the Japanese garden and the conservatory year-round. Confirm hours and tickets.</span></span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Brooklyn%20Botanical%20Garden%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>990 Washington Ave</a></figcaption>
         </figure></div>
+      
       
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch13-cutout.png" alt="" onerror="this.remove()">
     </div>
@@ -1504,6 +1517,7 @@
           <figcaption class="cap"><span class="nm">Glace, Upper East Side</span><span class="row"><span class="tg ride">Short ride</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>1266 Madison Ave. Famous frozen hot chocolate and small-batch ice cream. Mostly takeout with outdoor seating only, and lines can pass 30 minutes at peak. Uptown, so pair it with the car. Daily noon to 8 pm. Confirm hours.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Glace%2C%20Upper%20East%20Side%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </figure></div>
       
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch14-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1530,6 +1544,7 @@
           <figcaption class="cap"><span class="nm">Lightscape at Brooklyn Botanic Garden</span><span class="row"><span class="tg trip">Worth the trip</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>A ticketed light trail, about Nov 20 to Jan 3 (adults $39 to $44, ages 3 to 11 $22 to $28). Confirm dates, tickets and stroller rules.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Lightscape%20at%20Brooklyn%20Botanic%20Garden%2C%20New%20York%20City" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>Map &amp; address</a></figcaption>
         </div></div>
       
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch15-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1548,6 +1563,7 @@
           <div class="img"><span class="ph">In-room breakfast</span><img src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/in-room-breakfast.jpg" alt="In-room breakfast" loading="lazy" onerror="this.remove()"></div>
           <figcaption class="cap"><span class="nm">In-room breakfast</span><span class="row"><span class="tg here">At the hotel</span><span class="stamp">confirm</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Ritz-Carlton in-room dining, delivered to the room. Confirm the menu, hours and whether they can do matcha.</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%2C%20NoMad%2C%2025%20W%2028th%20St%2C%20New%20York%2C%20NY%2010001" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>25 W 28th St</a></figcaption>
         </figure></div>
+      
       
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch16-cutout.png" alt="" onerror="this.remove()">
     </div>
@@ -1568,6 +1584,7 @@
           <figcaption class="cap"><span class="nm">Last look and checkout</span><span class="row"><span class="tg here">At the hotel</span></span><span class="nt"><svg class="dd up" viewBox="0 0 40 30"><use href="#d-up"/></svg>Checkout is at 11:00 am. One last lobby and window moment.</span></figcaption>
         </figure></div>
       
+      
       <img class="cutout" src="https://cdn.jsdelivr.net/gh/briannepark/ugc-portfolio@main/site/media/pitches/nomad/ch17-cutout.png" alt="" onerror="this.remove()">
     </div>
   </section>
@@ -1577,7 +1594,7 @@
   <div class="rise"><div class="kick">Why this stay</div><h2>What I&#x27;d show other moms</h2><p>I&#x27;m a mom who travels with a baby and a dog, and I want other moms to see what&#x27;s possible. Pampering and excitement belong back in the picture, without giving up anything baby or the dog needs. This stay makes that real: quiet rooms for naps, soaking tubs for bath time, a gym downstairs, a skyline bar for the night, and the trendy pop-ups I usually miss a short ride away.</p><div class="chips"><span class="chip"><i></i>Deep navy</span><span class="chip"><i></i>Champagne gold</span><span class="chip"><i></i>Warm lamplight</span></div></div>
   
 </section>
-<section class="index guide rise"><div class="kick">In this guide</div><div class="gcats"><details class="gcat"><summary><h3>Hotel<small>2</small></h3></summary><ul><li><span class="gn">Bazaar Meat by José Andrés</span><span class="gw y">in the hotel</span></li><li><span class="gn">Nubeluz, 50th floor</span><span class="gw y">in the hotel</span></li></ul></details><details class="gcat"><summary><h3>Matcha<small>5</small></h3></summary><ul><li><span class="gn">Cha Cha Matcha, NoMad</span><span class="gw y">walkable</span></li><li><span class="gn">12 Matcha</span><span class="gw n">short ride</span></li><li><span class="gn">Rhythm Zero</span><span class="gw n">short ride</span></li><li><span class="gn">Rok Matcha</span><span class="gw n">short ride</span></li><li><span class="gn">Matchaful, Flatiron</span><span class="gw y">walkable</span></li></ul></details><details class="gcat"><summary><h3>Food<small>8</small></h3></summary><ul><li><span class="gn">Brunch at Eataly Flatiron</span><span class="gw y">walkable</span></li><li><span class="gn">Lunch at Balthazar</span><span class="gw n">short ride</span></li><li><span class="gn">Din Tai Fung</span><span class="gw n">short ride</span></li><li><span class="gn">Breakfast at Chelsea Market</span><span class="gw y">walkable</span></li><li><span class="gn">Lunch at Ippudo</span><span class="gw n">short ride</span></li><li><span class="gn">Printemps, One Wall Street</span><span class="gw n">short ride</span></li><li><span class="gn">Nobu Downtown dinner</span><span class="gw n">short ride</span></li><li><span class="gn">Glace, Upper East Side</span><span class="gw n">short ride</span></li></ul></details><details class="gcat"><summary><h3>Shops<small>2</small></h3></summary><ul><li><span class="gn">Gentle Monster, SoHo</span><span class="gw n">short ride</span></li><li><span class="gn">Kith, SoHo</span><span class="gw n">short ride</span></li></ul></details><details class="gcat"><summary><h3>Activities<small>7</small></h3></summary><ul><li><span class="gn">Madison Square Park and Flatiron</span><span class="gw y">walkable</span></li><li><span class="gn">FAO Schwarz, Rockefeller Center</span><span class="gw n">short ride</span></li><li><span class="gn">Chelsea gallery streets</span><span class="gw y">walkable</span></li><li data-s="m"><span class="gn">Brooklyn Botanical Garden</span><span class="gw n">short ride</span></li><li><span class="gn">Mercer Labs</span><span class="gw n">short ride</span></li><li><span class="gn">Aura reading at Magic Jewelry</span><span class="gw n">short ride</span></li><li data-s="w"><span class="gn">Grand Central Holiday Train Show (no strollers in the gallery)</span><span class="gw n">short ride</span></li></ul></details><details class="gcat"><summary><h3>Sample sale<small>1</small></h3></summary><ul><li><span class="gn">Sample-sale hunt</span><span class="gw n">short ride</span></li></ul></details><details class="gcat"><summary><h3>Pop-ups<small>2</small></h3></summary><ul><li><span class="gn">CJ Hendry Flower Market</span><span class="gw n">short ride</span></li><li><span class="gn">Pop-up of the week</span><span class="gw n">short ride</span></li></ul></details><details class="gcat" data-s="w"><summary><h3>Winter lights<small>5</small></h3></summary><ul><li><span class="gn">Saks Fifth Avenue light show</span><span class="gw n">short ride</span></li><li><span class="gn">Rockefeller Center Christmas tree</span><span class="gw n">short ride</span></li><li><span class="gn">Macy&#x27;s Santaland and Fifth Ave windows</span><span class="gw n">short ride</span></li><li><span class="gn">Lightscape at Brooklyn Botanic Garden</span><span class="gw n">day trip</span></li><li data-s="w"><span class="gn">Dyker Heights Christmas lights (free, Brooklyn)</span><span class="gw n">day trip</span></li></ul></details></div></section>
+<section class="index guide rise"><div class="kick">In this guide</div><div class="gcats"><details class="gcat"><summary><h3>Hotel<small>2</small></h3></summary><ul><li><span class="gn">Bazaar Meat by José Andrés</span><span class="gw y">in the hotel</span></li><li><span class="gn">Nubeluz, 50th floor</span><span class="gw y">in the hotel</span></li></ul></details><details class="gcat"><summary><h3>Matcha<small>5</small></h3></summary><ul><li><span class="gn">Cha Cha Matcha, NoMad</span><span class="gw y">walkable</span></li><li><span class="gn">12 Matcha</span><span class="gw n">short ride</span></li><li><span class="gn">Rhythm Zero</span><span class="gw n">short ride</span></li><li><span class="gn">Rok Matcha</span><span class="gw n">short ride</span></li><li><span class="gn">Matchaful, Flatiron</span><span class="gw y">walkable</span></li></ul></details><details class="gcat"><summary><h3>Food<small>8</small></h3></summary><ul><li><span class="gn">Brunch at Eataly Flatiron</span><span class="gw y">walkable</span></li><li><span class="gn">Lunch at Balthazar</span><span class="gw n">short ride</span></li><li><span class="gn">Din Tai Fung</span><span class="gw n">short ride</span></li><li><span class="gn">Breakfast at Chelsea Market</span><span class="gw y">walkable</span></li><li><span class="gn">Lunch at Ippudo</span><span class="gw n">short ride</span></li><li><span class="gn">Printemps, One Wall Street</span><span class="gw n">short ride</span></li><li><span class="gn">Nobu Downtown dinner</span><span class="gw n">short ride</span></li><li><span class="gn">Glace, Upper East Side</span><span class="gw n">short ride</span></li></ul></details><details class="gcat"><summary><h3>Shops<small>2</small></h3></summary><ul><li><span class="gn">Gentle Monster, SoHo</span><span class="gw n">short ride</span></li><li><span class="gn">Kith, SoHo</span><span class="gw n">short ride</span></li></ul></details><details class="gcat"><summary><h3>Activities<small>7</small></h3></summary><ul><li><span class="gn">Madison Square Park and Flatiron</span><span class="gw y">walkable</span></li><li><span class="gn">FAO Schwarz, Rockefeller Center</span><span class="gw n">short ride</span></li><li><span class="gn">Chelsea gallery streets</span><span class="gw y">walkable</span></li><li data-s="m"><span class="gn">Brooklyn Botanical Garden</span><span class="gw n">short ride</span></li><li><span class="gn">Mercer Labs</span><span class="gw n">short ride</span></li><li><span class="gn">Aura reading at Magic Jewelry</span><span class="gw n">short ride</span></li><li data-s="w"><span class="gn">Grand Central Holiday Train Show (no strollers in the gallery)</span><span class="gw n">short ride</span></li></ul></details><details class="gcat"><summary><h3>Pop-ups<small>1</small></h3></summary><ul><li><span class="gn">CJ Hendry Flower Market</span><span class="gw n">short ride</span></li></ul></details><details class="gcat" data-s="w"><summary><h3>Winter lights<small>5</small></h3></summary><ul><li><span class="gn">Saks Fifth Avenue light show</span><span class="gw n">short ride</span></li><li><span class="gn">Rockefeller Center Christmas tree</span><span class="gw n">short ride</span></li><li><span class="gn">Macy&#x27;s Santaland and Fifth Ave windows</span><span class="gw n">short ride</span></li><li><span class="gn">Lightscape at Brooklyn Botanic Garden</span><span class="gw n">day trip</span></li><li data-s="w"><span class="gn">Dyker Heights Christmas lights (free, Brooklyn)</span><span class="gw n">day trip</span></li></ul></details></div></section>
 
 <section class="end">
   <div class="kick">Let's make it real</div>

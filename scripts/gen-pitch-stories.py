@@ -60,8 +60,8 @@ STORY = {
     [('Fitness center','here','Open 24 hours, with Peloton bikes. Confirm hours and any age rules.',True)]),
    ('Day 2 · Morning','Madison Square Park, at stroller pace',"First morning, nice and easy: a few blocks from the lobby to Madison Square Park with baby in the stroller and the pup on a leash. Coffee in hand, one slow loop of the lawn, the Flatiron in the frame.",
     [('Cha Cha Matcha, NoMad','walk','1158 Broadway, about two blocks from the lobby: a matcha to go before the park. Cash is not accepted. Confirm hours.',True),('Madison Square Park and Flatiron','walk','A short, flat stroll with baby and pup. Leashed dogs only; the park also has a dog run. Confirm rules and hours.',True),('Brunch at Eataly Flatiron','walk','200 Fifth Ave, right across from the park: pastries, a sit-down brunch or a quick bite, with room for the stroller. Confirm hours and the brunch menu.',True)]),
-   ('Day 2 · Afternoon','Petals and frames',"SoHo, but make it dreamy, and doable with a stroller: the trendy shops and pop-ups I usually skip, with an easy ride back for naps. A shop of soft, handmade flowers, a pair of Gentle Monster frames, a sample sale that's gone by Monday, and a pop-up only the locals know about.",
-    [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Installation-style retail.',True),('Kith, SoHo','ride','The all-white sneaker wall and a tiled flagship. Confirm which store and hours.',True),('Sample-sale hunt','ride','Check the 260 Sample Sale list the week you go.',True),('Pop-up of the week','ride','Pop-ups rotate weekly. The kind I usually miss with a baby in tow. Pick one for the feed.',True),('Lunch at Balthazar','ride','80 Spring St, SoHo: the classic French brasserie, a good midday stop after the shops. Reservations help; confirm stroller space and hours.',True)]),
+   ('Day 2 · Afternoon','Petals and frames',"SoHo, but make it dreamy, and doable with a stroller: the trendy shops and pop-ups I usually skip, with an easy ride back for naps. A shop of soft, handmade flowers, a pair of Gentle Monster frames, and below, the pop-ups and holiday markets happening while we're here.",
+    [('CJ Hendry Flower Market','ride','The plush-flower shop at 172 Prince St. Pick a bloom for $10.',False),('Gentle Monster, SoHo','ride','Installation-style retail.',True),('Kith, SoHo','ride','The all-white sneaker wall and a tiled flagship. Confirm which store and hours.',True),('Lunch at Balthazar','ride','80 Spring St, SoHo: the classic French brasserie, a good midday stop after the shops. Reservations help; confirm stroller space and hours.',True)]),
    ('Day 2 · The matcha crawl','Three cups, three moods',"A line down the block for the matcha everyone talks about, a café that doubles as an art gallery, and one more cup to compare. This is the matcha chapter.",
     [('12 Matcha','ride','54 Bond St, NoHo. Ceremonial-grade, long line, famous basque cheesecake.',False),('Rhythm Zero','ride','An art-gallery café with a West Village location. Seasonal matcha drinks.',False),('Rok Matcha','ride','Rōk Matcha in New York. Confirm the exact address and hours before we plan around it.',True)]),
    ('Day 2 · Rest hour','Back by four, for a reset',"After a big day out, we're back at the hotel. Baby naps, I take a long bath, and the dog gets a quiet corner. Rest is part of the itinerary, and it makes the evening better.",
@@ -1004,6 +1004,17 @@ CSS = r"""
   @media (max-width:760px) { .cmscene { aspect-ratio:3/7; } .cmscene .c-hall { left:4%; top:1%; width:56%; } .cmscene .c-ent { left:auto; right:4%; top:17%; width:56%; } .cmscene .c-pan { right:auto; left:4%; top:36%; width:52%; }
     .cmscene .c-bag { left:auto; right:4%; top:55%; width:50%; bottom:auto; } .cmscene .c-toast { left:4%; top:76%; width:72%; bottom:auto; } .cmscene .msg { display:none; } }
   .snap.cutsnap { background:none !important; box-shadow:none !important; padding:0 !important; filter:drop-shadow(0 12px 14px rgba(0,0,0,.45)); } .snap.cutsnap .tape { display:none; } .snap.cutsnap img { border:0 !important; }
+  .tbls { display:grid; grid-template-columns:1fr 1fr; gap:34px 48px; margin:48px auto 10px; width:min(1040px,90vw); box-sizing:border-box; text-align:left; position:relative; z-index:2; }
+  .tbl .kick2 { font-size:11px; letter-spacing:.3em; text-transform:uppercase; opacity:.7; margin:0 0 12px; }
+  .tbl:nth-child(2) { grid-column:2; grid-row:1 / span 2; }
+  .tbl table { width:100%; border-collapse:collapse; table-layout:fixed; }
+  .tbl th:first-child, .tbl td.tn { width:56%; }
+  .tbl th { font-size:10px; letter-spacing:.2em; text-transform:uppercase; font-weight:400; opacity:.55; text-align:left; padding:0 0 8px; border-bottom:1px solid currentColor; }
+  .tbl td { padding:11px 14px 11px 0; border-bottom:1px solid rgba(128,128,128,.28); vertical-align:baseline; }
+  .tbl td.tn { font-family:var(--serif, inherit); font-size:17px; }
+  .tbl td.td { font-size:13px; opacity:.8; }
+  .tbl .tnote { font-style:italic; opacity:.7; margin:12px 0 0; font-size:14px; }
+  @media (max-width:760px){ .tbls { grid-template-columns:1fr; } .tbl:nth-child(2) { grid-column:auto; grid-row:auto; } .tbl td.td { white-space:normal; } }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1626,6 +1637,14 @@ def night_fx(seed):
     fl = ''.join(f'<i class="f" style="left:{r.uniform(0,100):.1f}%;--s:{r.choice([2,3,3,4,5])}px;--o:{r.uniform(.35,.85):.2f};--b:{r.choice([0,0,.5,1]) }px;--x:{r.uniform(-60,60):.0f}px;--d:{r.uniform(11,22):.1f}s;--l:-{r.uniform(0,20):.1f}s"></i>' for _ in range(40))
     return f'<div class="nightfx" aria-hidden="true">{tw}{fl}</div>'
 
+POPUPS = [('Delta x American Express: Claim Your Second','Nov 13 to 14, 2026'),('Cars & Tea @ Gatch','Nov 14, 2026'),('Virgil Abloh: The Codes','Dec 10, 2026 to Jan 18, 2027')]
+MARKETS = [('Bryant Park Winter Village','Oct 25 to Jan 5'),("Macy's Holiday Square",'Nov 1 to Jan 3'),('Grand Central Holiday Fair','Nov 11 to Dec 24'),('Union Square Holiday Market','Nov 14 to Dec 24'),('Grand Holiday Bazaar','Nov 24 to Dec 22, Sundays'),('Columbus Circle Holiday Market','Dec 3 to 31'),('Herald Holiday Market','Dec 6 to Jan 3'),('FAD Holiday Markets, Brooklyn','Dec 7 to 22, weekends')]
+def _tbl(head, rows, note=''):
+    r = ''.join(f'<tr><td class="tn">{esc(n)}</td><td class="td">{esc(d)}</td></tr>' for n, d in rows)
+    return f'<div class="tbl rise"><div class="kick2">{esc(head)}</div><table><thead><tr><th>Where</th><th>When</th></tr></thead><tbody>{r}</tbody></table>{note}</div>'
+def pop_tables():
+    return '<div class="tbls">' + _tbl('Pop-ups', POPUPS) + _tbl('Christmas holiday markets', MARKETS) + _tbl('Sample sales', [], '<p class="tnote">Still hunting for this season\'s sample sale list. Check back soon.</p>') + '</div>'
+
 def stroll_html(title):
     d = STROLLS.get(title)
     if not d: return ''
@@ -1784,6 +1803,7 @@ def render(h):
       </div>
       {stroll_html(title) if slug_h == 'nomad' and title.startswith(('Madison Square Park', 'Chelsea gallery')) else ''}
       {collage_h}
+      {pop_tables() if slug_h == 'nomad' and title == 'Petals and frames' else ''}
       {stroll_html(title) if slug_h == 'nomad' and not title.startswith(('Madison Square Park', 'Chelsea gallery', 'Breakfast in bed')) else ''}
       <img class="cutout" src="{CDN}{slug_h}/ch{i+1+off}-cutout.png" alt="" onerror="this.remove()">
     </div>
