@@ -1106,26 +1106,22 @@ CSS = r"""
     .nbscene .msg.n2 { left:4%; top:68%; width:40%; }
     .nbscene .msg.n3 { left:6%; top:86%; width:24%; }
   }
-  .glscene { position:relative; width:min(1100px,100%); aspect-ratio:16/10; margin:30px auto 20px; }
+  .glscene { position:relative; width:min(1180px,100%); aspect-ratio:16/10; margin:30px auto 20px; }
   .glscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); will-change:transform; }
-  .glscene .print { background:#f4efe3; padding:9px 9px 30px; filter:drop-shadow(0 10px 14px rgba(0,0,0,.45)); }
+  .glscene .print { background:#f4efe3; padding:12px 12px 36px; filter:drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
   .glscene .print img { display:block; width:100%; height:auto; }
-  .glscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
-  .glscene .store { left:5%; top:6%; width:34%; --r:-3deg; z-index:2; }
-  .glscene .dish { z-index:4; height:auto; max-width:none; filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
-  .glscene .cup { left:40%; top:2%; width:25%; --r:4deg; }
-  .glscene .tray { left:66%; top:30%; width:29%; --r:-5deg; z-index:5; }
-  .glscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; }
-  .glscene .msg.g1 { left:43%; top:84%; --r:-2deg; }
-  .glscene .msg.g2 { left:68%; top:80%; --r:2deg; }
+  .glscene .print .ph { position:relative; }
+  .glscene .print img.pop { position:absolute; inset:0; transform:scale(1.07); transform-origin:50% 55%; filter:drop-shadow(0 14px 16px rgba(0,0,0,.5)); overflow:visible; }
+  .glscene .print figcaption { position:absolute; left:0; right:0; bottom:8px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .glscene .tape { z-index:5; }
+  .glscene .store { left:4%; top:12%; width:31%; --r:-3deg; z-index:1; }
+  .glscene .sundae { left:34%; top:2%; width:30%; --r:2.4deg; z-index:3; }
+  .glscene .cookie { left:66%; top:14%; width:27%; --r:-3.4deg; z-index:2; }
   @media (max-width:820px) {
-    .glscene { aspect-ratio:3/5.6; }
-    .glscene .store { left:5%; top:2%; width:70%; }
-    .glscene .cup { left:50%; top:22%; width:46%; }
-    .glscene .tray { left:4%; top:46%; width:60%; }
-    .glscene .msg { font-size:15px; }
-    .glscene .msg.g1 { left:52%; top:62%; width:42%; }
-    .glscene .msg.g2 { left:12%; top:78%; width:50%; }
+    .glscene { aspect-ratio:3/6.6; }
+    .glscene .store { left:4%; top:1%; width:62%; }
+    .glscene .sundae { left:30%; top:25%; width:66%; }
+    .glscene .cookie { left:4%; top:62%; width:62%; }
   }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
@@ -1467,7 +1463,7 @@ def nobu_scene(slug_h, cap_html):
             <figure class="lyr print room" data-speed="0.015"><div class="tape"></div><img src="{M}room.jpg" alt="Nobu Downtown dining room" loading="lazy"><figcaption class="hand">wood-slat ceiling, open sushi counter</figcaption></figure>
             <img class="lyr dish yt" data-speed="0.03" src="{M}yellowtail.png" alt="Yellowtail with jalapeño" loading="lazy">
             <img class="lyr dish ng" data-speed="-0.035" src="{M}nigiri.png" alt="Nigiri" loading="lazy">
-            <img class="lyr dish sk" data-speed="0.045" src="{M}skewers.png" alt="Crispy bites on skewers" loading="lazy">
+            <img class="lyr dish sk" data-speed="0.045" src="{M}crispy-skewers.png" alt="Crispy bites on skewers" loading="lazy">
             <img class="lyr dish cn" data-speed="-0.02" src="{M}corn.png" alt="Crispy corn" loading="lazy">
             <div class="lyr msg n1 hand" data-speed="0.01">yellowtail jalapeño</div>
             <div class="lyr msg n2 hand" data-speed="0.02">sushi, a little<br>of everything</div>
@@ -1481,11 +1477,9 @@ def glace_scene(slug_h, cap_html):
     return f'''
         <div class="scene-col">
           <div class="glscene reveal">
-            <figure class="lyr print store" data-speed="0.015"><div class="tape"></div><img src="{M}store.jpg" alt="Glace storefront" loading="lazy"><figcaption class="hand">the little shop</figcaption></figure>
-            <img class="lyr dish cup" data-speed="0.035" src="{M}cup.png" alt="Glace cup with torched marshmallow and a scoop" loading="lazy">
-            <img class="lyr dish tray" data-speed="-0.03" src="{M}tray.png" alt="Cookie and soft serve" loading="lazy">
-            <div class="lyr msg g1 hand" data-speed="0.01">toasty marshmallow,<br>scoop on top</div>
-            <div class="lyr msg g2 hand" data-speed="0.02">a cookie &amp; soft serve<br>to go</div>
+            <figure class="lyr print store" data-speed="0.015"><div class="tape"></div><img src="{M}glace-storefront.jpg" alt="Glace storefront" loading="lazy"><figcaption class="hand">the little shop</figcaption></figure>
+            <figure class="lyr print sundae" data-speed="-0.02"><div class="tape"></div><div class="ph"><img src="{M}sundae-photo.jpg" alt="Glace cup with torched marshmallow" loading="lazy"><img class="pop" data-pop src="{M}sundae-pop.png" alt="" loading="lazy"></div><figcaption class="hand">toasty marshmallow, scoop on top</figcaption></figure>
+            <figure class="lyr print cookie" data-speed="0.03"><div class="tape"></div><div class="ph"><img src="{M}cookie-photo.jpg" alt="Cookie and soft serve" loading="lazy"><img class="pop" data-pop src="{M}cookie-pop.png" alt="" loading="lazy"></div><figcaption class="hand">a cookie &amp; soft serve to go</figcaption></figure>
           </div>
           {cap_html}
         </div>'''
