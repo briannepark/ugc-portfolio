@@ -1019,9 +1019,10 @@ CSS = r"""
   .cosc .print.bed { left:3%; top:2%; width:52%; --r:-2deg; z-index:2; }
   .cosc .print.dusk { left:auto; right:8%; bottom:auto; top:2%; width:40%; --r:3deg; z-index:3; }
   .cosc img.bellc { left:9%; bottom:4%; width:29%; height:auto; max-width:none; z-index:4; filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
-  .cosc img.casec { left:42%; bottom:4%; width:19%; height:auto; max-width:none; z-index:4; filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
-  .cosc .msg.d1 { right:7%; top:auto; bottom:12%; left:auto; z-index:5; text-align:right; }
-  @media (max-width:760px) { .cosc { aspect-ratio:3/5; } .cosc .print.bed { width:90%; } .cosc .print.dusk { right:3%; bottom:auto; top:3%; width:78%; } .cosc img.bellc { left:2%; bottom:0; width:56%; } .cosc img.casec { right:4%; bottom:0; width:32%; left:auto; } .cosc .msg.d1 { right:4%; top:47%; bottom:auto; } }
+  .cosc img.casec { left:41%; bottom:4%; width:19%; height:auto; max-width:none; z-index:4; filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
+  .cosc img.casec2 { left:61%; bottom:4%; width:15%; height:auto; max-width:none; z-index:4; filter:drop-shadow(0 14px 18px rgba(0,0,0,.5)); }
+  .cosc .msg.d1 { right:6%; top:auto; bottom:40%; left:auto; z-index:5; text-align:right; }
+  @media (max-width:760px) { .cosc { aspect-ratio:3/5; } .cosc .print.bed { width:90%; } .cosc .print.dusk { right:3%; bottom:auto; top:3%; width:78%; } .cosc img.bellc { left:2%; bottom:0; width:56%; } .cosc img.casec { right:4%; bottom:0; width:32%; left:auto; } .cosc img.casec2 { left:49%; bottom:0; width:20%; z-index:3; } .cosc .msg.d1 { right:4%; top:47%; bottom:auto; } }
   .bbgscene { position:relative; width:min(1180px,100%); aspect-ratio:16/14.5; margin:30px auto 20px; overflow:visible; }
   .bbgscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); will-change:transform; }
   .bbgscene img.bcanopy { left:-2%; top:-6%; width:104%; height:auto; max-width:none; z-index:7; pointer-events:none; filter:drop-shadow(0 10px 14px rgba(0,0,0,.35)); }
@@ -1556,8 +1557,9 @@ def checkout_scene(slug_h, cap_html):
         <div class="scene-col">
           <div class="bedscene cosc reveal">
             <figure class="lyr print dusk" data-speed="-0.025"><div class="tape"></div><img src="{M}walk-desk.jpg" alt="The front desk" loading="lazy"><figcaption class="hand">checkout, 11:00 am</figcaption></figure>
-            <img class="lyr bellc" data-speed="0.04" src="{M}checkout/dog-luggage-trolley.png" alt="A little dog on a luggage trolley" loading="lazy">
+            <img class="lyr bellc" data-speed="0.04" src="{M}checkout/westie-trolley-cutout.png" alt="A little dog on a luggage trolley" loading="lazy">
             <img class="lyr casec" data-speed="0.05" src="{M}checkout/black-rimowa-suitcase.png" alt="A packed suitcase" loading="lazy">
+            <img class="lyr casec2" data-speed="0.045" src="{M}checkout/blue-rimowa-suitcase.png" alt="A cobalt blue suitcase" loading="lazy">
             <div class="lyr msg d1 hand" data-speed="0.01">bags packed,<br>see you next time</div>
           </div>
           {cap_html}
