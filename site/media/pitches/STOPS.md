@@ -7,7 +7,6 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 
 - `nomad-hero.jpg` (full-bleed cover background)
 - `nomad/cover-1.jpg`, `cover-2.jpg`, `cover-3.jpg` (floating cover cut-outs)
-- `nomad/the-bed-and-the-quiet.jpg`: The bed and the quiet
 - `nomad/family-perks.jpg`: Family perks
 - `nomad/dogs-welcome.jpg`: Dogs welcome
 - `nomad/bath-time-mom-and-baby.jpg`: Bath time, mom and baby

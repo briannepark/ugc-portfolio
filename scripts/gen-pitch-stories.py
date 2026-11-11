@@ -43,18 +43,18 @@ def tm(slug_h, n):
 STORY = {
 'nomad': dict(
   walk=dict(kick='Day 1 · Arrival', title='Through the doors',
-    story="Walk in with me. Past the sheer curtains and up to the check-in desk. This is how I'd open the trip: moving through the hotel, one room at a time.",
+    story="walk in with me",
     scenes=[
       ('Entrance','Step through the doors.','Bronze doors, brass handles, and a garden of green waiting just inside.'),
       ('Lobby','Past the sheer curtains, to check in.','Veined stone desks, sculptural chandeliers, and floor-to-ceiling windows behind the lounge chairs.'),
       ]),
   intro="Picture a trip that feels like yours again: a skyline room, a spa afternoon, the pop-ups you usually miss, and everything baby and the dog need handled, comfortably. This is the long weekend I'd take other moms on, one stop at a time.",
   chapters=[
-   ('Day 1 · Settle in','Unwind after a busy travel day',"I travel with my baby and my dog, so the hotel has to work for all three of us. This is the part of the trip I'd film first: a quiet room, a long nap while the city hums far below, and a soak at the end of the day.",
-    [('The bed and the quiet','here','Oversize windows, high above the street. Nap time and bedtime, on the clock. Ask about the bedding and a crib.',True),('Family perks','here','Ritz Kids activities are listed on the hotel site, and adjoining rooms may be possible. Ask what is offered for babies and toddlers.',True),('Dogs welcome','here','Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.',True)]),
-   ('Day 1 · Bath time','Bath time, for mom and baby',"Bath time is the golden hour of the day: warm water for baby first, then a long, quiet soak for me while the skyline lights up outside the window. Bubbles on the water and a rubber ducky invited.",
-    [('Bath time, mom and baby','here','Diptyque bath products and a separate rain shower, with a deep soaking tub in select rooms. Request a tub room: a warm bath for baby, then a long one for me.',True)]),
-   ('Day 1 · Nightfall','Fifty floors up',"Dinner at the hotel turns into a nightcap, and the nightcap turns into the best view of the trip. Blue hour, every light in Midtown below.",
+   ('Day 1 · Settle in','Unwind after a busy travel day',"I travel with my baby and dog, so the hotel has to work for all of us. This is the part of the trip I'd film first: a quiet room, a nice nap for baby, and some time for mom to relax after a long travel day.",
+    [('Family perks','here','<ul class="perks"><li><b>Ritz Kids Check-In:</b> A dedicated check-in experience where young guests can choose their preferences and receive a special welcome gift.</li><li><b>Welcome Pack Items:</b> Includes signature items such as a Leo the Lion activity book, a plush toy, a coloring book tote, a children\'s water bottle, and a child-sized robe.</li><li><b>In-Room Camp-In / Night Safari:</b> Available tent setups (such as the Ritz Kids safari tent or Night Safari adventure) complete with themed accessories and plush toys for in-room play.</li><li>Cribs and nursing items are available upon request.</li></ul>',True),('Dogs welcome','here','Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.',True)]),
+   ('Day 1 · Bath time','Bath time, for mom and baby',"a relaxing warm bath for baby then a bottle for bed. can't forget some of his favorite bath toys. then, a long, quiet soak for me while the skyline lights up outside the window while baby goes to bed",
+    [('Bath time, mom and baby','here','Diptyque bath products, cozy robe. request a tub, for baby and mom',True)]),
+   ('Day 1 · Dinner','Fifty floors up',"order takeout if baby is a little too fussy-- don't miss the gorgeous skyline view of Midtown",
     [('Bazaar Meat by José Andrés','here','Velvet booths, feather chandeliers, dinner at the hotel.',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
    ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, I slip down to the fitness center. It is open around the clock, with Peloton bikes, right next to the spa. Then a matcha to go, and out for the morning stroll.",
     [('Fitness center','here','Open 24 hours, with Peloton bikes. Confirm hours and any age rules.',True)]),
@@ -214,6 +214,8 @@ CSS = r"""
   .collage .cut.nopic, .L-side .collage .cut.nopic, .L-center .collage .cut.nopic { margin:0 0 20px 0 !important; }
   .cut.nopic { margin-left:0 !important; margin-right:0 !important; left:0 !important; right:auto !important; width:auto !important; max-width:none !important; }
   .num small { display:block; font-family:var(--body); font-size:clamp(17px,2.2vw,24px); font-weight:500; letter-spacing:.4em; text-transform:uppercase; color:var(--accent); -webkit-text-stroke:0; margin-bottom:14px; padding-left:.4em; }
+  .momnote { max-width:640px; margin:34px auto 0; font-size:clamp(22px,2.8vw,30px); line-height:1.3; color:var(--accent); }
+  .perks { margin:6px 0 0; padding-left:1.1em; text-align:left; } .perks li { margin:6px 0; }
   .intro.short h2 { font-family:var(--head); font-weight:400; font-style:italic; font-size:clamp(44px,7vw,84px); line-height:1.05; margin:0 0 28px; }
   .tagpill { display:inline-flex; align-items:center; gap:12px; padding:10px 24px; border:1.5px solid var(--accent); border-radius:999px; font-size:clamp(11px,1.4vw,14px); letter-spacing:.24em; text-transform:uppercase; color:var(--accent); font-weight:500; }
   .intro p { font-family:var(--head); font-size:clamp(24px,3.4vw,38px); line-height:1.3; margin:18px 0 0; }
@@ -1586,7 +1588,7 @@ def bed_scene(slug_h, cap_html):
             <figure class="lyr print bed" data-speed="0.015"><div class="tape"></div><img src="{M}bed.jpg" alt="The king bed with a view over the city" loading="lazy"><figcaption class="hand">the bed</figcaption></figure>
             <figure class="lyr print dusk" data-speed="-0.025"><div class="tape"></div><img src="{M}dusk.jpg" alt="The room view at dusk" loading="lazy"><figcaption class="hand">at dusk</figcaption></figure>
             <div class="lyr msg d1 hand" data-speed="0.01">oversize windows,<br>high above the street</div>
-            <div class="lyr msg d2 hand" data-speed="0.02">nap time &amp;<br>bedtime, on the clock</div>
+            <div class="lyr msg d2 hand" data-speed="0.02">nap &amp; relax</div>
             <svg class="lyr dd a1" viewBox="0 0 140 70" data-speed="0.01"><use href="#d-arrow"/></svg>
             <svg class="lyr dd u1" viewBox="0 0 140 24" data-speed="0.01"><use href="#d-under"/></svg>
           </div>
@@ -1645,6 +1647,7 @@ WINTER_TEXT = {   # warm sentence -> winter sentence (titles, stories, intros)
 
 def sv(warm, winter=None):
     """Escaped text with a winter/warm pair of spans when a winter variant exists."""
+    if warm.startswith('<ul class="perks"'): return warm
     w = winter if winter is not None else WINTER_TEXT.get(warm)
     if not w or w == warm: return esc(warm)
     return f'<span data-s="w">{esc(w)}</span><span data-s="m">{esc(warm)}</span>'
@@ -1675,7 +1678,7 @@ STROLLS = {
 
 WINTER_ONLY = {'Day 2 · Winter lights', 'Day 3 · Winter lights'}
 WARM_ONLY = {'Day 3 · Morning'}
-NIGHT_KICKS = {'Day 1 · Nightfall', 'Day 2 · Evening'} | WINTER_ONLY
+NIGHT_KICKS = {'Day 1 · Dinner', 'Day 2 · Evening'} | WINTER_ONLY
 
 def night_fx(seed):
     import random
@@ -1879,7 +1882,7 @@ def render(h):
     _extra = [('Grand Central Holiday Train Show (no strollers in the gallery)', 'ride'), ('Dyker Heights Christmas lights (free, Brooklyn)', 'trip'), ('Matchaful, Flatiron', 'walk')] if slug_h == 'nomad' else []
     _order = ['Hotel', 'Matcha', 'Food', 'Shops', 'Activities', 'Sample sale', 'Pop-ups', 'Winter lights']
     _g = {k: [] for k in _order}
-    _skip = {'lobby and lounge','room view at dusk','the bed and the quiet','bath time, mom and baby','family perks','dogs welcome','fitness center','nap and soak','spa and steam room','last look and checkout','in-room breakfast'}
+    _skip = {'lobby and lounge','room view at dusk','bath time, mom and baby','family perks','dogs welcome','fitness center','nap and soak','spa and steam room','last look and checkout','in-room breakfast'}
     for _s in allstops:
         if _s[0].lower() in _skip: continue
         _g[_cat(_s[0], _s[1])].append((_s[0], _s[1]))
@@ -1924,8 +1927,8 @@ def render(h):
         hlsec = (f'<section class="hl rise"><div class="kick">Highlights</div><h2>{esc(H["title"])}</h2><p class="lede">{esc(H["lede"])}</p>'
                  f'<div class="cards">{_card("For baby", H["baby"])}{_card("For the dog", H["dog"])}{_card("For mom", H["mom"])}</div>{care_h}'
                  f'<div class="kick2 cw">Close walks</div><div class="walks">{walks_h}</div><p class="wn">{esc(H["walknote"])}</p></section>')
-    intro_h = ('<section class="intro short rise"><h2>for moms&hellip;</h2><span class="tagpill">a guide to vacation with baby + puppy</span></section>' if slug_h == 'nomad' else f'<section class="intro rise"><div class="kick">The trip</div><p>{sv(S["intro"])}</p></section>')
-    lobby = ('''<section class="lobby rise"><div class="pad"><div class="sheet"><div class="lh">The Ritz-Carlton<small>NoMad</small></div><div class="msg">meet you in the lobby at 4PM?</div></div><span class="pen"></span></div><div class="cap2">scroll for the guide &darr;</div></section>''' if slug_h == 'nomad' else '')
+    intro_h = ('<section class="intro short rise"><h2>for moms&hellip;</h2><span class="tagpill">a guide to vacation with baby + puppy</span><p class="hand momnote">come with me on vacation with my babies (human and fur). i want to show other moms what&rsquo;s possible. this is a chance for regular moms to have a moment without feeling guilty. bring the whole family on the journey and do something for everyone. Don&rsquo;t get me wrong, i might have to opt in for take-out&hellip; my son learned he can throw plates. It&rsquo;s all about balance</p></section>' if slug_h == 'nomad' else f'<section class="intro rise"><div class="kick">The trip</div><p>{sv(S["intro"])}</p></section>')
+    lobby = ('''<section class="lobby rise"><div class="pad"><div class="sheet"><div class="lh">The Ritz-Carlton<small>NoMad</small></div><div class="msg">meet in the lobby at 4PM?</div></div><span class="pen"></span></div><div class="cap2">scroll for the guide &darr;</div></section>''' if slug_h == 'nomad' else '')
     tabs_raw = ([('ch1', S['walk']['kick'])] if 'walk' in S else []) + [(f'ch{i+1+off}', c[0]) for i, c in enumerate(S['chapters'])]
     tabs_l = []
     for tid, kk in tabs_raw:
