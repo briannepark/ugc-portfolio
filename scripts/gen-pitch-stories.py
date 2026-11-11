@@ -54,8 +54,8 @@ STORY = {
     [('Family perks','here','<ul class="perks"><li><b>Ritz Kids Check-In:</b> A dedicated check-in experience where young guests can choose their preferences and receive a special welcome gift.</li><li><b>Welcome Pack Items:</b> Includes signature items such as a Leo the Lion activity book, a plush toy, a coloring book tote, a children\'s water bottle, and a child-sized robe.</li><li><b>In-Room Camp-In / Night Safari:</b> Available tent setups (such as the Ritz Kids safari tent or Night Safari adventure) complete with themed accessories and plush toys for in-room play.</li><li>Cribs and nursing items are available upon request.</li></ul>',True),('Dogs welcome','here','Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.',True)]),
    ('Day 1 · Dinner','Fifty floors up',"order takeout if baby is a little too fussy-- don't miss the gorgeous skyline view of Midtown",
     [('Bazaar Meat by José Andrés','here','Velvet booths, feather chandeliers, dinner at the hotel.',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
-   ('Day 1 · Bath time','Bath time, for mom and baby',"a relaxing warm bath for baby then a bottle for bed. can't forget some of his favorite bath toys. then, a long, quiet soak for me while the skyline lights up outside the window while baby goes to bed",
-    [('Bath time, mom and baby','here','Diptyque bath products, cozy robe. request a tub, for baby and mom',True)]),
+   ('Day 1 · Bath time','Bath time, for mom and baby',"a relaxing warm bath for baby with some of his favorite bath toys. then off to bed.<br><br>a long, quiet soak for me while I enjoy the night city views.",
+    [('Bath time','here','<ul class="perks"><li>Diptyque bath products</li><li>Request a tub when checking in</li></ul>',False)]),
    ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, get a quick workout in. That seems impossible for me at home sometimes. If traveling with your partner, it's the perfect time for leg day.",
     [('Fitness center','here','<ul class="perks"><li>Open daily, 24 hours</li><li>Level C2, adjacent to the spa</li><li>Must be 18 years or older</li><li><b>Equipment</b><ul><li><b>Cardiovascular:</b> Treadmills, elliptical machines, exercise bikes, and Peloton bikes</li><li><b>Strength &amp; Free Weights:</b> Technogym machines, weight training equipment, and free weights</li><li><b>Wellness &amp; Recovery:</b> Designated space for yoga, strength work, and stretching, plus adjacent sauna rooms and steam rooms</li></ul></li></ul>',False)]),
    ('Day 2 · Morning','Madison Square Park, at stroller pace',"first morning, nice and easy: coffee in hand, baby in the stroller and the pup on a leash, one slow loop of Madison Square Park with the Flatiron in the frame. no rushing, no guilt.",
@@ -1651,7 +1651,7 @@ WINTER_TEXT = {   # warm sentence -> winter sentence (titles, stories, intros)
 
 def sv(warm, winter=None):
     """Escaped text with a winter/warm pair of spans when a winter variant exists."""
-    if warm.startswith('<ul class="perks"'): return warm
+    if warm.startswith('<ul class="perks"') or '<br>' in warm: return warm
     w = winter if winter is not None else WINTER_TEXT.get(warm)
     if not w or w == warm: return esc(warm)
     return f'<span data-s="w">{esc(w)}</span><span data-s="m">{esc(warm)}</span>'
@@ -1841,7 +1841,7 @@ def render(h):
             if slug_h == 'nomad' and key == 'fitness-center':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + fit_scene(slug_h, cap)
-            if slug_h == 'nomad' and key == 'bath-time-mom-and-baby':
+            if slug_h == 'nomad' and key == 'bath-time':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + bath_scene(slug_h, cap)
             if slug_h == 'nomad' and key == 'madison-square-park-and-flatiron':
@@ -1886,7 +1886,7 @@ def render(h):
     _extra = [('Grand Central Holiday Train Show (no strollers in the gallery)', 'ride'), ('Dyker Heights Christmas lights (free, Brooklyn)', 'trip'), ('Matchaful, Flatiron', 'walk')] if slug_h == 'nomad' else []
     _order = ['Hotel', 'Matcha', 'Food', 'Shops', 'Activities', 'Sample sale', 'Pop-ups', 'Winter lights']
     _g = {k: [] for k in _order}
-    _skip = {'lobby and lounge','room view at dusk','bath time, mom and baby','family perks','dogs welcome','fitness center','nap and soak','spa and steam room','last look and checkout','in-room breakfast'}
+    _skip = {'lobby and lounge','room view at dusk','bath time','family perks','dogs welcome','fitness center','nap and soak','spa and steam room','last look and checkout','in-room breakfast'}
     for _s in allstops:
         if _s[0].lower() in _skip: continue
         _g[_cat(_s[0], _s[1])].append((_s[0], _s[1]))

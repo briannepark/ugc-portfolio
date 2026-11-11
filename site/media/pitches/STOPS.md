@@ -11,7 +11,7 @@ Optional: `<hotel>/ch<N>-cutout.png` is a transparent PNG that floats beside cha
 - `nomad/dogs-welcome.jpg`: Dogs welcome
 - `nomad/bazaar-meat-by-jos-andr-s.jpg`: Bazaar Meat by José Andrés
 - `nomad/nubeluz-50th-floor.jpg`: Nubeluz, 50th floor
-- `nomad/bath-time-mom-and-baby.jpg`: Bath time, mom and baby
+- `nomad/bath-time.jpg`: Bath time
 - `nomad/fitness-center.jpg`: Fitness center
 - `nomad/cha-cha-matcha-nomad.jpg`: Cha Cha Matcha, NoMad
 - `nomad/madison-square-park-and-flatiron.jpg`: Madison Square Park and Flatiron
