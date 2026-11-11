@@ -291,7 +291,8 @@ CSS = r"""
   .g3 { --g:linear-gradient(150deg,color-mix(in srgb,var(--soft) 70%,%%MUTE%%),color-mix(in srgb,var(--accent2) 30%,%%MUTE%%)); }
   .tape { width:72px; height:20px; margin-left:-36px; top:-11px; background:rgba(236,228,205,.62); box-shadow:0 1px 1px rgba(0,0,0,.18); transform:rotate(-2deg); }
   .cap { margin:0; padding:16px 2px 0; gap:6px; color:var(--txt); }
-  .cap .nm { font-family:var(--head); font-size:clamp(18px,1.7vw,22px); line-height:1.15; }
+  .cap .nm { font-family:var(--head); font-size:clamp(26px,2.8vw,34px); font-weight:700; line-height:1.1; letter-spacing:.005em; }
+  .cap .pin { font-size:14px; font-weight:600; }
   .cap .nt { font-family:var(--hand); font-size:clamp(18px,1.7vw,21px); line-height:1.4; opacity:1; color:var(--pen); text-shadow:0 0 .5px currentColor; }
   .cap .nt .perks, .cut.nopic .cap .nt { font-family:var(--body); font-size:clamp(15px,1.4vw,17px); line-height:1.55; color:inherit; text-shadow:none; opacity:.9; }
   .cut.nopic .cap .nt b, .perks b { font-weight:600; }
@@ -1040,6 +1041,40 @@ CSS = r"""
   .bbgscene .msg { z-index:8; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; left:5%; top:80%; --r:-4deg; }
   @media (max-width:760px) { .bbgscene { aspect-ratio:3/6.4; } .bbgscene img.bcanopy { width:150%; left:-25%; top:-3%; }
     .bbgscene .b-pond { left:4%; top:14%; width:88%; } .bbgscene .b-weep { right:5%; top:36%; width:52%; } .bbgscene .b-bridge { left:4%; top:52%; width:70%; } .bbgscene .b-aerial { right:4%; top:76%; width:68%; } .bbgscene .msg { left:6%; top:46%; font-size:14px; z-index:9; } }
+  .bzscene { position:relative; width:min(1180px,100%); aspect-ratio:16/11; margin:30px auto 20px; overflow:visible; }
+  .bzscene .lyr { position:absolute; margin:0; transform:translateY(var(--py,0px)) rotate(var(--r,0deg)); will-change:transform; }
+  .bzscene .drape { top:-4%; height:108%; width:15%; object-fit:cover; z-index:0; -webkit-mask-image:linear-gradient(90deg,#000 50%,transparent),linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent); -webkit-mask-composite:source-in; mask-image:linear-gradient(90deg,#000 50%,transparent),linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent); mask-composite:intersect; filter:saturate(1.15) brightness(.95); }
+  .bzscene .drape.dl { left:-6%; }
+  .bzscene .drape.dr { right:-6%; transform:scaleX(-1); }
+  .bzscene .print { background:#f4efe3; padding:9px 9px 30px; filter:drop-shadow(0 10px 14px rgba(0,0,0,.45)); }
+  .bzscene .print img { display:block; width:100%; height:auto; }
+  .bzscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
+  .bzscene .room { left:5%; top:24%; width:52%; --r:-2.4deg; z-index:2; }
+  .bzscene .chand { z-index:6; height:auto; max-width:none; filter:drop-shadow(0 0 28px rgba(255,170,70,.55)); }
+  .bzscene .c1 { left:24%; top:-1%; width:34%; }
+  .bzscene .c2 { left:60%; top:-2%; width:21%; --r:2deg; }
+  .bzscene .wire { z-index:5; top:-6%; width:2px; background:linear-gradient(#b99a5b,#7a6030); }
+  .bzscene .w1 { left:41%; height:9%; }
+  .bzscene .w2 { left:70%; height:8%; }
+  .bzscene .food { z-index:4; height:auto; max-width:none; filter:drop-shadow(0 14px 18px rgba(0,0,0,.55)); }
+  .bzscene .steak { left:50%; top:42%; width:42%; --r:6deg; }
+  .bzscene .wagyu { left:3%; top:76%; width:30%; --r:-9deg; z-index:5; }
+  .bzscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; }
+  .bzscene .msg.b1 { left:56%; top:90%; --r:-2deg; }
+  .bzscene .msg.b2 { left:36%; top:88%; --r:-3deg; }
+  @media (max-width:820px) {
+    .bzscene { aspect-ratio:3/6.9; }
+    .bzscene .drape { width:22%; }
+    .bzscene .room { left:4%; top:17%; width:92%; }
+    .bzscene .c1 { left:-6%; top:-1%; width:70%; }
+    .bzscene .c2 { left:58%; top:-1%; width:44%; }
+    .bzscene .w1 { left:29%; height:7%; } .bzscene .w2 { left:80%; height:7%; }
+    .bzscene .steak { left:30%; top:48%; width:68%; }
+    .bzscene .wagyu { left:2%; top:77%; width:56%; }
+    .bzscene .msg { font-size:15px; }
+    .bzscene .msg.b1 { left:6%; top:56%; width:26%; }
+    .bzscene .msg.b2 { left:56%; top:92%; }
+  }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
   .rail a { display:flex; align-items:center; justify-content:flex-end; gap:9px; padding:6px 8px; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; line-height:1; color:#fff; text-decoration:none; cursor:pointer; }
@@ -1224,7 +1259,7 @@ def pin(h, name, key, tag):
     return f'<a class="pin" href="{href}" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>{label}</a>'
 
 
-SNAPS = {('nomad', 'matchaful-manhattan-west'): [('matchaful-cup-cut', 'the iced matcha', 's1 cutsnap')], ('nomad', 'spa-and-steam-room'): [('spa-hall', 'the spa hall', 's1')], ('nomad', 'fao-schwarz-rockefeller-center'): [('fao-schwarz-jellycat', 'the Jellycat diner', 's1'), ('fao-schwarz-piano', 'the giant piano', 's2')], ('nomad', 'bazaar-meat-by-jos-andr-s'): [('bazaar-steak-plate', 'the steak', 's1'), ('bazaar-wagyu-bite', 'a wagyu bite', 's2')], ('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
+SNAPS = {('nomad', 'matchaful-manhattan-west'): [('matchaful-cup-cut', 'the iced matcha', 's1 cutsnap')], ('nomad', 'spa-and-steam-room'): [('spa-hall', 'the spa hall', 's1')], ('nomad', 'fao-schwarz-rockefeller-center'): [('fao-schwarz-jellycat', 'the Jellycat diner', 's1'), ('fao-schwarz-piano', 'the giant piano', 's2')], ('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
 
 def snaps(slug_h, key):
     out = ''
@@ -1349,6 +1384,24 @@ def ippudo_scene(slug_h, cap_html):
             {C('bowl2', 'cut-bowl-red.png', -0.04)}
             <div class="lyr msg i1 hand" data-speed="0.01">steam, noodles,<br>a counter seat</div>
             <div class="lyr msg i2 hand" data-speed="0.02">the cozy beat<br>of the day</div>
+          </div>
+          {cap_html}
+        </div>'''
+
+def bazaar_scene(slug_h, cap_html):
+    M = CDN + slug_h + '/bazaar/'
+    return f'''
+        <div class="scene-col">
+          <div class="bzscene reveal">
+            <img class="lyr drape dl" data-speed="0.0" src="{M}velvet.jpg" alt="" loading="lazy">
+            <img class="lyr drape dr" data-speed="0.0" src="{M}velvet.jpg" alt="" loading="lazy">
+            <figure class="lyr print room" data-speed="0.015"><div class="tape"></div><img src="{CDN}{slug_h}/bazaar-meat-by-jos-andr-s.jpg" alt="Bazaar Meat dining room" loading="lazy"><figcaption class="hand">velvet booths &amp; feather chandeliers</figcaption></figure>
+            <span class="lyr wire w1" data-speed="0.0"></span><img class="lyr chand c1" data-speed="0.03" src="{M}chandelier.png" alt="" loading="lazy">
+            <span class="lyr wire w2" data-speed="0.0"></span><img class="lyr chand c2" data-speed="0.045" src="{M}chandelier.png" alt="" loading="lazy">
+            <img class="lyr food steak" data-speed="-0.03" src="{M}steak-cut.png" alt="The steak" loading="lazy">
+            <img class="lyr food wagyu" data-speed="0.04" src="{M}wagyu-cut.png" alt="A wagyu bite" loading="lazy">
+            <div class="lyr msg b1 hand" data-speed="0.01">a steak to share</div>
+            <div class="lyr msg b2 hand" data-speed="0.02">a wagyu bite<br>to start</div>
           </div>
           {cap_html}
         </div>'''
@@ -1792,6 +1845,9 @@ def render(h):
             if key in ('ippudo', 'lunch-at-ippudo'):
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + ippudo_scene(slug_h, cap)
+            if slug_h == 'nomad' and key == 'bazaar-meat-by-jos-andr-s':
+                cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
+                frames = frames[:_before] + bazaar_scene(slug_h, cap)
             if key == 'rhythm-zero':
                 cap = re.search(r'<figcaption.*?</figcaption>', frames[_before:], re.S).group(0)
                 frames = frames[:_before] + rz_scene(slug_h, cap)
