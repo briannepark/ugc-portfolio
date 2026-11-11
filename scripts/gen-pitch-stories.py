@@ -53,7 +53,7 @@ STORY = {
    ('Day 1 · Settle in','Unwind after a busy travel day',"I travel with my baby and dog, so the hotel has to work for all of us. This is the part of the trip I'd film first: a quiet room, a nice nap for baby, and some time for mom to relax after a long travel day.",
     [('Family perks','here','<ul class="perks"><li><b>Ritz Kids Check-In:</b> A dedicated check-in experience where young guests can choose their preferences and receive a special welcome gift.</li><li><b>Welcome Pack Items:</b> Includes signature items such as a Leo the Lion activity book, a plush toy, a coloring book tote, a children\'s water bottle, and a child-sized robe.</li><li><b>In-Room Camp-In / Night Safari:</b> Available tent setups (such as the Ritz Kids safari tent or Night Safari adventure) complete with themed accessories and plush toys for in-room play.</li><li>Cribs and nursing items are available upon request.</li></ul>',True),('Dogs welcome','here','Up to two pets, 60 lbs combined, with a per-stay fee (reported anywhere from $250 to $375, so confirm). Bowls are provided in the room.',True)]),
    ('Day 1 · Dinner','Fifty floors up',"order takeout if baby is a little too fussy-- don't miss the gorgeous skyline view of Midtown",
-    [('Bazaar Meat by José Andrés','here','Velvet booths, feather chandeliers, dinner at the hotel.',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
+    [('Bazaar Meat by José Andrés','here','<ul class="perks"><li>Tuesday–Thursday and Sunday: 5:00 PM – 10:00 PM</li><li>Friday–Saturday: 5:00 PM – 10:30 PM</li><li>Closed Mondays</li></ul>',False),('Nubeluz, 50th floor','here','Skyline at blue hour.',False)]),
    ('Day 1 · Bath time','Bath time, for mom and baby',"a relaxing warm bath for baby with some of his favorite bath toys. then off to bed.<br><br>a long, quiet soak for me while I enjoy the night city views.",
     [('Bath time','here','<ul class="perks"><li>Diptyque bath products</li><li>Request a tub when checking in</li></ul>',False)]),
    ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, get a quick workout in. That seems impossible for me at home sometimes. If traveling with your partner, it's the perfect time for leg day.",
@@ -1224,7 +1224,7 @@ def pin(h, name, key, tag):
     return f'<a class="pin" href="{href}" target="_blank" rel="noopener"><svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1a6 6 0 0 0-6 6c0 4.5 6 12 6 12s6-7.500 6-12a6 6 0 0 0-6-6zm0 8.200A2.200 2.200 0 1 1 8 4.800a2.200 2.200 0 0 1 0 4.400z"/></svg>{label}</a>'
 
 
-SNAPS = {('nomad', 'matchaful-manhattan-west'): [('matchaful-cup-cut', 'the iced matcha', 's1 cutsnap')], ('nomad', 'spa-and-steam-room'): [('spa-hall', 'the spa hall', 's1')], ('nomad', 'fao-schwarz-rockefeller-center'): [('fao-schwarz-jellycat', 'the Jellycat diner', 's1'), ('fao-schwarz-piano', 'the giant piano', 's2')], ('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
+SNAPS = {('nomad', 'matchaful-manhattan-west'): [('matchaful-cup-cut', 'the iced matcha', 's1 cutsnap')], ('nomad', 'spa-and-steam-room'): [('spa-hall', 'the spa hall', 's1')], ('nomad', 'fao-schwarz-rockefeller-center'): [('fao-schwarz-jellycat', 'the Jellycat diner', 's1'), ('fao-schwarz-piano', 'the giant piano', 's2')], ('nomad', 'bazaar-meat-by-jos-andr-s'): [('bazaar-steak-plate', 'the steak', 's1'), ('bazaar-wagyu-bite', 'a wagyu bite', 's2')], ('nomad', 'nubeluz-50th-floor'): [('nubeluz-50th-floor-day', 'by day', 's1'), ('nubeluz-50th-floor-night', 'by night', 's2')]}
 
 def snaps(slug_h, key):
     out = ''
@@ -1767,6 +1767,7 @@ def render(h):
         for j, (name, tag, note, confirm) in enumerate(stops):
             key = slug(name); allstops.append((name, tag, note, confirm, key))
             label, cls = TAGS[tag]
+            if name.startswith('Bazaar Meat'): label = 'Ritz-Carlton - Floor 2'
             if name == 'Fitness center': label = 'Ritz-Carlton - Level C2, adjacent to the spa'
             stamp = '<span class="stamp">confirm</span>' if confirm else ''
             rot = [-.7, .5, -.3, .8][(i + j) % 4]
