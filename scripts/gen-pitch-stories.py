@@ -57,7 +57,7 @@ STORY = {
    ('Day 1 · Bath time','Bath time, for mom and baby',"a relaxing warm bath for baby with some of his favorite bath toys. then off to bed.<br><br>a long, quiet soak for me while I enjoy the night city views.",
     [('Bath time','here','<ul class="perks"><li>Diptyque bath products</li><li>Request a tub when checking in</li></ul>',False)]),
    ('Day 2 · Early morning','Gym before the city wakes',"While baby sleeps in, get a quick workout in. That seems impossible for me at home sometimes. If traveling with your partner, it's the perfect time for leg day.",
-    [('Fitness center','here','<ul class="perks"><li>Open daily, 24 hours</li><li>Level C2, adjacent to the spa</li><li>Must be 18 years or older</li><li><b>Equipment</b><ul><li><b>Cardiovascular:</b> Treadmills, elliptical machines, exercise bikes, and Peloton bikes</li><li><b>Strength &amp; Free Weights:</b> Technogym machines, weight training equipment, and free weights</li><li><b>Wellness &amp; Recovery:</b> Designated space for yoga, strength work, and stretching, plus adjacent sauna rooms and steam rooms</li></ul></li></ul>',False)]),
+    [('Fitness center','here','<ul class="perks"><li>Open daily, 24 hours</li><li>Must be 18 years or older</li><li><b>Equipment</b><ul><li><b>Cardiovascular:</b> Treadmills, elliptical machines, exercise bikes, and Peloton bikes</li><li><b>Strength &amp; Free Weights:</b> Technogym machines, weight training equipment, and free weights</li><li><b>Wellness &amp; Recovery:</b> Designated space for yoga, strength work, and stretching, plus adjacent sauna rooms and steam rooms</li></ul></li></ul>',False)]),
    ('Day 2 · Morning','Madison Square Park, at stroller pace',"first morning, nice and easy: coffee in hand, baby in the stroller and the pup on a leash, one slow loop of Madison Square Park with the Flatiron in the frame. no rushing, no guilt.",
     [('Cha Cha Matcha, NoMad','walk','1158 Broadway, about two blocks from the lobby: a matcha to go before the park. Cash is not accepted. Confirm hours.',True),('Madison Square Park and Flatiron','walk','A short, flat stroll with baby and pup. Leashed dogs only; the park also has a dog run. Confirm rules and hours.',True),('Brunch at Eataly Flatiron','walk','200 Fifth Ave, right across from the park: pastries, a sit-down brunch or a quick bite, with room for the stroller. Confirm hours and the brunch menu.',True)]),
    ('Day 2 · Afternoon','Petals and frames',"SoHo, but doable with a stroller: the cute shops and pop-ups I usually skip, with an easy ride back for nap time. soft handmade flowers, a pair of Gentle Monster frames, and the pop-ups and holiday markets happening while we're here.",
@@ -1767,6 +1767,7 @@ def render(h):
         for j, (name, tag, note, confirm) in enumerate(stops):
             key = slug(name); allstops.append((name, tag, note, confirm, key))
             label, cls = TAGS[tag]
+            if name == 'Fitness center': label = 'Ritz-Carlton - Level C2, adjacent to the spa'
             stamp = '<span class="stamp">confirm</span>' if confirm else ''
             rot = [-.7, .5, -.3, .8][(i + j) % 4]
             speed = [0.025, -0.02, 0.03, -0.025][(i + j) % 4]
