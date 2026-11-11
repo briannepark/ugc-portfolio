@@ -1049,7 +1049,7 @@ CSS = r"""
   .bzscene .print { background:#f4efe3; padding:9px 9px 30px; filter:drop-shadow(0 10px 14px rgba(0,0,0,.45)); }
   .bzscene .print img { display:block; width:100%; height:auto; }
   .bzscene .print figcaption { position:absolute; left:0; right:0; bottom:6px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
-  .bzscene .room { left:5%; top:24%; width:52%; --r:-2.4deg; z-index:2; }
+  .bzscene .room { left:6%; top:25%; width:37%; --r:-2.4deg; z-index:2; }
   .bzscene .chand { z-index:6; height:auto; max-width:none; filter:drop-shadow(0 0 28px rgba(255,170,70,.55)); }
   .bzscene .c1 { left:24%; top:-1%; width:34%; }
   .bzscene .c2 { left:60%; top:-2%; width:21%; --r:2deg; }
@@ -1058,22 +1058,24 @@ CSS = r"""
   .bzscene .w2 { left:70%; height:8%; }
   .bzscene .food { z-index:4; height:auto; max-width:none; filter:drop-shadow(0 14px 18px rgba(0,0,0,.55)); }
   .bzscene .steak { left:50%; top:42%; width:42%; --r:6deg; }
-  .bzscene .wagyu { left:3%; top:76%; width:30%; --r:-9deg; z-index:5; }
+  .bzscene .wagyu { left:3%; top:80%; width:28%; --r:-9deg; z-index:5; }
   .bzscene .msg { z-index:7; color:var(--pen); font-size:clamp(14px,2vw,26px); line-height:1.15; }
   .bzscene .msg.b1 { left:56%; top:90%; --r:-2deg; }
-  .bzscene .msg.b2 { left:36%; top:88%; --r:-3deg; }
+  .bzscene .msg.b2 { left:38%; top:88%; --r:-3deg; width:22%; }
+  .bzscene .arr { position:absolute; width:96px; height:48px; left:-100px; top:6px; stroke:#f4efe3; stroke-width:3; transform:scaleX(-1) rotate(-8deg); }
   @media (max-width:820px) {
-    .bzscene { aspect-ratio:3/6.9; }
+    .bzscene { aspect-ratio:3/7.2; }
     .bzscene .drape { width:22%; }
-    .bzscene .room { left:4%; top:17%; width:92%; }
+    .bzscene .room { left:8%; top:17%; width:78%; }
     .bzscene .c1 { left:-6%; top:-1%; width:70%; }
     .bzscene .c2 { left:58%; top:-1%; width:44%; }
     .bzscene .w1 { left:29%; height:7%; } .bzscene .w2 { left:80%; height:7%; }
-    .bzscene .steak { left:30%; top:48%; width:68%; }
-    .bzscene .wagyu { left:2%; top:77%; width:56%; }
+    .bzscene .steak { left:30%; top:52%; width:68%; }
+    .bzscene .wagyu { left:2%; top:80%; width:54%; }
     .bzscene .msg { font-size:15px; }
-    .bzscene .msg.b1 { left:6%; top:56%; width:26%; }
-    .bzscene .msg.b2 { left:56%; top:92%; }
+    .bzscene .msg.b1 { left:6%; top:60%; width:26%; }
+    .bzscene .msg.b2 { left:60%; top:86%; width:36%; }
+    .bzscene .arr { width:56px; height:28px; left:-58px; }
   }
   .rail { position:fixed; right:6px; top:50%; transform:translateY(-50%); z-index:59; display:flex; flex-direction:column; align-items:flex-end; gap:0; mix-blend-mode:difference; color:#fff; opacity:0; pointer-events:none; transition:opacity .35s; max-height:86vh; }
   .rail.on { opacity:1; pointer-events:auto; }
@@ -1395,13 +1397,13 @@ def bazaar_scene(slug_h, cap_html):
           <div class="bzscene reveal">
             <img class="lyr drape dl" data-speed="0.0" src="{M}velvet.jpg" alt="" loading="lazy">
             <img class="lyr drape dr" data-speed="0.0" src="{M}velvet.jpg" alt="" loading="lazy">
-            <figure class="lyr print room" data-speed="0.015"><div class="tape"></div><img src="{CDN}{slug_h}/bazaar-meat-by-jos-andr-s.jpg" alt="Bazaar Meat dining room" loading="lazy"><figcaption class="hand">velvet booths &amp; feather chandeliers</figcaption></figure>
+            <figure class="lyr print room" data-speed="0.015"><div class="tape"></div><img src="{M}room-velvet.jpg" alt="Bazaar Meat dining room" loading="lazy"><figcaption class="hand">velvet booths &amp; feather chandeliers</figcaption></figure>
             <span class="lyr wire w1" data-speed="0.0"></span><img class="lyr chand c1" data-speed="0.03" src="{M}chandelier.png" alt="" loading="lazy">
             <span class="lyr wire w2" data-speed="0.0"></span><img class="lyr chand c2" data-speed="0.045" src="{M}chandelier.png" alt="" loading="lazy">
             <img class="lyr food steak" data-speed="-0.03" src="{M}steak-cut.png" alt="The steak" loading="lazy">
-            <img class="lyr food wagyu" data-speed="0.04" src="{M}wagyu-cut.png" alt="A wagyu bite" loading="lazy">
+            <img class="lyr food wagyu" data-speed="0.04" src="{M}air-bread-cheesesteak.png" alt="Air-bread Philly cheesesteak" loading="lazy">
             <div class="lyr msg b1 hand" data-speed="0.01">a steak to share</div>
-            <div class="lyr msg b2 hand" data-speed="0.02">a wagyu bite<br>to start</div>
+            <div class="lyr msg b2 hand" data-speed="0.02">air-bread &ldquo;Philly&rdquo;<br>cheesesteak<svg class="dd arr" viewBox="0 0 140 70"><use href="#d-arrow"/></svg></div>
           </div>
           {cap_html}
         </div>'''
