@@ -417,7 +417,8 @@ CSS = r"""
   .cut .snap em { position:absolute; left:0; right:0; bottom:3px; text-align:center; font-style:normal; font-size:15px; color:#2a2a2a; }
   .cut .snap .tape { width:50px; height:15px; margin-left:-25px; top:-8px; }
   .cut .snap.s1 { right:-13%; top:30%; transform:rotate(5deg); width:40%; }
-  .cut .snap.s2 { left:-32%; top:26%; transform:rotate(-4deg); width:36%; }
+  .cut .snap.s2 { left:-9%; top:30%; transform:rotate(-4deg); width:34%; }
+  .cut:has(.snap) { z-index:8 !important; }
   @media (max-width:820px) { .cut .snap { width:34% !important; } .cut .snap.s1 { right:-3%; top:24%; } .cut .snap.s2 { left:-3%; top:32%; } }
 
   /* ---- Chelsea galleries collage scene ---- */
@@ -1111,7 +1112,9 @@ CSS = r"""
   .glscene .print { background:#f4efe3; padding:12px 12px 36px; filter:drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
   .glscene .print img { display:block; width:100%; height:auto; }
   .glscene .print .ph { position:relative; }
-  .glscene .print img.pop { position:absolute; inset:0; transform:scale(1.07); transform-origin:50% 55%; filter:drop-shadow(0 14px 16px rgba(0,0,0,.5)); overflow:visible; }
+  .glscene .print img.pop { position:absolute; max-width:none; transform:scale(1.1) rotate(2deg); transform-origin:50% 55%; filter:drop-shadow(0 14px 16px rgba(0,0,0,.5)); }
+  .glscene .print img.pop.sp { width:112.5%; left:-6.25%; top:-5%; }
+  .glscene .print img.pop.cp { width:114.5%; left:-7.2%; top:-5.8%; --r:0; }
   .glscene .print figcaption { position:absolute; left:0; right:0; bottom:8px; text-align:center; font-size:clamp(13px,1.5vw,20px); color:#2a2a2a; }
   .glscene .tape { z-index:5; }
   .glscene .store { left:4%; top:12%; width:31%; --r:-3deg; z-index:1; }
@@ -1462,9 +1465,9 @@ def nobu_scene(slug_h, cap_html):
             <img class="lyr ceil" data-speed="0.0" src="{M}ceiling.jpg" alt="" loading="lazy">
             <figure class="lyr print room" data-speed="0.015"><div class="tape"></div><img src="{M}room.jpg" alt="Nobu Downtown dining room" loading="lazy"><figcaption class="hand">wood-slat ceiling, open sushi counter</figcaption></figure>
             <img class="lyr dish yt" data-speed="0.03" src="{M}yellowtail.png" alt="Yellowtail with jalapeño" loading="lazy">
-            <img class="lyr dish ng" data-speed="-0.035" src="{M}nigiri.png" alt="Nigiri" loading="lazy">
-            <img class="lyr dish sk" data-speed="0.045" src="{M}crispy-skewers.png" alt="Crispy bites on skewers" loading="lazy">
-            <img class="lyr dish cn" data-speed="-0.02" src="{M}corn.png" alt="Crispy corn" loading="lazy">
+            <img class="lyr dish ng" data-speed="-0.035" src="{M}nigiri-sticker.png" alt="Nigiri" loading="lazy">
+            <img class="lyr dish sk" data-speed="0.045" src="{M}skewers-sticker.png" alt="Crispy bites on skewers" loading="lazy">
+            <img class="lyr dish cn" data-speed="-0.02" src="{M}corn-sticker.png" alt="Crispy corn" loading="lazy">
             <div class="lyr msg n1 hand" data-speed="0.01">yellowtail jalapeño</div>
             <div class="lyr msg n2 hand" data-speed="0.02">sushi, a little<br>of everything</div>
             <div class="lyr msg n3 hand" data-speed="0.015">bites to share</div>
@@ -1478,8 +1481,8 @@ def glace_scene(slug_h, cap_html):
         <div class="scene-col">
           <div class="glscene reveal">
             <figure class="lyr print store" data-speed="0.015"><div class="tape"></div><img src="{M}glace-storefront.jpg" alt="Glace storefront" loading="lazy"><figcaption class="hand">the little shop</figcaption></figure>
-            <figure class="lyr print sundae" data-speed="-0.02"><div class="tape"></div><div class="ph"><img src="{M}sundae-photo.jpg" alt="Glace cup with torched marshmallow" loading="lazy"><img class="pop" data-pop src="{M}sundae-pop.png" alt="" loading="lazy"></div><figcaption class="hand">toasty marshmallow, scoop on top</figcaption></figure>
-            <figure class="lyr print cookie" data-speed="0.03"><div class="tape"></div><div class="ph"><img src="{M}cookie-photo.jpg" alt="Cookie and soft serve" loading="lazy"><img class="pop" data-pop src="{M}cookie-pop.png" alt="" loading="lazy"></div><figcaption class="hand">a cookie &amp; soft serve to go</figcaption></figure>
+            <figure class="lyr print sundae" data-speed="-0.02"><div class="tape"></div><div class="ph"><img src="{M}sundae-photo.jpg" alt="Glace cup with torched marshmallow" loading="lazy"><img class="pop sp" data-pop src="{M}sundae-pop-sticker.png" alt="" loading="lazy"></div><figcaption class="hand">toasty marshmallow, scoop on top</figcaption></figure>
+            <figure class="lyr print cookie" data-speed="0.03"><div class="tape"></div><div class="ph"><img src="{M}cookie-photo.jpg" alt="Cookie and soft serve" loading="lazy"><img class="pop cp" data-pop src="{M}cookie-pop-sticker.png" alt="" loading="lazy"></div><figcaption class="hand">a cookie &amp; soft serve to go</figcaption></figure>
           </div>
           {cap_html}
         </div>'''
